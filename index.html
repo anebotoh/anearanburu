@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ane Aranburu — Product Designer</title>
+<title>Ane Aranburu — Work</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,6 +121,20 @@
 </style>
 </head>
 <body>
+<script>
+  (function() {
+    const correct = 'sorry';
+    const entered = localStorage.getItem('sitePassword');
+    if (entered !== correct) {
+      const pwd = prompt('Password protected:');
+      if (pwd !== correct) {
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0C0C0F;color:#888;font-family:Inter,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Access denied</div>';
+      } else {
+        localStorage.setItem('sitePassword', correct);
+      }
+    }
+  })();
+</script>
 
 <nav>
   <a class="nav-name" href="index.html"><span class="dot">:</span>)</a>

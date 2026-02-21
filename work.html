@@ -34,6 +34,7 @@
 
   /* HERO */
   .hero-card { padding: 40px 4px; }
+  .hero-card-inner { max-width: 1000px; text-align: left; }
   .hero-card h1 {
     font-family: var(--font); font-size: 56px; font-weight: 300;
     line-height: 70px; color: #fff; width: 100%; margin-top: 64px; margin-bottom: 32px;
@@ -78,13 +79,28 @@
   .social-links a { font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; padding: 8px 14px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .social-links a:hover { color: var(--text); border-color: var(--border); }
 
+  @media (max-width: 1024px) {
+    .hero-card h1, .hero-card p { font-size: 44px; line-height: 56px; }
+    .project-info { padding: 40px 36px; }
+  }
   @media (max-width: 768px) {
     nav { padding: 18px 20px; }
-    .page { padding: 10px 20px 20px; }
+    .nav-name { font-size: 11px; }
+    .page { padding: 10px 20px 20px; gap: 8px; }
     .hero-card h1, .hero-card p { font-size: 32px; line-height: 42px; }
+    .hero-card h1 { margin-top: 40px; margin-bottom: 20px; }
     .project-card { grid-template-columns: 1fr; }
-    .project-media .placeholder { min-height: 240px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 16px; }
+    .project-media { min-height: 260px; }
+    .project-media .placeholder { min-height: 260px; }
+    .project-info { padding: 32px 28px; }
+    .project-title { font-size: 22px; }
+    .project-sub { font-size: 15px; margin-bottom: 32px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .hero-card h1, .hero-card p { font-size: 26px; line-height: 36px; }
+    .nav-links a { padding: 6px 10px; font-size: 10px; }
+    .project-info { padding: 24px 20px; }
   }
 </style>
 </head>
@@ -102,8 +118,10 @@
 <main class="page">
 
   <div class="hero-card">
-    <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
-    <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
+    <div class="hero-card-inner">
+      <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
+      <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
+    </div>
   </div>
 
   <article class="project-card">

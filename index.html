@@ -22,7 +22,8 @@
     padding: 24px 48px; position: sticky; top: 0; z-index: 100;
     background: var(--bg);
   }
-  .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
+  .nav-name:hover { transform: rotate(90deg); }
   .nav-links { display: flex; gap: 4px; }
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
@@ -115,7 +116,7 @@
 <body>
 
 <nav>
-  <a class="nav-name" href="work.html">:)</a>
+  <a class="nav-name" href="index.html"><span class="dot">:</span>)</a>
   <div class="nav-links">
     <a href="mailto:aranburuane@gmail.com" style="color:var(--text)">Email</a>
     <a href="https://twitter.com/anebotoh" target="_blank" style="color:var(--text)">Twitter</a>

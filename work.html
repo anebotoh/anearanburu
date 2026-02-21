@@ -13,10 +13,9 @@
     --bg: #111; --surface: #1a1a1a; --surface2: #202020; --border: #2a2a2a;
     --text: #f0ede8; --muted: #888;
     --radius: 20px;
-    --display: 'Inter', sans-serif;
-    --body: 'Inter', sans-serif;
+    --font: 'Inter', sans-serif;
   }
-  body { background: var(--bg); color: var(--text); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 
   /* NAV */
   nav {
@@ -24,18 +23,9 @@
     padding: 24px 28px; position: sticky; top: 0; z-index: 100;
     background: var(--bg);
   }
-  .nav-name {
-    font-family: var(--display); font-size: 13px; font-weight: 700;
-    letter-spacing: .06em; text-transform: uppercase;
-    color: var(--text); text-decoration: none;
-  }
+  .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
   .nav-links { display: flex; gap: 4px; }
-  .nav-links a {
-    font-family: var(--body); font-size: 11px; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--muted); text-decoration: none;
-    transition: color .2s; padding: 8px 16px; border-radius: 100px;
-    border: 1px solid transparent; font-weight: 500;
-  }
+  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.active { color: var(--text); border-color: var(--border); }
 
@@ -43,30 +33,14 @@
   .page { padding: 12px 28px 28px; display: flex; flex-direction: column; gap: 10px; }
 
   /* HERO */
-  .hero-card {
-    padding: 40px 4px;
-  }
+  .hero-card { padding: 40px 4px; }
   .hero-card h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 70px;
-    color: #fff;
-    width: 100%;
-    margin-top: 64px;
-    margin-bottom: 32px;
-  }
-  .hero-card h1 em {
-    font-style: normal;
-    color: var(--muted);
+    font-family: var(--font); font-size: 56px; font-weight: 300;
+    line-height: 70px; color: #fff; width: 100%; margin-top: 64px; margin-bottom: 32px;
   }
   .hero-card p {
-    color: #7a7a7a;
-    width: 100%;
-    font-family: 'Inter', sans-serif;
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 70px;
+    color: #7a7a7a; width: 100%; font-family: var(--font);
+    font-size: 56px; font-weight: 300; line-height: 70px;
   }
 
   /* PROJECT CARDS */
@@ -75,7 +49,7 @@
     display: grid; grid-template-columns: 1fr 1fr;
     overflow: hidden; min-height: 420px;
   }
-  .project-media { background: var(--surface2); overflow: hidden; position: relative; }
+  .project-media { background: var(--surface2); overflow: hidden; position: relative; border-radius: 16px; }
   .project-media video, .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.85); transition: filter .5s; }
   .project-card:hover .project-media video,
   .project-card:hover .project-media img { filter: brightness(1); }
@@ -83,53 +57,34 @@
     width: 100%; height: 100%; min-height: 420px;
     display: flex; align-items: center; justify-content: center;
     color: var(--border); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-    font-family: var(--body);
   }
-
   .project-info { padding: 52px 48px; display: flex; flex-direction: column; justify-content: space-between; }
   .project-meta { font-size: 10px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; font-weight: 500; }
-  .project-title {
-    font-family: var(--display);
-    font-size: clamp(22px, 2.2vw, 34px);
-    font-weight: 600; line-height: 1.05;
-    letter-spacing: -.01em;
-    margin-bottom: 14px; color: var(--text);
-  }
-  .project-sub { font-size: 13px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; font-weight: 400; }
+  .project-title { font-size: clamp(22px, 2.2vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -.01em; margin-bottom: 14px; color: var(--text); }
+  .project-sub { font-size: 18px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; font-weight: 400; }
   .project-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--body); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
     color: var(--text); text-decoration: none;
     background: var(--border); padding: 12px 22px; border-radius: 100px;
     width: fit-content; transition: background .2s;
   }
   .project-cta:hover { background: #333; }
 
-
-
   /* FOOTER */
-  footer {
-    margin: 0 0 0;
-    background: var(--surface); border-radius: var(--radius);
-    padding: 24px 36px; display: flex; justify-content: space-between; align-items: center;
-  }
+  footer { background: var(--surface); border-radius: var(--radius); padding: 24px 36px; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
   .social-links { display: flex; gap: 4px; }
-  .social-links a {
-    font-size: 11px; color: var(--muted); text-decoration: none;
-    letter-spacing: .08em; text-transform: uppercase; transition: color .2s;
-    padding: 8px 14px; border-radius: 100px; border: 1px solid transparent; font-weight: 500;
-  }
+  .social-links a { font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; padding: 8px 14px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .social-links a:hover { color: var(--text); border-color: var(--border); }
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     nav { padding: 18px 20px; }
-    .page { padding: 10px 20px 20px; gap: 8px; }
-    .hero-card { padding: 40px 28px; }
+    .page { padding: 10px 20px 20px; }
+    .hero-card h1, .hero-card p { font-size: 32px; line-height: 42px; }
     .project-card { grid-template-columns: 1fr; }
-    .project-media .placeholder { min-height: 220px; }
-    .bottom-row { grid-template-columns: 1fr; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    .project-media .placeholder { min-height: 240px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 16px; }
   }
 </style>
 </head>
@@ -161,7 +116,7 @@
         <h2 class="project-title">Making music meets serious play</h2>
         <p class="project-sub">Output Creator Desktop App</p>
       </div>
-      <a class="project-cta" href="https://output.com" target="_blank">View Project ↗</a>
+      
     </div>
   </article>
 
@@ -217,7 +172,6 @@
         <h2 class="project-title">Journalism that brings you life outside your bubble</h2>
         <p class="project-sub">iPondr MVP</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -231,7 +185,6 @@
         <h2 class="project-title">Visual concept for XGIMI projector technology</h2>
         <p class="project-sub">XGIMI Project app Look & Feel</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -245,7 +198,6 @@
         <h2 class="project-title">Microsite concept for Messenger</h2>
         <p class="project-sub">Messenger microsite concept</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -259,7 +211,6 @@
         <h2 class="project-title">Visual concepts for Wheels Up</h2>
         <p class="project-sub">Wheels Up iOS app</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -273,7 +224,6 @@
         <h2 class="project-title">Designing for different cultures</h2>
         <p class="project-sub">Lark / Bytedance</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -287,7 +237,6 @@
         <h2 class="project-title">Book your trip, using just your voice</h2>
         <p class="project-sub">DEEM iOS app voice concept</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 
@@ -301,7 +250,6 @@
         <h2 class="project-title">How could Asana look like in 5 years?</h2>
         <p class="project-sub">Asana Vision concept</p>
       </div>
-      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
     </div>
   </article>
 

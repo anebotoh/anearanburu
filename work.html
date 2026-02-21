@@ -4,78 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ane Aranburu — Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #0d0d0d; --surface: #161616; --border: #222;
-    --text: #f0ede8; --muted: #555;
-    --sans: system-ui, -apple-system, sans-serif;
-    --serif: 'Georgia', serif;
+    --bg: #111; --surface: #1a1a1a; --surface2: #202020; --border: #2a2a2a;
+    --text: #f0ede8; --muted: #888;
+    --radius: 20px;
+    --display: 'Inter', sans-serif;
+    --body: 'Inter', sans-serif;
   }
-  body { background: var(--bg); color: var(--text); font-family: var(--serif); }
+  body { background: var(--bg); color: var(--text); font-family: var(--body); -webkit-font-smoothing: antialiased; }
 
   /* NAV */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 32px 48px; position: sticky; top: 0; z-index: 100;
-    background: var(--bg); border-bottom: 1px solid var(--border);
+    padding: 24px 28px; position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
   }
-  .nav-name { font-family: var(--sans); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-family: var(--sans); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-name {
+    font-family: var(--display); font-size: 13px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-family: var(--body); font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color .2s; padding: 8px 16px; border-radius: 100px;
+    border: 1px solid transparent; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--text); border-color: var(--border); }
+
+  /* PAGE */
+  .page { padding: 12px 28px 28px; display: flex; flex-direction: column; gap: 10px; }
 
   /* HERO */
-  .hero { padding: 80px 48px 60px; max-width: 900px; border-bottom: 1px solid var(--border); }
-  .hero h1 { font-size: clamp(24px, 3.5vw, 42px); font-weight: 400; line-height: 1.25; margin-bottom: 20px; color: var(--text); }
-  .hero p { font-family: var(--sans); font-size: 14px; color: var(--muted); max-width: 560px; line-height: 1.8; }
+  .hero-card {
+    padding: 40px 4px;
+  }
+  .hero-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 70px;
+    color: #fff;
+    width: 100%;
+    margin-top: 64px;
+    margin-bottom: 32px;
+  }
+  .hero-card h1 em {
+    font-style: normal;
+    color: var(--muted);
+  }
+  .hero-card p {
+    color: #7a7a7a;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 70px;
+  }
 
-  /* WORK LIST */
-  .work-item {
+  /* PROJECT CARDS */
+  .project-card {
+    background: var(--surface); border-radius: var(--radius);
     display: grid; grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--border); min-height: 400px;
+    overflow: hidden; min-height: 420px;
   }
-  .work-item:nth-child(even) .work-info { order: 2; }
-  .work-item:nth-child(even) .work-media { order: 1; }
-  .work-info { padding: 56px 48px; display: flex; flex-direction: column; justify-content: space-between; }
-  .work-meta { font-family: var(--sans); font-size: 11px; color: var(--muted); margin-bottom: 12px; letter-spacing: .06em; text-transform: uppercase; }
-  .work-title { font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
-  .work-subtitle { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-bottom: 40px; }
-  .work-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--sans); font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  .project-media { background: var(--surface2); overflow: hidden; position: relative; }
+  .project-media video, .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.85); transition: filter .5s; }
+  .project-card:hover .project-media video,
+  .project-card:hover .project-media img { filter: brightness(1); }
+  .project-media .placeholder {
+    width: 100%; height: 100%; min-height: 420px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--border); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    font-family: var(--body);
+  }
+
+  .project-info { padding: 52px 48px; display: flex; flex-direction: column; justify-content: space-between; }
+  .project-meta { font-size: 10px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; font-weight: 500; }
+  .project-title {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.2vw, 34px);
+    font-weight: 600; line-height: 1.05;
+    letter-spacing: -.01em;
+    margin-bottom: 14px; color: var(--text);
+  }
+  .project-sub { font-size: 13px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; font-weight: 400; }
+  .project-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--body); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
     color: var(--text); text-decoration: none;
-    border-bottom: 1px solid var(--border); padding-bottom: 4px;
-    width: fit-content; transition: border-color .2s, color .2s;
+    background: var(--border); padding: 12px 22px; border-radius: 100px;
+    width: fit-content; transition: background .2s;
   }
-  .work-cta:hover { border-color: var(--text); }
-  .work-media { background: var(--surface); overflow: hidden; position: relative; }
-  .work-media video, .work-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.9); transition: filter .4s; }
-  .work-media:hover video, .work-media:hover img { filter: brightness(1); }
-  .work-media .placeholder { width: 100%; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--sans); font-size: 12px; letter-spacing: .05em; }
+  .project-cta:hover { background: #333; }
+
+
 
   /* FOOTER */
-  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  footer p { font-family: var(--sans); font-size: 11px; color: var(--muted); letter-spacing: .05em; }
-  .social-links { display: flex; gap: 24px; }
-  .social-links a { font-family: var(--sans); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: .05em; transition: color .2s; }
-  .social-links a:hover { color: var(--text); }
+  footer {
+    margin: 0 0 0;
+    background: var(--surface); border-radius: var(--radius);
+    padding: 24px 36px; display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+  .social-links { display: flex; gap: 4px; }
+  .social-links a {
+    font-size: 11px; color: var(--muted); text-decoration: none;
+    letter-spacing: .08em; text-transform: uppercase; transition: color .2s;
+    padding: 8px 14px; border-radius: 100px; border: 1px solid transparent; font-weight: 500;
+  }
+  .social-links a:hover { color: var(--text); border-color: var(--border); }
 
-  @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .hero { padding: 48px 24px 40px; }
-    .work-item { grid-template-columns: 1fr; }
-    .work-item:nth-child(even) .work-info { order: 1; }
-    .work-item:nth-child(even) .work-media { order: 2; }
-    .work-info { padding: 36px 24px; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 20px; }
+  @media (max-width: 900px) {
+    nav { padding: 18px 20px; }
+    .page { padding: 10px 20px 20px; gap: 8px; }
+    .hero-card { padding: 40px 28px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-media .placeholder { min-height: 220px; }
+    .bottom-row { grid-template-columns: 1fr; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-name" href="work.html">Ane Aranburu</a>
+  <a class="nav-name" href="work.html">:)</a>
   <div class="nav-links">
     <a href="work.html" class="active">Work</a>
     <a href="photo.html">Photo</a>
@@ -83,80 +144,177 @@
   </div>
 </nav>
 
-<section class="hero">
-  <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
-  <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
-</section>
+<main class="page">
 
-<section id="work">
-
-  <article class="work-item">
-    <div class="work-info">
-      <div>
-        <p class="work-meta">Output — Since 2024</p>
-        <h2 class="work-title">Making music meets serious play</h2>
-        <p class="work-subtitle">Output Creator Desktop App</p>
-      </div>
-      <a class="work-cta" href="https://output.com" target="_blank">View Project ↗</a>
-    </div>
-    <div class="work-media">
-      <div class="placeholder">[ Add video or image ]</div>
-    </div>
-  </article>
-
-  <article class="work-item">
-    <div class="work-info">
-      <div>
-        <p class="work-meta">Fantasy — 2023</p>
-        <h2 class="work-title">Buy movie tickets, with no distractions</h2>
-        <p class="work-subtitle">Cinepolis ecosystem redesign</p>
-      </div>
-      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
-    </div>
-    <div class="work-media">
-      <div class="placeholder">[ Add video or image ]</div>
-    </div>
-  </article>
-
-  <article class="work-item">
-    <div class="work-info">
-      <div>
-        <p class="work-meta">Fantasy — 2021</p>
-        <h2 class="work-title">A People's Journey, A Nation's Story</h2>
-        <p class="work-subtitle">NMAAHC Microsite MVP</p>
-      </div>
-      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
-    </div>
-    <div class="work-media">
-      <div class="placeholder">[ Add video or image ]</div>
-    </div>
-  </article>
-
-  <article class="work-item">
-    <div class="work-info">
-      <div>
-        <p class="work-meta">Fantasy — 2022</p>
-        <h2 class="work-title">Make e-learning feel like play</h2>
-        <p class="work-subtitle">Embibe app onboarding redesign</p>
-      </div>
-      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
-    </div>
-    <div class="work-media">
-      <div class="placeholder">[ Add video or image ]</div>
-    </div>
-  </article>
-
-</section>
-
-<footer>
-  <p>© 2026 Ane Aranburu</p>
-  <div class="social-links">
-    <a href="mailto:aranburuane@gmail.com">Email ↗</a>
-    <a href="https://twitter.com/anebotoh" target="_blank">Twitter ↗</a>
-    <a href="https://instagram.com/anebotoh" target="_blank">Instagram ↗</a>
-    <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn ↗</a>
+  <div class="hero-card">
+    <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
+    <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
   </div>
-</footer>
 
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/69036461162b62687f41d4c5_CreatorCS-07-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Output — Since 2024</p>
+        <h2 class="project-title">Making music meets serious play</h2>
+        <p class="project-sub">Output Creator Desktop App</p>
+      </div>
+      <a class="project-cta" href="https://output.com" target="_blank">View Project ↗</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e7d72fe61f54453b5e15c2_Thumbail-Cinepolis_2-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2023</p>
+        <h2 class="project-title">Buy movie tickets, with no distractions</h2>
+        <p class="project-sub">Cinepolis ecosystem redesign</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e66c9695985a64cc379524_intro-nmaahc-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2021</p>
+        <h2 class="project-title">A People's Journey, A Nation's Story</h2>
+        <p class="project-sub">NMAAHC Microsite MVP</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e8bd7d04cafb480dc9d93e_Thumbail-Embibe3-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2022</p>
+        <h2 class="project-title">Make e-learning feel like play</h2>
+        <p class="project-sub">Embibe app onboarding redesign</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e66ee10ccc488f483e8a5c_iPondrHomepage_v02_200909-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2020</p>
+        <h2 class="project-title">Journalism that brings you life outside your bubble</h2>
+        <p class="project-sub">iPondr MVP</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <img src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e778276ece14d6a246109c_Rectangle%209185.png" alt="XGIMI Project">
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2022</p>
+        <h2 class="project-title">Visual concept for XGIMI projector technology</h2>
+        <p class="project-sub">XGIMI Project app Look & Feel</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e64f664c6a4a446b2822ba_intro-messenger-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2022</p>
+        <h2 class="project-title">Microsite concept for Messenger</h2>
+        <p class="project-sub">Messenger microsite concept</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <img src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e788e6f281fd9c19daf4eb_wheels%20up.png" alt="Wheels Up">
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2020</p>
+        <h2 class="project-title">Visual concepts for Wheels Up</h2>
+        <p class="project-sub">Wheels Up iOS app</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <img src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e7890076c77b59e5af6ddb_lark.png" alt="Lark Bytedance">
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2022</p>
+        <h2 class="project-title">Designing for different cultures</h2>
+        <p class="project-sub">Lark / Bytedance</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e8ecd3d49c87380875b59c_frame_2-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2019</p>
+        <h2 class="project-title">Book your trip, using just your voice</h2>
+        <p class="project-sub">DEEM iOS app voice concept</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="project-media">
+      <video autoplay muted loop playsinline src="https://cdn.prod.website-files.com/64d14fc8f01dd4331b35d489/64e79d6874748cd500cf541b_intro-asana-transcode.mp4"></video>
+    </div>
+    <div class="project-info">
+      <div>
+        <p class="project-meta">Fantasy — 2020</p>
+        <h2 class="project-title">How could Asana look like in 5 years?</h2>
+        <p class="project-sub">Asana Vision concept</p>
+      </div>
+      <a class="project-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Ane Aranburu</p>
+    <div class="social-links">
+      <a href="mailto:aranburuane@gmail.com">Email ↗</a>
+      <a href="https://twitter.com/anebotoh" target="_blank">Twitter ↗</a>
+      <a href="https://instagram.com/anebotoh" target="_blank">Instagram ↗</a>
+      <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn ↗</a>
+    </div>
+  </footer>
+
+</main>
 </body>
 </html>

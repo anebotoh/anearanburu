@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ane Aranburu — Work</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0d0d0d; --surface: #161616; --border: #222;
+    --text: #f0ede8; --muted: #555;
+    --sans: system-ui, -apple-system, sans-serif;
+    --serif: 'Georgia', serif;
+  }
+  body { background: var(--bg); color: var(--text); font-family: var(--serif); }
 
+  /* NAV */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 32px 48px; position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .nav-name { font-family: var(--sans); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-family: var(--sans); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .hero { padding: 80px 48px 60px; max-width: 900px; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-size: clamp(24px, 3.5vw, 42px); font-weight: 400; line-height: 1.25; margin-bottom: 20px; color: var(--text); }
+  .hero p { font-family: var(--sans); font-size: 14px; color: var(--muted); max-width: 560px; line-height: 1.8; }
+
+  /* WORK LIST */
+  .work-item {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border); min-height: 400px;
+  }
+  .work-item:nth-child(even) .work-info { order: 2; }
+  .work-item:nth-child(even) .work-media { order: 1; }
+  .work-info { padding: 56px 48px; display: flex; flex-direction: column; justify-content: space-between; }
+  .work-meta { font-family: var(--sans); font-size: 11px; color: var(--muted); margin-bottom: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .work-title { font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
+  .work-subtitle { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+  .work-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--border); padding-bottom: 4px;
+    width: fit-content; transition: border-color .2s, color .2s;
+  }
+  .work-cta:hover { border-color: var(--text); }
+  .work-media { background: var(--surface); overflow: hidden; position: relative; }
+  .work-media video, .work-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.9); transition: filter .4s; }
+  .work-media:hover video, .work-media:hover img { filter: brightness(1); }
+  .work-media .placeholder { width: 100%; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--sans); font-size: 12px; letter-spacing: .05em; }
+
+  /* FOOTER */
+  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-family: var(--sans); font-size: 11px; color: var(--muted); letter-spacing: .05em; }
+  .social-links { display: flex; gap: 24px; }
+  .social-links a { font-family: var(--sans); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: .05em; transition: color .2s; }
+  .social-links a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 48px 24px 40px; }
+    .work-item { grid-template-columns: 1fr; }
+    .work-item:nth-child(even) .work-info { order: 1; }
+    .work-item:nth-child(even) .work-media { order: 2; }
+    .work-info { padding: 36px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="work.html">Ane Aranburu</a>
+  <div class="nav-links">
+    <a href="work.html" class="active">Work</a>
+    <a href="photo.html">Photo</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
+  <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
+</section>
+
+<section id="work">
+
+  <article class="work-item">
+    <div class="work-info">
+      <div>
+        <p class="work-meta">Output — Since 2024</p>
+        <h2 class="work-title">Making music meets serious play</h2>
+        <p class="work-subtitle">Output Creator Desktop App</p>
+      </div>
+      <a class="work-cta" href="https://output.com" target="_blank">View Project ↗</a>
+    </div>
+    <div class="work-media">
+      <div class="placeholder">[ Add video or image ]</div>
+    </div>
+  </article>
+
+  <article class="work-item">
+    <div class="work-info">
+      <div>
+        <p class="work-meta">Fantasy — 2023</p>
+        <h2 class="work-title">Buy movie tickets, with no distractions</h2>
+        <p class="work-subtitle">Cinepolis ecosystem redesign</p>
+      </div>
+      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+    <div class="work-media">
+      <div class="placeholder">[ Add video or image ]</div>
+    </div>
+  </article>
+
+  <article class="work-item">
+    <div class="work-info">
+      <div>
+        <p class="work-meta">Fantasy — 2021</p>
+        <h2 class="work-title">A People's Journey, A Nation's Story</h2>
+        <p class="work-subtitle">NMAAHC Microsite MVP</p>
+      </div>
+      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+    <div class="work-media">
+      <div class="placeholder">[ Add video or image ]</div>
+    </div>
+  </article>
+
+  <article class="work-item">
+    <div class="work-info">
+      <div>
+        <p class="work-meta">Fantasy — 2022</p>
+        <h2 class="work-title">Make e-learning feel like play</h2>
+        <p class="work-subtitle">Embibe app onboarding redesign</p>
+      </div>
+      <a class="work-cta" href="mailto:aranburuane@gmail.com">Request Case Study →</a>
+    </div>
+    <div class="work-media">
+      <div class="placeholder">[ Add video or image ]</div>
+    </div>
+  </article>
+
+</section>
+
+<footer>
+  <p>© 2026 Ane Aranburu</p>
+  <div class="social-links">
+    <a href="mailto:aranburuane@gmail.com">Email ↗</a>
+    <a href="https://twitter.com/anebotoh" target="_blank">Twitter ↗</a>
+    <a href="https://instagram.com/anebotoh" target="_blank">Instagram ↗</a>
+    <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

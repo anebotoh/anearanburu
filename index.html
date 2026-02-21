@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ane Aranburu — Work</title>
+<title>Ane Aranburu</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,13 +15,11 @@
     --text: #f0ede8; --muted: #888;
     --font: 'Inter', sans-serif;
   }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; height: 100vh; display: flex; flex-direction: column; }
 
-  /* NAV */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 48px; position: sticky; top: 0; z-index: 100;
-    background: var(--bg);
+    padding: 24px 48px;
   }
   .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
   .nav-name:hover { transform: rotate(90deg); }
@@ -33,255 +31,40 @@
     100% { transform: rotate(90deg) scale(1); }
   }
   .nav-links { display: flex; gap: 4px; }
-  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a.active { color: var(--text); border-color: var(--border); }
+  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
+  .nav-links a:hover { border-color: var(--border); }
 
-
-  /* PAGE */
-  .page { padding: 0 48px 80px; }
-
-  /* HERO */
-  .hero { padding: 80px 0 100px; max-width: 1400px; }
+  .hero {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    padding: 0 48px 80px; max-width: 900px;
+  }
   .hero h1 { font-size: 56px; font-weight: 300; line-height: 70px; color: #fff; margin-bottom: 32px; }
   .hero p { color: #7a7a7a; font-size: 56px; font-weight: 300; line-height: 70px; }
 
-  /* GRID — all projects 2 columns */
-  .project-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: 1px solid var(--border);
-  }
-
-  .project {
-    padding: 48px 0;
-    display: flex; flex-direction: column; gap: 28px;
-    border-bottom: 1px solid var(--border);
-  }
-  .project:nth-child(odd) { padding-right: 48px; border-right: 1px solid var(--border); }
-  .project:nth-child(even) { padding-left: 48px; }
-
-  .project-media {
-    width: 100%; border-radius: 32px; overflow: hidden;
-    aspect-ratio: 16/10; background: #1a1a1a;
-  }
-  .project-media video, .project-media img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    filter: brightness(.85); transition: filter .5s;
-  }
-  .project:hover .project-media video,
-  .project:hover .project-media img { filter: brightness(1); }
-
-  .project-info { display: flex; flex-direction: column; gap: 8px; }
-  .project-cta { margin-top: 24px; }
-  .project-meta { font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
-  .project-title { font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -.01em; color: var(--text); }
-  .project-sub { font-size: 16px; color: var(--muted); line-height: 1.6; font-weight: 400; }
-  .project-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
-    color: #F2E7D2; text-decoration: none;
-    width: fit-content; transition: opacity .2s; margin-top: 24px;
-  }
-  .project-cta:hover { opacity: .7; }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 60px 0 36px; display: flex; justify-content: center; align-items: center;
-  }
-  footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; text-align: center; }
-  .social-links { display: flex; gap: 4px; }
-  .social-links a { font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; padding: 8px 14px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
-  .social-links a:hover { color: var(--text); border-color: var(--border); }
-
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    nav { padding: 24px 32px; }
-    .page { padding: 0 32px 60px; }
-    .hero h1, .hero p { font-size: 44px; line-height: 56px; }
-  }
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
-    .page { padding: 0 24px 48px; }
-    .hero { padding: 48px 0 64px; }
-    .hero h1 { font-size: 32px; line-height: 42px; font-weight: 400; }
-    .hero p { font-size: 32px; line-height: 42px; font-weight: 400; }
-    .project-grid { grid-template-columns: 1fr; }
-    .project { padding: 40px 0 !important; border-right: none !important; }
-    .project-title { font-size: 24px; max-width: 336px; font-weight: 500; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .hero { padding: 0 24px 48px; }
+    .hero h1, .hero p { font-size: 32px; line-height: 42px; }
   }
   @media (max-width: 480px) {
     nav { padding: 16px 20px; }
-    .page { padding: 0 20px 40px; }
     .hero h1, .hero p { font-size: 26px; line-height: 36px; }
-    .nav-links a { padding: 6px 10px; font-size: 10px; }
   }
 </style>
 </head>
 <body>
-<script>
-  (function() {
-    const correct = 'sorry';
-    const entered = localStorage.getItem('sitePassword');
-    if (entered !== correct) {
-      const pwd = prompt('Password protected:');
-      if (pwd !== correct) {
-        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0C0C0F;color:#888;font-family:Inter,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Access denied</div>';
-      } else {
-        localStorage.setItem('sitePassword', correct);
-      }
-    }
-  })();
-</script>
-
 <nav>
-  <a class="nav-name" href="index.html"><span class="dot">:</span>)</a>
+  <a class="nav-name" href="/">:)</a>
   <div class="nav-links">
-    <a href="mailto:aranburuane@gmail.com" style="color:var(--text)">Email</a>
-    <a href="https://instagram.com/anebotoh" target="_blank" style="color:var(--text)">Instagram</a>
-    <a href="https://linkedin.com/in/anearanburu" target="_blank" style="color:var(--text)">LinkedIn</a>
+    <a href="mailto:aranburuane@gmail.com">Email</a>
+    <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
   </div>
 </nav>
 
-<div class="page">
-
-  <div class="hero">
-    <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
-    <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
-  </div>
-
-  <div class="project-grid">
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/01-Creator.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Output — Since 2024</p>
-        <h2 class="project-title">Making music meets serious play</h2>
-        <p class="project-sub">Output Creator Desktop App</p>
-        <a class="project-cta" href="https://output.com/products/creator" target="_blank">Try Output Creator ↗</a>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/02-Cinepolis.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2023</p>
-        <h2 class="project-title">Buy movie tickets, with no distractions</h2>
-        <p class="project-sub">Cinepolis ecosystem redesign</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/05-NMAACH.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2021</p>
-        <h2 class="project-title">A People's Journey, A Nation's Story</h2>
-        <p class="project-sub">NMAAHC Microsite MVP</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/04-Embibe.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2022</p>
-        <h2 class="project-title">Make e-learning feel like play</h2>
-        <p class="project-sub">Embibe app onboarding redesign</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/03-iPondr.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2020</p>
-        <h2 class="project-title">Journalism that brings you life outside your bubble</h2>
-        <p class="project-sub">iPondr MVP</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <img src="videos/10-Xgimi.png" alt="XGIMI Project">
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2022</p>
-        <h2 class="project-title">Visual concept for XGIMI projector technology</h2>
-        <p class="project-sub">XGIMI Project app Look & Feel</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/07-Messenger.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2022</p>
-        <h2 class="project-title">Microsite concept for Messenger rebrand</h2>
-        <p class="project-sub">Messenger microsite concept</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <img src="videos/09-Wheelsup.png" alt="Wheels Up">
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2020</p>
-        <h2 class="project-title">Visual concepts for Wheels Up</h2>
-        <p class="project-sub">Wheels Up iOS app</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <img src="videos/11-Lark.png" alt="Lark Bytedance">
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2022</p>
-        <h2 class="project-title">Designing for different cultures</h2>
-        <p class="project-sub">Lark / Bytedance</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/06-Deem.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2019</p>
-        <h2 class="project-title">Book your trip, using just your voice</h2>
-        <p class="project-sub">DEEM iOS app voice concept</p>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-media">
-        <video autoplay muted loop playsinline src="videos/08-Asana.mp4"></video>
-      </div>
-      <div class="project-info">
-        <p class="project-meta">Fantasy — 2020</p>
-        <h2 class="project-title">How could Asana look like in 5 years?</h2>
-        <p class="project-sub">Asana Vision concept</p>
-      </div>
-    </article>
-
-  </div>
-
-  <footer>
-    <p>Thanks for checking the site out. Have a good day :)</p>
-  </footer>
-
+<div class="hero">
+  <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
+  <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 </body>
 </html>

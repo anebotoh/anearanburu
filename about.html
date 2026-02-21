@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ane Aranburu — About</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0d0d0d; --surface: #161616; --border: #222;
+    --text: #f0ede8; --muted: #555;
+    --sans: system-ui, -apple-system, sans-serif;
+    --serif: 'Georgia', serif;
+  }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); }
 
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 32px 48px; position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .nav-name { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* LAYOUT */
+  .about-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 81px);
+  }
+
+  /* LEFT — BIO */
+  .bio-col {
+    padding: 72px 56px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .bio-col h1 {
+    font-family: var(--serif); font-size: clamp(28px, 3vw, 44px);
+    font-weight: 400; line-height: 1.2; color: var(--text);
+  }
+  .bio-col h1 em { font-style: italic; color: var(--muted); }
+  .bio-text { font-size: 14px; color: var(--muted); line-height: 1.9; max-width: 420px; }
+  .bio-text p + p { margin-top: 16px; }
+
+  .availability {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #3d9e5f; }
+
+  /* LINKS */
+  .links-section { margin-top: auto; }
+  .links-section h3 { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .link-list { display: flex; flex-direction: column; gap: 4px; }
+  .link-list a {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; color: var(--text); text-decoration: none;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+    transition: color .2s;
+  }
+  .link-list a:first-child { border-top: 1px solid var(--border); }
+  .link-list a:hover { color: var(--muted); }
+  .link-list a span { font-size: 16px; }
+
+  /* RIGHT — SKILLS */
+  .skills-col { padding: 72px 56px; display: flex; flex-direction: column; gap: 56px; }
+  .skills-section h3 { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill {
+    font-size: 12px; letter-spacing: .04em;
+    padding: 8px 18px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--muted);
+    transition: all .25s; cursor: default;
+  }
+  .skill:hover { border-color: var(--text); color: var(--text); }
+
+  /* CURRENTLY */
+  .currently { padding: 32px 56px; border-top: 1px solid var(--border); }
+  .currently p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .currently strong { color: var(--text); font-weight: 500; }
+
+  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 11px; color: var(--muted); letter-spacing: .05em; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .about-wrap { grid-template-columns: 1fr; }
+    .bio-col { padding: 48px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .skills-col { padding: 48px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="work.html">Ane Aranburu</a>
+  <div class="nav-links">
+    <a href="work.html">Work</a>
+    <a href="photo.html">Photo</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+</nav>
+
+<div class="about-wrap">
+
+  <!-- LEFT -->
+  <div class="bio-col">
+    <h1>Product designer &<br><em>film maker</em></h1>
+
+    <div class="bio-text">
+      <p>I'm Ane, a Basque designer based in Brooklyn, NY. Craft oriented, interested in the whole experience — and the team I work with.</p>
+      <p>I've been caring about pixels, process and best practices for 10+ years. Currently designing and building music production tools at Output 🎹</p>
+      <p>Outside of work I shoot street and documentary films on my iPhone — always looking for light, texture and the quiet moments in between.</p>
+    </div>
+
+    <div class="availability">
+      <span class="dot"></span>
+      Available for freelance projects
+    </div>
+
+    <div class="links-section">
+      <h3>Find me</h3>
+      <div class="link-list">
+        <a href="mailto:aranburuane@gmail.com">Email <span>↗</span></a>
+        <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn <span>↗</span></a>
+        <a href="https://instagram.com/anebotoh" target="_blank">Instagram <span>↗</span></a>
+        <a href="https://twitter.com/anebotoh" target="_blank">Twitter <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="skills-col">
+
+    <div class="skills-section">
+      <h3>Design</h3>
+      <div class="skill-list">
+        <span class="skill">Product Design</span>
+        <span class="skill">0 → 1</span>
+        <span class="skill">Design Systems</span>
+        <span class="skill">UI</span>
+        <span class="skill">Prototyping</span>
+        <span class="skill">Microinteractions</span>
+        <span class="skill">Native Apps</span>
+        <span class="skill">Responsive</span>
+        <span class="skill">MVP</span>
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <h3>Craft</h3>
+      <div class="skill-list">
+        <span class="skill">Vision</span>
+        <span class="skill">Branding</span>
+        <span class="skill">Presentations</span>
+        <span class="skill">User Research</span>
+        <span class="skill">Creative Tools</span>
+        <span class="skill">Music Production</span>
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <h3>Interests</h3>
+      <div class="skill-list">
+        <span class="skill">Photography</span>
+        <span class="skill">Street Film</span>
+        <span class="skill">Ethics & Privacy</span>
+        <span class="skill">Mobility</span>
+        <span class="skill">Documentary</span>
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <h3>Tools</h3>
+      <div class="skill-list">
+        <span class="skill">Figma</span>
+        <span class="skill">Principle</span>
+        <span class="skill">Framer</span>
+        <span class="skill">After Effects</span>
+        <span class="skill">Notion</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Ane Aranburu</p>
+  <p style="color: var(--muted); font-size: 11px;">Brooklyn, NY</p>
+</footer>
+
+</body>
+</html>

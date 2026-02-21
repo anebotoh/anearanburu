@@ -25,6 +25,13 @@
   }
   .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
   .nav-name:hover { transform: rotate(90deg); }
+  .nav-name:active { animation: bounce .4s ease; }
+  @keyframes bounce {
+    0% { transform: rotate(90deg) scale(1); }
+    30% { transform: rotate(90deg) scale(1.4); }
+    60% { transform: rotate(90deg) scale(.9); }
+    100% { transform: rotate(90deg) scale(1); }
+  }
   .nav-links { display: flex; gap: 4px; }
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }

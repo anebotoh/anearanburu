@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ane Aranburu</title>
-<link rel="icon" type="image/png" href="favicon.png">
+<title>Ane Aranburu — Work</title>
+<link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,44 +34,89 @@
   }
   .nav-links { display: flex; gap: 4px; }
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
-  .nav-links a:hover { border-color: var(--border); }
+  .nav-links a:hover { color: var(--text); }
+
+  /* PAGE */
+  .page { padding: 0 48px 80px; }
 
   /* HERO */
-  .hero { padding: 120px 48px 100px; max-width: 1440px; }
+  .hero { padding: 80px 0 100px; max-width: 1400px; }
   .hero h1 { font-size: 56px; font-weight: 300; line-height: 70px; color: #fff; margin-bottom: 32px; }
   .hero p { color: #7a7a7a; font-size: 56px; font-weight: 300; line-height: 70px; }
 
-  /* BOTTOM */
-  .bottom { padding: 80px 48px 80px; max-width: 1440px; }
-  .bottom-text { margin-bottom: 64px; }
-  .bottom-text p { font-size: 32px; font-weight: 300; line-height: 1.5; margin-bottom: 24px; color: var(--text); }
-  .capabilities-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin-bottom: 16px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
-  .tag { font-size: 15px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 12px 22px; font-weight: 400; }
+  /* GRID */
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .project {
+    padding: 48px 0;
+    display: flex; flex-direction: column; gap: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .project:nth-child(odd) { padding-right: 48px; border-right: 1px solid var(--border); }
+  .project:nth-child(even) { padding-left: 48px; }
+
+  .project-media {
+    width: 100%; border-radius: 32px; overflow: hidden;
+    aspect-ratio: 16/10; background: #1a1a1a;
+  }
+  .project-media video, .project-media img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.85); transition: filter .5s;
+  }
+  .project:hover .project-media video,
+  .project:hover .project-media img { filter: brightness(1); }
+
+  .project-info { display: flex; flex-direction: column; gap: 8px; }
+  .project-meta { font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .project-title { font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -.01em; color: var(--text); }
+  .project-sub { font-size: 16px; color: var(--muted); line-height: 1.6; font-weight: 400; }
+  .project-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    color: var(--text); text-decoration: none;
+    width: fit-content; transition: opacity .2s; margin-top: 24px;
+  }
+  .project-cta:hover { opacity: .7; }
 
   /* FOOTER */
-  footer { padding: 60px 48px 36px; }
-  footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 0 36px; display: flex; justify-content: center; align-items: center;
+  }
+  footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; text-align: center; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    nav { padding: 24px 32px; }
+    .page { padding: 0 32px 60px; }
+    .hero h1, .hero p { font-size: 44px; line-height: 56px; }
+  }
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
-    .hero { padding: 80px 24px 64px; }
-    .hero h1, .hero p { font-size: 32px; line-height: 42px; }
-    .bottom { padding: 48px 24px; max-width: 100%; }
-    .bottom-text p { font-size: 24px; }
+    .page { padding: 0 24px 48px; }
+    .hero { padding: 48px 0 64px; }
+    .hero h1, .hero p { font-size: 32px; line-height: 42px; font-weight: 400; }
+    .project-grid { grid-template-columns: 1fr; }
+    .project { padding: 40px 0 !important; border-right: none !important; }
+    .project-title { font-size: 24px; max-width: 336px; font-weight: 500; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
   }
   @media (max-width: 480px) {
     nav { padding: 16px 20px; }
-    .hero { padding: 80px 20px 48px; }
+    .page { padding: 0 20px 40px; }
     .hero h1, .hero p { font-size: 26px; line-height: 36px; }
-    .bottom { padding: 40px 20px; max-width: 100%; }
-    .bottom-text p { font-size: 20px; }
+    .nav-links a { padding: 6px 10px; font-size: 10px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-name" href="/">:)</a>
+  <a class="nav-name" href="../"><span class="dot">:</span>)</a>
   <div class="nav-links">
     <a href="mailto:aranburuane@gmail.com">Email</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
@@ -79,39 +124,143 @@
   </div>
 </nav>
 
-<div class="hero">
-  <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
-  <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
-</div>
+<div class="page">
 
-  <div class="bottom">
-    <p class="capabilities-label">Capabilities & Interests</p>
-    <div class="bottom-text" style="margin-bottom: 48px;">
-      <p>I'm interested in projects that have a responsible and ethical use of technology & design. I'm keen on approaching complex issues developing them in a reachable, user-friendly way through simple, attractive and elegant design.</p>
-    </div>
-    <div class="tags">
-      <span class="tag">Creative tools</span>
-      <span class="tag">Product Design</span>
-      <span class="tag">0 — 1</span>
-      <span class="tag">Music production</span>
-      <span class="tag">Microinteractions</span>
-      <span class="tag">UI</span>
-      <span class="tag">Native</span>
-      <span class="tag">MVP</span>
-      <span class="tag">Prototyping</span>
-      <span class="tag">Responsive</span>
-      <span class="tag">Vision</span>
-      <span class="tag">Branding</span>
-      <span class="tag">Presentations</span>
-      <span class="tag">Mobility</span>
-      <span class="tag">Ethics & Privacy</span>
-      <span class="tag">Photography</span>
-    </div>
+  <div class="hero">
+    <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience.</h1>
+    <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
+  </div>
+
+  <div class="project-grid">
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/01-Creator.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Product Design Lead @ Output — Since 2024</p>
+        <h2 class="project-title">Making music meets serious play</h2>
+        <p class="project-sub">Output Creator Desktop App</p>
+        <a class="project-cta" href="https://output.com/products/creator" target="_blank">Try Output Creator ↗</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/02-Cinepolis.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2023</p>
+        <h2 class="project-title">Buy movie tickets, with no distractions</h2>
+        <p class="project-sub">Cinepolis ecosystem redesign</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/05-NMAACH.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2021</p>
+        <h2 class="project-title">A People's Journey, A Nation's Story</h2>
+        <p class="project-sub">NMAAHC Microsite MVP</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/04-Embibe.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2022</p>
+        <h2 class="project-title">Make e-learning feel like play</h2>
+        <p class="project-sub">Embibe app onboarding redesign</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/03-iPondr.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2020</p>
+        <h2 class="project-title">Journalism that brings you life outside your bubble</h2>
+        <p class="project-sub">iPondr MVP</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <img src="../videos/10-Xgimi.png" alt="XGIMI Project">
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2022</p>
+        <h2 class="project-title">Visual concept for XGIMI projector technology</h2>
+        <p class="project-sub">XGIMI Project app Look & Feel</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/07-Messenger.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Lead Visual Designer @ Fantasy — 2022</p>
+        <h2 class="project-title">Microsite concept for Messenger rebrand</h2>
+        <p class="project-sub">Messenger microsite concept</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <img src="../videos/09-Wheelsup.png" alt="Wheels Up">
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Senior Designer @ Fantasy — 2020</p>
+        <h2 class="project-title">Visual concepts for Wheels Up</h2>
+        <p class="project-sub">Wheels Up iOS app</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <img src="../videos/11-Lark.png" alt="Lark Bytedance">
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Senior Designer @ Fantasy — 2022</p>
+        <h2 class="project-title">Designing for different cultures</h2>
+        <p class="project-sub">Lark / Bytedance</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/06-Deem.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Senior Designer @ Fantasy — 2019</p>
+        <h2 class="project-title">Book your trip, using just your voice</h2>
+        <p class="project-sub">DEEM iOS app voice concept</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <video autoplay muted loop playsinline preload="none" src="../videos/08-Asana.mp4"></video>
+      </div>
+      <div class="project-info">
+        <p class="project-meta">Senior Designer @ Fantasy — 2020</p>
+        <h2 class="project-title">How could Asana look like in 5 years?</h2>
+        <p class="project-sub">Asana Vision concept</p>
+      </div>
+    </article>
+
   </div>
 
   <footer>
     <p>Thanks for scrolling. Have a good day :)</p>
   </footer>
 
+</div>
 </body>
 </html>

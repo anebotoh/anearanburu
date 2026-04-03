@@ -47,9 +47,8 @@
   .project-media { background: #1a1a1f; border-radius: 16px; aspect-ratio: 16/9; overflow: hidden; }
   .project-media video { width: 100%; height: 100%; object-fit: cover; }
   .project-meta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin-bottom: 12px; }
-  .project-title { font-size: 32px; font-weight: 400; color: #fff; margin-bottom: 8px; }
-  .project-sub { font-size: 18px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .project-sub:hover { color: var(--text); }
+  .project-title { font-size: 32px; font-weight: 400; color: #fff; text-decoration: none; display: block; transition: color 0.2s; }
+  .project-title:hover { color: var(--muted); }
 
   /* BOTTOM */
   .bottom { padding: 80px 48px 80px; max-width: 1440px; }
@@ -102,8 +101,7 @@
 <article class="project">
   <div class="project-info">
     <p class="project-meta">Product Design Lead @ Output — Since 2024</p>
-    <h2 class="project-title">Turn play into musical ideas</h2>
-    <a class="project-sub" href="https://output.com/products/creator" target="_blank">Download Output Creator</a>
+    <a class="project-title" href="https://output.com/products/creator" target="_blank">Turn play into musical ideas</a>
   </div>
   <div class="project-media">
     <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>

@@ -16,7 +16,8 @@
     --font: 'Inter', sans-serif;
     --margin: 48px;
   }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 
   /* NAV */
   nav {
@@ -43,21 +44,19 @@
   .hero p { color: #7a7a7a; font-size: 29px; font-weight: 300; line-height: 1.4; }
 
   /* CAROUSEL */
-  .carousel { 
-    padding-bottom: 60px;
-    margin-left: var(--margin);
-  }
+  .carousel { padding-bottom: 60px; }
   .carousel-track { 
     display: flex; 
     gap: 20px; 
     overflow-x: auto;
     scrollbar-width: none; 
     -ms-overflow-style: none;
+    padding-left: var(--margin);
     padding-right: var(--margin);
   }
   .carousel-track::-webkit-scrollbar { display: none; }
 
-  .card { flex: 0 0 auto; width: 380px; }
+  .card { flex: 0 0 auto; width: 380px; text-decoration: none; color: inherit; }
   .card-media {
     background: #1a1a1f; border-radius: 12px; aspect-ratio: 16/10;
     overflow: hidden; margin-bottom: 14px; position: relative;
@@ -70,12 +69,11 @@
     font-size: 14px; 
     font-weight: 400; 
     color: rgba(255,255,255,0.5); 
-    text-decoration: none; 
     margin-top: 6px; 
     display: inline-block;
     transition: color 0.2s;
   }
-  .card-link:hover { color: #fff; }
+  a.card:hover .card-link { color: #fff; }
 
   /* BOTTOM */
   .bottom { padding: 60px var(--margin) 60px; max-width: 1440px; }
@@ -128,15 +126,15 @@
 <div class="carousel">
   <div class="carousel-track">
 
-    <!-- Card 1 - Output Creator (NO BLUR) -->
-    <div class="card">
+    <!-- Card 1 - Output Creator (NO BLUR, CLICKABLE) -->
+    <a class="card" href="https://output.com/products/creator/" target="_blank">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
       </div>
       <p class="card-meta">Output — 2024</p>
       <p class="card-title">Turn play into musical ideas</p>
-      <a class="card-link" href="https://output.com/products/creator/" target="_blank">Try Creator!</a>
-    </div>
+      <span class="card-link">Try Creator! →</span>
+    </a>
 
     <!-- Card 2 - Cinepolis (BLUR) -->
     <div class="card">

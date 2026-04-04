@@ -14,13 +14,14 @@
     --bg: #0C0C0F; --border: #222;
     --text: #f0ede8; --muted: #888;
     --font: 'Inter', sans-serif;
+    --margin: 48px;
   }
   body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 
   /* NAV */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 48px; position: sticky; top: 0; z-index: 100;
+    padding: 24px var(--margin); position: sticky; top: 0; z-index: 100;
     background: var(--bg);
   }
   .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
@@ -37,14 +38,25 @@
   .nav-links a:hover { border-color: var(--border); }
 
   /* HERO */
-  .hero { padding: 50px 48px 40px; max-width: 1440px; }
+  .hero { padding: 50px var(--margin) 40px; max-width: 1440px; }
   .hero h1 { font-size: 29px; font-weight: 300; line-height: 1.4; color: #fff; margin-bottom: 16px; }
   .hero p { color: #7a7a7a; font-size: 29px; font-weight: 300; line-height: 1.4; }
 
   /* CAROUSEL */
-  .carousel { padding: 0 48px 60px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-  .carousel::-webkit-scrollbar { display: none; }
-  .carousel-track { display: flex; gap: 20px; min-width: min-content; }
+  .carousel { 
+    overflow: visible;
+    padding-bottom: 60px;
+  }
+  .carousel-track { 
+    display: flex; 
+    gap: 20px; 
+    overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    padding-left: var(--margin);
+    padding-right: var(--margin);
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
 
   .card { flex: 0 0 auto; width: 380px; }
   .card-media {
@@ -57,7 +69,7 @@
   .card-title { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.85); }
 
   /* BOTTOM */
-  .bottom { padding: 60px 48px 60px; max-width: 1440px; }
+  .bottom { padding: 60px var(--margin) 60px; max-width: 1440px; }
   .bottom-text { margin-bottom: 40px; }
   .bottom-text p { font-size: 24px; font-weight: 300; line-height: 1.5; color: var(--text); }
   .capabilities-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin-bottom: 14px; }
@@ -65,28 +77,26 @@
   .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
 
   /* FOOTER */
-  footer { padding: 40px 48px 30px; }
+  footer { padding: 40px var(--margin) 30px; }
   footer p { font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
 
   @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
-    .hero { padding: 40px 24px 30px; }
+    :root { --margin: 24px; }
+    .hero { padding: 40px var(--margin) 30px; }
     .hero h1, .hero p { font-size: 24px; line-height: 1.35; }
-    .carousel { padding: 0 24px 50px; }
     .card { width: 300px; }
-    .bottom { padding: 50px 24px; }
+    .bottom { padding: 50px var(--margin); }
     .bottom-text p { font-size: 20px; }
-    footer { padding: 30px 24px; }
+    footer { padding: 30px var(--margin); }
   }
   @media (max-width: 480px) {
-    nav { padding: 16px 20px; }
-    .hero { padding: 30px 20px 24px; }
+    :root { --margin: 20px; }
+    .hero { padding: 30px var(--margin) 24px; }
     .hero h1, .hero p { font-size: 20px; line-height: 1.35; }
-    .carousel { padding: 0 20px 40px; }
     .card { width: 260px; }
-    .bottom { padding: 40px 20px; }
+    .bottom { padding: 40px var(--margin); }
     .bottom-text p { font-size: 18px; }
-    footer { padding: 30px 20px; }
+    footer { padding: 30px var(--margin); }
   }
 </style>
 </head>

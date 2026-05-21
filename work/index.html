@@ -56,6 +56,11 @@
     line-height: 1.4;
   }
 
+  /* TAGS */
+  .hero .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-top: 40px; margin-bottom: 14px; line-height: 1.4; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
+
   /* GRID */
   .project-grid {
     display: grid;
@@ -116,6 +121,7 @@
     .page { padding: 0 24px 48px; }
     .hero { padding: 48px 0 64px; }
     .hero h1, .hero p { font-size: 30px; line-height: 1.35; }
+    .hero .capabilities-label { margin-top: 32px; }
     .project-grid { grid-template-columns: 1fr; }
     .project { padding: 40px 0 !important; border-right: none !important; }
     .project-title { font-size: 24px; max-width: 336px; font-weight: 500; }
@@ -125,6 +131,8 @@
     nav { padding: 16px 20px; }
     .page { padding: 0 20px 40px; }
     .hero h1, .hero p { font-size: 20px; line-height: 1.35; font-weight: 400; }
+    .hero .capabilities-label { margin-top: 24px; }
+    .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links a { padding: 6px 10px; font-size: 10px; }
   }
 </style>
@@ -145,6 +153,19 @@
   <div class="hero">
     <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience and the team I work with.</h1>
     <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
+
+    <p class="capabilities-label">Capabilities & Interests</p>
+    <div class="tags">
+      <span class="tag">Creative tools</span>
+      <span class="tag">0 — 1</span>
+      <span class="tag">Music production</span>
+      <span class="tag">Microinteractions</span>
+      <span class="tag">UI</span>
+      <span class="tag">MVP</span>
+      <span class="tag">Prototyping</span>
+      <span class="tag">Vision</span>
+      <span class="tag">Ethics & Privacy</span>
+    </div>
   </div>
 
   <div class="project-grid">

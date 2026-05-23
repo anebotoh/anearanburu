@@ -32,24 +32,15 @@
     flex-direction: column;
   }
 
-  /* HERO — flex row: h1+p on left, nav links on right, both top-aligned */
-  .hero {
-    margin-left: var(--margin);
-    margin-right: var(--margin);
-    padding: 56px 0 56px;
-    flex-shrink: 0;
+  /* TOPBAR — nav links pinned to the top of the page, left-aligned */
+  .topbar {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 32px;
-  }
-  .hero-text { flex: 1; min-width: 0; }
-  .hero-nav {
-    display: flex;
-    gap: 4px;
+    justify-content: flex-start;
+    padding: 24px var(--margin);
     flex-shrink: 0;
   }
-  .hero-nav a {
+  .topbar-links { display: flex; gap: 4px; margin-left: -16px; }
+  .topbar-links a {
     font-size: 11px;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -61,7 +52,15 @@
     font-weight: 500;
     transition: border-color .2s;
   }
-  .hero-nav a:hover { border-color: var(--border); }
+  .topbar-links a:hover { border-color: var(--border); }
+
+  /* HERO — text block below the topbar */
+  .hero {
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    padding: 24px 0 56px;
+    flex-shrink: 0;
+  }
   .hero h1 {
     font-family: var(--font);
     font-size: 19px;
@@ -165,25 +164,20 @@
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
+    .topbar { padding: 18px var(--margin); }
     .hero {
-      padding: 40px 0 40px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
+      padding: 24px 0 40px;
     }
     .hero h1 { font-size: 19px; line-height: 27px; max-width: 360px; }
     .hero p { font-size: 19px; line-height: 27px; max-width: 360px; }
-    .hero-nav { gap: 20px; margin-left: 0; }
-    .hero-nav a { padding: 0; border: none; }
-    .hero-nav a:hover { border-color: transparent; color: var(--accent); }
     .carousel { padding-bottom: 32px; }
     .card { flex: 0 0 360px; }
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
+    .topbar { padding: 16px var(--margin); }
     .hero {
-      padding: 32px 0 32px;
-      gap: 20px;
+      padding: 20px 0 32px;
     }
     .hero h1 { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
     .hero p { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
@@ -194,16 +188,17 @@
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-text">
-    <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
-    <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
-  </div>
-  <nav class="hero-nav">
-    <a href="mailto:aranburuane@gmail.com">Email</a>
+<header class="topbar">
+  <nav class="topbar-links">
+    <a href="mailto:aranburuane@gmail.com">Email me</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
     <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
   </nav>
+</header>
+
+<div class="hero">
+  <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
+  <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 
 <div class="carousel">

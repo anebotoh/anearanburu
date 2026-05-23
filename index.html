@@ -32,26 +32,36 @@
     flex-direction: column;
   }
 
-  /* NAV */
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 24px var(--margin);
-    background: var(--bg);
-    flex-shrink: 0;
-  }
-  .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
-  .nav-name:hover { transform: rotate(90deg); }
-  .nav-links { display: flex; gap: 4px; }
-  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; transition: border-color .2s; }
-  .nav-links a:hover { border-color: var(--border); }
-
-  /* HERO — pinned to top */
+  /* HERO — flex row: h1+p on left, nav links on right, both top-aligned */
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
     padding: 24px 0 56px;
     flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
   }
+  .hero-text { flex: 1; min-width: 0; }
+  .hero-nav {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .hero-nav a {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: border-color .2s;
+  }
+  .hero-nav a:hover { border-color: var(--border); }
   .hero h1 {
     font-family: var(--font);
     font-size: 19px;
@@ -60,7 +70,7 @@
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
-    max-width: 800px;
+    max-width: 456px;
   }
   .hero p {
     color: #7a7a7a;
@@ -69,7 +79,7 @@
     font-weight: 500;
     line-height: 27px;
     letter-spacing: -.01em;
-    max-width: 600px;
+    max-width: 456px;
   }
 
   /* CAROUSEL — fills remaining space, pinned to bottom */
@@ -79,7 +89,8 @@
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
     padding-bottom: 40px;
   }
   .carousel-track {
@@ -93,6 +104,28 @@
     align-items: flex-end;
   }
   .carousel-track::-webkit-scrollbar { display: none; }
+
+  /* Custom scrollbar — short indicator, sits 24px above the carousel cards */
+  .scrollbar {
+    margin-bottom: 24px;
+    width: 100px;
+    height: 2px;
+    background: #2a2a30;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 25px;
+    background: var(--text);
+    cursor: grab;
+    transition: background 0.2s ease;
+  }
+  .scrollbar-thumb:hover { background: var(--accent); }
+  .scrollbar-thumb.is-dragging { cursor: grabbing; background: var(--accent); transition: none; }
 
   .card {
     flex: 0 0 456px;
@@ -132,16 +165,27 @@
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
-    .hero { padding: 16px 0 40px; }
-    .hero h1, .hero p { font-size: 19px; line-height: 27px; }
+    .hero {
+      padding: 16px 0 40px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .hero h1 { font-size: 19px; line-height: 27px; max-width: 360px; }
+    .hero p { font-size: 19px; line-height: 27px; max-width: 360px; }
+    .hero-nav { margin-left: -16px; }
     .carousel { padding-bottom: 32px; }
     .card { flex: 0 0 360px; }
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
     nav { padding: 18px var(--margin); }
-    .hero { padding: 12px 0 32px; }
-    .hero h1, .hero p { font-size: 19px; font-weight: 500; line-height: 27px; }
+    .hero {
+      padding: 12px 0 32px;
+      gap: 20px;
+    }
+    .hero h1 { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
+    .hero p { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
     .carousel { padding-bottom: 24px; }
     .card { flex: 0 0 312px; }
   }
@@ -149,21 +193,22 @@
 </head>
 <body>
 
-<nav>
-  <a class="nav-name" href="/">:)</a>
-  <div class="nav-links">
+<div class="hero">
+  <div class="hero-text">
+    <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
+    <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
+  </div>
+  <nav class="hero-nav">
     <a href="mailto:aranburuane@gmail.com">Email</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
     <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
-  </div>
-</nav>
-
-<div class="hero">
-  <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
-  <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
+  </nav>
 </div>
 
 <div class="carousel">
+  <div class="scrollbar" id="scrollbar">
+    <div class="scrollbar-thumb" id="scrollbarThumb"></div>
+  </div>
   <div class="carousel-track" id="carouselTrack">
 
     <a class="card" href="https://output.com/products/creator/" target="_blank">
@@ -313,6 +358,68 @@
       touchStartX = null;
       touchTarget = null;
     }, { passive: true });
+  })();
+
+  // Custom scrollbar: sync thumb position with carousel scroll + drag-to-scroll
+  (function () {
+    const track = document.getElementById('carouselTrack');
+    const bar = document.getElementById('scrollbar');
+    const thumb = document.getElementById('scrollbarThumb');
+    if (!track || !bar || !thumb) return;
+
+    const THUMB_W = 25;
+
+    function maxScroll() {
+      return track.scrollWidth - track.clientWidth;
+    }
+    function maxThumb() {
+      return bar.clientWidth - THUMB_W;
+    }
+
+    function syncThumb() {
+      const max = maxScroll();
+      if (max <= 0) {
+        thumb.style.display = 'none';
+        return;
+      }
+      thumb.style.display = '';
+      const ratio = track.scrollLeft / max;
+      thumb.style.transform = 'translateX(' + (ratio * maxThumb()) + 'px)';
+    }
+
+    track.addEventListener('scroll', syncThumb, { passive: true });
+    window.addEventListener('resize', syncThumb);
+    syncThumb();
+
+    // Drag the thumb to scroll the carousel
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+    let isDragging = false;
+
+    function onMouseDown(e) {
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartScroll = track.scrollLeft;
+      thumb.classList.add('is-dragging');
+      document.body.style.userSelect = 'none';
+      e.preventDefault();
+    }
+    function onMouseMove(e) {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      const scrollPerPixel = maxScroll() / maxThumb();
+      track.scrollLeft = dragStartScroll + dx * scrollPerPixel;
+    }
+    function onMouseUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      thumb.classList.remove('is-dragging');
+      document.body.style.userSelect = '';
+    }
+
+    thumb.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   })();
 </script>
 

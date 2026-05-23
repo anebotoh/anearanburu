@@ -32,14 +32,26 @@
     flex-direction: column;
   }
 
-  /* TOPBAR — nav links pinned to the top of the page, left-aligned */
+  /* TOPBAR — smiley on the left, links on the right */
   .topbar {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
     padding: 24px var(--margin);
     flex-shrink: 0;
   }
-  .topbar-links { display: flex; gap: 4px; margin-left: -16px; }
+  .topbar-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    display: inline-block;
+    transition: transform .3s ease;
+  }
+  .topbar-name:hover { transform: rotate(90deg); }
+  .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a {
     font-size: 11px;
     letter-spacing: .08em;
@@ -158,10 +170,6 @@
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
   .get-creator { color: var(--accent); margin-left: 6px; }
 
-  /* CAROUSEL — capture page-wide horizontal scroll
-     The track listens for wheel events on the document and translates
-     vertical wheel into horizontal scroll. CSS-only fallback: pinch/touch still works. */
-
   @media (max-width: 768px) {
     :root { --margin: 24px; }
     .topbar { padding: 18px var(--margin); }
@@ -189,6 +197,7 @@
 <body>
 
 <header class="topbar">
+  <a class="topbar-name" href="/">:)</a>
   <nav class="topbar-links">
     <a href="mailto:aranburuane@gmail.com">Email me</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
@@ -197,8 +206,8 @@
 </header>
 
 <div class="hero">
-  <h1>I'm Ane — a Basque designer based in Brooklyn that likes approaching complex issues developing them in a fun, reachable and user-friendly way.</h1>
-  <p>I currently work at Output — designing and building music production tools 🎹</p>
+  <h1>I'm Ane — a Basque designer based in Brooklyn that likes turning complex issues into something fun, reachable and user-friendly.</h1>
+  <p>I work at Output — designing and building music production tools 🎹</p>
 </div>
 
 <div class="carousel">
@@ -314,7 +323,6 @@
     const track = document.getElementById('carouselTrack');
     if (!track) return;
 
-    // Mouse wheel and trackpad: vertical or horizontal input both scroll the carousel
     window.addEventListener('wheel', function (e) {
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (delta === 0) return;
@@ -322,7 +330,6 @@
       track.scrollLeft += delta;
     }, { passive: false });
 
-    // Touch: any vertical swipe anywhere on the page drives the carousel
     let touchStartY = null;
     let touchStartX = null;
     let lastTouchY = null;
@@ -342,7 +349,6 @@
       const totalDx = touchStartX - currentX;
       const totalDy = touchStartY - currentY;
 
-      // If the overall gesture is more vertical than horizontal, scroll the carousel
       if (Math.abs(totalDy) > Math.abs(totalDx)) {
         e.preventDefault();
         track.scrollLeft += dy * 1.5;
@@ -357,7 +363,7 @@
     }, { passive: true });
   })();
 
-  // Custom scrollbar: sync thumb position with carousel scroll + drag-to-scroll
+  // Custom scrollbar
   (function () {
     const track = document.getElementById('carouselTrack');
     const bar = document.getElementById('scrollbar');
@@ -366,19 +372,12 @@
 
     const THUMB_W = 25;
 
-    function maxScroll() {
-      return track.scrollWidth - track.clientWidth;
-    }
-    function maxThumb() {
-      return bar.clientWidth - THUMB_W;
-    }
+    function maxScroll() { return track.scrollWidth - track.clientWidth; }
+    function maxThumb() { return bar.clientWidth - THUMB_W; }
 
     function syncThumb() {
       const max = maxScroll();
-      if (max <= 0) {
-        thumb.style.display = 'none';
-        return;
-      }
+      if (max <= 0) { thumb.style.display = 'none'; return; }
       thumb.style.display = '';
       const ratio = track.scrollLeft / max;
       thumb.style.transform = 'translateX(' + (ratio * maxThumb()) + 'px)';
@@ -388,7 +387,6 @@
     window.addEventListener('resize', syncThumb);
     syncThumb();
 
-    // Drag the thumb to scroll the carousel
     let dragStartX = 0;
     let dragStartScroll = 0;
     let isDragging = false;

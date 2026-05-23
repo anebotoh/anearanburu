@@ -110,8 +110,7 @@
   .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
   .card-media.blur video, .card-media.blur img { filter: blur(20px) brightness(0.6); }
 
-  .nda-tag,
-  .download-tag {
+  .nda-tag {
     position: absolute;
     bottom: 12px;
     right: 12px;
@@ -119,12 +118,13 @@
     letter-spacing: .1em;
     text-transform: uppercase;
     font-weight: 500;
+    color: var(--text);
+    opacity: 0.5;
   }
-  .nda-tag { color: var(--text); opacity: 0.5; }
-  .download-tag { color: var(--accent); }
 
   .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
+  .get-creator { color: var(--accent); margin-left: 6px; }
 
   /* CAROUSEL — capture page-wide horizontal scroll
      The track listens for wheel events on the document and translates
@@ -169,10 +169,9 @@
     <a class="card" href="https://output.com/products/creator/" target="_blank">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
-        <span class="download-tag">Download</span>
       </div>
       <p class="card-meta">Output — 2024/2026 - Desktop app</p>
-      <p class="card-title">Turn play into musical ideas</p>
+      <p class="card-title">Turn play into musical ideas <span class="get-creator">Try it!</span></p>
     </a>
 
     <div class="card">

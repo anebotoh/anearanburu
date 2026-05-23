@@ -15,17 +15,29 @@
     --text: #f0ede8; --muted: #888;
     --font: 'Instrument Sans', sans-serif;
     --margin: 48px;
-    --section-gap: 60px;
     --accent: #E5FF00;
   }
-  html, body { overflow-x: hidden; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+  /* Lock the layout across all breakpoints */
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
 
   /* NAV */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px var(--margin); position: sticky; top: 0; z-index: 100;
+    padding: 24px var(--margin);
     background: var(--bg);
+    flex-shrink: 0;
   }
   .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
   .nav-name:hover { transform: rotate(90deg); }
@@ -33,11 +45,12 @@
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; transition: border-color .2s; }
   .nav-links a:hover { border-color: var(--border); }
 
-  /* HERO */
+  /* HERO — pinned to top */
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
-    padding: 24px 0 120px;
+    padding: 24px 0 56px;
+    flex-shrink: 0;
   }
   .hero h1 {
     font-family: var(--font);
@@ -59,11 +72,15 @@
     max-width: 600px;
   }
 
-  /* CAROUSEL */
+  /* CAROUSEL — fills remaining space, pinned to bottom */
   .carousel {
     margin-left: var(--margin);
-    padding-bottom: var(--section-gap);
     overflow: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 40px;
   }
   .carousel-track {
     display: flex;
@@ -72,10 +89,19 @@
     padding-right: var(--margin);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    width: 100%;
+    align-items: flex-end;
   }
   .carousel-track::-webkit-scrollbar { display: none; }
 
-  .card { flex: 0 0 380px; text-decoration: none; color: inherit; }
+  .card {
+    flex: 0 0 380px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
   .card-media {
     background: #1a1a1f; border-radius: 12px; aspect-ratio: 16/10;
     overflow: hidden; margin-bottom: 14px;
@@ -83,7 +109,9 @@
   }
   .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
   .card-media.blur video, .card-media.blur img { filter: blur(20px) brightness(0.6); }
-  .nda-tag {
+
+  .nda-tag,
+  .download-tag {
     position: absolute;
     bottom: 12px;
     right: 12px;
@@ -91,61 +119,31 @@
     letter-spacing: .1em;
     text-transform: uppercase;
     font-weight: 500;
-    color: var(--text);
-    opacity: 0.5;
   }
+  .nda-tag { color: var(--text); opacity: 0.5; }
+  .download-tag { color: var(--accent); }
+
   .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
-  .card-link {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1.35;
-    margin-top: 2px;
-    display: block;
-  }
 
-  /* BOTTOM */
-  .bottom {
-    margin-left: var(--margin);
-    margin-right: var(--margin);
-    padding: 0 0 var(--section-gap);
-    max-width: 72%;
-  }
-  .bottom-text { margin-bottom: 40px; }
-  .bottom-text p { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--text); max-width: 50vw; }
-  .capabilities-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin-bottom: 14px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
-
-  /* FOOTER */
-  footer {
-    margin-left: var(--margin);
-    margin-right: var(--margin);
-    padding: 40px 0 30px;
-  }
-  footer p { font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+  /* CAROUSEL — capture page-wide horizontal scroll
+     The track listens for wheel events on the document and translates
+     vertical wheel into horizontal scroll. CSS-only fallback: pinch/touch still works. */
 
   @media (max-width: 768px) {
-    :root { --margin: 24px; --section-gap: 50px; }
-    .bottom { max-width: 100%; }
-    .hero { padding: 16px 0 80px; }
+    :root { --margin: 24px; }
+    .hero { padding: 16px 0 40px; }
     .hero h1, .hero p { font-size: 20px; line-height: 28px; }
+    .carousel { padding-bottom: 32px; }
     .card { flex: 0 0 300px; }
-    .bottom-text p { font-size: 14px; max-width: none; }
-    footer { padding: 30px 0; }
   }
   @media (max-width: 480px) {
-    :root { --margin: 20px; --section-gap: 44px; }
-    .hero { padding: 12px 0 60px; }
+    :root { --margin: 20px; }
+    nav { padding: 18px var(--margin); }
+    .hero { padding: 12px 0 32px; }
     .hero h1, .hero p { font-size: 20px; font-weight: 400; line-height: 28px; }
-    .carousel { padding-bottom: 54px; }
+    .carousel { padding-bottom: 24px; }
     .card { flex: 0 0 260px; }
-    .capabilities-label { margin-bottom: 20px; }
-    .bottom-text { margin-bottom: 24px; }
-    .bottom-text p { font-size: 13px; }
-    .tag { font-size: 12px; padding: 8px 14px; }
-    footer { padding: 30px 0; }
   }
 </style>
 </head>
@@ -161,24 +159,22 @@
 </nav>
 
 <div class="hero">
-  <h1>Hey, I'm Ane — a Basque product designer based in Brooklyn.</h1>
+  <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
   <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 
 <div class="carousel">
-  <div class="carousel-track">
+  <div class="carousel-track" id="carouselTrack">
 
-    <!-- Card 1 - Output Creator (NO BLUR, CLICKABLE) -->
     <a class="card" href="https://output.com/products/creator/" target="_blank">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
+        <span class="download-tag">Download</span>
       </div>
       <p class="card-meta">Output — 2024/2026 - Desktop app</p>
       <p class="card-title">Turn play into musical ideas</p>
-      <span class="card-link">Download Output Creator</span>
     </a>
 
-    <!-- Card 2 - Cinepolis (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/02-Cinepolis.mp4"></video>
@@ -188,7 +184,6 @@
       <p class="card-title">Buy movie tickets, with no distractions</p>
     </div>
 
-    <!-- Card 3 - NMAAHC (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/05-NMAACH.mp4"></video>
@@ -198,7 +193,6 @@
       <p class="card-title">A People's Journey, A Nation's Story</p>
     </div>
 
-    <!-- Card 4 - Embibe (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/04-Embibe.mp4"></video>
@@ -208,7 +202,6 @@
       <p class="card-title">Make e-learning feel like play</p>
     </div>
 
-    <!-- Card 5 - iPondr (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/03-iPondr.mp4"></video>
@@ -218,7 +211,6 @@
       <p class="card-title">Journalism outside your bubble</p>
     </div>
 
-    <!-- Card 6 - XGIMI (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <img src="videos/10-Xgimi.png" alt="XGIMI Project">
@@ -228,7 +220,6 @@
       <p class="card-title">Visual concept for a projector technology</p>
     </div>
 
-    <!-- Card 7 - Messenger (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/07-Messenger.mp4"></video>
@@ -238,7 +229,6 @@
       <p class="card-title">Microsite concept for messaging app rebrand</p>
     </div>
 
-    <!-- Card 8 - Wheels Up (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <img src="videos/09-Wheelsup.png" alt="Wheels Up">
@@ -248,7 +238,6 @@
       <p class="card-title">Visual concepts for a private flying app</p>
     </div>
 
-    <!-- Card 9 - Lark (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <img src="videos/11-Lark.png" alt="Lark Bytedance">
@@ -258,7 +247,6 @@
       <p class="card-title">Designing for different cultures</p>
     </div>
 
-    <!-- Card 10 - DEEM (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/06-Deem.mp4"></video>
@@ -268,7 +256,6 @@
       <p class="card-title">Book your trip, using just your voice</p>
     </div>
 
-    <!-- Card 11 - Asana (BLUR) -->
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/08-Asana.mp4"></video>
@@ -281,27 +268,54 @@
   </div>
 </div>
 
-<div class="bottom">
-  <p class="capabilities-label">Capabilities & Interests</p>
-  <div class="bottom-text">
-    <p>I'm interested in projects that have a responsible use of technology & design. I'm keen on approaching complex issues developing them in a fun, reachable and user-friendly way.</p>
-  </div>
-  <div class="tags">
-    <span class="tag">Creative tools</span>
-    <span class="tag">0 — 1</span>
-    <span class="tag">Music production</span>
-    <span class="tag">Microinteractions</span>
-    <span class="tag">UI</span>
-    <span class="tag">MVP</span>
-    <span class="tag">Prototyping</span>
-    <span class="tag">Vision</span>
-    <span class="tag">Ethics & Privacy</span>
-  </div>
-</div>
+<script>
+  // Translate page-wide scroll into horizontal carousel scroll
+  (function () {
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
 
-<footer>
-  <p>Thanks for scrolling. Have a good day :)</p>
-</footer>
+    // Mouse wheel and trackpad: vertical or horizontal input both scroll the carousel
+    window.addEventListener('wheel', function (e) {
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (delta === 0) return;
+      e.preventDefault();
+      track.scrollLeft += delta;
+    }, { passive: false });
+
+    // Touch: translate vertical swipe on empty page area into horizontal carousel scroll
+    let touchStartY = null;
+    let touchStartX = null;
+    let touchTarget = null;
+
+    window.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      touchTarget = e.target;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function (e) {
+      if (touchStartY === null) return;
+      // If the touch began on the carousel itself, let native horizontal scrolling handle it
+      if (track.contains(touchTarget)) return;
+
+      const dy = touchStartY - e.touches[0].clientY;
+      const dx = touchStartX - e.touches[0].clientX;
+      // Only translate gestures that are more vertical than horizontal
+      if (Math.abs(dy) > Math.abs(dx)) {
+        e.preventDefault();
+        track.scrollLeft += dy;
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', function () {
+      touchStartY = null;
+      touchStartX = null;
+      touchTarget = null;
+    }, { passive: true });
+  })();
+</script>
 
 </body>
 </html>

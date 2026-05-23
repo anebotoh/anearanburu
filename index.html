@@ -66,12 +66,16 @@
   }
   .topbar-links a:hover { border-color: var(--border); }
 
-  /* HERO — text block below the topbar */
+  /* HERO — fills space between topbar and carousel, content centered */
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
-    padding: 24px 0 56px;
-    flex-shrink: 0;
+    padding: 24px 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .hero h1 {
     font-family: var(--font);
@@ -93,12 +97,11 @@
     max-width: 50vw;
   }
 
-  /* CAROUSEL — fills remaining space, pinned to bottom */
+  /* CAROUSEL — natural size, sits at the bottom of the page */
   .carousel {
     margin-left: var(--margin);
     overflow: hidden;
-    flex: 1 1 auto;
-    min-height: 0;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -174,7 +177,7 @@
     :root { --margin: 24px; }
     .topbar { padding: 18px var(--margin); }
     .hero {
-      padding: 24px 0 40px;
+      padding: 24px 0;
     }
     .hero h1 { font-size: 19px; line-height: 27px; max-width: 360px; }
     .hero p { font-size: 19px; line-height: 27px; max-width: 360px; }
@@ -185,7 +188,7 @@
     :root { --margin: 20px; }
     .topbar { padding: 16px var(--margin); }
     .hero {
-      padding: 20px 0 32px;
+      padding: 20px 0;
     }
     .hero h1 { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
     .hero p { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
@@ -206,7 +209,7 @@
 </header>
 
 <div class="hero">
-  <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into something fun and reachable experiences.</h1>
+  <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into something fun, reachable and user-friendly.</h1>
   <p>I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 

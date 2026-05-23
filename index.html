@@ -198,7 +198,7 @@
 
 <div class="hero">
   <h1>Hey, I'm Ane — a Basque designer based in Brooklyn.</h1>
-  <p>I have been caring about pixels, process and best practices for 10+ years. I currently work at Output — designing and building music production tools 🎹</p>
+  <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 
 <div class="carousel">
@@ -322,37 +322,38 @@
       track.scrollLeft += delta;
     }, { passive: false });
 
-    // Touch: translate vertical swipe on empty page area into horizontal carousel scroll
+    // Touch: any vertical swipe anywhere on the page drives the carousel
     let touchStartY = null;
     let touchStartX = null;
-    let touchTarget = null;
+    let lastTouchY = null;
 
     window.addEventListener('touchstart', function (e) {
       touchStartY = e.touches[0].clientY;
       touchStartX = e.touches[0].clientX;
-      touchTarget = e.target;
+      lastTouchY = touchStartY;
     }, { passive: true });
 
     window.addEventListener('touchmove', function (e) {
       if (touchStartY === null) return;
-      // If the touch began on the carousel itself, let native horizontal scrolling handle it
-      if (track.contains(touchTarget)) return;
 
-      const dy = touchStartY - e.touches[0].clientY;
-      const dx = touchStartX - e.touches[0].clientX;
-      // Only translate gestures that are more vertical than horizontal
-      if (Math.abs(dy) > Math.abs(dx)) {
+      const currentY = e.touches[0].clientY;
+      const currentX = e.touches[0].clientX;
+      const dy = lastTouchY - currentY;
+      const totalDx = touchStartX - currentX;
+      const totalDy = touchStartY - currentY;
+
+      // If the overall gesture is more vertical than horizontal, scroll the carousel
+      if (Math.abs(totalDy) > Math.abs(totalDx)) {
         e.preventDefault();
-        track.scrollLeft += dy;
-        touchStartY = e.touches[0].clientY;
-        touchStartX = e.touches[0].clientX;
+        track.scrollLeft += dy * 1.5;
+        lastTouchY = currentY;
       }
     }, { passive: false });
 
     window.addEventListener('touchend', function () {
       touchStartY = null;
       touchStartX = null;
-      touchTarget = null;
+      lastTouchY = null;
     }, { passive: true });
   })();
 

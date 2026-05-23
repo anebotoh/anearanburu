@@ -46,25 +46,26 @@
   .hero h1 {
     font-family: var(--font);
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 28px;
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
-    max-width: 800px;
+    max-width: calc((50% - 48px) * 0.8);
   }
   .hero p {
     color: #7a7a7a;
     font-family: var(--font);
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 28px;
     letter-spacing: -.01em;
-    max-width: 600px;
+    max-width: calc((50% - 48px) * 0.8);
   }
 
-  /* TAGS */
-  .hero .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-top: 216px; margin-bottom: 14px; line-height: 1.4; }
+  /* CAPABILITIES — sits between project grid and footer */
+  .capabilities { padding: 60px 0 40px; }
+  .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; line-height: 1.4; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
 
@@ -119,7 +120,6 @@
 
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
     padding: 60px 0 36px; display: flex; justify-content: center; align-items: center;
   }
   footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; text-align: center; }
@@ -133,9 +133,9 @@
     nav { padding: 18px 24px; }
     .page { padding: 0 24px 48px; }
     .hero { padding: 16px 0 32px; }
-    .hero h1 { font-size: 20px; line-height: 28px; }
-    .hero p { font-size: 20px; line-height: 28px; }
-    .hero .capabilities-label { margin-top: 132px; }
+    .hero h1 { font-size: 20px; line-height: 28px; max-width: 100%; }
+    .hero p { font-size: 20px; line-height: 28px; max-width: 100%; }
+    .capabilities { padding: 40px 0 32px; }
     .project-grid { grid-template-columns: 1fr; }
     .project { padding: 40px 0 !important; border-right: none !important; }
     .project-title { font-size: 18px; max-width: 336px; font-weight: 500; }
@@ -145,9 +145,9 @@
     nav { padding: 16px 20px; }
     .page { padding: 0 20px 40px; }
     .hero { padding: 12px 0 24px; }
-    .hero h1 { font-size: 20px; line-height: 28px; font-weight: 400; }
-    .hero p { font-size: 20px; line-height: 28px; font-weight: 400; }
-    .hero .capabilities-label { margin-top: 90px; }
+    .hero h1 { font-size: 20px; line-height: 28px; font-weight: 500; max-width: 100%; }
+    .hero p { font-size: 20px; line-height: 28px; font-weight: 500; max-width: 100%; }
+    .capabilities { padding: 32px 0 24px; }
     .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links a { padding: 6px 10px; font-size: 10px; }
     .project-title { font-size: 18px; }
@@ -170,19 +170,6 @@
   <div class="hero">
     <h1>Hey, I'm Ane — a Basque designer based in Brooklyn that cares about pixels, process and best practices.</h1>
     <p>I currently work at Output — designing and building music production tools 🎹</p>
-
-    <p class="capabilities-label">Capabilities & Interests</p>
-    <div class="tags">
-      <span class="tag">Creative tools</span>
-      <span class="tag">0 — 1</span>
-      <span class="tag">Music production</span>
-      <span class="tag">Microinteractions</span>
-      <span class="tag">UI</span>
-      <span class="tag">MVP</span>
-      <span class="tag">Prototyping</span>
-      <span class="tag">Vision</span>
-      <span class="tag">Ethics & Privacy</span>
-    </div>
   </div>
 
   <div class="project-grid">
@@ -299,6 +286,21 @@
     </article>
 
   </div>
+
+  <section class="capabilities">
+    <p class="capabilities-label">Capabilities & Interests</p>
+    <div class="tags">
+      <span class="tag">Creative tools</span>
+      <span class="tag">0 — 1</span>
+      <span class="tag">Music production</span>
+      <span class="tag">Microinteractions</span>
+      <span class="tag">UI</span>
+      <span class="tag">MVP</span>
+      <span class="tag">Prototyping</span>
+      <span class="tag">Vision</span>
+      <span class="tag">Ethics & Privacy</span>
+    </div>
+  </section>
 
   <footer>
     <p>Thanks for scrolling. Have a good day :)</p>

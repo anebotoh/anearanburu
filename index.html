@@ -7,17 +7,16 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #0C0C0F; --border: #222;
     --text: #f0ede8; --muted: #888;
-    --font: 'Inter', sans-serif;
+    --font: 'Instrument Sans', sans-serif;
     --margin: 48px;
     --section-gap: 60px;
     --accent: #E5FF00;
-    --hero-width: 80%;
   }
   html, body { overflow-x: hidden; }
   body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
@@ -38,35 +37,40 @@
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
-    padding: 50px 0 var(--section-gap);
-    max-width: var(--hero-width);
+    padding: 24px 0 120px;
   }
   .hero h1 {
-    font-size: 38px;
-    font-weight: 300;
-    line-height: 1.4;
+    font-family: var(--font);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
     color: #fff;
     margin-bottom: 16px;
+    letter-spacing: -.01em;
+    max-width: 800px;
   }
   .hero p {
     color: #7a7a7a;
-    font-size: 38px;
-    font-weight: 300;
-    line-height: 1.4;
+    font-family: var(--font);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: -.01em;
+    max-width: 600px;
   }
 
   /* CAROUSEL */
-  .carousel { 
-    margin-left: var(--margin); 
-    padding-bottom: var(--section-gap); 
-    overflow: hidden; 
+  .carousel {
+    margin-left: var(--margin);
+    padding-bottom: var(--section-gap);
+    overflow: hidden;
   }
-  .carousel-track { 
-    display: flex; 
-    gap: 20px; 
+  .carousel-track {
+    display: flex;
+    gap: 20px;
     overflow-x: auto;
     padding-right: var(--margin);
-    scrollbar-width: none; 
+    scrollbar-width: none;
     -ms-overflow-style: none;
   }
   .carousel-track::-webkit-scrollbar { display: none; }
@@ -75,59 +79,71 @@
   .card-media {
     background: #1a1a1f; border-radius: 12px; aspect-ratio: 16/10;
     overflow: hidden; margin-bottom: 14px;
+    position: relative;
   }
   .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
   .card-media.blur video, .card-media.blur img { filter: blur(20px) brightness(0.6); }
+  .nda-tag {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text);
+    opacity: 0.5;
+  }
   .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
-  .card-link { 
-    font-size: 14px; 
-    font-weight: 500; 
-    color: var(--accent); 
+  .card-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
     line-height: 1.35;
     margin-top: 2px;
     display: block;
   }
 
   /* BOTTOM */
-  .bottom { 
-    margin-left: var(--margin); 
-    margin-right: var(--margin); 
-    padding: 0 0 var(--section-gap); 
-    max-width: 72%; 
+  .bottom {
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    padding: 0 0 var(--section-gap);
+    max-width: 72%;
   }
   .bottom-text { margin-bottom: 40px; }
-  .bottom-text p { font-size: 20px; font-weight: 300; line-height: 1.5; color: var(--text); }
+  .bottom-text p { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--text); max-width: 50vw; }
   .capabilities-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin-bottom: 14px; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
 
   /* FOOTER */
-  footer { 
-    margin-left: var(--margin); 
-    margin-right: var(--margin); 
-    padding: 40px 0 30px; 
+  footer {
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    padding: 40px 0 30px;
   }
   footer p { font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
 
   @media (max-width: 768px) {
-    :root { --margin: 24px; --section-gap: 50px; --hero-width: 80%; }
+    :root { --margin: 24px; --section-gap: 50px; }
     .bottom { max-width: 100%; }
-    .hero { padding: 40px 0 var(--section-gap); }
-    .hero h1, .hero p { font-size: 30px; line-height: 1.35; }
+    .hero { padding: 16px 0 80px; }
+    .hero h1, .hero p { font-size: 20px; line-height: 30px; }
     .card { flex: 0 0 300px; }
-    .bottom-text p { font-size: 18px; }
+    .bottom-text p { font-size: 14px; max-width: none; }
     footer { padding: 30px 0; }
   }
   @media (max-width: 480px) {
-    :root { --margin: 20px; --section-gap: 44px; --hero-width: 97%; }
-    .hero { padding: 30px 0 var(--section-gap); }
-    .hero h1, .hero p { font-size: 20px; font-weight: 400; line-height: 1.35; }
+    :root { --margin: 20px; --section-gap: 44px; }
+    .hero { padding: 12px 0 60px; }
+    .hero h1, .hero p { font-size: 20px; font-weight: 400; line-height: 30px; }
     .carousel { padding-bottom: 54px; }
     .card { flex: 0 0 260px; }
     .capabilities-label { margin-bottom: 20px; }
     .bottom-text { margin-bottom: 24px; }
-    .bottom-text p { font-size: 15px; }
+    .bottom-text p { font-size: 11px; }
     .tag { font-size: 12px; padding: 8px 14px; }
     footer { padding: 30px 0; }
   }
@@ -145,7 +161,7 @@
 </nav>
 
 <div class="hero">
-  <h1>Hey, I'm Ane, a Basque product designer based in Brooklyn. Craft oriented, interested in the whole experience and the team I work with.</h1>
+  <h1>I'm a Basque designer based in Brooklyn. Craft oriented, interested in the whole experience and the team I work with.</h1>
   <p>I have been caring about pixels, process and best practices for 10+ years. Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
 </div>
 
@@ -166,6 +182,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/02-Cinepolis.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2023 - website ecosystem</p>
       <p class="card-title">Buy movie tickets, with no distractions</p>
@@ -175,6 +192,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/05-NMAACH.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2021 - Microsite</p>
       <p class="card-title">A People's Journey, A Nation's Story</p>
@@ -184,6 +202,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/04-Embibe.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2022 - App Onboarding</p>
       <p class="card-title">Make e-learning feel like play</p>
@@ -193,6 +212,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/03-iPondr.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2020 - CMS Website</p>
       <p class="card-title">Journalism outside your bubble</p>
@@ -202,6 +222,7 @@
     <div class="card">
       <div class="card-media blur">
         <img src="videos/10-Xgimi.png" alt="XGIMI Project">
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2022 - Platform concept</p>
       <p class="card-title">Visual concept for a projector technology</p>
@@ -211,6 +232,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/07-Messenger.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2022 - Microsite</p>
       <p class="card-title">Microsite concept for messaging app rebrand</p>
@@ -220,6 +242,7 @@
     <div class="card">
       <div class="card-media blur">
         <img src="videos/09-Wheelsup.png" alt="Wheels Up">
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2020 - iOS app</p>
       <p class="card-title">Visual concepts for a private flying app</p>
@@ -229,6 +252,7 @@
     <div class="card">
       <div class="card-media blur">
         <img src="videos/11-Lark.png" alt="Lark Bytedance">
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2022 - App Suite</p>
       <p class="card-title">Designing for different cultures</p>
@@ -238,6 +262,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/06-Deem.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2019 - iOS app</p>
       <p class="card-title">Book your trip, using just your voice</p>
@@ -247,6 +272,7 @@
     <div class="card">
       <div class="card-media blur">
         <video autoplay muted loop playsinline preload="none" src="videos/08-Asana.mp4"></video>
+        <span class="nda-tag">NDA</span>
       </div>
       <p class="card-meta">Fantasy — 2020 - Vision</p>
       <p class="card-title">How could Asana look like in 5 years?</p>

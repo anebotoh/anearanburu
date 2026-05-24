@@ -241,6 +241,7 @@
     }
     .hero h1 { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 374px; }
     .hero p { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 374px; }
+    .prev-tagline { max-width: 90vw; }
     .carousel { padding-bottom: 24px; }
     .card { flex: 0 0 312px; }
   }
@@ -517,9 +518,11 @@
       resumeTimeout = setTimeout(start, IDLE_RESUME_MS);
     }
 
-    // Pause on hover anywhere inside the carousel
-    carousel.addEventListener('mouseenter', pause);
-    carousel.addEventListener('mouseleave', scheduleResume);
+    // Pause on hover anywhere inside the carousel (desktop only — mobile doesn't reliably fire mouseleave)
+    if (window.matchMedia('(hover: hover)').matches) {
+      carousel.addEventListener('mouseenter', pause);
+      carousel.addEventListener('mouseleave', scheduleResume);
+    }
 
     // Pause on wheel/touch interaction, schedule resume when it settles
     window.addEventListener('wheel', scheduleResume, { passive: true });

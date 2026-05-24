@@ -62,6 +62,14 @@
     letter-spacing: -.01em;
     max-width: 50vw;
   }
+  .hero-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s;
+  }
+  .hero-link:hover { color: var(--text); }
 
   /* CAPABILITIES — sits between project grid and footer */
   .capabilities { padding: 60px 0 40px; }
@@ -168,8 +176,8 @@
 <div class="page">
 
   <div class="hero">
-    <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-    <p>Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
+    <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into something fun and reachable experiences.</h1>
+    <p>Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>, I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools 🎹</p>
   </div>
 
   <div class="project-grid">

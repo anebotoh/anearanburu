@@ -136,28 +136,27 @@
   }
   .carousel-track::-webkit-scrollbar { display: none; }
 
-  /* Custom scrollbar — segmented, one line per project */
+  /* Custom scrollbar — 2px circles for each project, active becomes rounded bar */
   .scrollbar {
     margin-top: 24px;
-    width: 100px;
-    height: 2px;
     flex-shrink: 0;
   }
   .scrollbar-segments {
     display: flex;
-    gap: 4px;
-    width: 100%;
-    height: 2px;
+    gap: 8px;
+    align-items: center;
   }
   .scrollbar-segment {
-    flex: 1 1 0;
-    height: 2px;
+    width: 4px;
+    height: 4px;
     background: #2a2a30;
+    border-radius: 16px;
     cursor: pointer;
-    transition: background .2s ease, flex-grow .3s ease;
+    flex-shrink: 0;
+    transition: background .2s ease, width .3s ease;
   }
   .scrollbar-segment:hover { background: #4a4a55; }
-  .scrollbar-segment.is-active { background: var(--text); flex-grow: 2; }
+  .scrollbar-segment.is-active { background: var(--text); width: 24px; }
 
   /* "Previously at..." tagline */
   .prev-tagline {

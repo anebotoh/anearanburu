@@ -157,7 +157,7 @@
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 12px;
+    margin-bottom: 12px;
     flex-shrink: 0;
   }
   .prev-tagline a {
@@ -263,6 +263,7 @@
 </div>
 
 <div class="carousel">
+  <p class="prev-tagline">I have been caring about how things look, feel and work for 10+ years. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank">Fantasy</a></p>
   <div class="carousel-track" id="carouselTrack">
 
     <a class="card" href="https://output.com/products/creator/" target="_blank">
@@ -368,7 +369,6 @@
   <div class="scrollbar" id="scrollbar">
     <div class="scrollbar-segments" id="scrollbarSegments"></div>
   </div>
-  <p class="prev-tagline">I have been caring about how things look, feel and work for 10+ years. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank">Fantasy</a></p>
 </div>
 
 <script>
@@ -436,19 +436,32 @@
     });
 
     function syncActive() {
-      const trackRect = track.getBoundingClientRect();
-      const centerX = trackRect.left + trackRect.width / 2;
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-      cards.forEach((card, i) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.left + cardRect.width / 2;
-        const distance = Math.abs(cardCenter - centerX);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      let closestIndex;
+
+      if (track.scrollLeft <= 2) {
+        // At very start: always highlight first
+        closestIndex = 0;
+      } else if (track.scrollLeft >= maxScroll - 2) {
+        // At very end: always highlight last
+        closestIndex = cards.length - 1;
+      } else {
+        // In between: use card-center-closest-to-viewport-center
+        const trackRect = track.getBoundingClientRect();
+        const centerX = trackRect.left + trackRect.width / 2;
+        let closestDistance = Infinity;
+        closestIndex = 0;
+        cards.forEach((card, i) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenter - centerX);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+      }
+
       segments.forEach((seg, i) => {
         seg.classList.toggle('is-active', i === closestIndex);
       });

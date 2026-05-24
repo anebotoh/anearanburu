@@ -181,13 +181,11 @@
     aspect-ratio: 16/10;
     overflow: hidden;
     position: relative;
-    border: 4px solid transparent;
-    transition: border-color .3s ease;
   }
   .card-media video, .card-media img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   /* Overlay — only on linkable cards (Output Creator), revealed on hover */
@@ -212,12 +210,10 @@
     font-weight: 500;
   }
   .card:hover .card-overlay { opacity: 1; }
-  .card[href]:hover .card-media { border-color: rgba(255, 255, 255, 0.1); }
 
   /* Touch devices (no hover): auto-show overlay on the currently-centered card */
   @media (hover: none) {
     .card.is-centered .card-overlay { opacity: 1; }
-    .card[href].is-centered .card-media { border-color: rgba(255, 255, 255, 0.1); }
   }
 
   @media (max-width: 768px) {
@@ -519,68 +515,6 @@
 
     // Kick off after a brief delay so visitors see the first card statically
     setTimeout(start, 1500);
-  })();
-
-  // Sample each media's edge color and apply to its card background — makes
-  // object-fit: contain letterboxing blend invisibly into the video itself
-  (function () {
-    const SAMPLE = 80; // downsample target — small canvas reads pixels fast
-
-    function applyEdgeColor(mediaEl, container) {
-      const srcW = mediaEl.videoWidth || mediaEl.naturalWidth;
-      const srcH = mediaEl.videoHeight || mediaEl.naturalHeight;
-      if (!srcW || !srcH) return;
-
-      const ratio = srcW / srcH;
-      const w = ratio >= 1 ? SAMPLE : Math.round(SAMPLE * ratio);
-      const h = ratio >= 1 ? Math.round(SAMPLE / ratio) : SAMPLE;
-
-      const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-
-      try {
-        ctx.drawImage(mediaEl, 0, 0, w, h);
-        // Sample all four edges
-        const edges = [
-          ctx.getImageData(0, 0, w, 1).data,       // top
-          ctx.getImageData(0, h - 1, w, 1).data,   // bottom
-          ctx.getImageData(0, 0, 1, h).data,        // left
-          ctx.getImageData(w - 1, 0, 1, h).data,    // right
-        ];
-        let r = 0, g = 0, b = 0, count = 0;
-        edges.forEach(data => {
-          for (let i = 0; i < data.length; i += 4) {
-            r += data[i]; g += data[i + 1]; b += data[i + 2]; count++;
-          }
-        });
-        r = Math.round(r / count);
-        g = Math.round(g / count);
-        b = Math.round(b / count);
-        container.style.background = `rgb(${r}, ${g}, ${b})`;
-      } catch (e) {
-        // CORS-tainted canvas or other issue — keep default background
-      }
-    }
-
-    document.querySelectorAll('.card-media').forEach(container => {
-      const video = container.querySelector('video');
-      const img = container.querySelector('img');
-      if (video) {
-        if (video.readyState >= 2) {
-          applyEdgeColor(video, container);
-        } else {
-          video.addEventListener('loadeddata', () => applyEdgeColor(video, container), { once: true });
-        }
-      } else if (img) {
-        if (img.complete && img.naturalWidth) {
-          applyEdgeColor(img, container);
-        } else {
-          img.addEventListener('load', () => applyEdgeColor(img, container), { once: true });
-        }
-      }
-    });
   })();
 </script>
 

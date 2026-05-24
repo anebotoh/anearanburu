@@ -66,7 +66,7 @@
   }
   .topbar-links a:hover { border-color: var(--border); }
 
-  /* HERO — matches work.html styling: top-aligned text block, 50vw wrap */
+  /* HERO */
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
@@ -102,6 +102,8 @@
     transition: color .2s;
   }
   .hero-link:hover { color: var(--text); }
+  .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
+  .get-creator:hover { opacity: 0.7; }
 
   /* CAROUSEL — fills remaining space, cards pinned to bottom */
   .carousel {
@@ -126,7 +128,7 @@
   }
   .carousel-track::-webkit-scrollbar { display: none; }
 
-  /* Custom scrollbar — segmented, one line per project, sits 24px above the carousel cards */
+  /* Custom scrollbar — segmented, one line per project */
   .scrollbar {
     margin-bottom: 24px;
     width: 100px;
@@ -149,37 +151,7 @@
   .scrollbar-segment:hover { background: #4a4a55; }
   .scrollbar-segment.is-active { background: var(--text); flex-grow: 2; }
 
-  .card {
-    flex: 0 0 456px;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  .card-media {
-    background: #1a1a1f; border-radius: 12px; aspect-ratio: 16/10;
-    overflow: hidden; margin-bottom: 14px;
-    position: relative;
-  }
-  .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
-  .card-media.blur video, .card-media.blur img { filter: blur(20px) brightness(0.6); }
-
-  .nda-tag {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    font-size: 10px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--text);
-    opacity: 0.5;
-  }
-
-  .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-
-  /* "Previously at..." tagline — same style as card-meta */
+  /* "Previously at..." tagline */
   .prev-tagline {
     font-size: 10px;
     letter-spacing: .08em;
@@ -196,9 +168,24 @@
     transition: color .2s;
   }
   .prev-tagline a:hover { color: var(--text); }
-  .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
-  .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
-  .get-creator:hover { opacity: 0.7; }
+
+  /* CARDS — media-only, no text or tags */
+  .card {
+    flex: 0 0 456px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card-media {
+    background: #1a1a1f;
+    border-radius: 12px;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  .card-media video, .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
@@ -251,98 +238,66 @@
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
       </div>
-      <p class="card-meta">Output — 2024/2026 - Desktop app</p>
-      <p class="card-title">Turn play into musical ideas</p>
     </a>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/02-Cinepolis.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2023 - website ecosystem</p>
-      <p class="card-title">Buy movie tickets, with no distractions</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/05-NMAACH.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2021 - Microsite</p>
-      <p class="card-title">A People's Journey, A Nation's Story</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/04-Embibe.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2022 - App Onboarding</p>
-      <p class="card-title">Make e-learning feel like play</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/03-iPondr.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2020 - CMS Website</p>
-      <p class="card-title">Journalism outside your bubble</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <img src="videos/10-Xgimi.png" alt="XGIMI Project">
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2022 - Platform concept</p>
-      <p class="card-title">Visual concept for a projector technology</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/07-Messenger.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2022 - Microsite</p>
-      <p class="card-title">Microsite concept for messaging app rebrand</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <img src="videos/09-Wheelsup.png" alt="Wheels Up">
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2020 - iOS app</p>
-      <p class="card-title">Visual concepts for a private flying app</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <img src="videos/11-Lark.png" alt="Lark Bytedance">
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2022 - App Suite</p>
-      <p class="card-title">Designing for different cultures</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/06-Deem.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2019 - iOS app</p>
-      <p class="card-title">Book your trip, using just your voice</p>
     </div>
 
     <div class="card">
-      <div class="card-media blur">
+      <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/08-Asana.mp4"></video>
-        <span class="nda-tag">NDA</span>
       </div>
-      <p class="card-meta">Fantasy — 2020 - Vision</p>
-      <p class="card-title">How could Asana look like in 5 years?</p>
     </div>
 
   </div>
@@ -400,7 +355,6 @@
     const segmentsEl = document.getElementById('scrollbarSegments');
     if (!track || !segmentsEl) return;
 
-    // Build one segment per card
     const cards = Array.from(track.children);
     const segments = cards.map((card, i) => {
       const seg = document.createElement('div');
@@ -413,7 +367,6 @@
       return seg;
     });
 
-    // Highlight whichever card is most-centered in the viewport
     function syncActive() {
       const trackRect = track.getBoundingClientRect();
       const centerX = trackRect.left + trackRect.width / 2;

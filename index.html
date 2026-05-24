@@ -180,12 +180,45 @@
     border-radius: 12px;
     aspect-ratio: 16/10;
     overflow: hidden;
+    position: relative;
   }
   .card-media video, .card-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: filter .3s ease;
   }
+
+  /* Overlay — only on linkable cards (Output Creator), revealed on hover */
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 22px;
+    background: linear-gradient(to top, rgba(12, 12, 15, 0.85) 0%, rgba(12, 12, 15, 0) 55%);
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+  .card-eyebrow {
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #b8b8b8;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .card-overlay-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.35;
+  }
+  .card[href]:hover .card-overlay { opacity: 1; }
+  .card[href]:hover .card-media video,
+  .card[href]:hover .card-media img { filter: brightness(1.1); }
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
@@ -237,6 +270,10 @@
     <a class="card" href="https://output.com/products/creator/" target="_blank">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">Output — 2024/2026 - Desktop app</p>
+          <p class="card-overlay-title">Turn play into musical ideas</p>
+        </div>
       </div>
     </a>
 
@@ -389,6 +426,67 @@
     track.addEventListener('scroll', syncActive, { passive: true });
     window.addEventListener('resize', syncActive);
     syncActive();
+  })();
+
+  // Autoplay — gentle continuous drift, pauses on interaction, resumes after idle
+  (function () {
+    const track = document.getElementById('carouselTrack');
+    const carousel = track ? track.parentElement : null;
+    if (!track || !carousel) return;
+
+    const SPEED = 0.5;          // pixels per frame (~30px/sec at 60fps)
+    const IDLE_RESUME_MS = 2500; // ms of no interaction before resuming
+    let isPaused = true;
+    let resumeTimeout = null;
+    let rafId = null;
+
+    function maxScroll() { return track.scrollWidth - track.clientWidth; }
+
+    function tick() {
+      if (isPaused) return;
+      const next = track.scrollLeft + SPEED;
+      if (next >= maxScroll()) {
+        track.scrollLeft = 0; // wrap to start
+      } else {
+        track.scrollLeft = next;
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (!isPaused) return;
+      isPaused = false;
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function pause() {
+      isPaused = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+    }
+
+    function scheduleResume() {
+      pause();
+      resumeTimeout = setTimeout(start, IDLE_RESUME_MS);
+    }
+
+    // Pause on hover anywhere inside the carousel
+    carousel.addEventListener('mouseenter', pause);
+    carousel.addEventListener('mouseleave', scheduleResume);
+
+    // Pause on wheel/touch interaction, schedule resume when it settles
+    window.addEventListener('wheel', scheduleResume, { passive: true });
+    window.addEventListener('touchstart', pause, { passive: true });
+    window.addEventListener('touchend', scheduleResume, { passive: true });
+
+    // Pause when the page is not visible (saves CPU on background tabs)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) pause();
+      else scheduleResume();
+    });
+
+    // Kick off after a brief delay so visitors see the first card statically
+    setTimeout(start, 1500);
   })();
 </script>
 

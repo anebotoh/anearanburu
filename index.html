@@ -188,7 +188,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter .3s ease;
   }
 
   /* Overlay — only on linkable cards (Output Creator), revealed on hover */
@@ -213,9 +212,13 @@
     font-weight: 500;
   }
   .card:hover .card-overlay { opacity: 1; }
-  .card:hover .card-media video,
-  .card:hover .card-media img { filter: brightness(1.1); }
   .card[href]:hover .card-media { border-color: rgba(255, 255, 255, 0.1); }
+
+  /* Touch devices (no hover): auto-show overlay on the currently-centered card */
+  @media (hover: none) {
+    .card.is-centered .card-overlay { opacity: 1; }
+    .card[href].is-centered .card-media { border-color: rgba(255, 255, 255, 0.1); }
+  }
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
@@ -446,6 +449,9 @@
       });
       segments.forEach((seg, i) => {
         seg.classList.toggle('is-active', i === closestIndex);
+      });
+      cards.forEach((card, i) => {
+        card.classList.toggle('is-centered', i === closestIndex);
       });
     }
 

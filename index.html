@@ -181,6 +181,8 @@
     aspect-ratio: 16/10;
     overflow: hidden;
     position: relative;
+    border: 4px solid transparent;
+    transition: border-color .3s ease;
   }
   .card-media video, .card-media img {
     width: 100%;
@@ -210,15 +212,10 @@
     margin-bottom: 4px;
     font-weight: 500;
   }
-  .card-overlay-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.35;
-  }
-  .card[href]:hover .card-overlay { opacity: 1; }
-  .card[href]:hover .card-media video,
-  .card[href]:hover .card-media img { filter: brightness(1.1); }
+  .card:hover .card-overlay { opacity: 1; }
+  .card:hover .card-media video,
+  .card:hover .card-media img { filter: brightness(1.1); }
+  .card[href]:hover .card-media { border-color: rgba(255, 255, 255, 0.1); }
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
@@ -267,8 +264,7 @@
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
         <div class="card-overlay">
-          <p class="card-eyebrow">Output — 2024/2026 - Desktop app</p>
-          <p class="card-overlay-title">Turn play into musical ideas</p>
+          <p class="card-eyebrow">2024/2026 - Desktop app</p>
         </div>
       </div>
     </a>
@@ -276,60 +272,90 @@
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/02-Cinepolis.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2023 - Website ecosystem</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/05-NMAACH.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2021 - Microsite</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/04-Embibe.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2022 - App onboarding</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/03-iPondr.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2020 - CMS website</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="videos/10-Xgimi.png" alt="XGIMI Project">
+        <div class="card-overlay">
+          <p class="card-eyebrow">2022 - Platform concept</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/07-Messenger.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2022 - Microsite</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="videos/09-Wheelsup.png" alt="Wheels Up">
+        <div class="card-overlay">
+          <p class="card-eyebrow">2020 - iOS app</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="videos/11-Lark.png" alt="Lark Bytedance">
+        <div class="card-overlay">
+          <p class="card-eyebrow">2022 - App suite</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/06-Deem.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2019 - iOS app</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="none" src="videos/08-Asana.mp4"></video>
+        <div class="card-overlay">
+          <p class="card-eyebrow">2020 - Vision</p>
+        </div>
       </div>
     </div>
 

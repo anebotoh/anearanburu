@@ -178,7 +178,8 @@
 
   .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
-  .get-creator { color: var(--accent); margin-left: 6px; }
+  .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
+  .get-creator:hover { opacity: 0.7; }
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
@@ -217,7 +218,7 @@
 
 <div class="hero">
   <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-  <p>Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>, I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools 🎹</p>
+  <p>Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>, I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>, a new desktop app that allows musicians to create through sound exploration and play. <a href="https://output.com/products/creator/" target="_blank" class="get-creator">Try it!</a></p>
 </div>
 
 <div class="carousel">
@@ -231,7 +232,7 @@
         <video autoplay muted loop playsinline preload="none" src="videos/01-Creator%202.0.mov"></video>
       </div>
       <p class="card-meta">Output — 2024/2026 - Desktop app</p>
-      <p class="card-title">Turn play into musical ideas <span class="get-creator">Try it!</span></p>
+      <p class="card-title">Turn play into musical ideas</p>
     </a>
 
     <div class="card">

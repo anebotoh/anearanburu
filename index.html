@@ -126,27 +126,28 @@
   }
   .carousel-track::-webkit-scrollbar { display: none; }
 
-  /* Custom scrollbar — short indicator, sits 24px above the carousel cards */
+  /* Custom scrollbar — segmented, one line per project, sits 24px above the carousel cards */
   .scrollbar {
     margin-bottom: 24px;
     width: 100px;
     height: 2px;
-    background: #2a2a30;
-    position: relative;
     flex-shrink: 0;
   }
-  .scrollbar-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .scrollbar-segments {
+    display: flex;
+    gap: 4px;
+    width: 100%;
     height: 2px;
-    width: 25px;
-    background: var(--text);
-    cursor: grab;
-    transition: background 0.2s ease;
   }
-  .scrollbar-thumb:hover { background: var(--accent); }
-  .scrollbar-thumb.is-dragging { cursor: grabbing; background: var(--accent); transition: none; }
+  .scrollbar-segment {
+    flex: 1 1 0;
+    height: 2px;
+    background: #2a2a30;
+    cursor: pointer;
+    transition: background .2s ease, flex-grow .3s ease;
+  }
+  .scrollbar-segment:hover { background: #4a4a55; }
+  .scrollbar-segment.is-active { background: var(--text); flex-grow: 2; }
 
   .card {
     flex: 0 0 456px;
@@ -177,6 +178,24 @@
   }
 
   .card-meta { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+  /* "Previously at..." tagline — same style as card-meta */
+  .prev-tagline {
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    flex-shrink: 0;
+  }
+  .prev-tagline a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s;
+  }
+  .prev-tagline a:hover { color: var(--text); }
   .card-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.35; }
   .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
   .get-creator:hover { opacity: 0.7; }
@@ -218,12 +237,13 @@
 
 <div class="hero">
   <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-  <p>Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>, I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>, a new desktop app that allows musicians to create through sound exploration and play. <a href="https://output.com/products/creator/" target="_blank" class="get-creator">Try it!</a></p>
+  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>, a new desktop app that allows musicians to create through sound exploration and play 🎹. <a href="https://output.com/products/creator/" target="_blank" class="get-creator">Try it!</a></p>
 </div>
 
 <div class="carousel">
+  <p class="prev-tagline">I have previously worked at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank">Fjord</a> and <a href="https://fantasy.co/" target="_blank">Fantasy</a></p>
   <div class="scrollbar" id="scrollbar">
-    <div class="scrollbar-thumb" id="scrollbarThumb"></div>
+    <div class="scrollbar-segments" id="scrollbarSegments"></div>
   </div>
   <div class="carousel-track" id="carouselTrack">
 
@@ -374,58 +394,48 @@
     }, { passive: true });
   })();
 
-  // Custom scrollbar
+  // Custom scrollbar — segmented, one per project, active one highlights
   (function () {
     const track = document.getElementById('carouselTrack');
-    const bar = document.getElementById('scrollbar');
-    const thumb = document.getElementById('scrollbarThumb');
-    if (!track || !bar || !thumb) return;
+    const segmentsEl = document.getElementById('scrollbarSegments');
+    if (!track || !segmentsEl) return;
 
-    const THUMB_W = 25;
+    // Build one segment per card
+    const cards = Array.from(track.children);
+    const segments = cards.map((card, i) => {
+      const seg = document.createElement('div');
+      seg.className = 'scrollbar-segment';
+      seg.addEventListener('click', () => {
+        const left = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+        track.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      });
+      segmentsEl.appendChild(seg);
+      return seg;
+    });
 
-    function maxScroll() { return track.scrollWidth - track.clientWidth; }
-    function maxThumb() { return bar.clientWidth - THUMB_W; }
-
-    function syncThumb() {
-      const max = maxScroll();
-      if (max <= 0) { thumb.style.display = 'none'; return; }
-      thumb.style.display = '';
-      const ratio = track.scrollLeft / max;
-      thumb.style.transform = 'translateX(' + (ratio * maxThumb()) + 'px)';
+    // Highlight whichever card is most-centered in the viewport
+    function syncActive() {
+      const trackRect = track.getBoundingClientRect();
+      const centerX = trackRect.left + trackRect.width / 2;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      cards.forEach((card, i) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distance = Math.abs(cardCenter - centerX);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+      segments.forEach((seg, i) => {
+        seg.classList.toggle('is-active', i === closestIndex);
+      });
     }
 
-    track.addEventListener('scroll', syncThumb, { passive: true });
-    window.addEventListener('resize', syncThumb);
-    syncThumb();
-
-    let dragStartX = 0;
-    let dragStartScroll = 0;
-    let isDragging = false;
-
-    function onMouseDown(e) {
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragStartScroll = track.scrollLeft;
-      thumb.classList.add('is-dragging');
-      document.body.style.userSelect = 'none';
-      e.preventDefault();
-    }
-    function onMouseMove(e) {
-      if (!isDragging) return;
-      const dx = e.clientX - dragStartX;
-      const scrollPerPixel = maxScroll() / maxThumb();
-      track.scrollLeft = dragStartScroll + dx * scrollPerPixel;
-    }
-    function onMouseUp() {
-      if (!isDragging) return;
-      isDragging = false;
-      thumb.classList.remove('is-dragging');
-      document.body.style.userSelect = '';
-    }
-
-    thumb.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+    track.addEventListener('scroll', syncActive, { passive: true });
+    window.addEventListener('resize', syncActive);
+    syncActive();
   })();
 </script>
 

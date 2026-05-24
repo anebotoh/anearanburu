@@ -105,15 +105,23 @@
   .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
   .get-creator:hover { opacity: 0.7; }
 
-  /* CAROUSEL — fills remaining space, cards pinned to bottom */
-  .carousel {
+  /* TAGLINE WRAP — fills space between hero and carousel, vertically centers the tagline */
+  .tagline-wrap {
     margin-left: var(--margin);
-    overflow: hidden;
+    margin-right: var(--margin);
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
+    align-items: center;
+  }
+
+  /* CAROUSEL — content-height, sits at the bottom */
+  .carousel {
+    margin-left: var(--margin);
+    overflow: hidden;
+    flex: 0 0 auto;
+    display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     padding-bottom: 40px;
   }
   .carousel-track {
@@ -157,8 +165,6 @@
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 28px;
-    flex-shrink: 0;
   }
   .prev-tagline a {
     color: inherit;
@@ -263,8 +269,11 @@
   <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>, a new desktop app that allows musicians to create through sound exploration and play 🎹. <a href="https://output.com/products/creator/" target="_blank" class="get-creator">Try it!</a></p>
 </div>
 
-<div class="carousel">
+<div class="tagline-wrap">
   <p class="prev-tagline">I have been caring about how things look, feel and work for 10+ years. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank">Fantasy</a></p>
+</div>
+
+<div class="carousel">
   <div class="carousel-track" id="carouselTrack">
 
     <a class="card" href="https://output.com/products/creator/" target="_blank">

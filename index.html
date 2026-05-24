@@ -66,42 +66,49 @@
   }
   .topbar-links a:hover { border-color: var(--border); }
 
-  /* HERO — fills space between topbar and carousel, content centered but nudged up */
+  /* HERO — matches work.html styling: top-aligned text block, 50vw wrap */
   .hero {
     margin-left: var(--margin);
     margin-right: var(--margin);
-    padding: 24px 0 104px;
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 24px 0 56px;
+    flex-shrink: 0;
   }
   .hero h1 {
     font-family: var(--font);
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 27px;
+    line-height: 28px;
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
-    max-width: 50vw;
+    max-width: 42vw;
+    text-wrap: balance;
   }
   .hero p {
     color: #7a7a7a;
     font-family: var(--font);
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 27px;
+    line-height: 28px;
     letter-spacing: -.01em;
-    max-width: 50vw;
+    max-width: 52vw;
+    text-wrap: balance;
   }
+  .hero-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s;
+  }
+  .hero-link:hover { color: var(--text); }
 
-  /* CAROUSEL — natural size, sits at the bottom of the page */
+  /* CAROUSEL — fills remaining space, cards pinned to bottom */
   .carousel {
     margin-left: var(--margin);
     overflow: hidden;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -179,8 +186,8 @@
     .hero {
       padding: 24px 0;
     }
-    .hero h1 { font-size: 19px; line-height: 27px; max-width: 360px; }
-    .hero p { font-size: 19px; line-height: 27px; max-width: 360px; }
+    .hero h1 { font-size: 20px; line-height: 28px; max-width: 360px; }
+    .hero p { font-size: 20px; line-height: 28px; max-width: 360px; }
     .carousel { padding-bottom: 32px; }
     .card { flex: 0 0 360px; }
   }
@@ -190,8 +197,8 @@
     .hero {
       padding: 20px 0;
     }
-    .hero h1 { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
-    .hero p { font-size: 19px; font-weight: 500; line-height: 27px; max-width: 312px; }
+    .hero h1 { font-size: 20px; font-weight: 500; line-height: 28px; max-width: 312px; }
+    .hero p { font-size: 20px; font-weight: 500; line-height: 28px; max-width: 312px; }
     .carousel { padding-bottom: 24px; }
     .card { flex: 0 0 312px; }
   }
@@ -203,14 +210,14 @@
   <a class="topbar-name" href="/">:)</a>
   <nav class="topbar-links">
     <a href="mailto:aranburuane@gmail.com">Email me</a>
-    <a href="https://instagram.com/anebotoh" target="_blank">Instagram</a>
+    <a href="https://instagram.com/anebotoh" target="_blank">Photography</a>
     <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
   </nav>
 </header>
 
 <div class="hero">
   <h1>I'm Ane — a Basque product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-  <p>Previously at Fjord and Fantasy, I currently work at Output — designing and building music production tools 🎹</p>
+  <p>Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>, I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools 🎹</p>
 </div>
 
 <div class="carousel">

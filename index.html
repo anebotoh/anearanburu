@@ -210,6 +210,12 @@
     font-weight: 500;
   }
   .card:hover .card-overlay { opacity: 1; }
+  .card[href]:hover .card-media {
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.1);
+  }
+  .card[href] .card-media {
+    transition: box-shadow .3s ease;
+  }
 
   /* Touch devices (no hover): auto-show overlay on the currently-centered card */
   @media (hover: none) {

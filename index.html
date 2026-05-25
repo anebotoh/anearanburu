@@ -32,13 +32,18 @@
     flex-direction: column;
   }
 
-  /* TOPBAR — smiley on the left, links on the right */
+  /* TOPBAR — smiley + clock on the left, links on the right */
   .topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 24px var(--margin);
     flex-shrink: 0;
+  }
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
   .topbar-name {
     font-size: 13px;
@@ -51,6 +56,16 @@
     transition: transform .3s ease;
   }
   .topbar-name:hover { transform: rotate(90deg); }
+  .clock {
+    font-size: 13px;
+    letter-spacing: -.01em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .clock-time { color: var(--text); }
+  .clock-location { color: var(--muted); font-weight: 400; }
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a {
     font-size: 11px;
@@ -102,8 +117,10 @@
     transition: color .2s;
   }
   .hero-link:hover { color: var(--text); }
-  .get-creator { color: var(--accent); margin-left: 6px; text-decoration: none; transition: opacity .2s; }
-  .get-creator:hover { opacity: 0.7; }
+  .hero-cta {
+    font-weight: 500;
+    color: inherit;
+  }
 
   /* TAGLINE WRAP — fills space between hero and carousel, vertically centers the tagline */
   .tagline-wrap {
@@ -167,9 +184,7 @@
   }
   .prev-tagline a {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
     transition: color .2s;
   }
   .prev-tagline a:hover { color: var(--text); }
@@ -230,6 +245,7 @@
   @media (max-width: 768px) {
     :root { --margin: 24px; }
     .topbar { padding: 18px var(--margin); }
+    .topbar-left { gap: 12px; }
     .hero {
       padding: 24px 0;
     }
@@ -241,6 +257,8 @@
   @media (max-width: 480px) {
     :root { --margin: 20px; }
     .topbar { padding: 16px var(--margin); }
+    .topbar-left { gap: 12px; }
+    .clock { font-size: 12px; gap: 6px; }
     .hero {
       padding: 20px 0;
     }
@@ -255,7 +273,13 @@
 <body>
 
 <header class="topbar">
-  <a class="topbar-name" href="/">:)</a>
+  <div class="topbar-left">
+    <a class="topbar-name" href="/">:)</a>
+    <div class="clock">
+      <span class="clock-time" id="clockTime">—</span>
+      <span class="clock-location">Brooklyn, NY</span>
+    </div>
+  </div>
   <nav class="topbar-links">
     <a href="mailto:aranburuane@gmail.com">Email me</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Photography</a>
@@ -265,7 +289,7 @@
 
 <div class="hero">
   <h1>I'm Ane — a Basque digital product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing and building music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>, a new desktop app that allows musicians to create through sound exploration and play 🎹. <a href="https://output.com/products/creator/" target="_blank" class="get-creator">Try it!</a></p>
+  <p>I currently work as a Lead Product Designer at Output — designing and building music production tools like <span class="hero-cta">Output Creator</span>, a new desktop app that allows musicians to create through sound exploration and play.</p>
 </div>
 
 <div class="tagline-wrap">
@@ -381,6 +405,32 @@
 </div>
 
 <script>
+  // Live clock in Brooklyn (America/New_York) timezone — updates every minute
+  (function () {
+    const el = document.getElementById('clockTime');
+    if (!el) return;
+
+    function updateClock() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: false
+      });
+      el.textContent = formatter.format(now);
+    }
+
+    updateClock();
+    // Align next update to the start of the next minute
+    const now = new Date();
+    const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+    setTimeout(() => {
+      updateClock();
+      setInterval(updateClock, 60000);
+    }, msToNextMinute);
+  })();
+
   // Translate page-wide scroll into horizontal carousel scroll
   (function () {
     const track = document.getElementById('carouselTrack');
@@ -449,13 +499,10 @@
       let closestIndex;
 
       if (track.scrollLeft <= 2) {
-        // At very start: always highlight first
         closestIndex = 0;
       } else if (track.scrollLeft >= maxScroll - 2) {
-        // At very end: always highlight last
         closestIndex = cards.length - 1;
       } else {
-        // In between: use card-center-closest-to-viewport-center
         const trackRect = track.getBoundingClientRect();
         const centerX = trackRect.left + trackRect.width / 2;
         let closestDistance = Infinity;
@@ -490,8 +537,8 @@
     const carousel = track ? track.parentElement : null;
     if (!track || !carousel) return;
 
-    const SPEED = 0.5;          // pixels per frame (~30px/sec at 60fps)
-    const IDLE_RESUME_MS = 2500; // ms of no interaction before resuming
+    const SPEED = 0.5;
+    const IDLE_RESUME_MS = 2500;
     let isPaused = true;
     let resumeTimeout = null;
     let rafId = null;
@@ -502,7 +549,7 @@
       if (isPaused) return;
       const next = track.scrollLeft + SPEED;
       if (next >= maxScroll()) {
-        track.scrollLeft = 0; // wrap to start
+        track.scrollLeft = 0;
       } else {
         track.scrollLeft = next;
       }
@@ -526,24 +573,20 @@
       resumeTimeout = setTimeout(start, IDLE_RESUME_MS);
     }
 
-    // Pause on hover anywhere inside the carousel (desktop only — mobile doesn't reliably fire mouseleave)
     if (window.matchMedia('(hover: hover)').matches) {
       carousel.addEventListener('mouseenter', pause);
       carousel.addEventListener('mouseleave', scheduleResume);
     }
 
-    // Pause on wheel/touch interaction, schedule resume when it settles
     window.addEventListener('wheel', scheduleResume, { passive: true });
     window.addEventListener('touchstart', pause, { passive: true });
     window.addEventListener('touchend', scheduleResume, { passive: true });
 
-    // Pause when the page is not visible (saves CPU on background tabs)
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) pause();
       else scheduleResume();
     });
 
-    // Kick off after a brief delay so visitors see the first card statically
     setTimeout(start, 1500);
   })();
 </script>

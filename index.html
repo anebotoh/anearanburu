@@ -96,8 +96,7 @@
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
-    max-width: 42vw;
-    text-wrap: balance;
+    max-width: 100%;
   }
   .hero p {
     color: #7a7a7a;
@@ -111,16 +110,10 @@
   }
   .hero-link {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
     transition: color .2s;
   }
   .hero-link:hover { color: var(--text); }
-  .hero-cta {
-    font-weight: 500;
-    color: inherit;
-  }
 
   /* TAGLINE WRAP — fills space between hero and carousel, vertically centers the tagline */
   .tagline-wrap {
@@ -231,7 +224,7 @@
   }
   .card:hover .card-overlay { opacity: 1; }
   .card[href]:hover .card-media {
-    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.25);
   }
   .card[href] .card-media {
     transition: box-shadow .3s ease;
@@ -288,12 +281,12 @@
 </header>
 
 <div class="hero">
-  <h1>I'm Ane — a Basque digital product designer based in Brooklyn that likes turning complex issues into fun and reachable experiences.</h1>
-  <p>I currently work as a Lead Product Designer at Output — designing and building music production tools like <span class="hero-cta">Output Creator</span>, a new desktop app that allows musicians to create through sound exploration and play.</p>
+  <h1>I'm Ane — a Basque digital product designer based in Brooklyn.<br>I have cared about how things look, read, feel and work on screens for 12+ years.</h1>
+  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
 </div>
 
 <div class="tagline-wrap">
-  <p class="prev-tagline">I have been caring about how things look, feel and work for 10+ years. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank">Fantasy</a></p>
+  <p class="prev-tagline">Most of my work is under NDA. Happy to share them over a call.</p>
 </div>
 
 <div class="carousel">

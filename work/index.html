@@ -6,7 +6,7 @@
 <title>Ane Aranburu — Work</title>
 <meta name="description" content="Lead Product Designer based in Brooklyn. Currently designing music production tools at Output, like Output Creator.">
 
-<!-- Open Graph — used by LinkedIn, Slack, iMessage, Discord, Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.anearanburu.com/work/">
 <meta property="og:title" content="Ane Aranburu — Work">
@@ -51,6 +51,21 @@
     60% { transform: rotate(90deg) scale(.9); }
     100% { transform: rotate(90deg) scale(1); }
   }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .clock {
+    font-size: 13px;
+    letter-spacing: -.01em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .clock-time { color: var(--text); }
+  .clock-location { color: var(--muted); font-weight: 400; }
   .nav-links { display: flex; gap: 4px; }
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
@@ -80,6 +95,11 @@
     max-width: 52vw;
     text-wrap: balance;
   }
+  .hero p.hero-statement {
+    color: #fff;
+    margin-bottom: 16px;
+    max-width: 52vw;
+  }
   .hero-link {
     color: inherit;
     text-decoration: none;
@@ -103,7 +123,7 @@
   }
   .hero .hero-nda a:hover { color: var(--text); }
 
-  /* CAPABILITIES — sits between project grid and footer */
+  /* CAPABILITIES */
   .capabilities { padding: 60px 0 40px; }
   .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; line-height: 1.4; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -171,10 +191,12 @@
   }
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
+    .nav-left { gap: 12px; }
     .page { padding: 0 24px 48px; }
     .hero { padding: 16px 0 32px; }
     .hero h1 { font-size: 20px; line-height: 28px; }
     .hero p { font-size: 20px; line-height: 28px; max-width: 100%; }
+    .hero p.hero-statement { max-width: 100%; }
     .capabilities { padding: 40px 0 32px; }
     .project-grid { grid-template-columns: 1fr; }
     .project { padding: 40px 0 !important; border-right: none !important; }
@@ -183,6 +205,8 @@
   }
   @media (max-width: 480px) {
     nav { padding: 16px 20px; }
+    .nav-left { gap: 12px; }
+    .clock { display: none; }
     .page { padding: 0 20px 40px; }
     .hero { padding: 12px 0 24px; }
     .hero h1 { font-size: 18px; line-height: 26px; font-weight: 500; }
@@ -197,7 +221,13 @@
 <body>
 
 <nav>
-  <a class="nav-name" href="../"><span class="dot">:</span>)</a>
+  <div class="nav-left">
+    <a class="nav-name" href="../"><span class="dot">:</span>)</a>
+    <div class="clock">
+      <span class="clock-time" id="clockTime">—</span>
+      <span class="clock-location">Brooklyn, NY</span>
+    </div>
+  </div>
   <div class="nav-links">
     <a href="mailto:aranburuane@gmail.com">Email me</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Photo</a>
@@ -208,8 +238,9 @@
 <div class="page">
 
   <div class="hero">
-    <h1>I'm Ane — a Basque digital product designer based in Brooklyn.<br>I have cared about how things look, feel and work on screens for 12+ years.</h1>
-    <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
+    <h1>I'm Ane — a Basque digital product designer based in Brooklyn.</h1>
+    <p class="hero-statement">I care about how things look, feel and work. I help bring clarity to abstract thinking and multi-layered complexities, aligning teams to make decisions and move forward.</p>
+    <p>Currently at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
     <p class="hero-nda">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
   </div>
 
@@ -348,5 +379,32 @@
   </footer>
 
 </div>
+<script>
+  // Live clock in Brooklyn (America/New_York) timezone — updates every minute
+  (function () {
+    const el = document.getElementById('clockTime');
+    if (!el) return;
+
+    function updateClock() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: false
+      });
+      el.textContent = formatter.format(now);
+    }
+
+    updateClock();
+    const now = new Date();
+    const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+    setTimeout(() => {
+      updateClock();
+      setInterval(updateClock, 60000);
+    }, msToNextMinute);
+  })();
+</script>
+
 </body>
 </html>

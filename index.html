@@ -81,8 +81,8 @@
     gap: 8px;
     font-weight: 500;
   }
-  .clock-time { color: var(--text); }
-  .clock-location { color: var(--muted); font-weight: 400; }
+  .clock-location-primary { color: var(--text); font-weight: 600; }
+  .clock-subtitle { color: var(--muted); font-weight: 400; }
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a {
     font-size: 11px;
@@ -122,8 +122,13 @@
     font-weight: 500;
     line-height: 28px;
     letter-spacing: -.01em;
-    max-width: 52vw;
+    max-width: 100%;
     text-wrap: balance;
+  }
+  .hero p.hero-statement {
+    color: #fff;
+    margin-bottom: 16px;
+    max-width: 100%;
   }
   .hero-link {
     color: inherit;
@@ -252,6 +257,20 @@
     .card.is-centered .card-overlay { opacity: 1; }
   }
 
+  /* Footer — only shown on mobile, since desktop is viewport-locked */
+  .page-footer {
+    display: none;
+    padding: 40px var(--margin) 36px;
+    text-align: center;
+  }
+  .page-footer p {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
   @media (max-width: 768px) {
     :root { --margin: 24px; }
     .topbar { padding: 18px var(--margin); }
@@ -266,17 +285,54 @@
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
+
+    /* Unlock the viewport-locked layout — page becomes scrollable */
+    html, body {
+      height: auto;
+      overflow: auto;
+    }
+    body { display: block; }
+
     .topbar { padding: 16px var(--margin); }
     .topbar-left { gap: 12px; }
     .clock { display: none; }
     .hero {
       padding: 20px 0;
     }
-    .hero h1 { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 374px; }
-    .hero p { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 374px; }
+    .hero h1 { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 100%; }
+    .hero p { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 100%; }
+    .hero p.hero-statement { max-width: 100%; }
+
+    /* Tagline collapses to natural height instead of flex-grow */
+    .tagline-wrap {
+      flex: 0 0 auto;
+      padding: 16px 0 32px;
+    }
     .prev-tagline { max-width: 90vw; }
-    .carousel { padding-bottom: 24px; }
-    .card { flex: 0 0 312px; }
+
+    /* Carousel becomes a vertical stack of full-width cards */
+    .carousel {
+      margin-right: var(--margin);
+      overflow: visible;
+      padding-bottom: 40px;
+    }
+    .carousel-track {
+      flex-direction: column;
+      gap: 16px;
+      overflow: visible;
+      padding-right: 0;
+      align-items: stretch;
+    }
+    .card { flex: 0 0 auto; width: 100%; }
+
+    /* Hide the segmented scrollbar — no role in a vertical list */
+    .scrollbar { display: none; }
+
+    /* Show eyebrow overlay at rest on every card (no hover on touch) */
+    .card-overlay { opacity: 1; }
+
+    /* Show the mobile footer */
+    .page-footer { display: block; }
   }
 </style>
 </head>
@@ -286,8 +342,8 @@
   <div class="topbar-left">
     <a class="topbar-name" href="/">:)</a>
     <div class="clock">
-      <span class="clock-time" id="clockTime">—</span>
-      <span class="clock-location">Brooklyn, NY</span>
+      <span class="clock-location-primary">Brooklyn, NY</span>
+      <span class="clock-subtitle">— 12+ years of experience</span>
     </div>
   </div>
   <nav class="topbar-links">
@@ -299,11 +355,12 @@
 
 <div class="hero">
   <h1>I'm Ane — a Basque digital product designer based in Brooklyn.</h1>
-  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> &amp; <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
+  <p class="hero-statement">I care about how things look, feel and work. I help bring clarity to abstract thinking and multi-layered complexities, aligning teams to make decisions and move forward.</p>
+  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
 </div>
 
 <div class="tagline-wrap">
-  <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
+  <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
 </div>
 
 <div class="carousel">
@@ -414,39 +471,20 @@
   </div>
 </div>
 
+<footer class="page-footer">
+  <p>Thanks for scrolling. Have a good day :)</p>
+</footer>
+
 <script>
-  // Live clock in Brooklyn (America/New_York) timezone — updates every minute
-  (function () {
-    const el = document.getElementById('clockTime');
-    if (!el) return;
-
-    function updateClock() {
-      const now = new Date();
-      const formatter = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: false
-      });
-      el.textContent = formatter.format(now);
-    }
-
-    updateClock();
-    // Align next update to the start of the next minute
-    const now = new Date();
-    const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-    setTimeout(() => {
-      updateClock();
-      setInterval(updateClock, 60000);
-    }, msToNextMinute);
-  })();
-
-  // Translate page-wide scroll into horizontal carousel scroll
+  // Translate page-wide scroll into horizontal carousel scroll — desktop only
   (function () {
     const track = document.getElementById('carouselTrack');
     if (!track) return;
 
+    const isMobile = () => window.matchMedia('(max-width: 480px)').matches;
+
     window.addEventListener('wheel', function (e) {
+      if (isMobile()) return;
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (delta === 0) return;
       e.preventDefault();
@@ -458,12 +496,14 @@
     let lastTouchY = null;
 
     window.addEventListener('touchstart', function (e) {
+      if (isMobile()) return;
       touchStartY = e.touches[0].clientY;
       touchStartX = e.touches[0].clientX;
       lastTouchY = touchStartY;
     }, { passive: true });
 
     window.addEventListener('touchmove', function (e) {
+      if (isMobile()) return;
       if (touchStartY === null) return;
 
       const currentY = e.touches[0].clientY;
@@ -480,6 +520,7 @@
     }, { passive: false });
 
     window.addEventListener('touchend', function () {
+      if (isMobile()) return;
       touchStartY = null;
       touchStartX = null;
       lastTouchY = null;
@@ -546,6 +587,9 @@
     const track = document.getElementById('carouselTrack');
     const carousel = track ? track.parentElement : null;
     if (!track || !carousel) return;
+
+    // No autoplay on mobile — cards are a vertical scroll list there
+    if (window.matchMedia('(max-width: 480px)').matches) return;
 
     const SPEED = 0.5;
     const IDLE_RESUME_MS = 2500;

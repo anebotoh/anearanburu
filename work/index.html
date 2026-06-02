@@ -83,7 +83,6 @@
     font-size: 23px;
     line-height: 30px;
     color: #fff;
-    margin-bottom: 16px;
     letter-spacing: -.01em;
     max-width: 100%;
   }
@@ -94,11 +93,12 @@
     font-size: 23px;
     line-height: 30px;
     letter-spacing: -.01em;
+    margin-top: 22px; /* grey context line: its own tier */
     max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
   .hero p.hero-statement {
     color: #fff;
-    margin-bottom: 16px;
+    margin-top: 10px; /* white statement hugs the headline as one thought */
     max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
   .hero-link {
@@ -122,7 +122,7 @@
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 24px;
+    margin-top: 14px;
     max-width: none;
   }
   .hero .hero-nda a {
@@ -164,8 +164,8 @@
   .project:hover .project-media video,
   .project:hover .project-media img { filter: brightness(1); }
 
-  .project-info { display: flex; flex-direction: column; gap: 4px; }
-  .project-meta { font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; font-weight: 500; }
+  .project-info { display: flex; flex-direction: column; }
+  .project-meta { font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
   .project-title {
     font-family: var(--font-body);
     font-size: 16px;
@@ -173,6 +173,8 @@
     line-height: 1.15;
     letter-spacing: 0.02em;
     color: var(--text);
+    text-wrap: balance;   /* keep on one line if it fits; otherwise even the words, no orphans */
+    margin-top: 5px;      /* meta + title sit tight as one headline group */
   }
   /* SECOND LEVEL — role & responsibilities */
   .project-role {
@@ -182,7 +184,7 @@
     line-height: 1.45;
     letter-spacing: -.01em;
     color: var(--muted);
-    margin-top: 6px;
+    margin-top: 12px;     /* description set apart as a distinct second tier */
     max-width: 90%;
     text-wrap: balance;
   }
@@ -279,7 +281,7 @@
       <div class="project-info">
         <p class="project-meta">OUTPUT - 2024/2026 - DESKTOP APP</p>
         <h2 class="project-title">Building a more intuitive creative workflow for music production</h2>
-        <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, UX, visual design, motion and PRs.</p>
+        <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, UX, visual design, and motion.</p>
         <a class="project-cta" href="https://output.com/products/creator" target="_blank">Download Output Creator</a>
       </div>
     </article>

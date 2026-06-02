@@ -24,15 +24,16 @@
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..600,0..100,0..1;1,9..144,100..600,0..100,0..1&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #0C0C0F; --border: #222;
     --text: #f0ede8; --muted: #888;
     --accent: #E5FF00;
-    --font: 'Instrument Sans', sans-serif;
+    --font: 'Schibsted Grotesk', sans-serif;
     --font-serif: 'Instrument Serif', serif;
+    --font-hero: 'Schibsted Grotesk', sans-serif;
   }
   body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 
@@ -74,12 +75,12 @@
   .page { padding: 0 48px 80px; }
 
   /* HERO */
-  .hero { padding: 24px 0 56px; }
+  .hero { padding: 24px 0 72px; }
   .hero h1 {
-    font-family: var(--font);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
+    font-family: var(--font-hero);
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 30px;
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
@@ -87,18 +88,17 @@
   }
   .hero p {
     color: #7a7a7a;
-    font-family: var(--font);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
+    font-family: var(--font-hero);
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 30px;
     letter-spacing: -.01em;
-    max-width: 52vw;
-    text-wrap: balance;
+    max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
   .hero p.hero-statement {
     color: #fff;
     margin-bottom: 16px;
-    max-width: 52vw;
+    max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
   .hero-link {
     color: inherit;
@@ -106,7 +106,15 @@
     transition: color .2s;
   }
   .hero-link:hover { color: var(--text); }
+  /* Reordering look/feel/work — Motion drives the springs; layout stays put (all 4 letters) */
+  /* "look" — on hover the two o's stretch into horizontal capsules, pushing the rest over */
+  .lookword { display: inline-block; }
+  .lookword .o { display: inline-block; overflow: visible; }
+  .lookword .g { display: inline-block; transform-origin: 0% 50%; will-change: transform; }
+  /* Forced line break in the hero statement — desktop only */
+  .hero-break { display: inline; }
   .hero .hero-nda {
+    font-family: var(--font);
     font-size: 10px;
     font-weight: 500;
     line-height: 1.4;
@@ -156,7 +164,7 @@
   .project:hover .project-media img { filter: brightness(1); }
 
   .project-info { display: flex; flex-direction: column; gap: 4px; }
-  .project-meta { font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .project-meta { font-size: 11px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; font-weight: 500; }
   .project-title {
     font-family: var(--font);
     font-size: 16px;
@@ -205,10 +213,11 @@
     nav { padding: 18px 24px; }
     .nav-left { gap: 12px; }
     .page { padding: 0 24px 48px; }
-    .hero { padding: 16px 0 32px; }
+    .hero { padding: 16px 0 64px; }
     .hero h1 { font-size: 20px; line-height: 28px; }
     .hero p { font-size: 20px; line-height: 28px; max-width: 100%; }
     .hero p.hero-statement { max-width: 100%; }
+    .hero-break { display: none; }
     .capabilities { padding: 40px 0 32px; }
     .project-grid { grid-template-columns: 1fr; }
     .project { padding: 40px 0 !important; border-right: none !important; }
@@ -221,9 +230,9 @@
     .nav-left { gap: 12px; }
     .clock { display: none; }
     .page { padding: 0 20px 40px; }
-    .hero { padding: 12px 0 24px; }
-    .hero h1 { font-size: 18px; line-height: 26px; font-weight: 500; }
-    .hero p { font-size: 18px; line-height: 26px; font-weight: 500; max-width: 100%; }
+    .hero { padding: 12px 0 56px; }
+    .hero h1 { font-size: 18px; line-height: 26px; font-weight: 400; }
+    .hero p { font-size: 18px; line-height: 26px; font-weight: 400; max-width: 100%; }
     .capabilities { padding: 32px 0 24px; }
     .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links a { padding: 6px 10px; font-size: 10px; }
@@ -246,14 +255,15 @@
     <a href="mailto:aranburuane@gmail.com">Email me</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Photo</a>
     <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
+    <a href="https://github.com/anebotoh" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="page">
 
   <div class="hero">
-    <h1>I care about how things look, feel, and work.</h1>
-    <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems to help teams make better decisions and build better products.</p>
+    <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
+    <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
     <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
     <p class="hero-nda">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
   </div>
@@ -267,7 +277,7 @@
       <div class="project-info">
         <p class="project-meta">OUTPUT - 2024/2026 - DESKTOP APP</p>
         <h2 class="project-title">Building a more intuitive creative workflow for music production</h2>
-        <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, UX, visual design, motion, PRs.</p>
+        <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, UX, visual design, and motion.</p>
         <a class="project-cta" href="https://output.com/products/creator" target="_blank">Download Output Creator</a>
       </div>
     </article>
@@ -405,6 +415,45 @@
 
 </div>
 
+<script type="module">
+  // "look" \u2014 hover stretches the two o's into horizontal capsules; the word grows to fit.
+  import { animate } from "https://cdn.jsdelivr.net/npm/motion@12/+esm";
+
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const word = document.querySelector('.lookword');
+    if (!word) return;
+    const os = Array.from(word.querySelectorAll('.o'));
+    const gs = os.map((o) => o.querySelector('.g'));
+    const N = 3.2;                 // how far the o's stretch
+    const tween = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
+    let widths = [];
+
+    function measure() {
+      os.forEach((o) => { o.style.width = "auto"; });
+      widths = os.map((o) => o.getBoundingClientRect().width);
+      os.forEach((o, i) => { o.style.width = widths[i] + "px"; });
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); } else { measure(); }
+    window.addEventListener("resize", measure);
+
+    function expand() {
+      os.forEach((o, i) => {
+        animate(o, { width: widths[i] * N }, tween);   // box grows -> pushes k and the rest
+        animate(gs[i], { scaleX: N }, tween);           // glyph stretches to fill it
+      });
+    }
+    function collapse() {
+      os.forEach((o, i) => {
+        animate(o, { width: widths[i] }, tween);
+        animate(gs[i], { scaleX: 1 }, tween);
+      });
+    }
+
+    word.addEventListener("mouseenter", expand);
+    word.addEventListener("mouseleave", collapse);
+  })();
+</script>
 
 </body>
 </html>

@@ -24,13 +24,14 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..600,0..100,0..1;1,9..144,100..600,0..100,0..1&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #0C0C0F; --border: #222;
     --text: #f0ede8; --muted: #888;
-    --font: 'Instrument Sans', sans-serif;
+    --font: 'Schibsted Grotesk', sans-serif;
+    --font-hero: 'Schibsted Grotesk', sans-serif;
     --margin: 48px;
     --accent: #E5FF00;
   }
@@ -106,36 +107,42 @@
     flex-shrink: 0;
   }
   .hero h1 {
-    font-family: var(--font);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
+    font-family: var(--font-hero);
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 30px;
     color: #fff;
     margin-bottom: 16px;
     letter-spacing: -.01em;
-    max-width: 800px;
+    max-width: 100%;
   }
   .hero p {
     color: #7a7a7a;
-    font-family: var(--font);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
+    font-family: var(--font-hero);
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 30px;
     letter-spacing: -.01em;
-    max-width: 800px;
-    text-wrap: balance;
+    max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
   .hero p.hero-statement {
     color: #fff;
     margin-bottom: 16px;
-    max-width: 800px;
+    max-width: 38em; /* em-based: line length scales with font size, so 2-line wrap holds as it shrinks */
   }
+  /* Forced line break in the hero statement — desktop only */
+  .hero-break { display: inline; }
   .hero-link {
     color: inherit;
     text-decoration: none;
     transition: color .2s;
   }
   .hero-link:hover { color: var(--text); }
+  /* Reordering look/feel/work — Motion drives the springs; layout stays put (all 4 letters) */
+  /* "look" — on hover the two o's stretch into horizontal capsules, pushing the rest over */
+  .lookword { display: inline-block; }
+  .lookword .o { display: inline-block; overflow: visible; }
+  .lookword .g { display: inline-block; transform-origin: 0% 50%; will-change: transform; }
 
   /* TAGLINE WRAP — fills space between hero and carousel, vertically centers the tagline */
   .tagline-wrap {
@@ -280,6 +287,7 @@
     }
     .hero h1 { font-size: 20px; line-height: 28px; max-width: 432px; }
     .hero p { font-size: 20px; line-height: 28px; max-width: 432px; }
+    .hero-break { display: none; }
     .carousel { padding-bottom: 32px; }
     .card { flex: 0 0 360px; }
   }
@@ -299,8 +307,8 @@
     .hero {
       padding: 20px 0;
     }
-    .hero h1 { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 100%; }
-    .hero p { font-size: 18px; font-weight: 500; line-height: 26px; max-width: 100%; }
+    .hero h1 { font-size: 18px; font-weight: 400; line-height: 26px; max-width: 100%; }
+    .hero p { font-size: 18px; font-weight: 400; line-height: 26px; max-width: 100%; }
     .hero p.hero-statement { max-width: 100%; }
 
     /* Tagline collapses to natural height instead of flex-grow */
@@ -347,15 +355,16 @@
     </div>
   </div>
   <nav class="topbar-links">
-    <a href="mailto:aranburuane@gmail.com">Email me</a>
+    <a href="mailto:aranburuane@gmail.com">Email</a>
     <a href="https://instagram.com/anebotoh" target="_blank">Photo</a>
     <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
+    <a href="https://github.com/anebotoh" target="_blank">GitHub</a>
   </nav>
 </header>
 
 <div class="hero">
-  <h1>I care about how things look, feel, and work.</h1>
-  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems to help teams make better decisions and build better products.</p>
+  <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
+  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
   <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
 </div>
 
@@ -642,6 +651,45 @@
     });
 
     setTimeout(start, 1500);
+  })();
+</script>
+<script type="module">
+  // "look" \u2014 hover stretches the two o's into horizontal capsules; the word grows to fit.
+  import { animate } from "https://cdn.jsdelivr.net/npm/motion@12/+esm";
+
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const word = document.querySelector('.lookword');
+    if (!word) return;
+    const os = Array.from(word.querySelectorAll('.o'));
+    const gs = os.map((o) => o.querySelector('.g'));
+    const N = 3.2;                 // how far the o's stretch
+    const tween = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
+    let widths = [];
+
+    function measure() {
+      os.forEach((o) => { o.style.width = "auto"; });
+      widths = os.map((o) => o.getBoundingClientRect().width);
+      os.forEach((o, i) => { o.style.width = widths[i] + "px"; });
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); } else { measure(); }
+    window.addEventListener("resize", measure);
+
+    function expand() {
+      os.forEach((o, i) => {
+        animate(o, { width: widths[i] * N }, tween);   // box grows -> pushes k and the rest
+        animate(gs[i], { scaleX: N }, tween);           // glyph stretches to fill it
+      });
+    }
+    function collapse() {
+      os.forEach((o, i) => {
+        animate(o, { width: widths[i] }, tween);
+        animate(gs[i], { scaleX: 1 }, tween);
+      });
+    }
+
+    word.addEventListener("mouseenter", expand);
+    word.addEventListener("mouseleave", collapse);
   })();
 </script>
 

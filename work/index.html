@@ -210,9 +210,9 @@
   .project:hover .project-media img { filter: brightness(1); }
 
   .project-info { display: flex; flex-direction: column; }
-  .project-meta { order: 3; margin-top: 18px; font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .project-meta { order: 1; margin-top: 0; font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
   .project-title {
-    order: 1;
+    order: 2;
     font-family: var(--font-body);
     font-size: 18px;
     font-weight: 500;
@@ -220,11 +220,11 @@
     letter-spacing: 0.02em;
     color: var(--text);
     text-wrap: balance;   /* keep on one line if it fits; otherwise even the words, no orphans */
-    margin-top: 0;
+    margin-top: 14px;
   }
   /* SECOND LEVEL — role & responsibilities */
   .project-role {
-    order: 2;
+    order: 3;
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 400;
@@ -260,11 +260,11 @@
     scroll-snap-stop: always;
   }
 
-  /* SCROLL DOTS — progress / scrollability indicator */
+  /* SCROLL DOTS — vertical progress indicator on the right, aligned with the project text */
   .scroll-dots {
     position: fixed;
-    right: 22px;
-    top: calc(var(--nav-h) + var(--text-top));   /* aligned with the project title's top */
+    right: 24px;
+    top: calc(var(--nav-h) + var(--text-top));
     z-index: 90;
     display: flex;
     flex-direction: column;
@@ -286,7 +286,7 @@
     transition: height .3s ease, border-radius .3s ease, background .25s ease;
   }
   .scroll-dot:hover::before { background: rgba(255, 255, 255, 0.7); }
-  .scroll-dot.active::before { height: 16px; border-radius: 2px; background: #fff; }
+  .scroll-dot.active::before { height: 16px; width: 2px; border-radius: 2px; background: #fff; }
   .scroll-dot.active { margin: 7px 0; }   /* same gap to its neighbors as the dots have between each other */
   .scroll-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
@@ -337,7 +337,6 @@
     .project-role { max-width: 100%; }
     footer { padding: 0 24px; justify-content: flex-end; }
     .footer-left { display: none; }
-    .scroll-dots { right: 12px; }
     .scroll-dot { height: 10px; }
     .scroll-dot.active::before { height: 14px; }
     .scroll-dot.active { margin: 6px 0; }
@@ -363,34 +362,26 @@
 
 <nav>
   <div class="nav-left">
-    <a class="nav-name" href="/">Ane Aranburu</a>
+    <a class="nav-name" href="/home/">Ane Aranburu</a>
   </div>
   <div class="nav-links">
+    <a href="/home/">Home</a>
     <a href="/work/" class="is-active">Work</a>
-    <a href="/work/about/">About</a>
+    <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email me</a>
   </div>
 </nav>
 
 <div class="page">
 
-  <div class="hero is-current">
-    <div class="hero-inner">
-      <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
-      <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
-      <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
-      <p class="hero-nda">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
-    </div>
-  </div>
-
   <div class="project-grid">
 
-    <article class="project">
+    <article class="project is-current">
       <div class="project-media">
         <video autoplay muted loop playsinline preload="none" src="../videos/01-Creator 2.0.mov"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">OUTPUT - 2024/2026 - DESKTOP APP</p>
+        <p class="project-meta">2024/2026 - DESKTOP APP - OUTPUT</p>
         <h2 class="project-title">Building a more intuitive creative workflow for music production</h2>
         <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, user interviews, visual design, microinteractions, PRs and demos at NAMM & SXSW</p>
         <a class="project-cta" href="https://output.com/products/creator" target="_blank">Play with Output Creator</a>
@@ -402,7 +393,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/02-Cinepolis.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2023 - DIGITAL ECOSYSTEM</p>
+        <p class="project-meta">2023 - DIGITAL ECOSYSTEM - FANTASY</p>
         <h2 class="project-title">Creating a unified cinema experience across digital touchpoints</h2>
         <p class="project-role">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
       </div>
@@ -413,7 +404,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/05-NMAACH.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2023 - MICROSITE</p>
+        <p class="project-meta">2023 - MICROSITE - FANTASY</p>
         <h2 class="project-title">Extending a digital framework for museum exhibitions</h2>
         <p class="project-role">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
       </div>
@@ -424,7 +415,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/04-Embibe.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2023 - PRODUCT FOUNDATION</p>
+        <p class="project-meta">2023 - PRODUCT FOUNDATION - FANTASY</p>
         <h2 class="project-title">Creating the foundation for a next-generation learning experience</h2>
         <p class="project-role">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
       </div>
@@ -435,7 +426,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/03-iPondr.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2020 - CONTENT PLATFORM</p>
+        <p class="project-meta">2020 - CONTENT PLATFORM - FANTASY</p>
         <h2 class="project-title">Turning information into engaging narratives</h2>
         <p class="project-role">Created a content and reading framework that prioritized comprehension over consumption.</p>
       </div>
@@ -446,7 +437,7 @@
         <img src="../videos/10-Xgimi.png" alt="XGIMI Project">
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2022 - PLATFORM CONCEPT</p>
+        <p class="project-meta">2022 - PLATFORM CONCEPT - FANTASY</p>
         <h2 class="project-title">Designing a distinct ecosystem for home entertainment</h2>
         <p class="project-role">Created a platform vision and visual language that differentiated the product experience from existing operating systems.</p>
       </div>
@@ -457,7 +448,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/07-Messenger.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2022 - MICROSITE</p>
+        <p class="project-meta">2022 - MICROSITE - FANTASY</p>
         <h2 class="project-title">Bringing Messenger&rsquo;s new identity to life online</h2>
         <p class="project-role">Created visual and interactive concepts that communicated the next chapter of the Messenger brand.</p>
       </div>
@@ -468,7 +459,7 @@
         <img src="../videos/09-Wheelsup.png" alt="Wheels Up">
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2020 - MOBILE EXPERIENCE</p>
+        <p class="project-meta">2020 - MOBILE EXPERIENCE - FANTASY</p>
         <h2 class="project-title">Reimagining private aviation for mobile</h2>
         <p class="project-role">Developed visual directions exploring how a premium aviation brand could translate into a mobile experience.</p>
       </div>
@@ -479,7 +470,7 @@
         <img src="../videos/11-Lark.png" alt="Lark Bytedance">
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2022 - APP SUITE</p>
+        <p class="project-meta">2022 - APP SUITE - FANTASY</p>
         <h2 class="project-title">Adapting a global product suite for new markets</h2>
         <p class="project-role">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
       </div>
@@ -490,7 +481,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/06-Deem.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2019 - MOBILE EXPERIENCE</p>
+        <p class="project-meta">2019 - MOBILE EXPERIENCE - FANTASY</p>
         <h2 class="project-title">Reimagining enterprise travel booking through voice</h2>
         <p class="project-role">Designed voice-driven flows and interaction patterns for a corporate travel platform.</p>
       </div>
@@ -501,7 +492,7 @@
         <video autoplay muted loop playsinline preload="none" src="../videos/08-Asana.mp4"></video>
       </div>
       <div class="project-info">
-        <p class="project-meta">FANTASY - 2020 - VISION</p>
+        <p class="project-meta">2020 - VISION - FANTASY</p>
         <h2 class="project-title">Designing a five-year vision for Asana</h2>
         <p class="project-role">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
       </div>

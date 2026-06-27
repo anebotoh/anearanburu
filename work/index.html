@@ -329,7 +329,7 @@
     }
     .project-info {
       top: calc(var(--nav-h) + var(--text-top));
-      left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
+      left: calc(clamp(20px, 4vw, 48px) + 36px); right: clamp(20px, 4vw, 48px);
       max-width: none;
     }
     .project-media {
@@ -341,7 +341,6 @@
     .project-role { max-width: 100%; }
     footer { padding: 0 24px; justify-content: center; }
     .footer-left { display: none; }
-    .scroll-dots { display: none; }   /* stacked layout has no room for the left rail */
   }
   @media (max-width: 480px) {
     :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; }

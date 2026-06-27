@@ -33,6 +33,7 @@
     --font: 'Schibsted Grotesk', sans-serif;
     --font-hero: 'Schibsted Grotesk', sans-serif;
     --margin: 48px;
+    --footer-h: 56px;
     --accent: #E5FF00;
   }
 
@@ -56,12 +57,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 24px var(--margin);
+    height: 70px;
     flex-shrink: 0;
   }
   .topbar-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
   }
   .topbar-name {
     font-size: 11px;
@@ -74,6 +76,7 @@
     transition: opacity .2s;
   }
   .topbar-name:hover { opacity: .7; }
+  .topbar-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .clock {
     font-size: 13px;
     letter-spacing: -.01em;
@@ -99,6 +102,16 @@
   }
   .topbar-links a:hover { color: var(--text); }
   .topbar-links a.is-active { color: var(--text); }
+
+  /* FOOTER — Brooklyn + live time on the left, greeting on the right */
+  footer {
+    flex-shrink: 0;
+    height: var(--footer-h);
+    padding: 0 var(--margin);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg);
+  }
+  footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
 
   /* HERO */
   .hero {
@@ -162,7 +175,7 @@
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
+    padding-bottom: 16px;
   }
   .carousel-track {
     display: flex;
@@ -214,7 +227,7 @@
 
   /* CARDS — media-only, no text or tags */
   .card {
-    flex: 0 0 456px;
+    flex: 0 0 410px;
     text-decoration: none;
     color: inherit;
   }
@@ -281,8 +294,9 @@
 
   @media (max-width: 768px) {
     :root { --margin: 24px; }
-    .topbar { padding: 18px var(--margin); }
+    .topbar { padding: 18px var(--margin); height: 58px; }
     .topbar-left { gap: 12px; }
+    .topbar-meta { display: none; }
     .hero {
       padding: 24px 0;
     }
@@ -290,7 +304,7 @@
     .hero p { font-size: 20px; line-height: 28px; max-width: 432px; }
     .hero-break { display: none; }
     .carousel { padding-bottom: 32px; }
-    .card { flex: 0 0 360px; }
+    .card { flex: 0 0 324px; }
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
@@ -302,7 +316,7 @@
     }
     body { display: block; }
 
-    .topbar { padding: 16px var(--margin); }
+    .topbar { padding: 16px var(--margin); height: 54px; }
     .topbar-left { gap: 12px; }
     .clock { display: none; }
     .hero {
@@ -350,6 +364,7 @@
 <header class="topbar">
   <div class="topbar-left">
     <a class="topbar-name" href="/home/">Ane Aranburu</a>
+    <span class="topbar-meta">Designer</span>
   </div>
   <nav class="topbar-links">
     <a href="/home/" class="is-active">Home</a>
@@ -360,7 +375,7 @@
 </header>
 
 <div class="hero">
-  <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
+  <h1>I care about how things look, feel and work.</h1>
   <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
   <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
 </div>
@@ -452,8 +467,9 @@
   </div>
 </div>
 
-<footer class="page-footer">
-  <p>Thanks for scrolling. Have a good day :)</p>
+<footer>
+  <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
+  <span class="footer-right">I hope you're having a good day :)</span>
 </footer>
 
 
@@ -563,43 +579,19 @@
     setTimeout(start, 1500);
   })();
 </script>
-<script type="module">
-  // "look" — hover stretches the two o's into horizontal capsules; the word grows to fit.
-  import { animate } from "https://cdn.jsdelivr.net/npm/motion@12/+esm";
 
+<script>
+  // Live local time in New York, shown next to the location in the footer.
   (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const word = document.querySelector('.lookword');
-    if (!word) return;
-    const os = Array.from(word.querySelectorAll('.o'));
-    const gs = os.map((o) => o.querySelector('.g'));
-    const N = 3.2;                 // how far the o's stretch
-    const tween = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
-    let widths = [];
-
-    function measure() {
-      os.forEach((o) => { o.style.width = "auto"; });
-      widths = os.map((o) => o.getBoundingClientRect().width);
-      os.forEach((o, i) => { o.style.width = widths[i] + "px"; });
+    var el = document.getElementById('ny-clock');
+    if (!el) return;
+    function tick() {
+      el.textContent = '· ' + new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'
+      }).format(new Date());
     }
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); } else { measure(); }
-    window.addEventListener("resize", measure);
-
-    function expand() {
-      os.forEach((o, i) => {
-        animate(o, { width: widths[i] * N }, tween);   // box grows -> pushes k and the rest
-        animate(gs[i], { scaleX: N }, tween);           // glyph stretches to fill it
-      });
-    }
-    function collapse() {
-      os.forEach((o, i) => {
-        animate(o, { width: widths[i] }, tween);
-        animate(gs[i], { scaleX: 1 }, tween);
-      });
-    }
-
-    word.addEventListener("mouseenter", expand);
-    word.addEventListener("mouseleave", collapse);
+    tick();
+    setInterval(tick, 30000);
   })();
 </script>
 

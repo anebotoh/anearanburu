@@ -87,7 +87,7 @@
   }
   .clock-location-primary { color: var(--text); font-weight: 600; }
   .clock-subtitle { color: var(--muted); font-weight: 400; }
-  .topbar-links { display: flex; gap: 4px; margin-left: -16px; order: -1; }
+  .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a {
     font-size: 11px;
     letter-spacing: .08em;
@@ -158,19 +158,10 @@
   .lookword .o { display: inline-block; overflow: visible; }
   .lookword .g { display: inline-block; transform-origin: 0% 50%; will-change: transform; }
 
-  /* TAGLINE WRAP — fills space between hero and carousel, vertically centers the tagline */
-  .tagline-wrap {
-    margin-left: var(--margin);
-    margin-right: var(--margin);
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
-    align-items: center;
-  }
-
   /* CAROUSEL — content-height, sits at the bottom */
   .carousel {
     margin-left: var(--margin);
+    margin-top: auto;        /* push carousel + footer to the bottom; free space sits above */
     overflow: hidden;
     flex: 0 0 auto;
     display: flex;
@@ -211,23 +202,25 @@
   .scrollbar-segment:hover { background: #4a4a55; }
   .scrollbar-segment.is-active { background: var(--text); width: 24px; }
 
-  /* "Previously at..." tagline */
-  .prev-tagline {
+  /* NDA tagline — sits one tier (22px) below the grey context line, same gap as between paragraphs */
+  .hero .prev-tagline {
     font-size: 10px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
+    margin-top: 22px;
+    max-width: none;
   }
-  .prev-tagline a {
+  .hero .prev-tagline a {
     color: inherit;
     text-decoration: none;
     transition: color .2s;
   }
-  .prev-tagline a:hover { color: var(--text); }
+  .hero .prev-tagline a:hover { color: var(--text); }
 
   /* CARDS — media-only, no text or tags */
   .card {
-    flex: 0 0 410px;
+    flex: 0 0 451px;
     text-decoration: none;
     color: inherit;
   }
@@ -307,7 +300,7 @@
     .hero p { font-size: 20px; line-height: 28px; max-width: 432px; }
     .hero-break { display: none; }
     .carousel { padding-bottom: 32px; }
-    .card { flex: 0 0 324px; }
+    .card { flex: 0 0 356px; }
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
@@ -328,18 +321,12 @@
     .hero h1 { font-size: 18px; font-weight: 400; line-height: 26px; max-width: 100%; }
     .hero p { font-size: 18px; font-weight: 400; line-height: 26px; max-width: 100%; }
     .hero p.hero-statement { max-width: 100%; }
-
-    /* Tagline collapses to natural height instead of flex-grow */
-    .tagline-wrap {
-      flex: 0 0 auto;
-      padding: 16px 0 32px;
-    }
-    .prev-tagline { max-width: 90vw; }
+    .hero .prev-tagline { max-width: 90vw; }
 
     /* Carousel stays a horizontal, finger-swipeable slideshow (same as desktop) */
     .carousel { padding-bottom: 32px; }
     .carousel-track { gap: 16px; }
-    .card { flex: 0 0 80vw; }
+    .card { flex: 0 0 88vw; }
 
     /* Hide the segmented scrollbar — no role in a vertical list */
     .scrollbar { display: none; }
@@ -371,9 +358,6 @@
   <h1>I care about how things look, feel and work.</h1>
   <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
   <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
-</div>
-
-<div class="tagline-wrap">
   <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
 </div>
 

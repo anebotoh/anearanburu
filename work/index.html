@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -34,7 +34,7 @@
     --font: 'Schibsted Grotesk', sans-serif;
     --font-serif: 'Instrument Serif', serif;
     --font-hero: 'Schibsted Grotesk', sans-serif;
-    --font-body: 'Instrument Sans', sans-serif;
+    --font-body: 'Schibsted Grotesk', sans-serif;
     --nav-h: 70px;
     --footer-h: 56px;
     --img-gap: clamp(16px, 3vh, 40px);   /* image inset above the footer */
@@ -160,7 +160,7 @@
 
   /* CAPABILITIES */
   .capabilities { padding: 60px 0 40px; }
-  .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; line-height: 1.4; }
+  .capabilities-label { font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; line-height: 1.4; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
 
@@ -213,14 +213,14 @@
   .project:hover .project-media img { filter: brightness(1); }
 
   .project-info { display: flex; flex-direction: column; }
-  .project-meta { order: 1; margin-top: 0; font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .project-meta { order: 1; margin-top: 0; font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
   .project-title {
     order: 2;
     font-family: var(--font-body);
     font-size: 18px;
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: 0.02em;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -.01em;
     color: var(--text);
     text-wrap: balance;   /* keep on one line if it fits; otherwise even the words, no orphans */
     margin-top: 14px;
@@ -235,7 +235,7 @@
     letter-spacing: -.01em;
     color: var(--muted);
     margin-top: 12px;     /* description set apart as a distinct second tier */
-    max-width: 90%;
+    max-width: 100%;      /* same column width as the title */
     text-wrap: balance;
   }
   .project-cta {
@@ -337,7 +337,7 @@
       left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
       aspect-ratio: auto; width: auto;
     }
-    .project-title { font-size: 17px; max-width: 100%; font-weight: 500; }
+    .project-title { font-size: 17px; max-width: 100%; }
     .project-role { max-width: 100%; }
     footer { padding: 0 24px; justify-content: center; }
     .footer-left { display: none; }
@@ -384,7 +384,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2024/2026 - DESKTOP APP - OUTPUT</p>
-        <h2 class="project-title">Building a more intuitive creative workflow for music production</h2>
+        <h2 class="project-title">Building a more intuitive creative workflow<br>for music production</h2>
         <p class="project-role">Multi-year product redesign spanning workflow architecture, interaction design, user interviews, visual design, microinteractions, PRs and demos at NAMM & SXSW</p>
         <a class="project-cta" href="https://output.com/products/creator" target="_blank">Play with Output Creator</a>
       </div>
@@ -396,7 +396,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2023 - DIGITAL ECOSYSTEM - FANTASY</p>
-        <h2 class="project-title">Creating a unified cinema experience across digital touchpoints</h2>
+        <h2 class="project-title">Creating a unified cinema experience<br>across digital touchpoints</h2>
         <p class="project-role">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
       </div>
     </article>
@@ -418,7 +418,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2023 - PRODUCT FOUNDATION - FANTASY</p>
-        <h2 class="project-title">Creating the foundation for a next-generation learning experience</h2>
+        <h2 class="project-title">Creating the foundation<br>for a next-generation learning experience</h2>
         <p class="project-role">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
       </div>
     </article>

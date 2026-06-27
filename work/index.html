@@ -45,7 +45,10 @@
     scroll-snap-type: y mandatory;      /* one panel per scroll */
     scroll-padding-top: var(--nav-h);   /* snapped sections start below the fixed top bar */
     scroll-padding-bottom: var(--footer-h);
+    scrollbar-width: none;               /* hide native scrollbar (Firefox) */
+    -ms-overflow-style: none;            /* hide native scrollbar (legacy Edge/IE) */
   }
+  html::-webkit-scrollbar { display: none; }   /* hide native scrollbar (Chrome/Safari) */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-snap-type: none; }    /* don't hijack scrolling for those who opt out */
     .scroll-dot, .scroll-dot::before { transition: none; }
@@ -74,7 +77,7 @@
     align-items: baseline;
     gap: 10px;
   }
-  .nav-links { display: flex; gap: 4px; }
+  .nav-links { display: flex; gap: 4px; margin-left: -16px; order: -1; }
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.is-active { color: var(--text); }
@@ -177,7 +180,7 @@
   .project-info {
     position: fixed;
     top: calc(var(--nav-h) + var(--text-top));
-    left: clamp(20px, 4vw, 48px);
+    left: calc(clamp(20px, 4vw, 48px) + 36px);
     max-width: 520px;
     z-index: 60;
     opacity: 0;
@@ -263,7 +266,7 @@
   /* SCROLL DOTS — vertical progress indicator on the right, aligned with the project text */
   .scroll-dots {
     position: fixed;
-    right: 24px;
+    left: clamp(20px, 4vw, 48px);
     top: calc(var(--nav-h) + var(--text-top));
     z-index: 90;
     display: flex;
@@ -338,9 +341,7 @@
     .project-role { max-width: 100%; }
     footer { padding: 0 24px; justify-content: center; }
     .footer-left { display: none; }
-    .scroll-dot { height: 10px; }
-    .scroll-dot.active::before { height: 14px; }
-    .scroll-dot.active { margin: 6px 0; }
+    .scroll-dots { display: none; }   /* stacked layout has no room for the left rail */
   }
   @media (max-width: 480px) {
     :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; }
@@ -353,9 +354,9 @@
     .capabilities { padding: 32px 0 24px; }
     .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links a { padding: 6px 10px; font-size: 10px; }
+    .nav-links { margin-left: -10px; }
     .project-title { font-size: 16px; }
     .project-role { font-size: 13px; }
-    .scroll-dots { display: none; }
   }
 </style>
 </head>
@@ -407,7 +408,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2023 - MICROSITE - FANTASY</p>
-        <h2 class="project-title">Extending a digital framework for museum exhibitions</h2>
+        <h2 class="project-title">Extending a digital framework<br>for museum exhibitions</h2>
         <p class="project-role">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
       </div>
     </article>
@@ -429,7 +430,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2020 - CONTENT PLATFORM - FANTASY</p>
-        <h2 class="project-title">Turning information into engaging narratives</h2>
+        <h2 class="project-title">Turning information<br>into engaging narratives</h2>
         <p class="project-role">Created a content and reading framework that prioritized comprehension over consumption.</p>
       </div>
     </article>
@@ -440,7 +441,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2022 - PLATFORM CONCEPT - FANTASY</p>
-        <h2 class="project-title">Designing a distinct ecosystem for home entertainment</h2>
+        <h2 class="project-title">Designing a distinct ecosystem<br>for home entertainment</h2>
         <p class="project-role">Created a platform vision and visual language that differentiated the product experience from existing operating systems.</p>
       </div>
     </article>
@@ -451,7 +452,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2022 - MICROSITE - FANTASY</p>
-        <h2 class="project-title">Bringing Messenger&rsquo;s new identity to life online</h2>
+        <h2 class="project-title">Bringing Messenger&rsquo;s new identity<br>to life online</h2>
         <p class="project-role">Created visual and interactive concepts that communicated the next chapter of the Messenger brand.</p>
       </div>
     </article>
@@ -473,7 +474,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2022 - APP SUITE - FANTASY</p>
-        <h2 class="project-title">Adapting a global product suite for new markets</h2>
+        <h2 class="project-title">Adapting a global product suite<br>for new markets</h2>
         <p class="project-role">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
       </div>
     </article>
@@ -484,7 +485,7 @@
       </div>
       <div class="project-info">
         <p class="project-meta">2019 - MOBILE EXPERIENCE - FANTASY</p>
-        <h2 class="project-title">Reimagining enterprise travel booking through voice</h2>
+        <h2 class="project-title">Reimagining enterprise travel<br>booking through voice</h2>
         <p class="project-role">Designed voice-driven flows and interaction patterns for a corporate travel platform.</p>
       </div>
     </article>

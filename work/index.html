@@ -39,7 +39,7 @@
     --footer-h: 56px;
     --img-gap: clamp(16px, 3vh, 40px);   /* image inset above the footer */
     --img-h: calc((100svh - var(--nav-h) - var(--footer-h)) * 0.62);
-    --text-top: clamp(18px, 5vh, 52px);   /* offset of the title below the top bar */
+    --text-top: 24px;   /* gap below the top bar — matches the home hero / about intro anchor */
   }
   html {
     scroll-snap-type: y mandatory;      /* one panel per scroll */
@@ -310,7 +310,7 @@
     .page { padding: 0 32px; }
   }
   @media (max-width: 768px) {
-    :root { --nav-h: 58px; --footer-h: 52px; --img-h: 44svh; --text-top: 14px; }
+    :root { --nav-h: 58px; --footer-h: 52px; --img-h: 44svh; --text-top: 24px; }
     nav { padding: 18px 24px; }
     .nav-left { gap: 12px; }
     .nav-meta { display: none; }
@@ -343,7 +343,7 @@
     .footer-left { display: none; }
   }
   @media (max-width: 480px) {
-    :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; }
+    :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; --text-top: 20px; }
     nav { padding: 16px 20px; }
     .nav-left { gap: 12px; }
     .page { padding: 0 20px; }

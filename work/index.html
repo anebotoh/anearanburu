@@ -277,8 +277,8 @@
   /* SCROLL DOTS — vertical progress indicator on the right, aligned with the project text */
   .scroll-dots {
     position: fixed;
-    right: clamp(20px, 4vw, 48px);
-    top: calc(var(--nav-h) + var(--text-top));
+    right: 16px;
+    top: calc(var(--nav-h) + var(--img-gap));
     z-index: 90;
     display: flex;
     flex-direction: column;
@@ -363,8 +363,8 @@
     }
     .project-title { font-size: 20px; max-width: 100%; }
     .project-role { max-width: 100%; }
-    footer { padding: 0 24px; justify-content: center; }
-    .footer-left { display: none; }
+    footer { padding: 0 24px; justify-content: space-between; }
+    .scroll-dots { right: clamp(20px, 4vw, 48px); top: calc(var(--nav-h) + var(--text-top)); transform: none; }
   }
   @media (max-width: 480px) {
     :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; --text-top: 20px; }

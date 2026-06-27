@@ -64,16 +64,16 @@
     gap: 16px;
   }
   .topbar-name {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .06em;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--text);
     text-decoration: none;
     display: inline-block;
-    transition: transform .3s ease;
+    transition: opacity .2s;
   }
-  .topbar-name:hover { transform: rotate(90deg); }
+  .topbar-name:hover { opacity: .7; }
   .clock {
     font-size: 13px;
     letter-spacing: -.01em;
@@ -89,15 +89,16 @@
     font-size: 11px;
     letter-spacing: .08em;
     text-transform: uppercase;
-    color: var(--text);
+    color: rgba(255,255,255,.3);
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 100px;
     border: 1px solid transparent;
     font-weight: 500;
-    transition: border-color .2s;
+    transition: color .2s;
   }
-  .topbar-links a:hover { border-color: var(--border); }
+  .topbar-links a:hover { color: var(--text); }
+  .topbar-links a.is-active { color: var(--text); }
 
   /* HERO */
   .hero {
@@ -348,14 +349,10 @@
 
 <header class="topbar">
   <div class="topbar-left">
-    <a class="topbar-name" href="/home/">:)</a>
-    <div class="clock">
-      <span class="clock-location-primary">Brooklyn, NY</span>
-      <span class="clock-subtitle">— 12+ years of experience</span>
-    </div>
+    <a class="topbar-name" href="/home/">Ane Aranburu</a>
   </div>
   <nav class="topbar-links">
-    <a href="/home/">Home</a>
+    <a href="/home/" class="is-active">Home</a>
     <a href="/work/">Work</a>
     <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email me</a>
@@ -452,9 +449,6 @@
       </div>
     </div>
 
-  </div>
-  <div class="scrollbar" id="scrollbar">
-    <div class="scrollbar-segments" id="scrollbarSegments"></div>
   </div>
 </div>
 

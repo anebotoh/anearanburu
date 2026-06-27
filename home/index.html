@@ -336,20 +336,10 @@
     }
     .prev-tagline { max-width: 90vw; }
 
-    /* Carousel becomes a vertical stack of full-width cards */
-    .carousel {
-      margin-right: var(--margin);
-      overflow: visible;
-      padding-bottom: 40px;
-    }
-    .carousel-track {
-      flex-direction: column;
-      gap: 16px;
-      overflow: visible;
-      padding-right: 0;
-      align-items: stretch;
-    }
-    .card { flex: 0 0 auto; width: 100%; }
+    /* Carousel stays a horizontal, finger-swipeable slideshow (same as desktop) */
+    .carousel { padding-bottom: 32px; }
+    .carousel-track { gap: 16px; }
+    .card { flex: 0 0 80vw; }
 
     /* Hide the segmented scrollbar — no role in a vertical list */
     .scrollbar { display: none; }

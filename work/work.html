@@ -35,71 +35,48 @@
     --font-serif: 'Instrument Serif', serif;
     --font-hero: 'Schibsted Grotesk', sans-serif;
     --font-body: 'Instrument Sans', sans-serif;
-    --nav-h: 70px;
-    --footer-h: 56px;
-    --img-gap: clamp(16px, 3vh, 40px);   /* image inset above the footer */
-    --img-h: calc((100svh - var(--nav-h) - var(--footer-h)) * 0.62);
-    --text-top: clamp(18px, 5vh, 52px);   /* offset of the title below the top bar */
   }
-  html {
-    scroll-snap-type: y mandatory;      /* one panel per scroll */
-    scroll-padding-top: var(--nav-h);   /* snapped sections start below the fixed top bar */
-    scroll-padding-bottom: var(--footer-h);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-snap-type: none; }    /* don't hijack scrolling for those who opt out */
-    .scroll-dot, .scroll-dot::before { transition: none; }
-    .project-info, .project-media, .hero-inner { transition: none; }
-  }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: var(--font); -webkit-font-smoothing: antialiased;
-    padding-top: var(--nav-h);          /* clear the fixed top bar */
-    padding-bottom: var(--footer-h);    /* clear the fixed footer */
-  }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 
   /* NAV */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 48px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: var(--nav-h);
+    padding: 24px 48px; position: sticky; top: 0; z-index: 100;
     background: var(--bg);
   }
-  /* end nav */
-  .nav-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
-  .nav-name:hover { opacity: .7; }
-  .nav-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .nav-name { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; display: inline-block; transition: transform .3s ease; }
+  .nav-name:hover { transform: rotate(90deg); }
+  .nav-name:active { animation: bounce .4s ease; }
+  @keyframes bounce {
+    0% { transform: rotate(90deg) scale(1); }
+    30% { transform: rotate(90deg) scale(1.4); }
+    60% { transform: rotate(90deg) scale(.9); }
+    100% { transform: rotate(90deg) scale(1); }
+  }
   .nav-left {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: center;
+    gap: 16px;
   }
+  .clock {
+    font-size: 13px;
+    letter-spacing: -.01em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .clock-location-primary { color: var(--text); font-weight: 600; }
+  .clock-subtitle { color: var(--muted); font-weight: 400; }
   .nav-links { display: flex; gap: 4px; }
-  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
+  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
-  .nav-links a.is-active { color: var(--text); }
 
   /* PAGE */
-  .page { padding: 0 48px; }
+  .page { padding: 0 48px 80px; }
 
   /* HERO */
-  .hero {
-    min-height: calc(100svh - var(--nav-h) - var(--footer-h));
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-  .hero-inner {
-    position: fixed;
-    top: calc(var(--nav-h) + clamp(20px, 6vh, 64px));
-    left: clamp(20px, 4vw, 48px);
-    right: clamp(20px, 4vw, 48px);
-    max-width: 920px;
-    z-index: 60;
-    opacity: 0;
-    transition: opacity .5s ease;
-    pointer-events: none;
-  }
-  .hero.is-current .hero-inner { opacity: 1; pointer-events: auto; }
+  .hero { padding: 24px 0 160px; }
   .hero h1 {
     font-family: var(--font-hero);
     font-weight: 400;
@@ -161,47 +138,25 @@
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
 
-  /* GRID -> full-screen deck, one project per scroll */
+  /* GRID */
   .project-grid {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
   }
 
-  /* each project is now just a full-height scroll/snap step; its visuals are the pinned layers below */
   .project {
-    min-height: calc(100svh - var(--nav-h) - var(--footer-h));
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    padding: 48px 0;
+    display: flex; flex-direction: column; gap: 28px;
+    border-bottom: 1px solid var(--border);
   }
+  .project:nth-child(odd) { padding-right: 48px; border-right: 1px solid var(--border); }
+  .project:nth-child(even) { padding-left: 48px; }
 
-  /* Text pinned top-left; image pinned bottom-right at its original 16/10 ratio. Both cross-fade. */
-  .project-info {
-    position: fixed;
-    top: calc(var(--nav-h) + var(--text-top));
-    left: clamp(20px, 4vw, 48px);
-    max-width: 520px;
-    z-index: 60;
-    opacity: 0;
-    transition: opacity .5s ease;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-  }
   .project-media {
-    position: fixed;
-    right: clamp(20px, 4vw, 48px);
-    bottom: calc(var(--footer-h) + var(--img-gap));
-    width: min(60vw, (100svh - var(--nav-h) - var(--footer-h) - 2 * var(--img-gap)) * 1.6);
-    aspect-ratio: 16 / 10;
-    height: auto;
-    border-radius: 32px; overflow: hidden;
-    background: #1a1a1a;
-    z-index: 40;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .5s ease;
+    width: 100%; border-radius: 32px; overflow: hidden;
+    aspect-ratio: 16/10; background: #1a1a1a;
   }
-  .project.is-current .project-info  { opacity: 1; pointer-events: auto; }
-  .project.is-current .project-media { opacity: 1; pointer-events: auto; }
   .project-media video, .project-media img {
     width: 100%; height: 100%; object-fit: cover; display: block;
     filter: brightness(.85); transition: filter .5s;
@@ -210,21 +165,19 @@
   .project:hover .project-media img { filter: brightness(1); }
 
   .project-info { display: flex; flex-direction: column; }
-  .project-meta { order: 3; margin-top: 18px; font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .project-meta { font-family: var(--font-body); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
   .project-title {
-    order: 1;
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.15;
     letter-spacing: 0.02em;
     color: var(--text);
     text-wrap: balance;   /* keep on one line if it fits; otherwise even the words, no orphans */
-    margin-top: 0;
+    margin-top: 5px;      /* meta + title sit tight as one headline group */
   }
   /* SECOND LEVEL — role & responsibilities */
   .project-role {
-    order: 2;
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 400;
@@ -236,118 +189,52 @@
     text-wrap: balance;
   }
   .project-cta {
-    order: 4;
     display: block;
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--accent);
     line-height: 1.35;
-    margin-top: 24px;
+    margin-top: 12px;
     text-decoration: none;
     width: fit-content;
     transition: opacity .2s;
   }
   .project-cta:hover { opacity: .7; }
 
-  /* OUTRO (capabilities + footer as one closing panel) */
-  .outro {
-    min-height: calc(100svh - var(--nav-h) - var(--footer-h));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-
-  /* SCROLL DOTS — progress / scrollability indicator */
-  .scroll-dots {
-    position: fixed;
-    right: 22px;
-    top: calc(var(--nav-h) + var(--text-top));   /* aligned with the project title's top */
-    z-index: 90;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: center;
-  }
-  .scroll-dot {
-    position: relative;
-    width: 12px; height: 11px;     /* fixed slot keeps the column steady */
-    padding: 0; border: none; background: none;
-    cursor: pointer;
-    transition: margin .3s ease;
-  }
-  .scroll-dot::before {
-    content: ''; position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-    width: 2px; height: 2px; border-radius: 50%;
-    background: rgba(255, 255, 255, 0.35);
-    transition: height .3s ease, border-radius .3s ease, background .25s ease;
-  }
-  .scroll-dot:hover::before { background: rgba(255, 255, 255, 0.7); }
-  .scroll-dot.active::before { height: 16px; border-radius: 2px; background: #fff; }
-  .scroll-dot.active { margin: 7px 0; }   /* same gap to its neighbors as the dots have between each other */
-  .scroll-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-
-  /* FOOTER (bottom of the frame) */
+  /* FOOTER */
   footer {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
-    height: var(--footer-h);
-    padding: 0 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: var(--bg);
+    padding: 60px 0 36px; display: flex; justify-content: center; align-items: center;
   }
-  /* end footer */
-  footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+  footer p { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; text-align: center; }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     nav { padding: 24px 32px; }
-    .page { padding: 0 32px; }
+    .page { padding: 0 32px 60px; }
   }
   @media (max-width: 768px) {
-    :root { --nav-h: 58px; --footer-h: 52px; --img-h: 44svh; --text-top: 14px; }
     nav { padding: 18px 24px; }
     .nav-left { gap: 12px; }
-    .nav-meta { display: none; }
-    .page { padding: 0 24px; }
-    .hero { padding: 16px 0; }
+    .page { padding: 0 24px 48px; }
+    .hero { padding: 16px 0 64px; }
     .hero h1 { font-size: 20px; line-height: 28px; }
     .hero p { font-size: 20px; line-height: 28px; max-width: 100%; }
     .hero p.hero-statement { max-width: 100%; }
     .hero-break { display: none; }
     .capabilities { padding: 40px 0 32px; }
-    /* stacked slideshow on smaller screens: text on top, full-width image band below */
-    .hero-inner {
-      top: calc(var(--nav-h) + var(--text-top));
-      left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
-    }
-    .project-info {
-      top: calc(var(--nav-h) + var(--text-top));
-      left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
-      max-width: none;
-    }
-    .project-media {
-      top: auto; bottom: calc(var(--footer-h) + var(--img-gap)); height: var(--img-h);
-      left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
-      aspect-ratio: auto; width: auto;
-    }
-    .project-title { font-size: 17px; max-width: 100%; font-weight: 500; }
+    .project-grid { grid-template-columns: 1fr; }
+    .project { padding: 40px 0 !important; border-right: none !important; }
+    .project-title { font-size: 16px; max-width: 336px; font-weight: 500; }
     .project-role { max-width: 100%; }
-    footer { padding: 0 24px; justify-content: flex-end; }
-    .footer-left { display: none; }
-    .scroll-dots { right: 12px; }
-    .scroll-dot { height: 10px; }
-    .scroll-dot.active::before { height: 14px; }
-    .scroll-dot.active { margin: 6px 0; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
   }
   @media (max-width: 480px) {
-    :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; }
     nav { padding: 16px 20px; }
     .nav-left { gap: 12px; }
-    .page { padding: 0 20px; }
-    .hero { padding: 12px 0; }
+    .clock { display: none; }
+    .page { padding: 0 20px 40px; }
+    .hero { padding: 12px 0 56px; }
     .hero h1 { font-size: 18px; line-height: 26px; font-weight: 400; }
     .hero p { font-size: 18px; line-height: 26px; font-weight: 400; max-width: 100%; }
     .capabilities { padding: 32px 0 24px; }
@@ -355,7 +242,6 @@
     .nav-links a { padding: 6px 10px; font-size: 10px; }
     .project-title { font-size: 16px; }
     .project-role { font-size: 13px; }
-    .scroll-dots { display: none; }
   }
 </style>
 </head>
@@ -363,24 +249,27 @@
 
 <nav>
   <div class="nav-left">
-    <a class="nav-name" href="/">Ane Aranburu</a>
+    <a class="nav-name" href="../"><span class="dot">:</span>)</a>
+    <div class="clock">
+      <span class="clock-location-primary">Brooklyn, NY</span>
+      <span class="clock-subtitle">— 12+ years of experience</span>
+    </div>
   </div>
   <div class="nav-links">
-    <a href="/work/" class="is-active">Work</a>
-    <a href="/work/about/">About</a>
-    <a href="mailto:aranburuane@gmail.com">Email me</a>
+    <a href="mailto:aranburuane@gmail.com">Email</a>
+    <a href="https://instagram.com/anebotoh" target="_blank">Photography</a>
+    <a href="https://linkedin.com/in/anearanburu" target="_blank">LinkedIn</a>
+    <a href="https://github.com/anebotoh" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="page">
 
-  <div class="hero is-current">
-    <div class="hero-inner">
-      <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
-      <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
-      <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
-      <p class="hero-nda">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
-    </div>
+  <div class="hero">
+    <h1>I care about how things <span class="lookword">l<span class="o"><span class="g">o</span></span><span class="o"><span class="g">o</span></span>k</span>, feel and work.</h1>
+    <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
+    <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
+    <p class="hero-nda">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Always open to chat :)</a></p>
   </div>
 
   <div class="project-grid">
@@ -509,72 +398,29 @@
 
   </div>
 
+  <section class="capabilities">
+    <p class="capabilities-label">Capabilities & Interests</p>
+    <div class="tags">
+      <span class="tag">Creative tools</span>
+      <span class="tag">0 — 1</span>
+      <span class="tag">Music production</span>
+      <span class="tag">Microinteractions</span>
+      <span class="tag">UI</span>
+      <span class="tag">MVP</span>
+      <span class="tag">Prototyping</span>
+      <span class="tag">Vision</span>
+      <span class="tag">Ethics & Privacy</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>Thanks for scrolling. Have a good day :)</p>
+  </footer>
+
 </div>
 
-<footer>
-  <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
-  <span class="footer-right">I hope you're having a good day :)</span>
-</footer>
-
-<div class="scroll-dots" aria-label="Scroll progress"></div>
-
-<script>
-  // Build a dot per panel and light up whichever panel fills the frame window.
-  (function () {
-    var wrap = document.querySelector('.scroll-dots');
-    if (!wrap) return;
-    var sections = Array.prototype.slice.call(document.querySelectorAll('.hero, .project, .outro'));
-    if (!sections.length) return;
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    sections.forEach(function (sec, i) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'scroll-dot';
-      dot.setAttribute('aria-label', 'Go to section ' + (i + 1) + ' of ' + sections.length);
-      dot.addEventListener('click', function () {
-        sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      });
-      wrap.appendChild(dot);
-    });
-    var dots = Array.prototype.slice.call(wrap.children);
-
-    function px(name) {
-      return parseInt(getComputedStyle(document.documentElement).getPropertyValue(name), 10) || 0;
-    }
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          var idx = sections.indexOf(e.target);
-          dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
-          // only the section in the frame shows its pinned layers; the rest fade out in place
-          sections.forEach(function (s) { s.classList.toggle('is-current', s === e.target); });
-        }
-      });
-    }, { threshold: 0.55, rootMargin: '-' + px('--nav-h') + 'px 0px -' + px('--footer-h') + 'px 0px' });
-
-    sections.forEach(function (s) { io.observe(s); });
-  })();
-</script>
-
-<script>
-  // Live local time in New York, shown next to the location in the footer.
-  (function () {
-    var el = document.getElementById('ny-clock');
-    if (!el) return;
-    function tick() {
-      el.textContent = '· ' + new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'
-      }).format(new Date());
-    }
-    tick();
-    setInterval(tick, 30000);
-  })();
-</script>
-
 <script type="module">
-  // "look" — hover stretches the two o's into horizontal capsules; the word grows to fit.
+  // "look" \u2014 hover stretches the two o's into horizontal capsules; the word grows to fit.
   import { animate } from "https://cdn.jsdelivr.net/npm/motion@12/+esm";
 
   (function () {

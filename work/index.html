@@ -191,7 +191,7 @@
   .project-info {
     position: fixed;
     top: calc(var(--nav-h) + var(--text-top));
-    left: calc(clamp(20px, 4vw, 48px) + 36px);
+    left: clamp(20px, 4vw, 48px);
     max-width: 520px;
     z-index: 60;
     opacity: 0;
@@ -277,7 +277,7 @@
   /* SCROLL DOTS — vertical progress indicator on the right, aligned with the project text */
   .scroll-dots {
     position: fixed;
-    left: clamp(20px, 4vw, 48px);
+    right: clamp(20px, 4vw, 48px);
     top: calc(var(--nav-h) + var(--text-top));
     z-index: 90;
     display: flex;
@@ -353,7 +353,7 @@
     }
     .project-info {
       top: calc(var(--nav-h) + var(--text-top));
-      left: calc(clamp(20px, 4vw, 48px) + 36px); right: clamp(20px, 4vw, 48px);
+      left: clamp(20px, 4vw, 48px); right: calc(clamp(20px, 4vw, 48px) + 28px);
       max-width: none;
     }
     .project-media {
@@ -519,7 +519,7 @@
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
-  <span class="footer-right">I hope you're having a good day :)</span>
+  <span class="footer-right">2026</span>
 </footer>
 
 <div class="scroll-dots" aria-label="Scroll progress"></div>

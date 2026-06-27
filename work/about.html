@@ -72,11 +72,12 @@
   }
   .about > .section { margin: 0; }
   .learned { order: 1; }
-  .capabilities { order: 2; }
-  .experience { order: 3; }
-  .journey { order: 4; }
-  .education { order: 5; }
-  .links { order: 6; }
+  .experience { order: 2; }
+  .journey { order: 3; }
+  .toolbox { order: 4; }
+  .capabilities { order: 5; }
+  .education { order: 6; }
+  .links { order: 7; }
   .section-label {
     font-family: var(--font-body);
     font-size: 10px; color: var(--muted);
@@ -107,6 +108,17 @@
     max-width: 560px;
   }
   .journey-para + .journey-para { margin-top: 1em; }
+
+  /* CURRENT TOOLBOX */
+  .tool-prose { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+  .tool-prose p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    letter-spacing: .01em;
+    color: rgba(240,237,232,.62);
+  }
+  .tool-name { color: var(--text); font-weight: 600; }
 
   /* EXPERIENCE */
   .exp-list { list-style: none; }
@@ -193,7 +205,6 @@
 <nav>
   <div class="nav-left">
     <a class="nav-name" href="/">Ane Aranburu</a>
-    <span class="nav-meta">· 12 years of experience</span>
   </div>
   <div class="nav-links">
     <a href="/work/">Work</a>
@@ -205,7 +216,10 @@
 <main class="about">
 
   <section class="section learned">
-      <p class="learn-para">I&rsquo;m Ane &mdash; a Basque digital product designer based in Brooklyn. For the last two years I have been working at Output, designing and building music production tools. As part of a small team, I helped design and build Output Creator from 0 to 1 &mdash; a multi-year product redesign spanning workflow architecture, interaction design, visual design, micro-interactions, user interviews, opening my first PRs, and demoing the product at NAMM &amp; SXSW in a partnership with Yamaha.</p>
+      <p class="learn-para">I&rsquo;m Ane &mdash; a Basque digital product designer based in Brooklyn.</p>
+      <p class="learn-para">For the last 15 years, I&rsquo;ve been designing and caring about pixels and the team that I work with.</p>
+      <p class="learn-para">I currently work at Output, designing and building music production tools. As part of a small team, I helped design and build Output Creator from 0 to 1 &mdash; a multi-year product redesign spanning workflow architecture, interaction design, visual design, micro-interactions, user interviews, opening my first PRs, and demoing the product at NAMM &amp; SXSW in a partnership with Yamaha.</p>
+      <p class="learn-para">I&rsquo;m interested in contributing to projects that have multi-layered complexity, are human-focused, and use technology responsibly.</p>
     </section>
 
   <section class="section experience">
@@ -279,12 +293,24 @@
   </section>
 
   <section class="section journey">
-    <p class="journey-para">My path into design hasn&rsquo;t been linear. I studied Humanities before Graphic Design, but I believe every role that I had has shaped how I think. Journalism taught me to ask better questions, listen carefully, and communicate with clarity. My graphic design studies showed me how visual communication can make complex ideas accessible.</p>
-    <p class="journey-para">At the San Sebasti&aacute;n Film Festival, I learned to adapt designs to multiple formats, the complexity of the movie industry, the market, the distribution&hellip; and how hard it is. As a Graphic Designer at an advertising agency, I learned how to build brands and adapt design to them. At the Design consultancy, I learned to be more strategic and to see all the touch points of a digital experience. At Fantasy, I focused on craft and learned to dream big.</p>
+    <p class="journey-para">My path into design hasn&rsquo;t been linear. I studied Humanities before Graphic Design, and was a journalist for a brief period of my life. I believe this taught me to ask better questions, listen carefully, and communicate with clarity. Afterward, I studied traditional graphic design, where I learned how visual communication can make complex ideas accessible.</p>
+    <p class="journey-para">When I worked at a Film Festival, I learned to adapt designs to multiple formats, materials and purposes. At the advertising agency, I learned how to build brands and adapt design to them. At the Design consultancy, I learned to be more strategic and to see all the touch points of a digital experience. At Fantasy, I focused on craft and learned to dream big.</p>
+  </section>
+
+  <section class="section toolbox">
+    <p class="section-label">Current toolbox</p>
+    <div class="tool-prose">
+      <p><span class="tool-name">Notion</span> is where I write down and organize ideas, and develop thoughts.</p>
+      <p><span class="tool-name">Figma</span> is where I explore those thoughts, expand them, build systems thinking, get pixel perfect, come up with happy accidents, and make presentations.</p>
+      <p><span class="tool-name">Cursor</span> lets me work within my team&rsquo;s ecosystem and open PRs to polish front-end work that changed; it shows me the code I&rsquo;m changing so I&rsquo;m not creating a new problem.</p>
+      <p>I lean on <span class="tool-name">Claude</span> to build interactive prototypes, get critique from different perspectives, come up with happy accidents, create custom plugins for Figma, and research personal projects.</p>
+      <p><span class="tool-name">ChatGPT</span> helps me understand complex concepts, and re-write, and re-write, and re-write texts.</p>
+      <p>And beyond software, <span class="tool-name">conversation</span>, <span class="tool-name">talking</span> with people, and <span class="tool-name">books</span> are just as much part of how I think and stay curious.</p>
+    </div>
   </section>
 
   <section class="section education">
-    <p class="section-label">Schools I have studied at</p>
+    <p class="section-label">Education</p>
     <ul class="exp-list">
       <li class="exp-group">
         <div class="exp-entry">
@@ -308,10 +334,10 @@
   </section>
 
   <section class="section capabilities">
-    <p class="capabilities-label">Current interests and capabilities</p>
+    <p class="capabilities-label">Interests and capabilities</p>
     <div class="tags">
       <span class="tag">Creative tools</span>
-      <span class="tag">0 &amp; 1</span>
+      <span class="tag">0 &mdash; 1</span>
       <span class="tag">Music production</span>
       <span class="tag">Micro-interactions</span>
       <span class="tag">UI</span>

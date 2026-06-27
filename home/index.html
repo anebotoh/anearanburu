@@ -355,6 +355,8 @@
     </div>
   </div>
   <nav class="topbar-links">
+    <a href="/home/">Home</a>
+    <a href="/work/">Work</a>
     <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email me</a>
   </nav>
@@ -376,99 +378,77 @@
     <a class="card" href="https://output.com/products/creator/" target="_blank">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/01-Creator%202.0.mov"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">DESKTOP APP</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">DESKTOP APP</p></div>
       </div>
     </a>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/05-NMAACH.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">MICROSITE</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">MICROSITE</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/04-Embibe.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">PRODUCT FOUNDATION</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">PRODUCT FOUNDATION</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/02-Cinepolis.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">DIGITAL ECOSYSTEM</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">DIGITAL ECOSYSTEM</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">CONTENT PLATFORM</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">CONTENT PLATFORM</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="/videos/10-Xgimi.png" alt="XGIMI Project">
-        <div class="card-overlay">
-          <p class="card-eyebrow">PLATFORM CONCEPT</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">PLATFORM CONCEPT</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="/videos/09-Wheelsup.png" alt="Wheels Up">
-        <div class="card-overlay">
-          <p class="card-eyebrow">MOBILE EXPERIENCE</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">MOBILE EXPERIENCE</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/07-Messenger.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">MICROSITE</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">MICROSITE</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <img src="/videos/11-Lark.png" alt="Lark Bytedance">
-        <div class="card-overlay">
-          <p class="card-eyebrow">APP SUITE</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">APP SUITE</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/06-Deem.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">MOBILE EXPERIENCE</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">MOBILE EXPERIENCE</p></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-media">
         <video autoplay muted loop playsinline preload="metadata" src="/videos/08-Asana.mp4"></video>
-        <div class="card-overlay">
-          <p class="card-eyebrow">VISION</p>
-        </div>
+        <div class="card-overlay"><p class="card-eyebrow">VISION</p></div>
       </div>
     </div>
 
@@ -482,14 +462,13 @@
   <p>Thanks for scrolling. Have a good day :)</p>
 </footer>
 
+
 <script>
   // Translate page-wide scroll into horizontal carousel scroll — desktop only
   (function () {
     const track = document.getElementById('carouselTrack');
     if (!track) return;
-
     const isMobile = () => window.matchMedia('(max-width: 480px)').matches;
-
     window.addEventListener('wheel', function (e) {
       if (isMobile()) return;
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
@@ -498,39 +477,26 @@
       track.scrollLeft += delta;
     }, { passive: false });
 
-    let touchStartY = null;
-    let touchStartX = null;
-    let lastTouchY = null;
-
+    let touchStartY = null, touchStartX = null, lastTouchY = null;
     window.addEventListener('touchstart', function (e) {
       if (isMobile()) return;
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      lastTouchY = touchStartY;
+      touchStartY = e.touches[0].clientY; touchStartX = e.touches[0].clientX; lastTouchY = touchStartY;
     }, { passive: true });
-
     window.addEventListener('touchmove', function (e) {
       if (isMobile()) return;
       if (touchStartY === null) return;
-
-      const currentY = e.touches[0].clientY;
-      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY, currentX = e.touches[0].clientX;
       const dy = lastTouchY - currentY;
-      const totalDx = touchStartX - currentX;
-      const totalDy = touchStartY - currentY;
-
+      const totalDx = touchStartX - currentX, totalDy = touchStartY - currentY;
       if (Math.abs(totalDy) > Math.abs(totalDx)) {
         e.preventDefault();
         track.scrollLeft += dy * 1.5;
         lastTouchY = currentY;
       }
     }, { passive: false });
-
     window.addEventListener('touchend', function () {
       if (isMobile()) return;
-      touchStartY = null;
-      touchStartX = null;
-      lastTouchY = null;
+      touchStartY = null; touchStartX = null; lastTouchY = null;
     }, { passive: true });
   })();
 
@@ -539,9 +505,8 @@
     const track = document.getElementById('carouselTrack');
     const segmentsEl = document.getElementById('scrollbarSegments');
     if (!track || !segmentsEl) return;
-
     const cards = Array.from(track.children);
-    const segments = cards.map((card, i) => {
+    const segments = cards.map((card) => {
       const seg = document.createElement('div');
       seg.className = 'scrollbar-segment';
       seg.addEventListener('click', () => {
@@ -551,39 +516,25 @@
       segmentsEl.appendChild(seg);
       return seg;
     });
-
     function syncActive() {
       const maxScroll = track.scrollWidth - track.clientWidth;
       let closestIndex;
-
-      if (track.scrollLeft <= 2) {
-        closestIndex = 0;
-      } else if (track.scrollLeft >= maxScroll - 2) {
-        closestIndex = cards.length - 1;
-      } else {
+      if (track.scrollLeft <= 2) { closestIndex = 0; }
+      else if (track.scrollLeft >= maxScroll - 2) { closestIndex = cards.length - 1; }
+      else {
         const trackRect = track.getBoundingClientRect();
         const centerX = trackRect.left + trackRect.width / 2;
-        let closestDistance = Infinity;
-        closestIndex = 0;
+        let closestDistance = Infinity; closestIndex = 0;
         cards.forEach((card, i) => {
           const cardRect = card.getBoundingClientRect();
           const cardCenter = cardRect.left + cardRect.width / 2;
           const distance = Math.abs(cardCenter - centerX);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = i;
-          }
+          if (distance < closestDistance) { closestDistance = distance; closestIndex = i; }
         });
       }
-
-      segments.forEach((seg, i) => {
-        seg.classList.toggle('is-active', i === closestIndex);
-      });
-      cards.forEach((card, i) => {
-        card.classList.toggle('is-centered', i === closestIndex);
-      });
+      segments.forEach((seg, i) => { seg.classList.toggle('is-active', i === closestIndex); });
+      cards.forEach((card, i) => { card.classList.toggle('is-centered', i === closestIndex); });
     }
-
     track.addEventListener('scroll', syncActive, { passive: true });
     window.addEventListener('resize', syncActive);
     syncActive();
@@ -594,60 +545,27 @@
     const track = document.getElementById('carouselTrack');
     const carousel = track ? track.parentElement : null;
     if (!track || !carousel) return;
-
-    // No autoplay on mobile — cards are a vertical scroll list there
     if (window.matchMedia('(max-width: 480px)').matches) return;
-
-    const SPEED = 0.5;
-    const IDLE_RESUME_MS = 2500;
-    let isPaused = true;
-    let resumeTimeout = null;
-    let rafId = null;
-
+    const SPEED = 0.5, IDLE_RESUME_MS = 2500;
+    let isPaused = true, resumeTimeout = null, rafId = null;
     function maxScroll() { return track.scrollWidth - track.clientWidth; }
-
     function tick() {
       if (isPaused) return;
       const next = track.scrollLeft + SPEED;
-      if (next >= maxScroll()) {
-        track.scrollLeft = 0;
-      } else {
-        track.scrollLeft = next;
-      }
+      track.scrollLeft = next >= maxScroll() ? 0 : next;
       rafId = requestAnimationFrame(tick);
     }
-
-    function start() {
-      if (!isPaused) return;
-      isPaused = false;
-      rafId = requestAnimationFrame(tick);
-    }
-
-    function pause() {
-      isPaused = true;
-      if (rafId) cancelAnimationFrame(rafId);
-      if (resumeTimeout) clearTimeout(resumeTimeout);
-    }
-
-    function scheduleResume() {
-      pause();
-      resumeTimeout = setTimeout(start, IDLE_RESUME_MS);
-    }
-
+    function start() { if (!isPaused) return; isPaused = false; rafId = requestAnimationFrame(tick); }
+    function pause() { isPaused = true; if (rafId) cancelAnimationFrame(rafId); if (resumeTimeout) clearTimeout(resumeTimeout); }
+    function scheduleResume() { pause(); resumeTimeout = setTimeout(start, IDLE_RESUME_MS); }
     if (window.matchMedia('(hover: hover)').matches) {
       carousel.addEventListener('mouseenter', pause);
       carousel.addEventListener('mouseleave', scheduleResume);
     }
-
     window.addEventListener('wheel', scheduleResume, { passive: true });
     window.addEventListener('touchstart', pause, { passive: true });
     window.addEventListener('touchend', scheduleResume, { passive: true });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) pause();
-      else scheduleResume();
-    });
-
+    document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); else scheduleResume(); });
     setTimeout(start, 1500);
   })();
 </script>

@@ -81,6 +81,17 @@
   .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.is-active { color: var(--text); }
+  /* Hamburger toggle — hidden on desktop, shown on mobile */
+  .nav-toggle {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 28px; height: 28px; padding: 0;
+    background: none; border: none; cursor: pointer; position: relative; z-index: 101;
+  }
+  .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: transform .25s ease, opacity .2s ease; }
+  .nav-toggle.is-active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.is-active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* PAGE */
   .page { padding: 0 48px; }
@@ -313,8 +324,21 @@
     :root { --nav-h: 58px; --footer-h: 52px; --img-h: 44svh; --text-top: 24px; }
     nav { padding: 18px 24px; }
     .nav-left { gap: 12px; }
-    .nav-meta { display: none; }
-    .nav-name { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      z-index: 90; background: var(--bg); margin: 0;
+      flex-direction: column; justify-content: flex-start; align-items: flex-start;
+      gap: 4px; padding: 24px 24px 0;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .nav-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .nav-links a {
+      font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none;
+      padding: 8px 0; border: none; border-radius: 0; color: rgba(255,255,255,.4);
+    }
+    .nav-links a.is-active, .nav-links a:hover { color: var(--text); }
     .page { padding: 0 24px; }
     .hero { padding: 16px 0; }
     .hero h1 { font-size: 20px; line-height: 28px; }
@@ -352,8 +376,7 @@
     .hero p { font-size: 18px; line-height: 26px; font-weight: 400; max-width: 100%; }
     .capabilities { padding: 32px 0 24px; }
     .tag { font-size: 12px; padding: 8px 14px; }
-    .nav-links a { padding: 6px 10px; font-size: 10px; }
-    .nav-links { margin-right: -10px; }
+    .nav-links { padding: 20px 20px 0; }
     .project-title { font-size: 18px; }
     .project-role { font-size: 13px; }
   }
@@ -366,6 +389,7 @@
     <a class="nav-name" href="/home/">Ane Aranburu</a>
     <span class="nav-meta">Designer</span>
   </div>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
     <a href="/home/">Home</a>
     <a href="/work/" class="is-active">Work</a>
@@ -592,6 +616,29 @@
 
     word.addEventListener("mouseenter", expand);
     word.addEventListener("mouseleave", collapse);
+  })();
+</script>
+
+<script>
+  // Mobile nav: hamburger opens/closes the full-screen link overlay
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-links');
+    if (!toggle || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(!menu.classList.contains('is-open'));
+    });
+    Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
   })();
 </script>
 

@@ -200,6 +200,19 @@
     display: flex;
     flex-direction: column;
   }
+  .project-details {
+    position: fixed;
+    bottom: calc(var(--footer-h) + var(--img-gap));
+    left: clamp(20px, 4vw, 48px);
+    max-width: 260px;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-details { display: none; } /* hidden for now */
   .project-media {
     position: fixed;
     right: clamp(20px, 4vw, 48px);
@@ -215,6 +228,7 @@
     transition: opacity .12s linear;
   }
   .project.is-current .project-info  { opacity: 1; pointer-events: auto; }
+  .project.is-current .project-details { opacity: 1; pointer-events: auto; }
   .project.is-current .project-media { opacity: 1; pointer-events: auto; }
   .project-media video, .project-media img {
     width: 100%; height: 100%; object-fit: cover; display: block;
@@ -237,7 +251,7 @@
     margin-top: 0;
   }
   /* SECOND LEVEL — role & responsibilities */
-  .project-role {
+  .project-desc {
     order: 3;
     font-family: var(--font-body);
     font-size: 14px;
@@ -249,19 +263,60 @@
     max-width: 100%;      /* same column width as the title */
     text-wrap: balance;
   }
-  .project-cta {
+  .project-detail {
     order: 4;
+    margin-top: 16px;
+    max-width: 260px;
+  }
+  .project-detail:first-of-type { margin-top: 0; }
+  .detail-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .detail-value {
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 400;
+    letter-spacing: -.01em; line-height: 1.45;
+    color: var(--text);
+  }
+  .detail-list {
+    list-style: none; margin: 0; padding: 0;
+  }
+  .detail-list li {
+    display: inline;
+    font-family: var(--font-body);
+    font-size: 13px; font-weight: 400;
+    letter-spacing: -.005em; line-height: 1.5;
+    color: var(--text);
+  }
+  .detail-list li:not(:last-child)::after { content: ", "; }
+  .project-cta {
+    order: 3;
     display: block;
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--accent);
     line-height: 1.35;
-    margin-top: 24px;
+    margin-top: 16px;
     text-decoration: none;
     width: fit-content;
     transition: opacity .2s;
   }
+  .project-cta.cta-plain { color: var(--text); }
+  .project-desc a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--muted);
+    transition: color .2s, text-decoration-color .2s;
+  }
+  .project-desc a:hover { text-decoration-color: var(--text); }
   .project-cta:hover { opacity: .7; }
 
   /* OUTRO (capabilities + footer as one closing panel) */
@@ -321,7 +376,7 @@
     .page { padding: 0 32px; }
   }
   @media (max-width: 768px) {
-    :root { --nav-h: 58px; --footer-h: 52px; --img-h: 44svh; --text-top: 24px; }
+    :root { --nav-h: 58px; --footer-h: 52px; --img-h: 38svh; --text-top: 24px; }
     nav { padding: 18px 24px; }
     .nav-left { gap: 12px; }
     .nav-toggle { display: flex; }
@@ -351,23 +406,40 @@
       top: calc(var(--nav-h) + var(--text-top));
       left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
     }
+    .project { display: flex; flex-direction: column; }
     .project-info {
-      top: calc(var(--nav-h) + var(--text-top));
-      left: clamp(20px, 4vw, 48px); right: calc(clamp(20px, 4vw, 48px) + 28px);
+      position: static;
+      order: 1;
+      top: auto; bottom: auto; left: auto; right: auto;
       max-width: none;
     }
     .project-media {
-      top: auto; bottom: calc(var(--footer-h) + var(--img-gap)); height: var(--img-h);
-      left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
-      aspect-ratio: auto; width: auto;
+      position: static;
+      order: 2;
+      top: auto; bottom: auto; left: auto; right: auto;
+      width: 100%; height: auto;
+      aspect-ratio: 16 / 10;
+      margin-top: 24px;
+    }
+    .project-details {
+      position: static;
+      order: 3;
+      max-width: none;
+      margin-top: 24px;
     }
     .project-title { font-size: 20px; max-width: 100%; }
-    .project-role { max-width: 100%; }
+    .project-desc { max-width: 100%; }
+    .project-detail { margin-top: 12px; }
+    .project-detail:first-of-type { margin-top: 0; }
+    .detail-label { margin-bottom: 4px; }
+    .detail-value { font-size: 13px; }
+    .detail-list { gap: 3px 14px; }
+    .detail-list li { font-size: 12px; line-height: 1.45; }
     footer { padding: 0 24px; justify-content: space-between; }
     .scroll-dots { right: clamp(20px, 4vw, 48px); top: calc(var(--nav-h) + var(--text-top)); transform: none; }
   }
   @media (max-width: 480px) {
-    :root { --nav-h: 54px; --footer-h: 50px; --img-h: 40svh; --text-top: 20px; }
+    :root { --nav-h: 54px; --footer-h: 50px; --img-h: 34svh; --text-top: 20px; }
     nav { padding: 16px 20px; }
     .nav-left { gap: 12px; }
     .page { padding: 0 20px; }
@@ -378,7 +450,7 @@
     .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links { padding: 20px 20px 0; }
     .project-title { font-size: 18px; }
-    .project-role { font-size: 13px; }
+    .project-desc { font-size: 13px; }
   }
 </style>
 </head>
@@ -409,8 +481,47 @@
       <div class="project-info">
         <p class="project-meta">2024/2026 - DESKTOP APP - OUTPUT</p>
         <h2 class="project-title">Building a more intuitive creative<br>workflow for music production</h2>
-        <p class="project-role">A multi-year product redesign spanning workflow architecture, interaction design, visual design, micro-interactions, user interviews, opening my first PRs, and demoing the product at NAMM & SXSW in a partnership with Yamaha.</p>
+        <p class="project-desc">Multi-year product redesign spanning workflow architecture, interaction design, user interviews, visual design, microinteractions, PRs and demos at NAMM & SXSW in partnership with <a href="https://yamahacreators.com/" target="_blank" rel="noopener">Yamaha</a></p>
         <a class="project-cta" href="https://output.com/products/creator" target="_blank">Play with Output Creator</a>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Product Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+            <li>User research &amp; interviews</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, Notion, Cursor</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Design team</span>
+          <ul class="detail-list">
+            <li>Daniel Lepik (3D)</li>
+            <li>Neil Halimen (VP Creative)</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Squad</span>
+          <ul class="detail-list">
+            <li>Garrett Burnett (Front End Engineer)</li>
+            <li>Jack Cote (PM)</li>
+            <li>Jennifer Hsu (Audio Engineer)</li>
+            <li>Jeremy Cruz (Back End Engineer)</li>
+            <li>Kevin Dixon (Audio &amp; Back End Engineer)</li>
+            <li>Nick Rapatoni (QA Engineer)</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -421,7 +532,38 @@
       <div class="project-info">
         <p class="project-meta">2023 - DIGITAL ECOSYSTEM - FANTASY</p>
         <h2 class="project-title">Creating a unified cinema experience<br>across digital touchpoints</h2>
-        <p class="project-role">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
+        <p class="project-desc">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -432,7 +574,38 @@
       <div class="project-info">
         <p class="project-meta">2023 - MICROSITE - FANTASY</p>
         <h2 class="project-title">Extending a digital framework<br>for museum exhibitions</h2>
-        <p class="project-role">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
+        <p class="project-desc">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -443,7 +616,38 @@
       <div class="project-info">
         <p class="project-meta">2023 - PRODUCT FOUNDATION - FANTASY</p>
         <h2 class="project-title">Creating the foundation<br>for a next-generation learning experience</h2>
-        <p class="project-role">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
+        <p class="project-desc">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -454,7 +658,38 @@
       <div class="project-info">
         <p class="project-meta">2020 - CONTENT PLATFORM - FANTASY</p>
         <h2 class="project-title">Turning information<br>into engaging narratives</h2>
-        <p class="project-role">Created a content and reading framework that prioritized comprehension over consumption.</p>
+        <p class="project-desc">Created a content and reading framework that prioritized comprehension over consumption.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -465,7 +700,38 @@
       <div class="project-info">
         <p class="project-meta">2022 - MICROSITE - FANTASY</p>
         <h2 class="project-title">Bringing Messenger&rsquo;s new<br>identity to life online</h2>
-        <p class="project-role">Created visual and interactive concepts that communicated the next chapter of the Messenger brand.</p>
+        <p class="project-desc">Created visual and interactive concepts that communicated the next chapter of the Messenger brand.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -476,7 +742,38 @@
       <div class="project-info">
         <p class="project-meta">2020 - MOBILE EXPERIENCE - FANTASY</p>
         <h2 class="project-title">Reimagining private aviation<br>for mobile</h2>
-        <p class="project-role">Developed visual directions exploring how a premium aviation brand could translate into a mobile experience.</p>
+        <p class="project-desc">Developed visual directions exploring how a premium aviation brand could translate into a mobile experience.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -487,7 +784,38 @@
       <div class="project-info">
         <p class="project-meta">2022 - APP SUITE - FANTASY</p>
         <h2 class="project-title">Adapting a global product suite<br>for new markets</h2>
-        <p class="project-role">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
+        <p class="project-desc">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -498,7 +826,38 @@
       <div class="project-info">
         <p class="project-meta">2019 - MOBILE EXPERIENCE - FANTASY</p>
         <h2 class="project-title">Reimagining enterprise travel<br>booking through voice</h2>
-        <p class="project-role">Designed voice-driven flows and interaction patterns for a corporate travel platform.</p>
+        <p class="project-desc">Designed voice-driven flows and interaction patterns for a corporate travel platform.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Senior Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -509,7 +868,38 @@
       <div class="project-info">
         <p class="project-meta">2020 - VISION - FANTASY</p>
         <h2 class="project-title">Designing a five-year vision<br>for Asana</h2>
-        <p class="project-role">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
+        <p class="project-desc">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
+      </div>
+      <div class="project-details">
+        <div class="project-detail">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Lead Designer</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Deliverables</span>
+          <ul class="detail-list detail-list--single">
+            <li>Product strategy</li>
+            <li>User research &amp; interviews</li>
+            <li>Information architecture</li>
+            <li>Interaction design</li>
+            <li>Visual design system</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Tools</span>
+          <span class="detail-value">Figma, FigJam, Notion, ProtoPie, After Effects</span>
+        </div>
+        <div class="project-detail">
+          <span class="detail-label">Team</span>
+          <ul class="detail-list">
+            <li>Maya Chen</li>
+            <li>Tom Becker</li>
+            <li>Priya Nair</li>
+            <li>Luca Romano</li>
+            <li>Sofia García</li>
+          </ul>
+        </div>
       </div>
     </article>
 
@@ -573,6 +963,10 @@
     var ticking = false;
     function update() {
       ticking = false;
+      if (window.innerWidth <= 768) {
+        for (var j = 0; j < media.length; j++) { if (media[j]) media[j].style.opacity = ''; }
+        return;
+      }
       var vh = window.innerHeight || document.documentElement.clientHeight;
       var mid = vh / 2;
       for (var i = 0; i < projects.length; i++) {

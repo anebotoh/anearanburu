@@ -401,31 +401,26 @@
     .hero p.hero-statement { max-width: 100%; }
     .hero-break { display: none; }
     .capabilities { padding: 40px 0 32px; }
-    /* stacked slideshow on smaller screens: text on top, full-width image band below */
+    /* keep the pinned slideshow on mobile too: text pinned near the top,
+       image sticky at the bottom, each panel cross-fading in/out per scroll */
     .hero-inner {
       top: calc(var(--nav-h) + var(--text-top));
       left: clamp(20px, 4vw, 48px); right: clamp(20px, 4vw, 48px);
     }
-    .project { display: flex; flex-direction: column; }
+    .project { display: block; }
     .project-info {
-      position: static;
-      order: 1;
-      top: auto; bottom: auto; left: auto; right: auto;
+      left: clamp(20px, 4vw, 48px);
+      right: clamp(20px, 4vw, 48px);
       max-width: none;
     }
     .project-media {
-      position: static;
-      order: 2;
-      top: auto; bottom: auto; left: auto; right: auto;
-      width: 100%; height: auto;
+      left: clamp(20px, 4vw, 48px);
+      right: clamp(20px, 4vw, 48px);
+      bottom: calc(var(--footer-h) + var(--img-gap));
+      width: auto;
+      height: auto;
       aspect-ratio: 16 / 10;
-      margin-top: 24px;
-    }
-    .project-details {
-      position: static;
-      order: 3;
-      max-width: none;
-      margin-top: 24px;
+      transition: opacity .5s ease;   /* smooth fade in/out, matching the desktop feel */
     }
     .project-title { font-size: 20px; max-width: 100%; }
     .project-desc { max-width: 100%; }

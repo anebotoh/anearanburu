@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinépolis — Case Study · Ane Aranburu</title>
+<meta name="description" content="Cinépolis — a unified cinema digital ecosystem designed by Ane Aranburu at Fantasy. Case study coming soon.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.anearanburu.com/work/cinepolis/">
+<meta property="og:title" content="Cinépolis — Case Study · Ane Aranburu">
+<meta property="og:description" content="Cinépolis — a unified cinema digital ecosystem designed at Fantasy. Case study coming soon.">
+<meta property="og:image" content="https://www.anearanburu.com/social-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cinépolis — Case Study · Ane Aranburu">
+<meta name="twitter:description" content="Cinépolis — a unified cinema digital ecosystem designed at Fantasy. Case study coming soon.">
+<meta name="twitter:image" content="https://www.anearanburu.com/social-preview.jpg">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0C0C0F;
+    --surface: #17171c;
+    --border: #222227;
+    --text: #f0ede8;
+    --body: #b6b3ad;
+    --muted: #8a8a8f;
+    --accent: #E5FF00;
+    --font: 'Schibsted Grotesk', sans-serif;
+    --nav-h: 70px;
+    --margin: 48px;
+    --readw: 680px;
+  }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+
+  /* ---------- NAV ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: flex-start; gap: 40px;
+    padding: 16px var(--margin);
+    height: var(--nav-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .back { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s, gap .2s; }
+  .back:hover { color: var(--text); gap: 12px; }
+  .back .arw { font-size: 20px; line-height: 1; position: relative; top: -1px; }
+  .projnav { display: flex; align-items: baseline; gap: 26px; counter-reset: tab; overflow-x: auto; min-width: 0; scrollbar-width: none; }
+  .projnav::-webkit-scrollbar { display: none; }
+  .projnav a { display: inline-flex; align-items: baseline; white-space: nowrap; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .projnav a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projnav a:hover { color: var(--text); }
+  .projnav a.is-active { color: var(--text); font-weight: 500; }
+  .topbar-left { display: flex; align-items: center; gap: 10px; }
+  .topbar-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
+  .topbar-name:hover { opacity: .7; }
+  .topbar-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
+  .topbar-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; font-weight: 500; transition: color .2s; }
+  .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
+  .nav-toggle { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 28px; height: 28px; padding: 0; background: none; border: none; cursor: pointer; position: relative; z-index: 101; }
+  .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: transform .25s ease, opacity .2s ease; }
+  .nav-toggle.is-active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.is-active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ---------- PROJECT TABS (centered) ---------- */
+  .projtabs { position: sticky; top: var(--nav-h); z-index: 90; background: var(--bg); transition: transform .3s ease; }
+  .projtabs.is-hidden { transform: translateY(-100%); }
+  .projtabs-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; max-width: min(calc(var(--readw) - var(--margin) * 2), calc(100% - var(--margin) * 2)); margin: 0 auto; padding: 5px 0; counter-reset: tab; overflow-x: auto; border-bottom: 1px solid var(--border); }
+  .projtabs a { display: inline-flex; align-items: baseline; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 2px 0; white-space: nowrap; transition: color .2s; }
+  .projtabs a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projtabs a:hover { color: var(--text); }
+  .projtabs a.is-active { color: var(--text); font-weight: 500; }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap { max-width: var(--readw); margin: 0 auto; padding: 0 var(--margin); }
+  .read { max-width: none; }
+  section { padding: clamp(48px, 7vh, 80px) 0; }
+  section + section { position: relative; }
+  section + section::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: min(var(--readw), calc(100% - var(--margin) * 2)); height: 1px; background: var(--border);
+  }
+  section[style*="border-top:none"]::before,
+  section[style*="border-top:none"] + section::before { display: none; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .eyebrow .accent { color: #fff; }
+  h1 { font-weight: 400; letter-spacing: -.02em; font-size: clamp(34px, 5.2vw, 60px); line-height: 1.08; color: #fff; max-width: 16ch; }
+  h2 { font-weight: 400; letter-spacing: -.015em; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; color: #fff; margin-bottom: 24px; max-width: 20ch; }
+  .lead { font-size: clamp(18px, 2vw, 23px); line-height: 1.45; letter-spacing: -.01em; color: var(--text); font-weight: 400; }
+  p.body { font-size: 18px; line-height: 1.7; color: var(--body); }
+  p.body + p.body { margin-top: 22px; }
+  .body a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
+  .body a:hover { text-decoration-color: var(--text); }
+  .fill { color: var(--muted); border-bottom: 1px dashed rgba(255,255,255,.25); font-style: normal; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: 30px; }
+  .hero .lead { margin-top: 28px; max-width: 48ch; color: var(--body); }
+  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+
+  /* ---------- META ---------- */
+  .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding: 36px 0; }
+  .meta-item .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .meta-item .v { font-size: 15px; color: var(--text); line-height: 1.4; }
+
+  /* ---------- SECTION HEADER ---------- */
+  .split { display: block; }
+  .split .sticky { margin-bottom: 8px; }
+
+  /* ---------- IMAGE GALLERY ---------- */
+  .imgstack { display: grid; gap: 20px; margin-top: 8px; width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .imgstack img { width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border); }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .body strong { color: var(--text); font-weight: 500; }
+  em { font-style: italic; color: var(--text); }
+  .sublabel { margin-top: 28px; margin-bottom: 12px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .quote { text-align: left; }
+  .quote p { font-size: clamp(26px, 4vw, 44px); line-height: 1.2; letter-spacing: -.02em; color: #fff; font-weight: 400; max-width: 20ch; }
+  .constraints { list-style: none; margin-top: 8px; display: grid; gap: 14px; }
+  .constraints li { font-size: clamp(20px, 2.6vw, 30px); line-height: 1.2; letter-spacing: -.015em; color: #6f6f75; }
+  .constraints li b { color: var(--text); font-weight: 400; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--border); padding: 28px var(--margin); display: flex; justify-content: space-between; align-items: center; }
+  footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    :root { --margin: 24px; --nav-h: 58px; }
+    .topbar { padding: 12px var(--margin); gap: 20px; }
+    .nav-toggle { display: flex; }
+    .projtabs { position: static; transform: none !important; } .projtabs-inner { max-width: none; justify-content: flex-start; gap: 24px; padding: 5px var(--margin); -webkit-overflow-scrolling: touch; scrollbar-width: none; } .projtabs-inner::-webkit-scrollbar { display: none; } .projtabs a { flex: 0 0 auto; } .imgstack, .hero-media { width: auto; margin-left: 0; transform: none; }
+    .topbar-links { position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; z-index: 90; background: var(--bg); margin: 0; flex-direction: column; align-items: flex-start; gap: 4px; padding: 24px 24px 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .25s ease, visibility .25s ease; }
+    .topbar-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .topbar-links a { font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none; padding: 8px 0; color: rgba(255,255,255,.4); }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) { :root { --margin: 20px; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="/home/"><span class="arw">‹</span> Home</a>
+  <nav class="projnav" aria-label="Case studies">
+    <a href="/work/output-creator/">Output Creator</a>
+    <a href="/work/ipondr/">iPondr</a>
+    <a href="/work/nmaahc/">NMAAHC</a>
+    <a href="/work/cinepolis/" class="is-active">Cinépolis</a>
+    <a href="/work/embibe/">Embibe</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="accent">Fantasy</span> — 2023 · Digital Ecosystem</p>
+    <h1>Creating a unified cinema experience across digital touchpoints</h1>
+    <p class="lead">A redesign of Cinépolis's website, mobile app, and in-cinema kiosks — for one of the largest movie-theatre chains in the world. Led at Fantasy, in Spanish and English, all the way up to presenting to the CEO.</p>
+    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/cinepolis-01.jpg" src="/videos/02-Cinepolis.mp4"></video></div>
+  </div>
+</section>
+
+<!-- META -->
+<section style="padding-top:0;padding-bottom:0;border-top:none;">
+  <div class="wrap">
+    <div class="meta">
+      <div class="meta-item"><div class="k">Role</div><div class="v">Lead Designer <span style="color:var(--muted)">· at Fantasy</span></div></div>
+      <div class="meta-item"><div class="k">Timeline</div><div class="v">2022–2023 · MVP</div></div>
+      <div class="meta-item"><div class="k">Type</div><div class="v">Web · App · Kiosks</div></div>
+      <div class="meta-item"><div class="k">Client</div><div class="v">Cinépolis</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 BACKGROUND -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">01 — Background</p>
+      <h2>One of the biggest chains in the world</h2>
+    </div>
+    <div class="read">
+      <p class="body">Cinépolis is a Mexican and international movie-theatre chain — the biggest in Mexico (427 theatres across 97 cities), the largest in Latin America, and one of the largest anywhere, with cinemas in Spain, India, Indonesia, Oman, Bahrain, Saudi Arabia, the UAE, and the US.</p>
+      <p class="body">Fantasy partnered with them to redesign their <strong>website, mobile app, and in-cinema kiosks</strong>. And it's really two businesses in one — movies and food — so the experience has to sell both.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-02.jpg" alt="Cinépolis — 2" loading="lazy"></div></div>
+</section>
+
+<!-- 02 CHALLENGES -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">02 — Challenges</p>
+      <h2>Designing inside a locked box</h2>
+    </div>
+    <div class="read">
+      <p class="body">The parameters were unusually tight. A brand we couldn't touch, real technology limits, and a marketing team that owned the existing UI. Ads were non-negotiable — they're the main revenue on the site. And we were reminded, roughly ten times, that “this is a UX project.” We could build prototypes the client found genuinely interesting, but not ones they had the ability to implement.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-03.jpg" alt="Cinépolis — 3" loading="lazy"></div></div>
+</section>
+
+<!-- CONSTRAINTS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The brief, in their words</p>
+    <ul class="constraints">
+      <li>You can't change the colors.</li>
+      <li>You can't change the typography.</li>
+      <li>You can't touch the brand.</li>
+      <li>You can't edit the posters.</li>
+      <li>We need ads.</li>
+      <li>You can't use motion — it won't load.</li>
+      <li><b>“This is a UX project. UI doesn't matter.”</b></li>
+    </ul>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-04.jpg" alt="Cinépolis — 4" loading="lazy"></div></div>
+</section>
+
+<!-- 03 PROCESS -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">03 — Process</p>
+      <h2>In two languages, up to the CEO</h2>
+    </div>
+    <div class="read">
+      <p class="body">I led the design in both Spanish and English. We were lucky enough to travel to Mexico for collaboration sessions with the client and to present directly to the company's CEO.</p>
+      <p class="body">There were no neat rounds — it was one continuous iteration. The hardest part wasn't the work; it was the pace of decisions on the client side, which were slow to land. <span class="fill">[ Flag: softened from your note about the client being “indecisive” — confirm how candid you want to be about a named client. ]</span></p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-05.jpg" alt="Cinépolis — 5" loading="lazy"></div></div>
+</section>
+
+<!-- 04 WORK -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">04 — Work</p>
+      <h2>As little design as possible</h2>
+    </div>
+    <div class="read">
+      <p class="body">The visual approach came from the most minimal expression of film itself — the <strong>frame</strong>. As little design as possible, built on the brand's existing typeface, <strong>Montserrat</strong> (Bold &amp; Extrabold). Every screen had to feel branded while loading fast and staying legible.</p>
+      <p class="body"><strong>Branded ads.</strong> Ads are Cinépolis's main revenue on the web, so instead of fighting them we built a modular ad system that followed the site's visual style — plus dynamic heroes to feature big partnerships.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-06.jpg" alt="Cinépolis — 6" loading="lazy"></div></div>
+</section>
+
+<!-- 04 WORK cont -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">04 — Work</p>
+      <h2>Two businesses, one flow</h2>
+    </div>
+    <div class="read">
+      <p class="body"><strong>The purchase flow.</strong> Select a cinema — where download time and theatre-info sync were critical, so the design stayed as simple as possible — then showtime, seat &amp; ticket selection, cart, and checkout. The cart alone had four layouts, from a desktop side-panel to mobile.</p>
+      <p class="body"><strong>Promotions.</strong> We used purple across all promotional messaging so it read as its own layer.</p>
+      <p class="body"><strong>Food &amp; drinks.</strong> Food is a bigger business than the movies — every “restaurant” has a different owner and its own inventory — so it needed its own visual style within the same system.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-07.jpg" alt="Cinépolis — 7" loading="lazy"></div></div>
+</section>
+
+<!-- 05 CONCLUSIONS -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">05 — Conclusions</p>
+      <h2>Learning to decide</h2>
+    </div>
+    <div class="read">
+      <p class="body">The start was rough because there were no empowered decision-makers in the room — nothing got decided, and the project drifted. My biggest takeaway: <strong>learn to make decisions and stick to them.</strong> Overly polite teams stall; someone has to be willing to choose. As designers we can show character and decisiveness because we know what we're doing — while staying honest that we'll make mistakes.</p>
+      <p class="body">My clearest craft failure was language: we called it a <em>“design system”</em> when it was really a re-design, without giving the team the time to actually build one. The label set an expectation we couldn't meet. <span class="fill">[ Flag: your notes also mentioned the client team's seniority — I left that out; add it back if you want. ]</span></p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-08.jpg" alt="Cinépolis — 8" loading="lazy"></div></div>
+</section>
+
+<!-- CLOSING -->
+<section>
+  <div class="wrap">
+    <div class="read">
+      <p class="body">If I started over, I'd push for decisions earlier, name the project honestly, and protect the time to do each part properly. The constraints were never really the problem — the indecision was. And presenting in person, in Mexico, to the CEO taught me as much about reading a room as about design.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 40px;">
+  <div class="wrap"><div class="imgstack"><img src="images/cinepolis-09.jpg" alt="Cinépolis — 9" loading="lazy"></div></div>
+</section>
+
+<footer>
+  <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
+  <span class="footer-right">2026 &copy;</span>
+</footer>
+
+<script>
+  (function () {
+    var el = document.getElementById('ny-clock');
+    if (!el) return;
+    function tick() { el.textContent = '· ' + new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' }).format(new Date()); }
+    tick(); setInterval(tick, 30000);
+  })();
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.topbar-links');
+    if (!toggle || !menu) return;
+    function setOpen(open) { menu.classList.toggle('is-open', open); toggle.classList.toggle('is-active', open); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    toggle.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
+    Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+  // Secondary (project) nav: hide on scroll up, reveal on scroll down.
+  (function () {
+    var sub = document.querySelector('.projtabs');
+    if (!sub) return;
+    var lastY = window.scrollY, ticking = false;
+    function update() {
+      var y = window.scrollY;
+      if (y <= 80) { sub.classList.remove('is-hidden'); }
+      else if (y > lastY + 2) { sub.classList.add('is-hidden'); }
+      else if (y < lastY - 2) { sub.classList.remove('is-hidden'); }
+      lastY = y; ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

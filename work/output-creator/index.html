@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Output Creator — Case Study · Ane Aranburu</title>
+<meta name="description" content="A two-and-a-half-year redesign of Output Creator, led end to end by Ane Aranburu as Lead Product Designer — turning a pro-built tool into a play-first app for beginners, through a Yamaha partnership and demos at NAMM and SXSW.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.anearanburu.com/work/output-creator/">
+<meta property="og:title" content="Output Creator — Case Study · Ane Aranburu">
+<meta property="og:description" content="A two-and-a-half-year redesign of Output Creator, led end to end as Lead Product Designer.">
+<meta property="og:image" content="https://www.anearanburu.com/social-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Output Creator — Case Study · Ane Aranburu">
+<meta name="twitter:description" content="A two-and-a-half-year redesign of Output Creator, led end to end as Lead Product Designer.">
+<meta name="twitter:image" content="https://www.anearanburu.com/social-preview.jpg">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0C0C0F;
+    --surface: #17171c;
+    --border: #222227;
+    --text: #f0ede8;
+    --body: #b6b3ad;      /* comfortable long-read grey, passes AA on --bg */
+    --muted: #8a8a8f;
+    --accent: #E5FF00;
+    --font: 'Schibsted Grotesk', sans-serif;
+    --nav-h: 70px;
+    --margin: 48px;
+    --maxw: 1120px;
+    --readw: 680px;
+  }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  /* ---------- NAV (case study: back button + centered project switcher) ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: flex-start; gap: 40px;
+    padding: 16px var(--margin);
+    height: var(--nav-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .back { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s, gap .2s; }
+  .back:hover { color: var(--text); gap: 12px; }
+  .back .arw { font-size: 20px; line-height: 1; position: relative; top: -1px; }
+  .projnav { display: flex; align-items: baseline; gap: 26px; counter-reset: tab; overflow-x: auto; min-width: 0; scrollbar-width: none; }
+  .projnav::-webkit-scrollbar { display: none; }
+  .projnav a { display: inline-flex; align-items: baseline; white-space: nowrap; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .projnav a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projnav a:hover { color: var(--text); }
+  .projnav a.is-active { color: var(--text); font-weight: 500; }
+  .topbar-left { display: flex; align-items: center; gap: 10px; }
+  .topbar-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
+  .topbar-name:hover { opacity: .7; }
+  .topbar-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
+  .topbar-links a {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,.3); text-decoration: none;
+    padding: 8px 16px; border-radius: 100px; font-weight: 500; transition: color .2s;
+  }
+  .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 28px; height: 28px; padding: 0;
+    background: none; border: none; cursor: pointer; position: relative; z-index: 101;
+  }
+  .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: transform .25s ease, opacity .2s ease; }
+  .nav-toggle.is-active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.is-active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ---------- PROJECT TABS (centered) ---------- */
+  .projtabs { position: sticky; top: var(--nav-h); z-index: 90; background: var(--bg); transition: transform .3s ease; }
+  .projtabs.is-hidden { transform: translateY(-100%); }
+  .projtabs-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; max-width: min(calc(var(--readw) - var(--margin) * 2), calc(100% - var(--margin) * 2)); margin: 0 auto; padding: 5px 0; counter-reset: tab; overflow-x: auto; border-bottom: 1px solid var(--border); }
+  .projtabs a { display: inline-flex; align-items: baseline; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 2px 0; white-space: nowrap; transition: color .2s; }
+  .projtabs a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projtabs a:hover { color: var(--text); }
+  .projtabs a.is-active { color: var(--text); font-weight: 500; }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap { max-width: var(--readw); margin: 0 auto; padding: 0 var(--margin); }
+  .read { max-width: none; }
+  section { padding: clamp(48px, 7vh, 80px) 0; }
+  /* Dividers are constrained to the reading-column width and centered, so they align with the text rather than spanning the full page. */
+  section + section { position: relative; }
+  section + section::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: min(var(--readw), calc(100% - var(--margin) * 2)); height: 1px; background: var(--border);
+  }
+  section[style*="border-top:none"]::before,
+  section[style*="border-top:none"] + section::before { display: none; }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .eyebrow .accent { color: #fff; }
+
+  h1 { font-weight: 400; letter-spacing: -.02em; font-size: clamp(34px, 5.2vw, 60px); line-height: 1.08; color: #fff; max-width: 16ch; }
+  h2 { font-weight: 400; letter-spacing: -.015em; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; color: #fff; margin-bottom: 24px; max-width: 20ch; }
+  h3 { font-weight: 500; letter-spacing: -.01em; font-size: 19px; line-height: 1.3; color: var(--text); }
+  .lead { font-size: clamp(18px, 2vw, 23px); line-height: 1.45; letter-spacing: -.01em; color: var(--text); font-weight: 400; }
+  p.body { font-size: 18px; line-height: 1.7; color: var(--body); }
+  p.body + p.body { margin-top: 22px; }
+  .body a, .body strong { color: var(--text); }
+  .body strong { font-weight: 500; }
+  .body a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
+  .body a:hover { text-decoration-color: var(--text); }
+  em { font-style: italic; color: var(--text); }
+
+  .fill { color: var(--muted); border-bottom: 1px dashed rgba(255,255,255,.25); font-style: normal; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: 30px; }
+  .hero .lead { margin-top: 28px; max-width: 48ch; color: var(--body); }
+  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .hero-media video, .media-frame video, .media-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ---------- META ---------- */
+  .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding: 36px 0; }
+  .meta-item .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .meta-item .v { font-size: 15px; color: var(--text); line-height: 1.4; }
+
+  /* ---------- SECTION HEADER (single column, article style) ---------- */
+  .split { display: block; }
+  .split .sticky { position: static; margin-bottom: 8px; }
+
+  /* ---------- LISTS ---------- */
+  .taglist { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .tag { font-size: 13px; color: var(--text); border: 1px solid var(--border); border-radius: 100px; padding: 8px 16px; }
+  .sublabel { margin-top: 28px; margin-bottom: 12px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* ---------- PHASES ---------- */
+  .steps { display: grid; gap: 8px; }
+  .step { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid var(--border); }
+  .step:first-child { border-top: none; }
+  .step .num { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+  .step h3 { margin-bottom: 10px; }
+  .step p { font-size: 16px; line-height: 1.6; color: var(--body); }
+
+  /* ---------- DECISIONS ---------- */
+  .decisions { display: grid; gap: 20px; margin-top: 8px; }
+  .decision { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(24px, 3vw, 40px); }
+  .decision .eyebrow { margin-bottom: 14px; }
+  .decision h3 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 400; letter-spacing: -.015em; color: #fff; margin-bottom: 18px; line-height: 1.2; }
+  .decision p.body { font-size: 16px; }
+  .decision .call { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 16px; line-height: 1.55; color: var(--text); }
+  .decision .call b { display: block; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 11px; margin-bottom: 8px; }
+  .decisions.plain { gap: 0; }
+  .decisions.plain .decision { background: none; border: none; border-radius: 0; padding: 36px 0; border-top: 1px solid var(--border); }
+  .decisions.plain .decision:first-child { border-top: none; padding-top: 8px; }
+
+  /* ---------- PULL QUOTE ---------- */
+  .quote { text-align: left; }
+  .quote p { font-size: clamp(26px, 4vw, 44px); line-height: 1.2; letter-spacing: -.02em; color: #fff; font-weight: 400; max-width: 20ch; }
+  .quote .attr { margin-top: 24px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); max-width: none; }
+
+  /* ---------- IRONIES ---------- */
+  .irony-list { list-style: none; margin-top: 8px; }
+  .irony { padding: 32px 0; border-top: 1px solid var(--border); }
+  .irony:first-child { border-top: none; padding-top: 8px; }
+  .irony-n { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .irony-t { font-size: clamp(22px, 3vw, 32px); line-height: 1.22; letter-spacing: -.015em; color: #fff; font-weight: 400; max-width: 24ch; }
+  .irony-d { margin-top: 18px; font-size: 17px; line-height: 1.65; color: var(--body); }
+
+  /* ---------- AUDIENCE ---------- */
+  .cols3 { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 8px; }
+  .persona { border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; }
+  .persona h3 { margin-bottom: 12px; }
+  .persona p { font-size: 15px; line-height: 1.6; color: var(--body); }
+
+  /* ---------- GALLERY ---------- */
+  .gallery { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 8px; }
+  .media-frame { border-radius: 16px; overflow: hidden; background: var(--surface); aspect-ratio: 16/10; border: 1px solid var(--border); position: relative; }
+  .media-frame.wide { grid-column: 1 / -1; aspect-ratio: 16/8; }
+  .media-frame .placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 24px; }
+
+  /* ---------- FIGURES (wider than the reading column) ---------- */
+  figure { margin: 0; }
+  .fig { margin-top: 40px; }
+  .fig img { width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); }
+  .fig figcaption { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+  .fig-bleed { width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .fig-bleed figcaption { max-width: var(--readw); }
+
+  /* ---------- METRICS ---------- */
+  .metrics { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 8px; }
+  .metric { border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; }
+  .metric .big { font-size: clamp(30px, 4vw, 42px); font-weight: 400; letter-spacing: -.02em; color: #fff; line-height: 1; }
+  .metric .lbl { font-size: 14px; color: var(--body); margin-top: 14px; line-height: 1.4; }
+
+  /* ---------- CTA ---------- */
+  .cta { text-align: center; }
+  .cta h2 { margin: 0 auto 28px; max-width: 18ch; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #0C0C0F; font-size: 15px; font-weight: 600; letter-spacing: -.01em; padding: 15px 26px; border-radius: 100px; text-decoration: none; transition: transform .2s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 15px; font-weight: 500; text-decoration: none; padding: 15px 4px; transition: opacity .2s; }
+  .btn-ghost:hover { opacity: .7; }
+  .cta-row { display: flex; gap: 28px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .cta-divider { width: 1px; height: 30px; background: var(--border); }
+
+  /* ---------- IMAGE GALLERY ---------- */
+  .imgstack { display: grid; gap: 20px; margin-top: 8px; width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .imgstack img { width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border); }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--border); padding: 28px var(--margin); display: flex; justify-content: space-between; align-items: center; }
+  footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .split { grid-template-columns: 1fr; gap: 24px; }
+    .split .sticky { position: static; }
+    .meta { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .cols3 { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    :root { --margin: 24px; --nav-h: 58px; }
+    .topbar { padding: 12px var(--margin); gap: 20px; }
+    .nav-toggle { display: flex; }
+    .projtabs { position: static; transform: none !important; } .projtabs-inner { max-width: none; justify-content: flex-start; gap: 24px; padding: 5px var(--margin); -webkit-overflow-scrolling: touch; scrollbar-width: none; } .projtabs-inner::-webkit-scrollbar { display: none; } .projtabs a { flex: 0 0 auto; } .imgstack, .hero-media { width: auto; margin-left: 0; transform: none; }
+    .topbar-links {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      z-index: 90; background: var(--bg); margin: 0;
+      flex-direction: column; align-items: flex-start; gap: 4px; padding: 24px 24px 0;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .topbar-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .topbar-links a { font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none; padding: 8px 0; color: rgba(255,255,255,.4); }
+    .gallery { grid-template-columns: 1fr; }
+    .meta { grid-template-columns: 1fr 1fr; }
+    .step { grid-template-columns: 1fr; gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    :root { --margin: 20px; }
+    .cta-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="/home/"><span class="arw">‹</span> Home</a>
+  <nav class="projnav" aria-label="Case studies">
+    <a href="/work/output-creator/" class="is-active">Output Creator</a>
+    <a href="/work/ipondr/">iPondr</a>
+    <a href="/work/nmaahc/">NMAAHC</a>
+    <a href="/work/cinepolis/">Cinépolis</a>
+    <a href="/work/embibe/">Embibe</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="accent">Output</span> — 2024–2026 · Desktop App</p>
+    <h1>Rebuilding the creative core of Output Creator</h1>
+    <p class="lead">A two-and-a-half-year redesign — rebuilt twice, 2,000+ screens — turning a tool built by music-production pros that no one could use into a play-first app for beginners. Led end to end as Lead Product Designer, through a Yamaha partnership and demos at NAMM and SXSW.</p>
+<div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/creator-01.jpg" src="/videos/01-Creator%202.0.mov"></video></div>
+  </div>
+</section>
+
+<!-- META -->
+<section style="padding-top:0;padding-bottom:0;border-top:none;">
+  <div class="wrap">
+    <div class="meta">
+      <div class="meta-item"><div class="k">Role</div><div class="v">Lead Product Designer</div></div>
+      <div class="meta-item"><div class="k">Timeline</div><div class="v">2.5 years, of a 4-year project</div></div>
+      <div class="meta-item"><div class="k">Scope</div><div class="v">2 full redesigns · 2,000+ screens</div></div>
+      <div class="meta-item"><div class="k">Success metrics</div><div class="v">Partnership with Yamaha · NAMM · SXSW</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROJECT -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">01 — The project</p>
+      <h2>Redesigning a creative workflow</h2>
+    </div>
+    <div class="read">
+      <p class="lead" style="margin-bottom:28px;">Output Creator is a desktop app that lets musicians create through sound exploration and play — record instruments or vocals, build original songs from a responsive, royalty-free sound palette, then share or export in a click.</p>
+      <p class="body">I joined in January 2024. Over two and a half years I redesigned the app twice, drew more than <strong>2,000 screens</strong>, tested countless prototypes — and became genuinely annoying to friends and family, running ideas past anyone who would listen.</p>
+      <p class="body">The thinking underneath the 1.5 — the version that shipped — was solid. But somewhere along the way, competing opinions, designing by committee, and no user testing meant it didn't land with its audience. The company had spent more than a year building it. There was no product designer on the team, and it was built by pro music-production engineers for an audience of beginners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 02 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-02.jpg" alt="Output Creator — 2" loading="lazy"></div></div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <div class="wrap">
+    <p>“It doesn't matter if it looks cool if no one understands it.”</p>
+    <p class="attr">Me, to people who just hired me from a cool agency</p>
+  </div>
+</section>
+
+<!-- IMG 16 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-16.jpg" alt="Output Creator — 16" loading="lazy"></div></div>
+</section>
+
+<!-- ROLE -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">02 — My role</p>
+      <h2>Ignorance is bliss</h2>
+    </div>
+    <div class="read">
+      <p class="body">I was hired partly <em>because</em> I didn't know music production. I'm a lifelong music junkie and studied classical music when I was younger, but I'd downloaded Ableton three or four times and given up every time. On this project, not knowing was one of my best assets — the people who built it knew it too well to see why no one else could use it.</p>
+      <p class="body">As Lead Product Designer I owned the product design end to end — from workflow architecture and interaction design through the visual system and microinteractions. I set the design direction, ran critiques, and drove alignment across a cross-functional squad, reporting into Neil Halimen (VP Creative) and partnering closely with Daniel Lepik on 3D.</p>
+      <p class="body">A year of decisions had accumulated with no product-design lens. So I spent the first month stripping them back and building a point of view — cataloguing the usability, visual-design, interaction, and information-architecture problems one by one. Then we got everyone in a room, in person, to agree on a direction before I designed a single new screen.</p>
+      <p class="sublabel">What I owned</p>
+      <div class="taglist">
+        <span class="tag">Product strategy</span>
+        <span class="tag">Information architecture</span>
+        <span class="tag">Interaction design</span>
+        <span class="tag">Visual design system</span>
+        <span class="tag">Prototyping &amp; handoff</span>
+        <span class="tag">User research &amp; interviews</span>
+      </div>
+      <p class="sublabel">Tools &amp; process</p>
+      <p class="body">The process itself kept changing across the two years, as we adopted AI tools along the way. What started in <strong>Figma</strong> ended up in <strong>Cursor</strong> — I could write PR tickets and take on front-end polish work myself, getting the final product to a more finished, polished place without spending developer time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 13 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-13.jpg" alt="Output Creator — 13" loading="lazy"></div></div>
+</section>
+
+<!-- THE FRAMEWORK -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">The framework</p>
+      <h2>Four areas, one paradigm</h2>
+    </div>
+    <div class="read">
+      <p class="body">Early in the UX process we defined the app around four clear areas — and settling them from the very beginning shaped everything that came after.</p>
+      <ul class="bullets">
+        <li><strong>The toolbar</strong> — the core actions, always within reach.</li>
+        <li><strong>The minimap</strong> — a bird's-eye view of the whole song.</li>
+        <li><strong>The sidebar</strong> — how you move through and navigate the app.</li>
+        <li><strong>The arrangement</strong> — where the song actually comes together.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 03 — navigational framework diagram -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-03.jpg" alt="Output Creator — the app's navigational framework: toolbar, minimap, sidebar and arrangement" loading="lazy"></div></div>
+</section>
+
+<!-- FRAMEWORK — build each area -->
+<section>
+  <div class="wrap"><div class="read">
+    <p class="body">Fixing those four zones up front meant we could build each one on its own, one at a time.</p>
+  </div></div>
+</section>
+
+<!-- IMG 11 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-11.jpg" alt="Output Creator — 11" loading="lazy"></div></div>
+</section>
+
+<!-- FRAMEWORK — the interaction paradigm -->
+<section>
+  <div class="wrap"><div class="read">
+    <p class="body">And with the structure settled, the real design work became the <em>interaction paradigm between them</em> — the connective tissue that makes the app feel fun and alive, not just functional.</p>
+  </div></div>
+</section>
+
+<!-- IMG 12 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-12.jpg" alt="Output Creator — 12" loading="lazy"></div></div>
+</section>
+
+<!-- LEARNING BY DOING & TEAMWORK -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Learning by doing &amp; teamwork</p>
+    <h2 style="margin-bottom:24px;">Being your own experiment</h2>
+    <div class="read">
+      <p class="body">Being a beginner in music production while designing a tool for beginners meant I was basically my own experiment. I was learning as I designed — asking every dumb question you can think of.</p>
+      <p class="body">The team were seasoned musicians who'd been building tools for pros for years — so the first version quietly assumed a beginner just needs <em>less</em>, when really they need something <em>different</em>. And making something easy is far harder than it sounds: dumb it down and you strip out the essence; leave it whole and no one can get in. A lot of the work was long conversations reframing what it even means to <em>learn</em> to make music — and resisting the easy out of “this'll be enough for a beginner.”</p>
+      <p class="body">Being the actual beginner in the room forced everyone to hold that lens. I was learning on two fronts at once — decoding what was happening on the screen, and decoding the craft underneath it: what a song actually needs, what the practical process of building one looks like, what to show first and what to leave out. Less music theory, more practicality — what makes sense, what doesn't, and why.</p>
+      <p class="body">And that's where teamwork mattered. Coming from the agency world, I learned at Output what collaboration actually means. Everyone here has their own expertise — deeply skilled, and genuinely good people — and they were patient and generous about explaining everything, from the complex concepts to the decisions made long before I arrived. I took the dumb-question role gladly, and I learned an enormous amount — including how to learn, through them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 04 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-04.jpg" alt="Output Creator — 4" loading="lazy"></div></div>
+</section>
+
+<!-- APPROACH / PHASES -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">03 — The approach</p>
+      <h2>Advocating for the user</h2>
+    </div>
+    <div class="read">
+      <p class="body">The approach was less a plan than a stance: advocate for the user, let go of what we thought we knew, and test it — learning along the way.</p>
+      <p class="body">The product was an evolution. We couldn't have arrived at the end result from the beginning; it was never a case of “I thought about this, and this is the design.” It was continuous learning. What we did have was strong raw material — a great sound-sample library, solid engines, and genuinely smart people on the team. The missing piece was the user's perspective: how this actually had to be used by a beginner.</p>
+      <p class="body">Early on we pictured a young audience — someone with no patience, born with computers, who takes everything for granted. That's not quite who we ended up serving, but designing for them forced the right questions. Because in the end it was less about features and more about understanding what makes a song a song: what someone needs to grasp to start building one, map it out, and let the technology <em>help</em> them — instead of making it for them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 05 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-05.jpg" alt="Output Creator — 5" loading="lazy"></div></div>
+</section>
+
+<!-- KEY DECISIONS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">04 — Key decisions</p>
+    <h2 style="margin-bottom:40px;">The calls that shaped the product</h2>
+    <div class="decisions">
+
+      <article class="decision">
+        <p class="eyebrow">Decision 01</p>
+        <h3>“Looking good” with no depth wasn't helping</h3>
+        <p class="body">My biggest design enemy was a crisp 3D asset with no UX behind it. Stakeholders saw a cool 3D image, called it “cool,” and wanted it big on the screen — while the hierarchy that actually matters (typography, color, size) was off, and you couldn't tell what to do. Richer visuals are almost never the better solution; the details matter more than being obvious.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Decision 02</p>
+        <h3>A good onboarding won't fix a UX problem</h3>
+        <p class="body">When I joined, the team was “improving the onboarding” to fix retention — our metric was first-two-day retention. We tried prompting (“what do you want to create?”), sound “starters,” and idea starters. The learning: beginners don't know what to prompt. They'd type three words, usually lifted from the examples we showed. Asking a beginner “what do you want?” doesn't help — you have to give them a framework that's easy to understand and fun to use. And making an app “smart” is far harder than it sounds; our smart-composition experiments proved it.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Decision 03</p>
+        <h3>Get to the magic moment as fast as possible</h3>
+        <p class="body">We realized the first magic moment was the instant you layered two sounds and a vibe appeared. The whole job was getting people there sooner. We built <em>song ideas</em> — a modal that mixed a few sounds into an idea you could drop onto the timeline. Gabriel, one of our back-end engineers, wrote an algorithm to match complementary sounds — and the trick was to make it <em>imperfect</em>. On a 1–100 scale, the sweet spot was 35. At 99% the song was basically made for you, and that was boring. Imperfection left room to play.</p>
+        <p class="call"><b>Why it worked</b>There's a difference between making something easy and making it feel like it's yours. The imperfection is what made it feel like yours.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Decision 04</p>
+        <h3>From instrument categories to sound functions</h3>
+        <p class="body">One of the decisions I'm proudest of: we changed the IA from instrument categories to sound-<em>function</em> categories. Instrument categories quietly told a beginner they had to already know something — an instrument, a genre, a sound type — before they could start. Organizing by what a sound <em>does</em> let anyone begin, no vocabulary required.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Decision 05</p>
+        <h3>No sound titles — the ear as a guide</h3>
+        <p class="body">We went back and forth on whether to show sample names at all. My instinct was clean, scannable lists with solid IA. The PM was certain we should lead with sound, not names, so people build by ear instead of reading. He was right — and I'll say so plainly: his call was better than mine. Leading with sound made the app more fun and easier for every audience.</p>
+        <p class="call"><b>The lesson</b>Leading well includes knowing when someone else's call beats yours — and getting out of its way.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Decision 06</p>
+        <h3>Starters became dots</h3>
+        <p class="body">Instead of loading long lists of sounds per collection, we grouped them by sound type and surfaced them as <strong>dots</strong> on the first screen — a way to start an idea or a section, not the entire workflow at once. Paired with the one rule that held everything together — <em>color means sound</em> — the first screen went from intimidating to inviting.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- IMG 06 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-06.jpg" alt="Output Creator — 6" loading="lazy"></div></div>
+</section>
+
+<!-- AUDIENCE -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">05 — The audience</p>
+    <h2 style="margin-bottom:24px;">One app, three musicians</h2>
+    <div class="read">
+      <p class="body">Creator has always served three kinds of musician — but who we designed <em>for first</em> changed over the course of the project. The <strong>beginner</strong> needs it to be easy enough to build a song and gain confidence with the language of music. The <strong>instrumentalist</strong> wants to record in seconds and have the palette match their take. And the <strong>pro</strong> just needs to sketch an idea fast and export stems into their own DAW.</p>
+      <p class="body">At the very beginning, we focused almost entirely on the beginner. About a year and a half in, a partnership with Yamaha shifted the emphasis — their audience is full of instrumentalists, so the target moved toward musicians who already play but are new to producing. That's what the latest version responds to.</p>
+      <p class="body">None of that was a one-time decision — the audience kept moving with the business, and we kept testing it. We interviewed people constantly, checking three things at once: whether there was real product–market fit, whether the thing was actually usable, and whether what we were trying to communicate through the design was landing the way we intended.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 07 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-07.jpg" alt="Output Creator — 7" loading="lazy"></div></div>
+</section>
+
+<!-- QUOTE 2 -->
+<section class="quote">
+  <div class="wrap">
+    <p>Perfection made it boring.</p>
+    <p class="attr">On tuning the sound-matching algorithm to 35 out of 100</p>
+  </div>
+</section>
+
+<!-- IMG 15 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-15.jpg" alt="Output Creator — 15" loading="lazy"></div></div>
+</section>
+
+<!-- LEADERSHIP -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">07 — Leadership &amp; collaboration</p>
+      <h2>Reducing friction across the org</h2>
+    </div>
+    <div class="read">
+      <p class="body">Design leadership here was as much about the organization as the screens. A lot of the job was undoing inherited decisions and working around a rigid back-end IA — early on the app had to follow the broken logic of the system it fed from, and I had to earn the room to break those rules and build on top of them — all while the brand was mid-rework and the product was in constant discovery.</p>
+      <p class="body">I leaned on AI throughout: prototyping concepts and mash-ups, pressure-testing workflow decisions, and shipping front-end edits in <strong>Cursor</strong>. And I helped carry the work into the world — presenting and demoing at <strong>NAMM</strong> and <strong>SXSW</strong> with <a href="https://yamahacreators.com/" target="_blank" rel="noopener">Yamaha</a>, watching strangers use the app, have fun with it, and show us exactly where it broke.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 08 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-08.jpg" alt="Output Creator — 8" loading="lazy"></div></div>
+</section>
+
+<!-- THREE IRONIES -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Three unexpected ironies</p>
+    <ol class="irony-list">
+      <li class="irony">
+        <span class="irony-n">Irony 01</span>
+        <p class="irony-t">Design vs. Design</p>
+        <p class="irony-d">Just because something looks crisp doesn't mean it's understandable. The 1.0 leaned on crisp 3D assets that made the product look shiny and finished. But the moment you needed to actually understand it — how to navigate, how to link ideas — it fell apart, mostly because the visual hierarchy was working against the task. Those high-fidelity assets pulled focus from the core experience and made simply getting to the sounds harder. It looked resolved, and that was exactly the problem.</p>
+      </li>
+      <li class="irony">
+        <span class="irony-n">Irony 02</span>
+        <p class="irony-t">Perfect sounds made it boring.</p>
+        <p class="irony-d">We tested a lot of variables and algorithms for matching sounds, and kept finding the same thing: the closer the match got to perfect, the more boring it felt — the song was basically made for you. We landed on a randomized approach we could tune, and dialed the parameters to a sweet spot where the results stayed surprising and the app became genuinely fun to use.</p>
+      </li>
+      <li class="irony">
+        <span class="irony-n">Irony 03</span>
+        <p class="irony-t">Lists help you navigate — but taking the typography away set it free.</p>
+        <p class="irony-d">We started out wanting long lists of samples and categories. The big fight was about removing the titles from the sounds — so people wouldn't know what they were listening to. But that constraint became the whole concept of the app: instead of reading labels and leaning on categories, you use your ears and match sounds. Losing the words is what made it feel like music, not a database.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- IMG 09 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-09.jpg" alt="Output Creator — 9" loading="lazy"></div></div>
+</section>
+
+<!-- REFLECTION -->
+<section>
+  <div class="wrap split">
+    <div class="sticky">
+      <p class="eyebrow">08 — What I learned</p>
+      <h2>Designing for something invisible</h2>
+    </div>
+    <div class="read">
+      <p class="body">Music is invisible. I was designing for abstract meaning — for the conversation between a piece of technology and a musician — constantly deciding how much the computer should do for you, and what creativity even means for a beginner. How do you encourage someone without doing it all for them? (At one point the honest question on the table was literally “how do you manage silence?” — we copy-pasted silence.)</p>
+      <p class="body">A lot of the value was getting paid to ask the dumb questions with no shame: <em>what does “intuitive” actually mean? what makes a design “smart”?</em> Nothing was ever finished — it was continuous discovery. Set a vision, form a hypothesis, test it, fail, learn, repeat.</p>
+      <p class="body">And I think the truest measure of Creator is what happens <em>after</em> it. It's a place to start, gain confidence, and graduate — to more advanced tools, to Output's other products, or, through Yamaha's program for instrumentalists, to a real path into producing your own music. It opens the door and points you somewhere good.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMG 14 -->
+<section style="border-top:none;padding:8px 0 0;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-14.jpg" alt="Output Creator — 14" loading="lazy"></div></div>
+</section>
+
+<!-- OUTCOMES -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">09 — Impact</p>
+    <h2 style="margin-bottom:40px;">What changed</h2>
+    <div class="decisions plain">
+
+      <article class="decision">
+        <p class="eyebrow">Impact 01</p>
+        <h3>Aligning builders and stakeholders behind a new audience</h3>
+        <p class="body">The company had built its tools for pros and now wanted to open a beginners' market — which raised a real fear about how that would land with existing customers. A lot of the work was getting everyone, builders and stakeholders alike, aligned and genuinely agreeing on what we were building. That alignment took enormous effort, and it's what let the product move forward.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Impact 02</p>
+        <h3>A partnership that positioned the product</h3>
+        <p class="body">The work earned a partnership with Yamaha — putting Output and Creator in the company of a legendary, globally trusted brand. They invited us to present and demo Creator at NAMM and SXSW, inside their own offering: an endorsement that told the market Creator was to be taken seriously.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Impact 03</p>
+        <h3>A tool that's easy, fun, and builds confidence</h3>
+        <p class="body">Above all, the outcome is a music-production tool that's genuinely easy, fun, and engaging — one that teaches you how a song is actually made. It builds confidence: the sense that you understand the parts worth paying attention to, that you can build and finish your first song, and have fun doing it.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding:8px 0 40px;">
+  <div class="wrap"><div class="imgstack"><img src="images/creator-10.jpg" alt="Output Creator × Yamaha" loading="lazy"></div></div>
+</section>
+
+<!-- CREDITS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Credits</p>
+    <h2 style="margin-bottom:24px;">The team</h2>
+    <div class="read">
+      <p class="body" style="margin-bottom:28px;">A project this long is the work of a lot of people. These are the ones I built it with.</p>
+      <p class="sublabel">The squad</p>
+      <p class="body">Jack Cote (PM) · Garrett Burnett (Front-End) · Jeremy Cruz (Back-End) · Kevin Dixon (Audio &amp; Back-End) · Jennifer Hsu (Audio) · Nick Rapatoni (QA)</p>
+      <p class="sublabel">Design team</p>
+      <p class="body">Daniel Lepik (3D) · Neil Halimen (Founder &amp; VP Creative)</p>
+      <p class="sublabel">Stakeholders</p>
+      <p class="body">Gregg Lehrman (Founder &amp; CEO) · Tony Hsieh (VP of Product) · John Nye (Founder &amp; Composer)</p>
+      <p class="body" style="color:var(--muted);margin-top:28px;">…and many more who contributed across the years — including the designers before me whose work set solid concepts for the product to build on.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
+  <span class="footer-right">2026 &copy;</span>
+</footer>
+
+<script>
+  // Live local time in New York, shown next to the location in the footer.
+  (function () {
+    var el = document.getElementById('ny-clock');
+    if (!el) return;
+    function tick() {
+      el.textContent = '· ' + new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'
+      }).format(new Date());
+    }
+    tick();
+    setInterval(tick, 30000);
+  })();
+
+  // Mobile nav
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.topbar-links');
+    if (!toggle || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
+    Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+  // Secondary (project) nav: hide on scroll up, reveal on scroll down.
+  (function () {
+    var sub = document.querySelector('.projtabs');
+    if (!sub) return;
+    var lastY = window.scrollY, ticking = false;
+    function update() {
+      var y = window.scrollY;
+      if (y <= 80) { sub.classList.remove('is-hidden'); }
+      else if (y > lastY + 2) { sub.classList.add('is-hidden'); }
+      else if (y < lastY - 2) { sub.classList.remove('is-hidden'); }
+      lastY = y; ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

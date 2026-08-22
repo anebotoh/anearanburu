@@ -45,7 +45,23 @@
   body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; line-height: 1.5; }
 
   /* ---------- NAV ---------- */
-  .topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px var(--margin); height: var(--nav-h); background: rgba(12,12,15,.72); backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px); }
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: flex-start; gap: 40px;
+    padding: 16px var(--margin);
+    height: var(--nav-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .back { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s, gap .2s; }
+  .back:hover { color: var(--text); gap: 12px; }
+  .back .arw { font-size: 20px; line-height: 1; position: relative; top: -1px; }
+  .projnav { display: flex; align-items: baseline; gap: 26px; counter-reset: tab; overflow-x: auto; min-width: 0; scrollbar-width: none; }
+  .projnav::-webkit-scrollbar { display: none; }
+  .projnav a { display: inline-flex; align-items: baseline; white-space: nowrap; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .projnav a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projnav a:hover { color: var(--text); }
+  .projnav a.is-active { color: var(--text); font-weight: 500; }
   .topbar-left { display: flex; align-items: center; gap: 10px; }
   .topbar-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
   .topbar-name:hover { opacity: .7; }
@@ -60,10 +76,11 @@
   .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* ---------- PROJECT TABS ---------- */
-  .projtabs { position: fixed; top: var(--nav-h); left: 0; z-index: 90; }
-  .projtabs-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 26px var(--margin); counter-reset: tab; }
-  .projtabs a { display: flex; align-items: baseline; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 5px 0; transition: color .2s; }
-  .projtabs a::before { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-right: 12px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
+  .projtabs { position: sticky; top: var(--nav-h); z-index: 90; background: var(--bg); transition: transform .3s ease; }
+  .projtabs.is-hidden { transform: translateY(-100%); }
+  .projtabs-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; max-width: min(calc(var(--readw) - var(--margin) * 2), calc(100% - var(--margin) * 2)); margin: 0 auto; padding: 5px 0; counter-reset: tab; overflow-x: auto; border-bottom: 1px solid var(--border); }
+  .projtabs a { display: inline-flex; align-items: baseline; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 2px 0; white-space: nowrap; transition: color .2s; }
+  .projtabs a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
   .projtabs a:hover { color: var(--text); }
   .projtabs a.is-active { color: var(--text); font-weight: 500; }
 
@@ -71,8 +88,13 @@
   .wrap { max-width: var(--readw); margin: 0 auto; padding: 0 var(--margin); }
   .read { max-width: none; }
   section { padding: clamp(48px, 7vh, 80px) 0; }
-  section + section { border-top: 1px solid var(--border); }
-  section[style*="border-top:none"] + section { border-top: none; }
+  section + section { position: relative; }
+  section + section::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: min(var(--readw), calc(100% - var(--margin) * 2)); height: 1px; background: var(--border);
+  }
+  section[style*="border-top:none"]::before,
+  section[style*="border-top:none"] + section::before { display: none; }
   .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
   .eyebrow .accent { color: #fff; }
   h1 { font-weight: 400; letter-spacing: -.02em; font-size: clamp(34px, 5.2vw, 60px); line-height: 1.08; color: #fff; max-width: 16ch; }
@@ -114,7 +136,7 @@
   /* ---------- IMAGE GALLERY ---------- */
   .imgstack { display: grid; gap: 20px; margin-top: 8px; width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
   .imgstack img { width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border); }
-  .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .body strong { color: var(--text); font-weight: 500; }
   em { font-style: italic; color: var(--text); }
 
@@ -125,9 +147,9 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 768px) {
     :root { --margin: 24px; --nav-h: 58px; }
-    .topbar { padding: 16px var(--margin); }
+    .topbar { padding: 12px var(--margin); gap: 20px; }
     .nav-toggle { display: flex; }
-    .projtabs { position: static; } .imgstack, .hero-media { width: auto; margin-left: 0; transform: none; }
+    .projtabs { position: static; transform: none !important; } .projtabs-inner { max-width: none; justify-content: flex-start; gap: 24px; padding: 5px var(--margin); -webkit-overflow-scrolling: touch; scrollbar-width: none; } .projtabs-inner::-webkit-scrollbar { display: none; } .projtabs a { flex: 0 0 auto; } .imgstack, .hero-media { width: auto; margin-left: 0; transform: none; }
     .topbar-links { position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; z-index: 90; background: var(--bg); margin: 0; flex-direction: column; align-items: flex-start; gap: 4px; padding: 24px 24px 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .25s ease, visibility .25s ease; }
     .topbar-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
     .topbar-links a { font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none; padding: 8px 0; color: rgba(255,255,255,.4); }
@@ -140,28 +162,15 @@
 <body>
 
 <header class="topbar">
-  <div class="topbar-left">
-    <a class="topbar-name" href="/home/">Ane Aranburu</a>
-    <span class="topbar-meta">Digital Designer</span>
-  </div>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <nav class="topbar-links">
-    <a href="/home/">Home</a>
-    <a href="/work/" class="is-active">Work</a>
-    <a href="/about/">About</a>
-    <a href="mailto:aranburuane@gmail.com">Email</a>
-  </nav>
-</header>
-
-<nav class="projtabs" aria-label="Projects">
-  <div class="projtabs-inner">
+  <a class="back" href="/home/"><span class="arw">‹</span> Home</a>
+  <nav class="projnav" aria-label="Case studies">
     <a href="/work/output-creator/">Output Creator</a>
     <a href="/work/ipondr/">iPondr</a>
     <a href="/work/nmaahc/">NMAAHC</a>
     <a href="/work/cinepolis/">Cinépolis</a>
     <a href="/work/embibe/" class="is-active">Embibe</a>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <!-- HERO -->
 <section class="hero">
@@ -169,7 +178,7 @@
     <p class="eyebrow"><span class="accent">Fantasy Interactive</span> — 2022 · Onboarding</p>
     <h1>Embibe app onboarding experience</h1>
     <p class="lead">Fantasy partnered with Embibe to design a unique onboarding experience — closing the biggest drop-off in the funnel: the gap between learning about the app and actually downloading it.</p>
-    <div class="hero-media"><img src="images/embibe-01.png" alt="Embibe — 1" loading="lazy"></div>
+    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/embibe-01.jpg" src="/videos/04-Embibe.mp4"></video></div>
   </div>
 </section>
 
@@ -186,7 +195,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 0;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-02.png" alt="Embibe — 2" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-02.jpg" alt="Embibe — 2" loading="lazy"></div></div>
 </section>
 
 <!-- THE PROJECT -->
@@ -204,7 +213,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 0;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-03.png" alt="Embibe — 3" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-03.jpg" alt="Embibe — 3" loading="lazy"></div></div>
 </section>
 
 <!-- MY ROLE -->
@@ -230,7 +239,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 0;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-04.png" alt="Embibe — 4" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-04.jpg" alt="Embibe — 4" loading="lazy"></div></div>
 </section>
 
 <!-- THE TEAM -->
@@ -253,7 +262,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 0;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-05.png" alt="Embibe — 5" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-05.jpg" alt="Embibe — 5" loading="lazy"></div></div>
 </section>
 
 <!-- 03 APPROACH -->
@@ -271,7 +280,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 0;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-06.png" alt="Embibe — 6" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-06.jpg" alt="Embibe — 6" loading="lazy"></div></div>
 </section>
 
 <!-- 04 THE ONBOARDING -->
@@ -290,7 +299,7 @@
 </section>
 
 <section style="border-top:none;padding:8px 0 40px;">
-  <div class="wrap"><div class="imgstack"><img src="images/embibe-07.png" alt="Embibe — 7" loading="lazy"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="images/embibe-07.jpg" alt="Embibe — 7" loading="lazy"></div></div>
 </section>
 
 <footer>
@@ -313,6 +322,22 @@
     toggle.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
     Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setOpen(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+  // Secondary (project) nav: hide on scroll up, reveal on scroll down.
+  (function () {
+    var sub = document.querySelector('.projtabs');
+    if (!sub) return;
+    var lastY = window.scrollY, ticking = false;
+    function update() {
+      var y = window.scrollY;
+      if (y <= 80) { sub.classList.remove('is-hidden'); }
+      else if (y > lastY + 2) { sub.classList.add('is-hidden'); }
+      else if (y < lastY - 2) { sub.classList.remove('is-hidden'); }
+      lastY = y; ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
   })();
 </script>
 

@@ -111,8 +111,9 @@
 
   /* ---------- HERO ---------- */
   .hero { padding-top: 30px; }
+  .hero .eyebrow { margin-top: 44px; }
   .hero .lead { margin-top: 28px; max-width: 48ch; color: var(--body); }
-  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - var(--margin) * 2)); }
+  .hero-media { margin-top: 0; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - var(--margin) * 2)); }
 
   /* ---------- META ---------- */
   .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding: 36px 0; }
@@ -201,10 +202,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
+    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/ipondr-hero.jpg" src="/videos/03-iPondr.mp4"></video></div>
     <p class="eyebrow"><span class="accent">Fantasy Interactive</span> — 2020–2021 · Digital Media Platform</p>
     <h1>Connecting with the stories that really matter</h1>
     <p class="lead">iPondr — a digital media company reinventing the role media plays in our lives, with slower, thematically-linked journalism you can watch, hear, read, and ponder. The perfect meeting of my two backgrounds: journalism and design.</p>
-    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/ipondr-hero.jpg" src="/videos/03-iPondr.mp4"></video></div>
   </div>
 </section>
 

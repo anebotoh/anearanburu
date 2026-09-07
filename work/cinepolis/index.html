@@ -107,8 +107,9 @@
 
   /* ---------- HERO ---------- */
   .hero { padding-top: 30px; }
+  .hero .eyebrow { margin-top: 44px; }
   .hero .lead { margin-top: 28px; max-width: 48ch; color: var(--body); }
-  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - var(--margin) * 2)); }
+  .hero-media { margin-top: 0; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - var(--margin) * 2)); }
 
   /* ---------- META ---------- */
   .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding: 36px 0; }
@@ -179,10 +180,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
+    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/cinepolis-01.jpg" src="/videos/02-Cinepolis.mp4"></video></div>
     <p class="eyebrow"><span class="accent">Fantasy</span> — 2023 · Digital Ecosystem</p>
     <h1>Creating a unified cinema experience across digital touchpoints</h1>
     <p class="lead">A redesign of Cinépolis's website, mobile app, and in-cinema kiosks — for one of the largest movie-theatre chains in the world. Led at Fantasy, in Spanish and English, all the way up to presenting to the CEO.</p>
-    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/cinepolis-01.jpg" src="/videos/02-Cinepolis.mp4"></video></div>
   </div>
 </section>
 

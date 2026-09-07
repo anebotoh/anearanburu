@@ -47,11 +47,10 @@
   /* ---------- NAV ---------- */
   .topbar {
     position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: flex-start; gap: 40px;
-    padding: 16px var(--margin);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--margin);
     height: var(--nav-h);
     background: var(--bg);
-    border-bottom: 1px solid var(--border);
   }
   .back { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; transition: color .2s, gap .2s; }
   .back:hover { color: var(--text); gap: 12px; }
@@ -76,16 +75,16 @@
   .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* ---------- PROJECT TABS ---------- */
-  .projtabs { position: sticky; top: var(--nav-h); z-index: 90; background: var(--bg); transition: transform .3s ease; }
-  .projtabs.is-hidden { transform: translateY(-100%); }
-  .projtabs-inner { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; max-width: min(calc(var(--readw) - var(--margin) * 2), calc(100% - var(--margin) * 2)); margin: 0 auto; padding: 5px 0; counter-reset: tab; overflow-x: auto; border-bottom: 1px solid var(--border); }
-  .projtabs a { display: inline-flex; align-items: baseline; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 2px 0; white-space: nowrap; transition: color .2s; }
+  .projtabs { position: sticky; top: var(--nav-h); z-index: 90; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .projtabs-inner { display: flex; flex-direction: row; align-items: center; gap: 28px; padding: 12px var(--margin); counter-reset: tab; overflow-x: auto; scrollbar-width: none; }
+  .projtabs-inner::-webkit-scrollbar { display: none; }
+  .projtabs a { display: inline-flex; align-items: baseline; flex: 0 0 auto; font-size: 13px; letter-spacing: .01em; color: var(--muted); text-decoration: none; padding: 2px 0; white-space: nowrap; transition: color .2s; }
   .projtabs a::after { counter-increment: tab; content: counter(tab, decimal-leading-zero); margin-left: 8px; color: #55555c; font-variant-numeric: tabular-nums; font-size: 11px; }
   .projtabs a:hover { color: var(--text); }
   .projtabs a.is-active { color: var(--text); font-weight: 500; }
 
   /* ---------- LAYOUT ---------- */
-  .wrap { max-width: var(--readw); margin: 0 auto; padding: 0 var(--margin); }
+  .wrap { max-width: var(--readw); margin: 0; padding: 0 var(--margin); }
   .read { max-width: none; }
   section { padding: clamp(48px, 7vh, 80px) 0; }
   section + section { position: relative; }
@@ -113,7 +112,7 @@
   /* ---------- HERO ---------- */
   .hero { padding-top: 30px; }
   .hero .lead { margin-top: 28px; max-width: 48ch; color: var(--body); }
-  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .hero-media { margin-top: 56px; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16/9; border: 1px solid var(--border); width: min(1080px, calc(100vw - var(--margin) * 2)); }
 
   /* ---------- META ---------- */
   .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding: 36px 0; }
@@ -150,7 +149,7 @@
   .quote p { font-size: clamp(26px, 4vw, 44px); line-height: 1.2; letter-spacing: -.02em; color: #fff; font-weight: 400; max-width: 20ch; }
 
   /* ---------- IMAGE GALLERY ---------- */
-  .imgstack { display: grid; gap: 20px; margin-top: 8px; width: min(1080px, calc(100vw - 400px)); margin-left: 50%; transform: translateX(-50%); }
+  .imgstack { display: grid; gap: 20px; margin-top: 8px; width: min(1080px, calc(100vw - var(--margin) * 2)); }
   .imgstack img { width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border); }
   .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -161,7 +160,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 768px) {
     :root { --margin: 24px; --nav-h: 58px; }
-    .topbar { padding: 12px var(--margin); gap: 20px; }
+    .topbar { padding: 18px var(--margin); }
     .nav-toggle { display: flex; }
     .projtabs { position: static; transform: none !important; } .projtabs-inner { max-width: none; justify-content: flex-start; gap: 24px; padding: 5px var(--margin); -webkit-overflow-scrolling: touch; scrollbar-width: none; } .projtabs-inner::-webkit-scrollbar { display: none; } .projtabs a { flex: 0 0 auto; } .imgstack, .hero-media { width: auto; margin-left: 0; transform: none; }
     .topbar-links { position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; z-index: 90; background: var(--bg); margin: 0; flex-direction: column; align-items: flex-start; gap: 4px; padding: 24px 24px 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .25s ease, visibility .25s ease; }
@@ -176,15 +175,28 @@
 <body>
 
 <header class="topbar">
-  <a class="back" href="/home/"><span class="arw">‹</span> Home</a>
-  <nav class="projnav" aria-label="Case studies">
+  <div class="topbar-left">
+    <a class="topbar-name" href="/home/">Ane Aranburu</a>
+    <span class="topbar-meta">Digital Designer</span>
+  </div>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="topbar-links">
+    <a href="/home/">Home</a>
+    <a href="/work/" class="is-active">Work</a>
+    <a href="/about/">About</a>
+    <a href="mailto:aranburuane@gmail.com">Email</a>
+  </nav>
+</header>
+
+<nav class="projtabs" aria-label="Projects">
+  <div class="projtabs-inner">
     <a href="/work/output-creator/">Output Creator</a>
     <a href="/work/ipondr/" class="is-active">iPondr</a>
     <a href="/work/nmaahc/">NMAAHC</a>
     <a href="/work/cinepolis/">Cinépolis</a>
     <a href="/work/embibe/">Embibe</a>
-  </nav>
-</header>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">

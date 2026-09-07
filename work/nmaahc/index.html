@@ -117,10 +117,7 @@
   .read { max-width: none; }
   section { padding: clamp(72px, 10vh, 120px) 0; }
   section + section { position: relative; }
-  section + section::before {
-    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: min(var(--readw), calc(100% - var(--margin) * 2)); height: 1px; background: var(--border);
-  }
+  section + section::before { display: none; }
   section[style*="border-top:none"]::before,
   section[style*="border-top:none"] + section::before { display: none; }
   .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }

@@ -46,7 +46,6 @@
     --readw: 720px;
   }
 
-  html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
   body {
@@ -289,6 +288,12 @@
     .cta-divider { display: none; }
   }
 
+  /* INDEX — section tags at the top, linking throughout the page */
+  section[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+  .index { }
+  .tagbar { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tagbar a { display: inline-flex; align-items: center; padding: 9px 16px; border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s ease, background .2s ease, border-color .2s ease; }
+  .tagbar a:hover { color: var(--bg); background: #fff; border-color: #fff; }
 </style>
 </head>
 <body>
@@ -335,13 +340,30 @@
   </div>
 </section>
 
+<!-- INDEX -->
+<section class="index">
+  <div class="wrap">
+    <nav class="tagbar">
+      <a href="#the-project">The project</a>
+      <a href="#my-role">My role</a>
+      <a href="#learning-by-doing-teamwork">Learning by doing &amp; teamwork</a>
+      <a href="#the-approach">The approach</a>
+      <a href="#key-decisions">Key decisions</a>
+      <a href="#the-audience">The audience</a>
+      <a href="#leadership-collaboration">Leadership &amp; collaboration</a>
+      <a href="#what-i-learned">What I learned</a>
+      <a href="#impact">Impact</a>
+    </nav>
+  </div>
+</section>
+
 <!-- MAIN VIDEO -->
 <section class="hero-video main-video">
   <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/01-Creator%202.0.mov"></video></div>
 </section>
 
 <!-- THE PROJECT -->
-<section>
+<section id="the-project">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">01 — The project</p>
@@ -374,7 +396,7 @@
 </section>
 
 <!-- ROLE -->
-<section>
+<section id="my-role">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">02 — My role</p>
@@ -405,7 +427,7 @@
 </section>
 
 <!-- THE FRAMEWORK -->
-<section>
+<section id="the-framework">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">The framework</p>
@@ -453,7 +475,7 @@
 </section>
 
 <!-- LEARNING BY DOING & TEAMWORK -->
-<section>
+<section id="learning-by-doing-teamwork">
   <div class="wrap">
     <p class="eyebrow">Learning by doing &amp; teamwork</p>
     <h2 style="margin-bottom:24px;">Being your own experiment</h2>
@@ -472,7 +494,7 @@
 </section>
 
 <!-- APPROACH / PHASES -->
-<section>
+<section id="the-approach">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">03 — The approach</p>
@@ -492,7 +514,7 @@
 </section>
 
 <!-- KEY DECISIONS -->
-<section>
+<section id="key-decisions">
   <div class="wrap">
     <p class="eyebrow">04 — Key decisions</p>
     <h2 style="margin-bottom:40px;">The calls that shaped the product</h2>
@@ -546,7 +568,7 @@
 </section>
 
 <!-- AUDIENCE -->
-<section>
+<section id="the-audience">
   <div class="wrap">
     <p class="eyebrow">05 — The audience</p>
     <h2 style="margin-bottom:24px;">One app, three musicians</h2>
@@ -577,7 +599,7 @@
 </section>
 
 <!-- LEADERSHIP -->
-<section>
+<section id="leadership-collaboration">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">07 — Leadership &amp; collaboration</p>
@@ -596,7 +618,7 @@
 </section>
 
 <!-- THREE IRONIES -->
-<section>
+<section id="three-unexpected-ironies">
   <div class="wrap">
     <p class="eyebrow">Three unexpected ironies</p>
     <ol class="irony-list">
@@ -625,7 +647,7 @@
 </section>
 
 <!-- REFLECTION -->
-<section>
+<section id="what-i-learned">
   <div class="wrap split">
     <div class="sticky">
       <p class="eyebrow">08 — What I learned</p>
@@ -645,7 +667,7 @@
 </section>
 
 <!-- OUTCOMES -->
-<section>
+<section id="impact">
   <div class="wrap">
     <p class="eyebrow">09 — Impact</p>
     <h2 style="margin-bottom:40px;">What changed</h2>

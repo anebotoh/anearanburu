@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -39,8 +39,8 @@
 
   /* Lock the layout across all breakpoints */
   html, body {
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    overflow-x: hidden;
   }
   body {
     background: var(--bg);
@@ -361,6 +361,22 @@
     /* Show the mobile footer */
     .page-footer { display: block; }
   }
+
+  /* WORK LIST — case studies (replaces the carousel) */
+  .worklist { border-top: 1px solid var(--border); margin-top: clamp(40px, 8vh, 96px); }
+  .worklist a { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(20px, 3.4vh, 44px) var(--margin); color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s; }
+  .worklist a:hover { color: #fff; }
+  .worklist .w-info { display: flex; flex-direction: column; gap: clamp(12px, 1.6vh, 22px); min-width: 0; }
+  .worklist .w-name { font-family: var(--font); font-weight: 400; letter-spacing: -.03em; font-size: clamp(40px, 8vw, 120px); line-height: 1; }
+  .worklist .w-meta { font-size: clamp(11px, 1vw, 13px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .worklist .w-thumb { width: clamp(120px, 22vw, 300px); aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
+  .worklist a:hover .w-thumb { opacity: 1; }
+  @media (max-width: 480px) {
+    .worklist { margin-top: 40px; }
+    .worklist a { padding: 24px var(--margin); gap: 16px; }
+    .worklist .w-name { font-size: 34px; }
+    .worklist .w-thumb { width: 104px; border-radius: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -386,81 +402,32 @@
   <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
 </div>
 
-<div class="carousel">
-  <div class="carousel-track" id="carouselTrack">
-
-    <a class="card" href="https://output.com/products/creator/" target="_blank">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/01-Creator%202.0.mov"></video>
-        <div class="card-overlay"><p class="card-eyebrow">DESKTOP APP</p></div>
-      </div>
-    </a>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/05-NMAACH.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">MICROSITE</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/04-Embibe.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">PRODUCT FOUNDATION</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/02-Cinepolis.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">DIGITAL ECOSYSTEM</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">CONTENT PLATFORM</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <img src="/videos/09-Wheelsup.png" alt="Wheels Up">
-        <div class="card-overlay"><p class="card-eyebrow">MOBILE EXPERIENCE</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/07-Messenger.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">MICROSITE</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <img src="/videos/11-Lark.png" alt="Lark Bytedance">
-        <div class="card-overlay"><p class="card-eyebrow">APP SUITE</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/06-Deem.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">MOBILE EXPERIENCE</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-media">
-        <video autoplay muted loop playsinline preload="metadata" src="/videos/08-Asana.mp4"></video>
-        <div class="card-overlay"><p class="card-eyebrow">VISION</p></div>
-      </div>
-    </div>
-
-  </div>
-</div>
+<main class="worklist">
+  <a href="/work/output-creator/">
+    <span class="w-info"><span class="w-name">Creator</span><span class="w-meta">Output — 2024–2026 · Desktop App</span></span>
+    <img class="w-thumb" src="/work/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
+  </a>
+  <a href="/work/ipondr/">
+    <span class="w-info"><span class="w-name">iPondr</span><span class="w-meta">Fantasy Interactive — 2020–2021 · Digital Media Platform</span></span>
+    <img class="w-thumb" src="/work/ipondr/images/ipondr-01.jpg" alt="iPondr" loading="lazy">
+  </a>
+  <a href="/work/nmaahc/">
+    <span class="w-info"><span class="w-name">NMAAHC</span><span class="w-meta">Fantasy Interactive — 2020–2021 · Interactive Experience</span></span>
+    <img class="w-thumb" src="/work/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
+  </a>
+  <a href="/work/cinepolis/">
+    <span class="w-info"><span class="w-name">Cinépolis</span><span class="w-meta">Fantasy — 2023 · Digital Ecosystem</span></span>
+    <img class="w-thumb" src="/work/cinepolis/images/cinepolis-01.jpg" alt="Cinépolis" loading="lazy">
+  </a>
+  <a href="/work/embibe/">
+    <span class="w-info"><span class="w-name">Embibe</span><span class="w-meta">Fantasy Interactive — 2022 · Onboarding</span></span>
+    <img class="w-thumb" src="/work/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
+  </a>
+  <a href="/work/other/">
+    <span class="w-info"><span class="w-name">Other</span><span class="w-meta">Wheels Up · Messenger · Lark · Deem · Asana</span></span>
+    <img class="w-thumb" src="/videos/09-Wheelsup.png" alt="Other projects" loading="lazy">
+  </a>
+</main>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
@@ -615,4 +582,3 @@
 
 </body>
 </html>
-

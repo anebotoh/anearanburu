@@ -126,6 +126,8 @@
   .more-thumb { width: clamp(120px, 22vw, 300px); aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
   .more-nav a:hover { color: #fff; }
   .more-nav a:hover .more-thumb { opacity: 1; }
+  .more-info { display: flex; flex-direction: column; gap: clamp(12px, 1.6vh, 22px); min-width: 0; }
+  .more-meta { font-size: clamp(11px, 1vw, 13px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
 
   .read { max-width: none; }
   section { padding: clamp(72px, 10vh, 120px) 0; }
@@ -197,7 +199,9 @@
   .decisions.plain .decision:first-child { border-top: none; padding-top: 8px; }
 
   /* ---------- PULL QUOTE ---------- */
-  .quote { text-align: left; }
+  .quote { text-align: center; }
+  .quote .wrap { margin-left: auto; margin-right: auto; }
+  .quote p { margin-left: auto; margin-right: auto; }
   .quote p { font-size: clamp(26px, 4vw, 44px); line-height: 1.2; letter-spacing: -.02em; color: #fff; font-weight: 400; max-width: 20ch; }
   .quote .attr { margin-top: 24px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); max-width: none; }
 
@@ -703,19 +707,31 @@
   </div>
   <nav class="more-nav">
     <a href="/work/ipondr/">
-      <span class="more-name">iPondr</span>
+      <span class="more-info">
+        <span class="more-name">iPondr</span>
+        <span class="more-meta">Fantasy Interactive — 2020–2021 · Digital Media Platform</span>
+      </span>
       <img class="more-thumb" src="/work/ipondr/images/ipondr-01.jpg" alt="iPondr" loading="lazy">
     </a>
     <a href="/work/nmaahc/">
-      <span class="more-name">NMAAHC</span>
+      <span class="more-info">
+        <span class="more-name">NMAAHC</span>
+        <span class="more-meta">Fantasy Interactive — 2020–2021 · Interactive Experience</span>
+      </span>
       <img class="more-thumb" src="/work/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
     </a>
     <a href="/work/cinepolis/">
-      <span class="more-name">Cinépolis</span>
+      <span class="more-info">
+        <span class="more-name">Cinépolis</span>
+        <span class="more-meta">Fantasy — 2023 · Digital Ecosystem</span>
+      </span>
       <img class="more-thumb" src="/work/cinepolis/images/cinepolis-01.jpg" alt="Cinépolis" loading="lazy">
     </a>
     <a href="/work/embibe/">
-      <span class="more-name">Embibe</span>
+      <span class="more-info">
+        <span class="more-name">Embibe</span>
+        <span class="more-meta">Fantasy Interactive — 2022 · Onboarding</span>
+      </span>
       <img class="more-thumb" src="/work/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
     </a>
   </nav>

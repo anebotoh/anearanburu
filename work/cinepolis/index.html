@@ -91,10 +91,12 @@
   .wrap { max-width: var(--readw); margin: 0; padding: 0 var(--margin); }
   /* ---------- COVER TITLE (biggest type; full width) ---------- */
   .cover { padding: clamp(16px, 3vh, 40px) 0 0; }
-  .cover-titles { display: flex; align-items: baseline; gap: 0.4em; white-space: nowrap; overflow: hidden; padding: 0 var(--margin); }
-  .cover-titles a { flex: 0 0 auto; font-weight: 400; font-size: clamp(64px, 21vw, 340px); line-height: 0.86; letter-spacing: -.04em; color: #fff; opacity: .22; text-decoration: none; transition: opacity .3s ease; }
+  .cover-titles { display: flex; align-items: baseline; gap: 0.4em; white-space: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; padding: 0 var(--margin); }
+  .cover-titles::-webkit-scrollbar { display: none; }
+  .cover-titles a { flex: 0 0 auto; font-weight: 400; font-size: clamp(58px, 18.9vw, 306px); line-height: 0.86; letter-spacing: -.04em; color: #fff; opacity: .22; text-decoration: none; transition: opacity .3s ease; }
   .cover-titles a.is-current { opacity: 1; }
   .cover-titles a:hover { opacity: .6; }
+  .cover-titles .dot { flex: 0 0 auto; font-size: clamp(58px, 18.9vw, 306px); line-height: 0.86; color: var(--muted); opacity: .5; user-select: none; }
   .cover-eyebrow { padding: 0 var(--margin); margin-top: 22px; }
   .cover + section::before { display: none; }
   .hero-sub { font-weight: 400; letter-spacing: -.02em; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.1; color: #fff; margin-top: 8px; max-width: 22ch; }
@@ -195,9 +197,13 @@
 <section class="cover">
   <nav class="cover-titles">
     <a href="/work/cinepolis/" class="is-current">Cinépolis</a>
+    <span class="dot" aria-hidden="true">/</span>
     <a href="/work/embibe/">Embibe</a>
+    <span class="dot" aria-hidden="true">/</span>
     <a href="/work/output-creator/">Creator</a>
+    <span class="dot" aria-hidden="true">/</span>
     <a href="/work/ipondr/">iPondr</a>
+    <span class="dot" aria-hidden="true">/</span>
     <a href="/work/nmaahc/">NMAAHC</a>
   </nav>
   <p class="eyebrow cover-eyebrow"><span class="accent">Fantasy</span> — 2023 · Digital Ecosystem</p>
@@ -443,6 +449,24 @@
       if (titles) { titles.style.transition = 'opacity .16s ease'; titles.style.opacity = '0'; }
       setTimeout(function () { window.location.href = href; }, 160);
     });
+  })();
+</script>
+<script>
+  // Hover the title row -> auto-scroll to the right through all the case studies.
+  (function () {
+    var el = document.querySelector('.cover-titles');
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var raf = null;
+    function loop() {
+      var max = el.scrollWidth - el.clientWidth;
+      if (max > 0) {
+        el.scrollLeft += 0.7;
+        if (el.scrollLeft >= max - 0.5) el.scrollLeft = 0;
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    el.addEventListener('mouseenter', function () { if (!raf) raf = requestAnimationFrame(loop); });
+    el.addEventListener('mouseleave', function () { if (raf) { cancelAnimationFrame(raf); raf = null; } el.scrollTo({ left: 0, behavior: 'smooth' }); });
   })();
 </script>
 </body>

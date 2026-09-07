@@ -39,8 +39,8 @@
 
   /* Lock the layout across all breakpoints */
   html, body {
-    min-height: 100%;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
   }
   body {
     background: var(--bg);
@@ -363,19 +363,20 @@
   }
 
   /* WORK LIST — case studies (replaces the carousel) */
-  .worklist { border-top: 1px solid var(--border); margin-top: clamp(40px, 8vh, 96px); }
-  .worklist a { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(20px, 3.4vh, 44px) var(--margin); color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s; }
+  .worklist { border-top: 1px solid var(--border); margin-top: clamp(22px, 4.5vh, 52px); flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .worklist a { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--margin); color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s; }
+  .worklist a:last-child { border-bottom: none; }
   .worklist a:hover { color: #fff; }
-  .worklist .w-info { display: flex; flex-direction: column; gap: clamp(12px, 1.6vh, 22px); min-width: 0; }
-  .worklist .w-name { font-family: var(--font); font-weight: 400; letter-spacing: -.03em; font-size: clamp(40px, 8vw, 120px); line-height: 1; }
-  .worklist .w-meta { font-size: clamp(11px, 1vw, 13px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-  .worklist .w-thumb { width: clamp(120px, 22vw, 300px); aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
+  .worklist .w-info { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .worklist .w-name { font-family: var(--font); font-weight: 500; letter-spacing: -.03em; font-size: clamp(13px, 1.45vw, 22px); line-height: 1; }
+  .worklist .w-meta { font-size: clamp(10px, .9vw, 12px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .worklist .w-thumb { height: clamp(34px, 5.6vh, 54px); width: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
   .worklist a:hover .w-thumb { opacity: 1; }
   @media (max-width: 480px) {
-    .worklist { margin-top: 40px; }
-    .worklist a { padding: 24px var(--margin); gap: 16px; }
-    .worklist .w-name { font-size: 34px; }
-    .worklist .w-thumb { width: 104px; border-radius: 8px; }
+    .worklist { display: block; }
+    .worklist a { flex: none; padding: 22px var(--margin); gap: 16px; }
+    .worklist .w-name { font-size: 32px; }
+    .worklist .w-thumb { width: 104px; height: auto; border-radius: 8px; }
   }
 </style>
 </head>
@@ -404,27 +405,27 @@
 
 <main class="worklist">
   <a href="/work/output-creator/">
-    <span class="w-info"><span class="w-name">Creator</span><span class="w-meta">Output — 2024–2026 · Desktop App</span></span>
+    <span class="w-info"><span class="w-name">Creator</span></span>
     <img class="w-thumb" src="/work/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
   </a>
   <a href="/work/ipondr/">
-    <span class="w-info"><span class="w-name">iPondr</span><span class="w-meta">Fantasy Interactive — 2020–2021 · Digital Media Platform</span></span>
+    <span class="w-info"><span class="w-name">iPondr</span></span>
     <img class="w-thumb" src="/work/ipondr/images/ipondr-01.jpg" alt="iPondr" loading="lazy">
   </a>
   <a href="/work/nmaahc/">
-    <span class="w-info"><span class="w-name">NMAAHC</span><span class="w-meta">Fantasy Interactive — 2020–2021 · Interactive Experience</span></span>
+    <span class="w-info"><span class="w-name">NMAAHC</span></span>
     <img class="w-thumb" src="/work/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
   </a>
   <a href="/work/cinepolis/">
-    <span class="w-info"><span class="w-name">Cinépolis</span><span class="w-meta">Fantasy — 2023 · Digital Ecosystem</span></span>
+    <span class="w-info"><span class="w-name">Cinépolis</span></span>
     <img class="w-thumb" src="/work/cinepolis/images/cinepolis-01.jpg" alt="Cinépolis" loading="lazy">
   </a>
   <a href="/work/embibe/">
-    <span class="w-info"><span class="w-name">Embibe</span><span class="w-meta">Fantasy Interactive — 2022 · Onboarding</span></span>
+    <span class="w-info"><span class="w-name">Embibe</span></span>
     <img class="w-thumb" src="/work/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
   </a>
   <a href="/work/other/">
-    <span class="w-info"><span class="w-name">Other</span><span class="w-meta">Wheels Up · Messenger · Lark · Deem · Asana</span></span>
+    <span class="w-info"><span class="w-name">Other</span></span>
     <img class="w-thumb" src="/videos/09-Wheelsup.png" alt="Other projects" loading="lazy">
   </a>
 </main>

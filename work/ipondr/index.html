@@ -203,13 +203,6 @@
   }
   @media (max-width: 480px) { :root { --margin: 20px; } }
 
-  /* ---------- SCROLL-SNAP: each section is its own full screen ---------- */
-  @media (min-width: 700px) {
-    html { scroll-snap-type: y mandatory; }
-    body > section { min-height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; padding-top: var(--nav-h); }
-    body > section.cover { justify-content: flex-end; padding-bottom: 10vh; padding-top: var(--nav-h); }
-    body > footer { scroll-snap-align: start; }
-  }
 </style>
 </head>
 <body>
@@ -241,7 +234,6 @@
   <div class="wrap">
     <h2 class="hero-sub">Connecting with the stories that really matter</h2>
     <p class="lead">iPondr — a digital media company reinventing the role media plays in our lives, with slower, thematically-linked journalism you can watch, hear, read, and ponder. The perfect meeting of my two backgrounds: journalism and design.</p>
-    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/ipondr-hero.jpg" src="/videos/03-iPondr.mp4"></video></div>
   </div>
 </section>
 
@@ -255,6 +247,11 @@
       <div class="meta-item"><div class="k">Client</div><div class="v">iPondr</div></div>
     </div>
   </div>
+</section>
+
+<!-- MAIN VIDEO -->
+<section class="hero-video main-video">
+  <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video></div>
 </section>
 
 <!-- THE PROJECT -->

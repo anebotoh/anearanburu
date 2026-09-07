@@ -187,13 +187,6 @@
   }
   @media (max-width: 480px) { :root { --margin: 20px; } }
 
-  /* ---------- SCROLL-SNAP: each section is its own full screen ---------- */
-  @media (min-width: 700px) {
-    html { scroll-snap-type: y mandatory; }
-    body > section { min-height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; padding-top: var(--nav-h); }
-    body > section.cover { justify-content: flex-end; padding-bottom: 10vh; padding-top: var(--nav-h); }
-    body > footer { scroll-snap-align: start; }
-  }
 </style>
 </head>
 <body>
@@ -225,7 +218,6 @@
   <div class="wrap">
     <h2 class="hero-sub">Embibe app onboarding experience</h2>
     <p class="lead">Fantasy partnered with Embibe to design a unique onboarding experience — closing the biggest drop-off in the funnel: the gap between learning about the app and actually downloading it.</p>
-    <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/embibe-01.jpg" src="/videos/04-Embibe.mp4"></video></div>
   </div>
 </section>
 
@@ -239,6 +231,11 @@
       <div class="meta-item"><div class="k">Client</div><div class="v">Embibe</div></div>
     </div>
   </div>
+</section>
+
+<!-- MAIN VIDEO -->
+<section class="hero-video main-video">
+  <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/04-Embibe.mp4"></video></div>
 </section>
 
 <section style="border-top:none;padding:0;">

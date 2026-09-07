@@ -291,6 +291,14 @@
     :root { --margin: 20px; }
     .cta-divider { display: none; }
   }
+
+  /* ---------- SCROLL-SNAP: each section is its own full screen ---------- */
+  @media (min-width: 700px) {
+    html { scroll-snap-type: y mandatory; }
+    body > section { min-height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; padding-top: var(--nav-h); }
+    body > section.cover { justify-content: flex-end; padding-bottom: 10vh; padding-top: var(--nav-h); }
+    body > footer { scroll-snap-align: start; }
+  }
 </style>
 </head>
 <body>
@@ -314,12 +322,12 @@
 <!-- COVER -->
 <section class="cover">
   <h1 class="cover-solo">Creator</h1>
+  <p class="eyebrow cover-eyebrow"><span class="accent">Output</span> — 2024–2026 · Desktop App</p>
 </section>
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow"><span class="accent">Output</span> — 2024–2026 · Desktop App</p>
     <h2 class="hero-sub">Rebuilding the creative core of Output Creator</h2>
     <p class="lead">A two-and-a-half-year redesign — rebuilt twice, 2,000+ screens — turning a tool built by music-production pros that no one could use into a play-first app for beginners. Led end to end as Lead Product Designer, through a Yamaha partnership and demos at NAMM and SXSW.</p>
     <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/creator-01.jpg" src="/videos/01-Creator%202.0.mov"></video></div>

@@ -208,6 +208,14 @@
     .step { grid-template-columns: 1fr; gap: 8px; }
   }
   @media (max-width: 480px) { :root { --margin: 20px; } }
+
+  /* ---------- SCROLL-SNAP: each section is its own full screen ---------- */
+  @media (min-width: 700px) {
+    html { scroll-snap-type: y mandatory; }
+    body > section { min-height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; padding-top: var(--nav-h); }
+    body > section.cover { justify-content: flex-end; padding-bottom: 10vh; padding-top: var(--nav-h); }
+    body > footer { scroll-snap-align: start; }
+  }
 </style>
 </head>
 <body>
@@ -231,12 +239,12 @@
 <!-- COVER -->
 <section class="cover">
   <h1 class="cover-solo">NMAAHC</h1>
+  <p class="eyebrow cover-eyebrow"><span class="accent">Fantasy Interactive</span> — 2020–2021 · Interactive Experience</p>
 </section>
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow"><span class="accent">Fantasy Interactive</span> — 2020–2021 · Interactive Experience</p>
     <h2 class="hero-sub">A digital home for the Slavery and Freedom exhibition</h2>
     <p class="lead">An interactive, online experience of the National Museum of African American History and Culture's <em>Slavery and Freedom</em> exhibition — one of the most meaningful projects I've had the luck to work on. Designed at Fantasy Interactive as Lead Visual Designer.</p>
     <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" poster="images/nmaahc-01.jpg" src="/videos/05-NMAACH.mp4"></video></div>

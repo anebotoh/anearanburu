@@ -27,6 +27,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* main-title fade-in on load (fast) */
+  @keyframes titleIn { from { opacity: 0; } to { opacity: 1; } }
+  .cover-titles { animation: titleIn .2s ease both; }
+  @media (prefers-reduced-motion: reduce) { .cover-titles { animation: none !important; } }
   :root {
     --bg: #0C0C0F;
     --surface: #17171c;
@@ -87,16 +91,22 @@
   .wrap { max-width: var(--readw); margin: 0; padding: 0 var(--margin); }
   /* ---------- COVER TITLE (biggest type; full width) ---------- */
   .cover { padding: clamp(16px, 3vh, 40px) 0 0; }
-  .cover-title { font-weight: 400; font-size: clamp(64px, 21vw, 340px); line-height: 0.86; letter-spacing: -.04em; color: #fff; padding: 0 var(--margin); max-width: none; }
+  .cover-titles { display: flex; align-items: baseline; gap: 0.4em; white-space: nowrap; overflow: hidden; padding: 0 var(--margin); }
+  .cover-titles a { flex: 0 0 auto; font-weight: 400; font-size: clamp(64px, 21vw, 340px); line-height: 0.86; letter-spacing: -.04em; color: #fff; opacity: .22; text-decoration: none; transition: opacity .3s ease; }
+  .cover-titles a.is-current { opacity: 1; }
+  .cover-titles a:hover { opacity: .6; }
   .cover-eyebrow { padding: 0 var(--margin); margin-top: 22px; }
   .cover + section::before { display: none; }
   .hero-sub { font-weight: 400; letter-spacing: -.02em; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.1; color: #fff; margin-top: 8px; max-width: 22ch; }
   /* ---------- END MENU: other case studies ---------- */
   .more { padding: clamp(64px, 10vh, 140px) 0 clamp(40px, 6vh, 80px); border-top: 1px solid var(--border); }
   .more-nav { display: flex; flex-direction: column; }
-  .more-nav a { display: block; padding: clamp(12px, 2vh, 24px) var(--margin); font-weight: 400; letter-spacing: -.03em; font-size: clamp(40px, 8vw, 120px); line-height: 1; color: var(--muted); text-decoration: none; border-top: 1px solid var(--border); transition: color .2s, padding-left .3s ease; }
+  .more-nav a { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(14px, 2vh, 28px) var(--margin); color: var(--muted); text-decoration: none; border-top: 1px solid var(--border); transition: color .2s; }
   .more-nav a:first-child { border-top: none; }
-  .more-nav a:hover { color: #fff; padding-left: calc(var(--margin) + 16px); }
+  .more-name { font-weight: 400; letter-spacing: -.03em; font-size: clamp(40px, 8vw, 120px); line-height: 1; }
+  .more-thumb { width: clamp(120px, 22vw, 300px); aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
+  .more-nav a:hover { color: #fff; }
+  .more-nav a:hover .more-thumb { opacity: 1; }
 
   .read { max-width: none; }
   section { padding: clamp(72px, 10vh, 120px) 0; }
@@ -183,7 +193,13 @@
 
 <!-- COVER -->
 <section class="cover">
-  <h1 class="cover-title">Cinépolis</h1>
+  <nav class="cover-titles">
+    <a href="/work/cinepolis/" class="is-current">Cinépolis</a>
+    <a href="/work/embibe/">Embibe</a>
+    <a href="/work/output-creator/">Creator</a>
+    <a href="/work/ipondr/">iPondr</a>
+    <a href="/work/nmaahc/">NMAAHC</a>
+  </nav>
   <p class="eyebrow cover-eyebrow"><span class="accent">Fantasy</span> — 2023 · Digital Ecosystem</p>
 </section>
 
@@ -355,10 +371,22 @@
     <p class="eyebrow">More case studies</p>
   </div>
   <nav class="more-nav">
-    <a href="/work/output-creator/">Creator</a>
-    <a href="/work/ipondr/">iPondr</a>
-    <a href="/work/nmaahc/">NMAAHC</a>
-    <a href="/work/embibe/">Embibe</a>
+    <a href="/work/output-creator/">
+      <span class="more-name">Creator</span>
+      <img class="more-thumb" src="/work/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
+    </a>
+    <a href="/work/ipondr/">
+      <span class="more-name">iPondr</span>
+      <img class="more-thumb" src="/work/ipondr/images/ipondr-01.jpg" alt="iPondr" loading="lazy">
+    </a>
+    <a href="/work/nmaahc/">
+      <span class="more-name">NMAAHC</span>
+      <img class="more-thumb" src="/work/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
+    </a>
+    <a href="/work/embibe/">
+      <span class="more-name">Embibe</span>
+      <img class="more-thumb" src="/work/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
+    </a>
   </nav>
 </section>
 
@@ -401,5 +429,21 @@
   })();
 </script>
 
+<script>
+  // Fast fade of just the main titles when navigating between case studies.
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var titles = document.querySelector('.cover-titles');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('.cover-titles a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      if (titles) { titles.style.transition = 'opacity .16s ease'; titles.style.opacity = '0'; }
+      setTimeout(function () { window.location.href = href; }, 160);
+    });
+  })();
+</script>
 </body>
 </html>

@@ -115,6 +115,13 @@
   .cover-titles a:hover { opacity: .6; }
   .cover-titles .dot { flex: 0 0 auto; font-size: clamp(58px, 18.9vw, 306px); line-height: 0.86; color: var(--muted); opacity: .5; user-select: none; }
   .cover-eyebrow { padding: 0 var(--margin); margin-top: 22px; }
+  /* WORK hover navigator — reveals on hovering the Work link, pushes content down */
+  .worknav { overflow: hidden; max-height: 0; opacity: 0; background: #141419; transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .1s ease; }
+  .worknav.is-open { max-height: 380px; opacity: 1; border-bottom: 1px solid var(--border); transition: max-height .6s cubic-bezier(.22,1,.36,1), opacity .34s ease .04s; }
+  .topbar { transition: background .35s ease; }
+  body.worknav-active .topbar { background: #141419; }
+  .worknav .cover-titles { padding-top: 18px; padding-bottom: 30px; }
+
   .cover + section::before { display: none; }
   .hero-sub { font-weight: 400; letter-spacing: -.02em; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; color: #fff; margin-top: 6px; max-width: 20ch; }
   /* ---------- END MENU: other case studies ---------- */
@@ -320,6 +327,22 @@
   </nav>
 </header>
 
+<div class="worknav" id="worknav" aria-hidden="true">
+  <nav class="cover-titles" aria-label="Work">
+    <a href="/work/output-creator/">Creator</a>
+    <span class="dot" aria-hidden="true">/</span>
+    <a href="/work/ipondr/">iPondr</a>
+    <span class="dot" aria-hidden="true">/</span>
+    <a href="/work/nmaahc/">NMAAHC</a>
+    <span class="dot" aria-hidden="true">/</span>
+    <a href="/work/cinepolis/">Cinépolis</a>
+    <span class="dot" aria-hidden="true">/</span>
+    <a href="/work/embibe/">Embibe</a>
+    <span class="dot" aria-hidden="true">/</span>
+    <a href="/work/other/" class="is-current">Other</a>
+  </nav>
+</div>
+
 <!-- COVER -->
 <section class="cover">
   <h1 class="cover-solo">Other</h1>
@@ -418,6 +441,37 @@
     toggle.addEventListener('click', function(){ setOpen(!menu.classList.contains('is-open')); });
     Array.prototype.forEach.call(menu.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') setOpen(false); });
+  })();
+</script>
+<script>
+  // Work nav: hover the Work link to reveal the case-study navigator (pushes content down).
+  (function () {
+    var work = document.querySelector('.topbar-links a[href="/work/"]');
+    var panel = document.getElementById('worknav');
+    if (!work || !panel) return;
+    var t;
+    function open(){ clearTimeout(t); panel.classList.add('is-open'); panel.setAttribute('aria-hidden','false'); document.body.classList.add('worknav-active'); }
+    function close(){ t = setTimeout(function(){ panel.classList.remove('is-open'); panel.setAttribute('aria-hidden','true'); document.body.classList.remove('worknav-active'); }, 160); }
+    work.addEventListener('mouseenter', open);
+    work.addEventListener('mouseleave', close);
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', close);
+  })();
+</script>
+<script>
+  // Fast fade of the nav titles when navigating between case studies.
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var titles = document.querySelector('.worknav .cover-titles');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('.worknav .cover-titles a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      if (titles) { titles.style.transition = 'opacity .16s ease'; titles.style.opacity = '0'; }
+      setTimeout(function () { window.location.href = href; }, 160);
+    });
   })();
 </script>
 </body>

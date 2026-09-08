@@ -180,6 +180,7 @@
   /* ---------- IMAGE GALLERY ---------- */
   .imgstack { display: grid; gap: 20px; margin: 80px 0; width: calc(100vw - 160px); margin-left: calc(80px - var(--margin)); }
   .imgstack img { width: 100%; display: block; }
+  .imgstack.cols2 { grid-template-columns: 1fr 1fr; align-items: start; }
   .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* ---------- FOOTER ---------- */
@@ -249,6 +250,17 @@
 <!-- MAIN VIDEO -->
 <section class="hero-video main-video">
   <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video></div>
+</section>
+
+<!-- TOP IMAGES 09-12 -->
+<section style="border-top:none;padding:0;">
+  <div class="wrap"><div class="imgstack"><img src="images/ipondr-09.jpg" alt="iPondr — 9" loading="lazy"></div></div>
+</section>
+<section style="border-top:none;padding:0;">
+  <div class="wrap"><div class="imgstack"><img src="images/ipondr-10.jpg" alt="iPondr — 10" loading="lazy"></div></div>
+</section>
+<section style="border-top:none;padding:0;">
+  <div class="wrap"><div class="imgstack cols2"><img src="images/ipondr-11.jpg" alt="iPondr — 11" loading="lazy"><img src="images/ipondr-12.jpg" alt="iPondr — 12" loading="lazy"></div></div>
 </section>
 
 <!-- THE PROJECT -->

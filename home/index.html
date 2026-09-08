@@ -410,23 +410,23 @@
 </div>
 
 <main class="worklist">
-  <a href="/work/output-creator/" data-preview="/videos/01-Creator.mp4">
+  <a href="/work/output-creator/" data-preview="/videos/01-Creator.mp4" data-slides='["/work/output-creator/images/thumbs/creator-01.jpg", "/work/output-creator/images/thumbs/creator-02.jpg", "/work/output-creator/images/thumbs/creator-03.jpg", "/work/output-creator/images/thumbs/creator-04.jpg", "/work/output-creator/images/thumbs/creator-05.jpg", "/work/output-creator/images/thumbs/creator-06.jpg", "/work/output-creator/images/thumbs/creator-07.jpg", "/work/output-creator/images/thumbs/creator-08.jpg", "/work/output-creator/images/thumbs/creator-09.jpg", "/work/output-creator/images/thumbs/creator-10.jpg", "/work/output-creator/images/thumbs/creator-11.jpg", "/work/output-creator/images/thumbs/creator-12.jpg", "/work/output-creator/images/thumbs/creator-13.jpg", "/work/output-creator/images/thumbs/creator-14.jpg", "/work/output-creator/images/thumbs/creator-15.jpg", "/work/output-creator/images/thumbs/creator-16.jpg"]'>
     <span class="w-info"><span class="w-name">Creator</span></span>
     <img class="w-thumb" src="/work/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
   </a>
-  <a href="/work/ipondr/" data-preview="/work/ipondr/images/ipondr-15.png">
+  <a href="/work/ipondr/" data-preview="/work/ipondr/images/ipondr-15.png" data-slides='["/work/ipondr/images/thumbs/ipondr-01.jpg", "/work/ipondr/images/thumbs/ipondr-02.jpg", "/work/ipondr/images/thumbs/ipondr-03.jpg", "/work/ipondr/images/thumbs/ipondr-04.jpg", "/work/ipondr/images/thumbs/ipondr-05.jpg", "/work/ipondr/images/thumbs/ipondr-06.jpg", "/work/ipondr/images/thumbs/ipondr-07.jpg", "/work/ipondr/images/thumbs/ipondr-08.jpg", "/work/ipondr/images/thumbs/ipondr-09.jpg", "/work/ipondr/images/thumbs/ipondr-10.jpg", "/work/ipondr/images/thumbs/ipondr-11.jpg", "/work/ipondr/images/thumbs/ipondr-12.jpg", "/work/ipondr/images/thumbs/ipondr-13.jpg", "/work/ipondr/images/thumbs/ipondr-14.jpg", "/work/ipondr/images/thumbs/ipondr-15.jpg", "/work/ipondr/images/thumbs/ipondr-16.jpg", "/work/ipondr/images/thumbs/ipondr-17.jpg"]'>
     <span class="w-info"><span class="w-name">iPondr</span></span>
     <img class="w-thumb" src="/work/ipondr/images/ipondr-15.png" alt="iPondr" loading="lazy">
   </a>
-  <a href="/work/nmaahc/" data-preview="/videos/05-NMAACH.mp4">
+  <a href="/work/nmaahc/" data-preview="/videos/05-NMAACH.mp4" data-slides='["/work/nmaahc/images/thumbs/nmaahc-01.jpg", "/work/nmaahc/images/thumbs/nmaahc-02.jpg", "/work/nmaahc/images/thumbs/nmaahc-03.jpg", "/work/nmaahc/images/thumbs/nmaahc-04.jpg", "/work/nmaahc/images/thumbs/nmaahc-05.jpg", "/work/nmaahc/images/thumbs/nmaahc-06.jpg", "/work/nmaahc/images/thumbs/nmaahc-07.jpg", "/work/nmaahc/images/thumbs/nmaahc-08.jpg", "/work/nmaahc/images/thumbs/nmaahc-09.jpg", "/work/nmaahc/images/thumbs/nmaahc-10.jpg"]'>
     <span class="w-info"><span class="w-name">NMAAHC</span></span>
     <img class="w-thumb" src="/work/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
   </a>
-  <a href="/work/cinepolis/" data-preview="/videos/02-Cinepolis.mp4">
+  <a href="/work/cinepolis/" data-preview="/videos/02-Cinepolis.mp4" data-slides='["/work/cinepolis/images/thumbs/cinepolis-01.jpg", "/work/cinepolis/images/thumbs/cinepolis-02.jpg", "/work/cinepolis/images/thumbs/cinepolis-03.jpg", "/work/cinepolis/images/thumbs/cinepolis-04.jpg", "/work/cinepolis/images/thumbs/cinepolis-05.jpg", "/work/cinepolis/images/thumbs/cinepolis-06.jpg", "/work/cinepolis/images/thumbs/cinepolis-07.jpg", "/work/cinepolis/images/thumbs/cinepolis-08.jpg", "/work/cinepolis/images/thumbs/cinepolis-09.jpg"]'>
     <span class="w-info"><span class="w-name">Cinépolis</span></span>
     <img class="w-thumb" src="/work/cinepolis/images/cinepolis-01.jpg" alt="Cinépolis" loading="lazy">
   </a>
-  <a href="/work/embibe/" data-preview="/videos/04-Embibe.mp4">
+  <a href="/work/embibe/" data-preview="/videos/04-Embibe.mp4" data-slides='["/work/embibe/images/thumbs/embibe-01.jpg", "/work/embibe/images/thumbs/embibe-02.jpg", "/work/embibe/images/thumbs/embibe-03.jpg", "/work/embibe/images/thumbs/embibe-04.jpg", "/work/embibe/images/thumbs/embibe-05.jpg", "/work/embibe/images/thumbs/embibe-06.jpg", "/work/embibe/images/thumbs/embibe-07.jpg", "/work/embibe/images/thumbs/embibe-08.jpg", "/work/embibe/images/thumbs/embibe-09.jpg"]'>
     <span class="w-info"><span class="w-name">Embibe</span></span>
     <img class="w-thumb" src="/work/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
   </a>
@@ -593,33 +593,50 @@
 </div>
 
 <script>
-  // Home list: enlarged video/image preview that follows the cursor on hover.
+  // Home list: hover a row -> fast looping slideshow of that case study's images.
   (function () {
     if (window.matchMedia('(hover: none)').matches) return;
     var pv = document.getElementById('hoverPreview');
     if (!pv) return;
     var vid = pv.querySelector('video'), img = pv.querySelector('img');
+    var timer = null;
     function move(e){
       var w = pv.offsetWidth, h = pv.offsetHeight;
       var x = Math.min(Math.max(e.clientX, w/2), window.innerWidth - w/2);
       var y = Math.min(Math.max(e.clientY, h/2), window.innerHeight - h/2);
       pv.style.left = x + 'px'; pv.style.top = y + 'px';
     }
-    Array.prototype.forEach.call(document.querySelectorAll('.worklist a[data-preview]'), function(a){
+    function stop(){ if (timer) { clearTimeout(timer); timer = null; } }
+    Array.prototype.forEach.call(document.querySelectorAll('.worklist a'), function(a){
+      var raw = a.getAttribute('data-slides');
+      var slides = null; if (raw) { try { slides = JSON.parse(raw); } catch (e) {} }
       a.addEventListener('mouseenter', function(e){
-        var src = a.getAttribute('data-preview');
-        if (/\.(mp4|mov|webm)$/i.test(src)) {
-          img.style.display = 'none'; vid.style.display = 'block';
-          if (vid.getAttribute('src') !== src) vid.setAttribute('src', src);
-          try { vid.currentTime = 0; } catch (err) {}
-          var p = vid.play(); if (p && p.catch) p.catch(function(){});
+        stop();
+        if (slides && slides.length) {
+          vid.pause(); vid.style.display = 'none'; img.style.display = 'block';
+          slides.forEach(function(src){ var im = new Image(); im.src = src; });
+          var n = slides.length, i = 0; img.src = slides[0];
+          function tick(){
+            i = (i + 1) % n; img.src = slides[i];
+            var t = n > 1 ? i / (n - 1) : 0;
+            timer = setTimeout(tick, 40 + 90 * Math.sin(Math.PI * t));
+          }
+          timer = setTimeout(tick, 40);
         } else {
-          vid.pause(); vid.style.display = 'none'; img.style.display = 'block'; img.src = src;
+          var src = a.getAttribute('data-preview');
+          if (src && /\.(mp4|mov|webm)$/i.test(src)) {
+            img.style.display = 'none'; vid.style.display = 'block';
+            if (vid.getAttribute('src') !== src) vid.setAttribute('src', src);
+            try { vid.currentTime = 0; } catch (err) {}
+            var p = vid.play(); if (p && p.catch) p.catch(function(){});
+          } else if (src) {
+            vid.pause(); vid.style.display = 'none'; img.style.display = 'block'; img.src = src;
+          }
         }
         move(e); pv.classList.add('is-visible');
       });
       a.addEventListener('mousemove', move);
-      a.addEventListener('mouseleave', function(){ pv.classList.remove('is-visible'); vid.pause(); });
+      a.addEventListener('mouseleave', function(){ stop(); pv.classList.remove('is-visible'); vid.pause(); });
     });
   })();
 </script>

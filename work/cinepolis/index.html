@@ -178,6 +178,11 @@
   }
   @media (max-width: 480px) { :root { --margin: 20px; } }
 
+
+  /* Case-study switcher — carets after the subtitle, reveal on scroll */
+  .cs-nav { display: inline-flex; align-items: center; gap: 1px; }
+  .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 20px; height: 24px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease; }
+  .cs-arrow:hover { color: var(--text); }
 </style>
 </head>
 <body>
@@ -186,6 +191,10 @@
   <div class="topbar-left">
     <a class="topbar-name" href="/home/">Ane Aranburu</a>
     <span class="topbar-meta">Digital Designer</span>
+    <nav class="cs-nav" id="csNav" aria-label="Case studies">
+      <a class="cs-arrow" href="/work/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a>
+      <a class="cs-arrow" href="/work/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a>
+    </nav>
   </div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
@@ -195,6 +204,7 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
+
 
 
 

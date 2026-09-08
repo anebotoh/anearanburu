@@ -364,9 +364,9 @@
 
   /* WORK LIST — case studies (replaces the carousel) */
   .worklist { border-top: 1px solid var(--border); margin-top: clamp(22px, 4.5vh, 52px); flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
-  .worklist a { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--margin); color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s; }
+  .worklist a { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--margin); color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s ease, background .2s ease; }
   .worklist a:last-child { border-bottom: none; }
-  .worklist a:hover { color: #fff; }
+  .worklist a:hover { color: #fff; background: rgba(255,255,255,.05); }
   .worklist .w-info { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
   .worklist .w-name { font-family: var(--font); font-weight: 500; letter-spacing: -.03em; font-size: clamp(13px, 1.45vw, 22px); line-height: 1; }
   .worklist .w-meta { font-size: clamp(10px, .9vw, 12px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }

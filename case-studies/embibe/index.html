@@ -453,17 +453,22 @@
   })();
 </script>
 <script>
-  // Dock the project thumbnail + name into the sticky nav once the hero titles scroll past.
+  // Nav: dock project on scroll down; show name + role on scroll up or at top.
   (function () {
     var topbar = document.querySelector('.topbar');
     var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
     if (!topbar || !target) return;
     var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
-    var io = new IntersectionObserver(function (entries) {
-      var e = entries[0];
-      topbar.classList.toggle('is-docked', !e.isIntersecting && e.boundingClientRect.top < navH);
-    }, { rootMargin: '-' + navH + 'px 0px 0px 0px', threshold: 0 });
-    io.observe(target);
+    var lastY = window.scrollY;
+    function onScroll() {
+      var y = window.scrollY;
+      var isPast = target.getBoundingClientRect().bottom < navH;
+      if (y > lastY + 1 && isPast) topbar.classList.add('is-docked');
+      else if (y < lastY - 1 || !isPast) topbar.classList.remove('is-docked');
+      lastY = y;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   })();
 </script>
 </body>

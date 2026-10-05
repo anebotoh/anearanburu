@@ -218,10 +218,8 @@
   .dock-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; }
   .dock-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .dock-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
-  .topbar.is-docked .topbar-name { opacity: 0; pointer-events: none; }
-  .topbar.is-docked .topbar-meta { opacity: 0; }
-  .topbar.is-docked .topbar-dock { opacity: 1; pointer-events: auto; }
   .pagenav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); } .pagenav-col { display: flex; flex-direction: column; gap: 10px; padding: clamp(32px, 6vh, 72px) var(--margin); text-decoration: none; color: var(--muted); transition: color .2s ease, background .2s ease; } .pagenav-col.next { align-items: flex-end; text-align: right; border-left: 1px solid var(--border); } .pagenav-col:hover { color: #fff; background: rgba(255,255,255,.03); } .pagenav-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .pagenav-name { font-weight: 400; letter-spacing: -.02em; font-size: clamp(28px, 5vw, 56px); line-height: 1; color: inherit; } @media (max-width: 600px) { .pagenav { grid-template-columns: 1fr; } .pagenav-col.next { align-items: flex-start; text-align: left; border-left: none; border-top: 1px solid var(--border); } }
+  .subnav { position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 98; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 var(--margin); background: var(--bg); border-bottom: 1px solid var(--border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .28s ease, opacity .28s ease; } .subnav.is-visible { transform: translateY(0); opacity: 1; } .subnav-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; } .subnav-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .subnav-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
 </style>
 </head>
 <body>
@@ -230,7 +228,7 @@
 <header class="topbar">
   <div class="topbar-left">
     <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
-    <span class="topbar-meta">Digital Designer</span><span class="topbar-dock" aria-hidden="true"><img class="dock-thumb" src="/case-studies/nmaahc/images/nmaahc-01.jpg" alt=""><span class="dock-label">now scrolling</span><span class="dock-name">NMAAHC</span></span>
+    <span class="topbar-meta">Digital Designer</span>
     <nav class="cs-nav" id="csNav" aria-label="Case studies">
       <a class="cs-arrow" href="/case-studies/ipondr/" rel="prev" aria-label="Previous case study">&lsaquo;</a>
       <a class="cs-arrow" href="/case-studies/cinepolis/" rel="next" aria-label="Next case study">&rsaquo;</a>
@@ -242,6 +240,7 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
+<div class="subnav" id="subnav" aria-hidden="true"><img class="subnav-thumb" src="/case-studies/nmaahc/images/nmaahc-01.jpg" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">NMAAHC</span></div>
 
 
 
@@ -530,7 +529,7 @@
 </section>
 
 <!-- MORE WORK -->
-<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/ipondr/"><span class="pagenav-label">← Previous</span><span class="pagenav-name">iPondr</span></a><a class="pagenav-col next" href="/case-studies/cinepolis/"><span class="pagenav-label">Next →</span><span class="pagenav-name">Cinépolis</span></a></nav>
+<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/ipondr/"><span class="pagenav-label">Previous</span><span class="pagenav-name">iPondr</span></a><a class="pagenav-col next" href="/case-studies/cinepolis/"><span class="pagenav-label">Next</span><span class="pagenav-name">Cinépolis</span></a></nav>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
@@ -588,16 +587,16 @@
 <script>
   // Nav: dock project on scroll down; show name + role on scroll up or at top.
   (function () {
-    var topbar = document.querySelector('.topbar');
+    var subnav = document.getElementById('subnav');
     var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
-    if (!topbar || !target) return;
+    if (!subnav || !target) return;
     var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
     var lastY = window.scrollY;
     function onScroll() {
       var y = window.scrollY;
       var isPast = target.getBoundingClientRect().bottom < navH;
-      if (y > lastY + 1 && isPast) topbar.classList.add('is-docked');
-      else if (y < lastY - 1 || !isPast) topbar.classList.remove('is-docked');
+      if (y > lastY + 1 && isPast) subnav.classList.add('is-visible');
+      else if (y < lastY - 1 || !isPast) subnav.classList.remove('is-visible');
       lastY = y;
     }
     window.addEventListener('scroll', onScroll, { passive: true });

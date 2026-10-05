@@ -1,11 +1,11 @@
 // Password-protects the /case-studies section (HTTP Basic Auth, Vercel Edge).
 // Public: everything else (/, /home, /work, /about).
-// Set SITE_PASSWORD in Vercel → Settings → Environment Variables. Username: ane
+// Set WORK_PASSWORD (or SITE_PASSWORD) in Vercel → Environment Variables. Username: ane
 export const config = { matcher: ['/case-studies', '/case-studies/:path*'] };
 
 export default function middleware(req) {
   const USER = 'ane';
-  const PASS = process.env.SITE_PASSWORD || '';
+  const PASS = process.env.WORK_PASSWORD || process.env.SITE_PASSWORD || '';
   const auth = req.headers.get('authorization');
   if (auth) {
     const [scheme, encoded] = auth.split(' ');

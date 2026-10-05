@@ -204,8 +204,8 @@
 
   /* Case-study switcher — carets after the subtitle, reveal on scroll */
   .cs-nav { display: inline-flex; align-items: center; gap: 1px; }
-  .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 20px; height: 24px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease; }
-  .cs-arrow:hover { color: var(--text); }
+  .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 12px; height: 24px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease; }
+  .cs-arrows { display: inline-flex; align-items: center; gap: 0; } .cs-arrow:hover { color: var(--text); }
   .scroll-progress { position: fixed; top: var(--nav-h); left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); z-index: 99; transition: width .08s linear; pointer-events: none; }
   .topbar-left { position: relative; }
   .topbar-meta { transition: opacity .25s ease; white-space: nowrap; }
@@ -213,10 +213,11 @@
   .dock-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; }
   .dock-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .dock-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
-  .pagenav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); } .pagenav-col { display: flex; flex-direction: column; gap: 10px; padding: clamp(32px, 6vh, 72px) var(--margin); text-decoration: none; color: var(--muted); transition: color .2s ease, background .2s ease; } .pagenav-col.next { align-items: flex-end; text-align: right; border-left: 1px solid var(--border); } .pagenav-col:hover { color: #fff; background: rgba(255,255,255,.03); } .pagenav-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .pagenav-name { font-weight: 400; letter-spacing: -.02em; font-size: clamp(28px, 5vw, 56px); line-height: 1; color: inherit; } @media (max-width: 600px) { .pagenav { grid-template-columns: 1fr; } .pagenav-col.next { align-items: flex-start; text-align: left; border-left: none; border-top: 1px solid var(--border); } }
+  .pagenav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); } .pagenav-col { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(32px, 6vh, 72px) var(--margin); text-decoration: none; color: var(--muted); transition: color .2s ease, background .2s ease; } .pagenav-txt { display: flex; flex-direction: column; gap: 10px; } .pagenav-col.next .pagenav-txt { align-items: flex-end; } .pagenav-thumb { width: clamp(90px, 13vw, 160px); aspect-ratio: 16/10; object-fit: cover; border-radius: 8px; flex: 0 0 auto; opacity: .5; transition: opacity .3s ease; } .pagenav-col:hover .pagenav-thumb { opacity: 1; } .pagenav-col.next { text-align: right; border-left: 1px solid var(--border); } .pagenav-col:hover { color: #fff; background: rgba(255,255,255,.03); } .pagenav-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .pagenav-name { font-weight: 400; letter-spacing: -.02em; font-size: clamp(28px, 5vw, 56px); line-height: 1; color: inherit; } @media@media (max-width: 600px) { .pagenav { grid-template-columns: 1fr; } .pagenav-col.next { text-align: left; border-left: none; border-top: 1px solid var(--border); } .pagenav-col.next .pagenav-txt { align-items: flex-start; } }
   .subnav { position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 98; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 var(--margin); background: var(--bg); border-bottom: 1px solid var(--border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .28s ease, opacity .28s ease; } .subnav.is-visible { transform: translateY(0); opacity: 1; } .subnav-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; } .subnav-label { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); } .subnav-name { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text); } .subnav-info { display: inline-flex; align-items: center; gap: 6px; }
   .topbar-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; opacity: 0; pointer-events: none; transition: opacity .28s ease; } .topbar-center.is-visible { opacity: 1; pointer-events: auto; } @media (max-width: 768px) { .topbar-center { display: none; } }
   .subnav .scroll-progress { position: absolute; top: auto; bottom: 0; z-index: auto; } @media (max-width: 768px) { .bar-main { display: none; } } @media (min-width: 769px) { .subnav { display: none; } }
+  .media-anchor ~ section .wrap:not(:has(.imgstack)) { margin-inline: auto; }
 </style>
 </head>
 <body>
@@ -227,14 +228,14 @@
     <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
     <span class="topbar-meta">Digital Designer</span>
     </div>
-  <div class="topbar-center" id="topbarCenter"><a class="cs-arrow" href="/case-studies/output-creator/" rel="prev" aria-label="Previous case study">&lsaquo;</a><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">iPondr</span></span><a class="cs-arrow" href="/case-studies/nmaahc/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
+  <div class="topbar-center" id="topbarCenter"><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="subnav-label">Case study</span><span class="subnav-name">iPondr</span></span><span class="cs-arrows"><a class="cs-arrow" href="/case-studies/output-creator/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-arrow" href="/case-studies/nmaahc/" rel="next" aria-label="Next case study">&rsaquo;</a></span></div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
     <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<div class="subnav" id="subnav" aria-hidden="true"><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">iPondr</span></span><div class="scroll-progress" id="scrollProgress2"></div></div>
+<div class="subnav" id="subnav" aria-hidden="true"><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="subnav-label">Case study</span><span class="subnav-name">iPondr</span></span><div class="scroll-progress" id="scrollProgress2"></div></div>
 
 
 
@@ -289,7 +290,7 @@
   </div>
 </section>
 
-<section style="border-top:none;padding:0;">
+<section class="media-anchor" style="border-top:none;padding:0;">
   <div class="wrap"><div class="imgstack"><img src="images/ipondr-01.png" alt="iPondr — 1" loading="lazy"></div></div>
 </section>
 
@@ -466,7 +467,7 @@
 </section>
 
 <!-- MORE WORK -->
-<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/output-creator/"><span class="pagenav-label">Previous</span><span class="pagenav-name">Creator</span></a><a class="pagenav-col next" href="/case-studies/nmaahc/"><span class="pagenav-label">Next</span><span class="pagenav-name">NMAAHC</span></a></nav>
+<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/output-creator/"><span class="pagenav-txt"><span class="pagenav-label">Previous</span><span class="pagenav-name">Creator</span></span><img class="pagenav-thumb" src="/case-studies/output-creator/images/creator-01.jpg" alt="" loading="lazy"></a><a class="pagenav-col next" href="/case-studies/nmaahc/"><img class="pagenav-thumb" src="/case-studies/nmaahc/images/nmaahc-01.jpg" alt="" loading="lazy"><span class="pagenav-txt"><span class="pagenav-label">Next</span><span class="pagenav-name">NMAAHC</span></span></a></nav>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
@@ -528,13 +529,9 @@
     var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
     if (!els.length || !target) return;
     var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
-    var lastY = window.scrollY;
     function onScroll() {
-      var y = window.scrollY;
       var isPast = target.getBoundingClientRect().bottom < navH;
-      if (y > lastY + 1 && isPast) els.forEach(function (el) { el.classList.add('is-visible'); });
-      else if (y < lastY - 1 || !isPast) els.forEach(function (el) { el.classList.remove('is-visible'); });
-      lastY = y;
+      els.forEach(function (el) { el.classList.toggle('is-visible', isPast); });
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();

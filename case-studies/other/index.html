@@ -302,7 +302,7 @@
     .g-media { width: 100vw; margin-left: calc(-1 * var(--margin)); height: auto; border-radius: 0; }
     .g-media img, .g-media video { width: 100%; height: auto; }
   }
-  .scroll-progress { position: fixed; top: var(--nav-h); left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); z-index: 99; transition: width .08s linear; pointer-events: none; }
+  .scroll-progress { position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); transition: width .08s linear; pointer-events: none; }
   .topbar-left { position: relative; }
   .topbar-meta { transition: opacity .25s ease; white-space: nowrap; }
   .topbar-dock { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: opacity .25s ease; white-space: nowrap; }
@@ -315,7 +315,6 @@
 </head>
 
 <body>
-<div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="topbar">
   <div class="topbar-left">
@@ -328,7 +327,7 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<div class="subnav" id="subnav" aria-hidden="true"><img class="subnav-thumb" src="/videos/09-Wheelsup.png" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">Other</span></div>
+<div class="subnav" id="subnav" aria-hidden="true"><img class="subnav-thumb" src="/videos/09-Wheelsup.png" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">Other</span><div class="scroll-progress" id="scrollProgress"></div></div>
 
 
 <!-- COVER -->

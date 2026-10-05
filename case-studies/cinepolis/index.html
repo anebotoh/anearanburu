@@ -183,7 +183,7 @@
   .cs-nav { display: inline-flex; align-items: center; gap: 1px; }
   .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 20px; height: 24px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease; }
   .cs-arrow:hover { color: var(--text); }
-  .scroll-progress { position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); transition: width .08s linear; pointer-events: none; }
+  .scroll-progress { position: fixed; top: var(--nav-h); left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); z-index: 99; transition: width .08s linear; pointer-events: none; }
   .topbar-left { position: relative; }
   .topbar-meta { transition: opacity .25s ease; white-space: nowrap; }
   .topbar-dock { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: opacity .25s ease; white-space: nowrap; }
@@ -191,27 +191,28 @@
   .dock-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .dock-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
   .pagenav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); } .pagenav-col { display: flex; flex-direction: column; gap: 10px; padding: clamp(32px, 6vh, 72px) var(--margin); text-decoration: none; color: var(--muted); transition: color .2s ease, background .2s ease; } .pagenav-col.next { align-items: flex-end; text-align: right; border-left: 1px solid var(--border); } .pagenav-col:hover { color: #fff; background: rgba(255,255,255,.03); } .pagenav-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .pagenav-name { font-weight: 400; letter-spacing: -.02em; font-size: clamp(28px, 5vw, 56px); line-height: 1; color: inherit; } @media (max-width: 600px) { .pagenav { grid-template-columns: 1fr; } .pagenav-col.next { align-items: flex-start; text-align: left; border-left: none; border-top: 1px solid var(--border); } }
-  .subnav { position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 98; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 var(--margin); background: var(--bg); border-bottom: 1px solid var(--border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .28s ease, opacity .28s ease; } .subnav.is-visible { transform: translateY(0); opacity: 1; } .subnav-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; } .subnav-label { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); } .subnav-name { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text); } .subnav-info { display: inline-flex; align-items: center; gap: 5px; }
+  .subnav { position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 98; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 var(--margin); background: var(--bg); border-bottom: 1px solid var(--border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .28s ease, opacity .28s ease; } .subnav.is-visible { transform: translateY(0); opacity: 1; } .subnav-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; } .subnav-label { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); } .subnav-name { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text); } .subnav-info { display: inline-flex; align-items: center; gap: 6px; }
+  .topbar-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; opacity: 0; pointer-events: none; transition: opacity .28s ease; } .topbar-center.is-visible { opacity: 1; pointer-events: auto; } @media (max-width: 768px) { .topbar-center { display: none; } }
+  .subnav .scroll-progress { position: absolute; top: auto; bottom: 0; z-index: auto; } @media (max-width: 768px) { .bar-main { display: none; } } @media (min-width: 769px) { .subnav { display: none; } }
 </style>
 </head>
 <body>
+<div class="scroll-progress bar-main" id="scrollProgress"></div>
 
 <header class="topbar">
   <div class="topbar-left">
     <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
     <span class="topbar-meta">Digital Designer</span>
-    <nav class="cs-nav" id="csNav" aria-label="Case studies">
-      <a class="cs-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a>
-      <a class="cs-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a>
-    </nav>
-  </div>
+    </div>
+  <div class="topbar-center" id="topbarCenter"><a class="cs-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">Cinépolis</span></span><a class="cs-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
     <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<div class="subnav" id="subnav" aria-hidden="true"><img class="subnav-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="subnav-info"><span class="subnav-label">Now scrolling</span><span class="subnav-name">Cinépolis</span></span><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="subnav" id="subnav" aria-hidden="true"><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="subnav-label">Now scrolling</span><span class="subnav-name">Cinépolis</span></span><div class="scroll-progress" id="scrollProgress2"></div></div>
+
 
 
 
@@ -433,11 +434,11 @@
 <script>
   // Reading progress bar — fills as you scroll through the page.
   (function () {
-    var bar = document.getElementById("scrollProgress");
-    if (!bar) return;
+    var bars = document.querySelectorAll(".scroll-progress");
+    if (!bars.length) return;
     function update() {
       var h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+      var w = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%"; bars.forEach(function (b) { b.style.width = w; });
     }
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -447,16 +448,16 @@
 <script>
   // Nav: dock project on scroll down; show name + role on scroll up or at top.
   (function () {
-    var subnav = document.getElementById('subnav');
+    var els = [document.getElementById('topbarCenter'), document.getElementById('subnav')].filter(Boolean);
     var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
-    if (!subnav || !target) return;
+    if (!els.length || !target) return;
     var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
     var lastY = window.scrollY;
     function onScroll() {
       var y = window.scrollY;
       var isPast = target.getBoundingClientRect().bottom < navH;
-      if (y > lastY + 1 && isPast) subnav.classList.add('is-visible');
-      else if (y < lastY - 1 || !isPast) subnav.classList.remove('is-visible');
+      if (y > lastY + 1 && isPast) els.forEach(function (el) { el.classList.add('is-visible'); });
+      else if (y < lastY - 1 || !isPast) els.forEach(function (el) { el.classList.remove('is-visible'); });
       lastY = y;
     }
     window.addEventListener('scroll', onScroll, { passive: true });

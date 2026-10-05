@@ -303,11 +303,13 @@
     .g-media img, .g-media video { width: 100%; height: auto; }
   }
   .scroll-progress { position: fixed; top: var(--nav-h); left: 0; height: 4px; width: 0; background: #fff; z-index: 99; transition: width .08s linear; pointer-events: none; }
-.topbar-slot { position: relative; display: inline-flex; align-items: center; }
+  .topbar-left { position: relative; }
   .topbar-meta { transition: opacity .25s ease; white-space: nowrap; }
   .topbar-dock { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 8px; opacity: 0; pointer-events: none; transition: opacity .25s ease; white-space: nowrap; }
   .dock-thumb { width: 30px; height: 19px; object-fit: cover; border-radius: 4px; display: block; }
+  .dock-label { font-size: 12px; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--muted); }
   .dock-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .topbar.is-docked .topbar-name { opacity: 0; pointer-events: none; }
   .topbar.is-docked .topbar-meta { opacity: 0; }
   .topbar.is-docked .topbar-dock { opacity: 1; pointer-events: auto; }
 </style>
@@ -319,7 +321,7 @@
 <header class="topbar">
   <div class="topbar-left">
     <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
-    <span class="topbar-slot"><span class="topbar-meta">Digital Designer</span><span class="topbar-dock" aria-hidden="true"><img class="dock-thumb" src="/videos/09-Wheelsup.png" alt=""><span class="dock-name">Other</span></span></span>
+    <span class="topbar-meta">Digital Designer</span><span class="topbar-dock" aria-hidden="true"><img class="dock-thumb" src="/videos/09-Wheelsup.png" alt=""><span class="dock-label">now scrolling</span><span class="dock-name">Other</span></span>
   </div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">

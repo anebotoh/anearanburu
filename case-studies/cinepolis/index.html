@@ -193,6 +193,7 @@
   .topbar.is-docked .topbar-name { opacity: 0; pointer-events: none; }
   .topbar.is-docked .topbar-meta { opacity: 0; }
   .topbar.is-docked .topbar-dock { opacity: 1; pointer-events: auto; }
+  .pagenav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); } .pagenav-col { display: flex; flex-direction: column; gap: 10px; padding: clamp(32px, 6vh, 72px) var(--margin); text-decoration: none; color: var(--muted); transition: color .2s ease, background .2s ease; } .pagenav-col.next { align-items: flex-end; text-align: right; border-left: 1px solid var(--border); } .pagenav-col:hover { color: #fff; background: rgba(255,255,255,.03); } .pagenav-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .pagenav-name { font-weight: 400; letter-spacing: -.02em; font-size: clamp(28px, 5vw, 56px); line-height: 1; color: inherit; } @media (max-width: 600px) { .pagenav { grid-template-columns: 1fr; } .pagenav-col.next { align-items: flex-start; text-align: left; border-left: none; border-top: 1px solid var(--border); } }
 </style>
 </head>
 <body>
@@ -390,41 +391,7 @@
 </section>
 
 <!-- MORE WORK -->
-<section class="more">
-  <div class="wrap">
-    <p class="eyebrow">More case studies</p>
-  </div>
-  <nav class="more-nav">
-    <a href="/case-studies/output-creator/">
-      <span class="more-info">
-        <span class="more-name">Creator</span>
-        <span class="more-meta">Output — 2024–2026 · Desktop App</span>
-      </span>
-      <img class="more-thumb" src="/case-studies/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
-    </a>
-    <a href="/case-studies/ipondr/">
-      <span class="more-info">
-        <span class="more-name">iPondr</span>
-        <span class="more-meta">Fantasy Interactive — 2020–2021 · Digital Media Platform</span>
-      </span>
-      <img class="more-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt="iPondr" loading="lazy">
-    </a>
-    <a href="/case-studies/nmaahc/">
-      <span class="more-info">
-        <span class="more-name">NMAAHC</span>
-        <span class="more-meta">Fantasy Interactive — 2020–2021 · Interactive Experience</span>
-      </span>
-      <img class="more-thumb" src="/case-studies/nmaahc/images/nmaahc-01.jpg" alt="NMAAHC" loading="lazy">
-    </a>
-    <a href="/case-studies/embibe/">
-      <span class="more-info">
-        <span class="more-name">Embibe</span>
-        <span class="more-meta">Fantasy Interactive — 2022 · Onboarding</span>
-      </span>
-      <img class="more-thumb" src="/case-studies/embibe/images/embibe-01.jpg" alt="Embibe" loading="lazy">
-    </a>
-  </nav>
-</section>
+<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/nmaahc/"><span class="pagenav-label">← Previous</span><span class="pagenav-name">NMAAHC</span></a><a class="pagenav-col next" href="/case-studies/embibe/"><span class="pagenav-label">Next →</span><span class="pagenav-name">Embibe</span></a></nav>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>

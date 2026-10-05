@@ -72,8 +72,8 @@
   .landing-hero .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
   .landing-title {
     font-weight: 400; letter-spacing: -.04em;
-    font-size: clamp(44px, 9vw, 132px); line-height: .92; color: #fff;
-    max-width: 14ch;
+    font-size: clamp(58px, 18.9vw, 306px); line-height: .86; color: #fff;
+    max-width: none;
     animation: titleIn .25s ease both;
   }
   @keyframes titleIn { from { opacity: 0; } to { opacity: 1; } }
@@ -130,7 +130,7 @@
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
-    .landing-title { font-size: clamp(40px, 13vw, 60px); max-width: 100%; }
+    .landing-title { max-width: 100%; }
     .worklist a { padding: 22px var(--margin); }
   }
 </style>
@@ -144,8 +144,6 @@
   </div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
-    <a href="/home/">Home</a>
-    <a href="/case-studies/" class="is-active">Work</a>
     <a href="/about/">About</a>
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
@@ -153,7 +151,7 @@
 
 <section class="landing-hero">
   <p class="eyebrow">Selected Work</p>
-  <h1 class="landing-title">Thanks for stopping by.</h1>
+  <h1 class="landing-title">Thanks.</h1>
   <p class="landing-sub">A few of the projects I've led end to end — from the early strategy to the details of a shipped product. Most of my work is under NDA, so these are the ones I can walk through in full. Hover to preview, click to dive in.</p>
 </section>
 

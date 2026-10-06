@@ -205,16 +205,25 @@
   section[id] { scroll-margin-top: calc(var(--nav-h) + 72px); }
   @media (max-width: 600px) { .subnav .subnav-info { display: none; } }
 
-  /* Floating case-study nav pill (identity + prev/next), shown mid-page */
-  .cs-float { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); display: inline-flex; align-items: center; gap: 6px; padding: 7px 8px; background: rgba(23,23,28,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
+  /* Floating case-study pill: identity + section nav + prev/next, shown mid-page */
+  .cs-float { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); display: flex; align-items: center; gap: 8px; max-width: min(1120px, 94vw); padding: 7px 10px; background: rgba(23,23,28,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
   .cs-float.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-  .cs-float-arrow { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
+  .cs-float-arrow { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
   .cs-float-arrow:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-  .cs-float-id { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 0 8px; }
-  .cs-float-thumb { width: 28px; height: 18px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; }
-  .cs-float-label { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-  .cs-float-name { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
-  @media (max-width: 480px) { .cs-float-label { display: none; } .cs-float { bottom: 18px; } }
+  .cs-float-id { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 0 4px 0 8px; }
+  .cs-float-thumb { width: 26px; height: 17px; object-fit: cover; border-radius: 4px; display: block; }
+  .cs-float-label { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .cs-float-name { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--text); white-space: nowrap; }
+  .cs-float-div { flex: 0 0 auto; width: 1px; height: 22px; background: var(--border); margin: 0 2px; }
+  .cs-float-nav { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: 22px; min-width: 0; overflow-x: auto; scrollbar-width: none; padding: 0 4px; }
+  .cs-float-nav::-webkit-scrollbar { display: none; }
+  .cs-float-nav a { flex: 0 0 auto; display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; font-size: 12px; color: var(--muted); text-decoration: none; transition: color .2s ease; }
+  .cs-float-nav a:hover { color: var(--text); }
+  .cs-float-nav a.is-active { color: var(--text); }
+  .cs-float-nav .sc-num { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .cs-float-nav a.is-active .sc-num { color: var(--text); }
+  @media (max-width: 768px) { .cs-float-label { display: none; } }
+  @media (max-width: 600px) { .cs-float-id, .cs-float-div { display: none; } .cs-float { bottom: 16px; max-width: 94vw; } }
 </style>
 </head>
 <body>
@@ -233,12 +242,6 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<div class="subnav" id="subnav" aria-hidden="true"><nav class="subnav-chapters"><a href="#background" class="sc-link"><span class="sc-num">01</span>Background</a><a href="#challenges" class="sc-link"><span class="sc-num">02</span>Challenges</a><a href="#process" class="sc-link"><span class="sc-num">03</span>Process</a><a href="#work" class="sc-link"><span class="sc-num">04</span>Work</a><a href="#conclusions" class="sc-link"><span class="sc-num">05</span>Conclusions</a></nav><div class="scroll-progress" id="scrollProgress2"></div></div>
-
-
-
-
-
 <!-- COVER -->
 <section class="cover">
   <h1 class="cover-solo">Cinépolis</h1>
@@ -484,7 +487,7 @@
 </script>
 <script>
   (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.subnav-chapters a'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-float-nav a'));
     var chaps = links.map(function (l) { return document.querySelector(l.getAttribute('href')); }).filter(Boolean);
     if (!chaps.length) return;
     links.forEach(function (l) {
@@ -506,7 +509,7 @@
     window.addEventListener('resize', update);
   })();
 </script>
-<div class="cs-float" id="csFloat" aria-hidden="true"><a class="cs-float-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/"><img class="cs-float-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">Cinépolis</span></a><a class="cs-float-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
+<div class="cs-float" id="csFloat" aria-hidden="true"><a class="cs-float-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/"><img class="cs-float-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">Cinépolis</span></a><span class="cs-float-div"></span><nav class="cs-float-nav"><a href="#background" class="sc-link"><span class="sc-num">01</span>Background</a><a href="#challenges" class="sc-link"><span class="sc-num">02</span>Challenges</a><a href="#process" class="sc-link"><span class="sc-num">03</span>Process</a><a href="#work" class="sc-link"><span class="sc-num">04</span>Work</a><a href="#conclusions" class="sc-link"><span class="sc-num">05</span>Conclusions</a></nav><a class="cs-float-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
 
 <script>
   // Floating case-study pill: visible once past the cover, hidden near the footer.

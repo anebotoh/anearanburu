@@ -26,13 +26,13 @@ function page(error) {
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; }
-  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; -webkit-font-smoothing: antialiased; }
+  :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; --margin:48px; }
+  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 24px var(--margin); -webkit-font-smoothing: antialiased; }
   .card { width: 100%; max-width: 560px; text-align: left; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
   h1 { font-weight: 400; letter-spacing: -.04em; font-size: clamp(44px, 8vw, 72px); line-height: .95; color: #fff; margin-bottom: 22px; }
-  .lead { font-size: 17px; line-height: 1.5; color: var(--body); margin: 0 0 40px; max-width: 50ch; }
+  .lead { font-size: 17px; line-height: 1.5; color: var(--body); margin: 0 0 40px; max-width: 46ch; }
   form { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 240px; }
   .field label { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--text); font-family: inherit; font-size: 15px; transition: border-color .2s ease; }
@@ -44,13 +44,15 @@ function page(error) {
   .foot { margin-top: 30px; font-size: 13px; color: var(--muted); }
   .foot a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
   .foot a:hover { text-decoration-color: var(--text); }
+  @media (max-width: 768px) { :root { --margin:24px; } }
+  @media (max-width: 480px) { :root { --margin:20px; } }
 </style>
 </head>
 <body>
   <main class="card">
     <p class="eyebrow">Selected work</p>
-    <h1>Oh, you're here</h1>
-    <p class="lead">These case studies are password-protected. Enter the details I shared with you to take a look.</p>
+    <h1>Oh, well, hello</h1>
+    <p class="lead">These case studies are password-protected.</p>
     <form method="POST" autocomplete="off">
       <div class="field">
         <label for="u">Username</label>

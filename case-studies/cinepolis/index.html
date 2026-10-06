@@ -204,6 +204,17 @@
   .sc-link.is-active .sc-num { color: var(--text); }
   section[id] { scroll-margin-top: calc(var(--nav-h) + 72px); }
   @media (max-width: 600px) { .subnav .subnav-info { display: none; } }
+
+  /* Floating case-study nav pill (identity + prev/next), shown mid-page */
+  .cs-float { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); display: inline-flex; align-items: center; gap: 6px; padding: 7px 8px; background: rgba(23,23,28,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
+  .cs-float.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .cs-float-arrow { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
+  .cs-float-arrow:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+  .cs-float-id { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 0 8px; }
+  .cs-float-thumb { width: 28px; height: 18px; object-fit: cover; border-radius: 4px; display: block; flex: 0 0 auto; }
+  .cs-float-label { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .cs-float-name { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
+  @media (max-width: 480px) { .cs-float-label { display: none; } .cs-float { bottom: 18px; } }
 </style>
 </head>
 <body>
@@ -211,10 +222,9 @@
 <header class="topbar">
   <div class="topbar-left">
     <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
-    <span class="topbar-meta">Digital Designer</span><span class="cs-arrows"><a class="cs-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a></span>
+    <span class="topbar-meta">Digital Designer</span>
     </div>
   
-  <div class="topbar-center" id="topbarCenter"><span class="subnav-info"><img class="subnav-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="subnav-label">Case study</span><span class="subnav-name">Cinépolis</span></span></div>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
     <a href="/home/">Home</a>
@@ -494,6 +504,25 @@
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
+  })();
+</script>
+<div class="cs-float" id="csFloat" aria-hidden="true"><a class="cs-float-arrow" href="/case-studies/nmaahc/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/"><img class="cs-float-thumb" src="/case-studies/cinepolis/images/cinepolis-01.jpg" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">Cinépolis</span></a><a class="cs-float-arrow" href="/case-studies/embibe/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
+
+<script>
+  // Floating case-study pill: visible once past the cover, hidden near the footer.
+  (function () {
+    var fl = document.getElementById('csFloat');
+    var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
+    if (!fl || !target) return;
+    var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
+    function onScroll() {
+      var pastCover = target.getBoundingClientRect().bottom < navH;
+      var nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 200);
+      fl.classList.toggle('is-visible', pastCover && !nearBottom);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
   })();
 </script>
 </body>

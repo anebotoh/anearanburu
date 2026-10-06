@@ -101,11 +101,12 @@
   .worklist .w-thumb { height: clamp(42px, 7vh, 76px); width: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
   .worklist a:hover .w-thumb { opacity: 1; }
 
-  .worklist .w-chapters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 32px; padding: 0 var(--margin) clamp(18px, 2.6vh, 34px); border-bottom: 1px solid var(--border); }
-  .worklist .w-chapters a { display: inline-flex; align-items: baseline; gap: 8px; padding: 0; border: none; border-radius: 0; background: transparent; color: var(--muted); text-transform: none; letter-spacing: -.01em; transition: color .2s ease; }
+  .worklist .w-chapters { display: flex; flex-direction: column; gap: 12px; padding: 2px var(--margin) clamp(18px, 2.6vh, 34px); border-bottom: 1px solid var(--border); }
+  .worklist .w-chapters a { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; column-gap: clamp(16px, 2.5vw, 40px); padding: 0; border: none; border-radius: 0; background: transparent; color: var(--muted); text-transform: none; letter-spacing: -.01em; transition: color .2s ease; }
   .worklist .w-chapters a:hover { color: #fff; }
-  .worklist .w-chapters .wc-num { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .worklist .w-chapters .wc-num { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); white-space: nowrap; }
   .worklist .w-chapters .wc-title { font-size: 13px; }
+  .worklist .w-chapters .wc-dur { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); justify-self: end; white-space: nowrap; }
 
   /* ---------- HOVER PREVIEW — enlarged slideshow following the cursor ---------- */
   .hover-preview { position: fixed; top: 0; left: 0; width: clamp(437px, 43.7vw, 672px); aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: #000; pointer-events: none; z-index: 300; opacity: 0; transform: translate(-50%, -50%) scale(.94); transition: opacity .24s ease, transform .24s ease; box-shadow: 0 24px 70px rgba(0,0,0,.55); }
@@ -169,9 +170,9 @@
     <img class="w-thumb" src="/case-studies/output-creator/images/creator-01.jpg" alt="Creator" loading="lazy">
   </a>
   <div class="w-chapters">
-    <a href="/case-studies/output-creator/#ch1"><span class="wc-num">Chapter 1</span><span class="wc-title">Make it understandable</span></a>
-    <a href="/case-studies/output-creator/#ch2"><span class="wc-num">Chapter 2</span><span class="wc-title">How we made it fun</span></a>
-    <a href="/case-studies/output-creator/#ch3"><span class="wc-num">Chapter 3</span><span class="wc-title">Launch and go to market</span></a>
+    <a href="/case-studies/output-creator/#ch1"><span class="wc-num">Chapter 1</span><span class="wc-title">Make it understandable</span><span class="wc-dur">Year one</span></a>
+    <a href="/case-studies/output-creator/#ch2"><span class="wc-num">Chapter 2</span><span class="wc-title">How we made it fun</span><span class="wc-dur">Year two</span></a>
+    <a href="/case-studies/output-creator/#ch3"><span class="wc-num">Chapter 3</span><span class="wc-title">Launch and go to market</span><span class="wc-dur">Six months</span></a>
   </div>
   <a href="/case-studies/ipondr/" data-preview="/case-studies/ipondr/images/ipondr-15.png" data-slides='["/case-studies/ipondr/images/thumbs/ipondr-01.jpg", "/case-studies/ipondr/images/thumbs/ipondr-02.jpg", "/case-studies/ipondr/images/thumbs/ipondr-03.jpg", "/case-studies/ipondr/images/thumbs/ipondr-04.jpg", "/case-studies/ipondr/images/thumbs/ipondr-05.jpg", "/case-studies/ipondr/images/thumbs/ipondr-06.jpg", "/case-studies/ipondr/images/thumbs/ipondr-07.jpg", "/case-studies/ipondr/images/thumbs/ipondr-08.jpg", "/case-studies/ipondr/images/thumbs/ipondr-09.jpg", "/case-studies/ipondr/images/thumbs/ipondr-10.jpg", "/case-studies/ipondr/images/thumbs/ipondr-11.jpg", "/case-studies/ipondr/images/thumbs/ipondr-12.jpg", "/case-studies/ipondr/images/thumbs/ipondr-13.jpg", "/case-studies/ipondr/images/thumbs/ipondr-14.jpg", "/case-studies/ipondr/images/thumbs/ipondr-15.jpg", "/case-studies/ipondr/images/thumbs/ipondr-16.jpg", "/case-studies/ipondr/images/thumbs/ipondr-17.jpg"]'>
     <span class="w-info"><span class="w-name">iPondr</span><span class="w-meta">Responsive ecosystem · Product & brand design</span></span>

@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px var(--margin);
+    padding: 22px var(--margin);
     height: 70px;
     flex-shrink: 0;
   }
@@ -317,7 +317,20 @@
     footer { justify-content: space-between; }
     .hero {
       padding: 24px 0;
+      min-height: calc(100svh - 58px);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      scroll-snap-align: start; scroll-snap-stop: always;
     }
+    /* Mobile: one project per scroll, with breathing room */
+    html { scroll-snap-type: y mandatory; scroll-padding-top: 58px; }
+    .home-list { margin: 0 var(--margin); gap: 0; }
+    .home-project {
+      min-height: calc(100svh - 58px);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding: 32px 0 40px;
+      scroll-snap-align: start; scroll-snap-stop: always;
+    }
+    .hp-info { margin-bottom: 22px; }
     .hero h1 { max-width: 432px; }
     .hero p { max-width: 432px; }
     .hero-break { display: none; }
@@ -334,7 +347,7 @@
     }
     body { display: block; }
 
-    .topbar { padding: 16px var(--margin); height: 54px; }
+    .topbar { padding: 18px var(--margin); height: 58px; }
     .topbar-left { gap: 12px; }
     .topbar-links { top: 54px; padding: 20px 20px 0; }
     .hero {
@@ -369,7 +382,7 @@
   .hp-desc { font-size: 14px; line-height: 1.45; color: #8a8a8f; margin-top: 12px; max-width: 60ch; }
   .hp-cta { display: block; width: fit-content; margin-top: 18px; font-size: 14px; font-weight: 500; line-height: 1.35; color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: opacity .2s; }
   .hp-cta:hover { opacity: .7; }
-  @media (max-width: 480px) { .home-list { gap: 56px; } .hp-media { aspect-ratio: 4/3; } }
+  @media (max-width: 480px) { .hp-media { aspect-ratio: 4/3; } }
 
   /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
   @media (min-width: 769px) {

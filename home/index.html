@@ -369,7 +369,7 @@
   .hp-desc { font-size: 16px; line-height: 1.55; color: #8a8a8f; margin-top: 12px; max-width: 60ch; }
   @media (max-width: 480px) { .home-list { gap: 56px; } .hp-media { aspect-ratio: 4/3; } }
 
-  /* ---------- SCROLL SNAP (desktop): hero, then one project per scroll ---------- */
+  /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
   @media (min-width: 769px) {
     html { scroll-snap-type: y mandatory; scroll-padding-top: 70px; }
     .hero {
@@ -381,11 +381,16 @@
     .home-list { margin: 0 var(--margin); gap: 0; }
     .home-project {
       min-height: calc(100vh - 70px);
-      display: flex; flex-direction: column; justify-content: center;
+      display: grid; grid-template-columns: minmax(300px, 420px) 1fr;
+      align-items: center; gap: clamp(40px, 5vw, 72px);
       padding: 32px 0;
       scroll-snap-align: start; scroll-snap-stop: always;
     }
-    .hp-media { max-height: 60vh; }
+    .hp-info { display: flex; flex-direction: column; margin-bottom: 0; max-width: 420px; }
+    .hp-title { order: 1; margin-top: 0; font-size: clamp(24px, 2.1vw, 32px); line-height: 1.25; }
+    .hp-meta { order: 2; margin-top: 16px; }
+    .hp-desc { order: 3; margin-top: 16px; max-width: none; }
+    .hp-media { justify-self: end; width: 100%; max-width: 60vw; max-height: 72vh; margin: 0; }
   }
 </style>
 </head>
@@ -416,7 +421,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2024–2026 · Output</p>
-      <h2 class="hp-title">Building a more intuitive creative workflow for music production</h2>
+      <h2 class="hp-title">Building a more intuitive creative<br>workflow for music production</h2>
       <p class="hp-desc">Multi-year product redesign spanning workflow architecture, interaction design, user interviews, visual design, micro-interactions, PRs, and demos at NAMM &amp; SXSW in partnership with Yamaha.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/01-Creator%202.0.mov"></video></div>
@@ -424,7 +429,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2023 · Fantasy</p>
-      <h2 class="hp-title">Extending a digital framework for museum exhibitions</h2>
+      <h2 class="hp-title">Extending a digital framework<br>for museum exhibitions</h2>
       <p class="hp-desc">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/05-NMAACH.mp4"></video></div>
@@ -432,7 +437,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2023 · Fantasy</p>
-      <h2 class="hp-title">Creating the foundation for a next-generation learning experience</h2>
+      <h2 class="hp-title">Creating the foundation<br>for a next-generation learning experience</h2>
       <p class="hp-desc">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/04-Embibe.mp4"></video></div>
@@ -440,7 +445,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2023 · Fantasy</p>
-      <h2 class="hp-title">Creating a unified cinema experience across digital touchpoints</h2>
+      <h2 class="hp-title">Creating a unified cinema experience<br>across digital touchpoints</h2>
       <p class="hp-desc">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/02-Cinepolis.mp4"></video></div>
@@ -448,7 +453,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2020 · Fantasy</p>
-      <h2 class="hp-title">Turning information into engaging narratives</h2>
+      <h2 class="hp-title">Turning information<br>into engaging narratives</h2>
       <p class="hp-desc">Created a content and reading framework that prioritized comprehension over consumption.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video></div>
@@ -456,7 +461,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2020 · Fantasy</p>
-      <h2 class="hp-title">Reimagining private aviation for mobile</h2>
+      <h2 class="hp-title">Reimagining private aviation<br>for mobile</h2>
       <p class="hp-desc">Developed visual directions exploring how a premium aviation brand could translate into a mobile experience.</p>
     </div>
     <div class="hp-media"><img src="/videos/09-Wheelsup.png" alt="Reimagining private aviation for mobile" loading="lazy"></div>
@@ -464,7 +469,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2022 · Fantasy</p>
-      <h2 class="hp-title">Bringing Messenger&rsquo;s new identity to life online</h2>
+      <h2 class="hp-title">Bringing Messenger&rsquo;s new<br>identity to life online</h2>
       <p class="hp-desc">Created visual and interactive concepts that communicated the next chapter of the Messenger brand.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/07-Messenger.mp4"></video></div>
@@ -472,7 +477,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2022 · Fantasy</p>
-      <h2 class="hp-title">Adapting a global product suite for new markets</h2>
+      <h2 class="hp-title">Adapting a global product suite<br>for new markets</h2>
       <p class="hp-desc">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
     </div>
     <div class="hp-media"><img src="/videos/11-Lark.png" alt="Adapting a global product suite for new markets" loading="lazy"></div>
@@ -480,7 +485,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2019 · Fantasy</p>
-      <h2 class="hp-title">Reimagining enterprise travel booking through voice</h2>
+      <h2 class="hp-title">Reimagining enterprise travel<br>booking through voice</h2>
       <p class="hp-desc">Designed voice-driven flows and interaction patterns for a corporate travel platform.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/06-Deem.mp4"></video></div>
@@ -488,7 +493,7 @@
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2020 · Fantasy</p>
-      <h2 class="hp-title">Designing a five-year vision for Asana</h2>
+      <h2 class="hp-title">Designing a five-year vision<br>for Asana</h2>
       <p class="hp-desc">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
     </div>
     <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/08-Asana.mp4"></video></div>

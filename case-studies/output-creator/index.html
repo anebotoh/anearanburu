@@ -299,8 +299,8 @@
 
   /* Case-study switcher — carets after the subtitle, reveal on scroll */
   .cs-nav { display: inline-flex; align-items: center; gap: 1px; }
-  .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 12px; height: 24px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease; }
-  .cs-arrows { display: inline-flex; align-items: center; gap: 0; margin-left: 6px; background: rgba(255,255,255,.06); border-radius: 4px; padding: 2px 4px; } .cs-arrow:hover { color: var(--text); }
+  .cs-arrow { display: inline-flex; align-self: center; align-items: center; justify-content: center; width: 26px; height: 26px; background: rgba(0,0,0,0.4); border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
+  .cs-arrows { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; } .cs-arrow:hover { color: var(--text); }
   .scroll-progress { position: fixed; top: var(--nav-h); left: 0; height: 2px; width: 0; background: rgba(255,255,255,0.3); z-index: 99; transition: width .08s linear; pointer-events: none; }
   .topbar-left { position: relative; }
   .topbar-meta { transition: opacity .25s ease; white-space: nowrap; }
@@ -321,7 +321,7 @@
   .subnav-chapters { display: flex; align-items: center; gap: 26px; min-width: 0; flex: 1 1 auto; overflow-x: auto; scrollbar-width: none; }
   .subnav-chapters::-webkit-scrollbar { display: none; }
   .sc-link { display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; font-size: 12px; letter-spacing: -.01em; color: var(--muted); text-decoration: none; opacity: .7; transition: color .2s ease, opacity .2s ease; }
-  .sc-link:hover, .sc-link.is-active { color: var(--text); opacity: 1; }
+  .sc-link.is-active { color: var(--text); opacity: 1; } .sc-link:hover { color: var(--text); opacity: 1; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .sc-num { font-size: 10px; letter-spacing: .08em; color: var(--muted); font-variant-numeric: tabular-nums; }
   .sc-link.is-active .sc-num { color: var(--text); }
   @media (max-width: 600px) { .subnav { justify-content: flex-start; } }

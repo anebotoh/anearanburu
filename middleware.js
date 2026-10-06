@@ -27,45 +27,52 @@ function page(error) {
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; --margin:48px; }
-  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 24px var(--margin); -webkit-font-smoothing: antialiased; }
-  .card { width: 100%; max-width: 560px; text-align: left; animation: in .4s ease both; }
+  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; flex-direction: column; padding: 24px var(--margin); -webkit-font-smoothing: antialiased; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .topbar-left { display: flex; align-items: center; gap: 10px; }
+  .topbar-name { color: var(--text); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
+  .topbar-name:hover { opacity: .7; }
+  .topbar-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
+  .topbar-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: color .2s; }
+  .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
+  .card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-  h1 { font-weight: 400; letter-spacing: -.04em; font-size: clamp(44px, 8vw, 72px); line-height: .95; color: #fff; margin-bottom: 22px; }
-  .lead { font-size: 17px; line-height: 1.5; color: var(--body); margin: 0 0 40px; max-width: 46ch; }
-  form { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 240px; }
-  .field label { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--text); font-family: inherit; font-size: 15px; transition: border-color .2s ease; }
+  .eyebrow { font-size: 12px; letter-spacing: .02em; color: var(--muted); margin-bottom: 10px; }
+  .lead { font-size: 15px; line-height: 1.5; color: var(--body); margin: 0 0 24px; }
+  form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 240px; }
+  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 9px 13px; color: var(--text); font-family: inherit; font-size: 14px; text-align: center; transition: border-color .2s ease; }
   input:focus { outline: none; border-color: #45454d; }
   input::placeholder { color: #55555c; }
-  button { margin-top: 10px; background: #fff; color: #0C0C0F; border: none; border-radius: 10px; padding: 14px; font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: -.01em; cursor: pointer; transition: transform .15s ease, opacity .2s ease; }
+  button { margin-top: 4px; background: #fff; color: #0C0C0F; border: none; border-radius: 9px; padding: 10px; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -.01em; cursor: pointer; transition: transform .15s ease, opacity .2s ease; }
   button:hover { transform: translateY(-1px); opacity: .92; }
-  .error { font-size: 13px; color: #ff6b6b; min-height: 18px; }
-  .foot { margin-top: 30px; font-size: 13px; color: var(--muted); }
-  .foot a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
-  .foot a:hover { text-decoration-color: var(--text); }
-  @media (max-width: 768px) { :root { --margin:24px; } }
-  @media (max-width: 480px) { :root { --margin:20px; } }
+  .error { font-size: 12px; color: #ff6b6b; min-height: 16px; }
+  @media (max-width: 768px) { :root { --margin:24px; } .topbar-meta { display: none; } }
+  @media (max-width: 480px) { :root { --margin:20px; } .topbar-links { gap: 18px; } }
 </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="topbar-name" href="/home/">Ane Aranburu</a>
+      <span class="topbar-meta">Digital Designer</span>
+    </div>
+    <nav class="topbar-links">
+      <a href="/home/">Home</a>
+      <a href="/case-studies/" class="is-active">Case studies</a>
+      <a href="/about/">About</a>
+      <a href="mailto:aranburuane@gmail.com">Email</a>
+    </nav>
+  </header>
   <main class="card">
     <p class="eyebrow">Selected work</p>
-    <h1>Oh, well, hello</h1>
     <p class="lead">These case studies are password-protected.</p>
     <form method="POST" autocomplete="off">
-      <div class="field">
-        <label for="u">Username</label>
-        <input id="u" name="username" placeholder="ane" autocapitalize="off" autocorrect="off" spellcheck="false" required>
-      </div>
-      <div class="field">
-        <label for="p">Password</label>
-        <input id="p" name="password" type="password" placeholder="••••••••" required>
-      </div>
+      <input id="u" name="username" placeholder="Username" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <input id="p" name="password" type="password" placeholder="Password" required>
       <p class="error">${error}</p>
       <button type="submit">Let's go</button>
     </form>
-    <p class="foot">Don't have access? <a href="mailto:aranburuane@gmail.com">Get in touch</a>.</p>
   </main>
 </body>
 </html>`;

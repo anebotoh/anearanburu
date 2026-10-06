@@ -58,7 +58,7 @@
   .nav-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .nav-left { display: flex; align-items: baseline; gap: 10px; }
   .nav-links { display: flex; gap: 4px; margin-right: -16px; }
-  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; border: 1px solid transparent; font-weight: 500; }
+  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.is-active { color: var(--text); }
   /* Hamburger toggle — hidden on desktop, shown on mobile */
@@ -200,7 +200,6 @@
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
-    nav { padding: 24px 32px; }
     .about { padding-left: 32px; padding-right: 32px; }
   }
   @media (max-width: 768px) {

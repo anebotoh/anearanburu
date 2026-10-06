@@ -101,9 +101,9 @@
   .worklist .w-thumb { height: clamp(42px, 7vh, 76px); width: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
   .worklist a:hover .w-thumb { opacity: 1; }
 
-  .worklist .w-chapters { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px var(--margin) clamp(18px, 2.6vh, 34px); border-bottom: 1px solid var(--border); }
-  .worklist .w-chapters a { display: inline-flex; align-items: baseline; gap: 8px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 100px; background: transparent; color: var(--muted); text-transform: none; letter-spacing: -.01em; transition: color .2s ease, border-color .2s ease, background .2s ease; }
-  .worklist .w-chapters a:hover { color: #fff; border-color: #45454d; background: rgba(255,255,255,.04); }
+  .worklist .w-chapters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 32px; padding: 0 var(--margin) clamp(18px, 2.6vh, 34px); border-bottom: 1px solid var(--border); }
+  .worklist .w-chapters a { display: inline-flex; align-items: baseline; gap: 8px; padding: 0; border: none; border-radius: 0; background: transparent; color: var(--muted); text-transform: none; letter-spacing: -.01em; transition: color .2s ease; }
+  .worklist .w-chapters a:hover { color: #fff; }
   .worklist .w-chapters .wc-num { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
   .worklist .w-chapters .wc-title { font-size: 13px; }
 

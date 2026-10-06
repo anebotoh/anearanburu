@@ -101,6 +101,7 @@
   .worklist .w-thumb { height: clamp(42px, 7vh, 76px); width: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; flex: 0 0 auto; opacity: .45; transition: opacity .3s ease; }
   .worklist a:hover .w-thumb { opacity: 1; }
 
+  .worklist > a:has(+ .w-chapters) { border-bottom: none; }
   .worklist .w-chapters { display: flex; flex-direction: column; gap: 12px; padding: 2px var(--margin) clamp(18px, 2.6vh, 34px); border-bottom: 1px solid var(--border); }
   .worklist .w-chapters a { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; column-gap: clamp(16px, 2.5vw, 40px); padding: 0; border: none; border-radius: 0; background: transparent; color: var(--muted); text-transform: none; letter-spacing: -.01em; transition: color .2s ease; }
   .worklist .w-chapters a:hover { color: #fff; }

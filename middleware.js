@@ -28,14 +28,14 @@ function page(error) {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; }
   body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; -webkit-font-smoothing: antialiased; }
-  .card { width: 100%; max-width: 440px; text-align: center; animation: in .4s ease both; }
+  .card { width: 100%; max-width: 560px; text-align: left; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-  h1 { font-weight: 400; letter-spacing: -.04em; font-size: clamp(42px, 8vw, 66px); line-height: .95; color: #fff; margin-bottom: 20px; }
-  .lead { font-size: 16px; line-height: 1.5; color: var(--body); margin: 0 auto 38px; max-width: 32ch; }
-  form { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 220px; margin: 0 auto; }
+  h1 { font-weight: 400; letter-spacing: -.04em; font-size: clamp(44px, 8vw, 72px); line-height: .95; color: #fff; margin-bottom: 22px; }
+  .lead { font-size: 17px; line-height: 1.5; color: var(--body); margin: 0 0 40px; max-width: 50ch; }
+  form { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 240px; }
   .field label { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--text); font-family: inherit; font-size: 15px; text-align: center; transition: border-color .2s ease; }
+  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--text); font-family: inherit; font-size: 15px; transition: border-color .2s ease; }
   input:focus { outline: none; border-color: #45454d; }
   input::placeholder { color: #55555c; }
   button { margin-top: 10px; background: #fff; color: #0C0C0F; border: none; border-radius: 10px; padding: 14px; font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: -.01em; cursor: pointer; transition: transform .15s ease, opacity .2s ease; }
@@ -49,7 +49,7 @@ function page(error) {
 <body>
   <main class="card">
     <p class="eyebrow">Selected work</p>
-    <h1>Case studies</h1>
+    <h1>Oh, you're here</h1>
     <p class="lead">These case studies are password-protected. Enter the details I shared with you to take a look.</p>
     <form method="POST" autocomplete="off">
       <div class="field">

@@ -368,6 +368,25 @@
   .hp-title { font-family: var(--font-hero); font-weight: 400; letter-spacing: -.02em; font-size: clamp(22px,2.6vw,30px); line-height: 1.14; color: #fff; margin-top: 12px; }
   .hp-desc { font-size: 16px; line-height: 1.55; color: #8a8a8f; margin-top: 12px; max-width: 60ch; }
   @media (max-width: 480px) { .home-list { gap: 56px; } .hp-media { aspect-ratio: 4/3; } }
+
+  /* ---------- SCROLL SNAP (desktop): hero, then one project per scroll ---------- */
+  @media (min-width: 769px) {
+    html { scroll-snap-type: y mandatory; scroll-padding-top: 70px; }
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding-top: 40px;
+      scroll-snap-align: start; scroll-snap-stop: always;
+    }
+    .home-list { margin: 0 var(--margin); gap: 0; }
+    .home-project {
+      min-height: calc(100vh - 70px);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 32px 0;
+      scroll-snap-align: start; scroll-snap-stop: always;
+    }
+    .hp-media { max-height: 60vh; }
+  }
 </style>
 </head>
 <body>

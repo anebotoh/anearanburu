@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Output Creator — Case Study · Ane Aranburu</title>
+<title>Output Creator · Launch and go to market — Ane Aranburu</title>
 <meta name="description" content="A two-and-a-half-year redesign of Output Creator, led end to end by Ane Aranburu as Lead Product Designer — turning a pro-built tool into a play-first app for beginners, through a Yamaha partnership and demos at NAMM and SXSW.">
 
 <!-- Open Graph -->
@@ -375,202 +375,148 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<nav class="chapter-subnav" aria-label="Chapters"><a href="/case-studies/output-creator/" class="chsub-link is-active"><span class="chsub-num">01</span>Make it understandable</a><a href="/case-studies/output-creator/how-we-made-it-fun/" class="chsub-link"><span class="chsub-num">02</span>How we made it fun</a><a href="/case-studies/output-creator/launch-and-go-to-market/" class="chsub-link"><span class="chsub-num">03</span>Launch and go to market</a></nav>
-<section class="cover">
-  <h1 class="cover-solo">Creator</h1>
-  <p class="eyebrow cover-eyebrow"><span class="accent">Output</span> — 2024–2026 · Desktop App</p>
-</section>
-
-<!-- HERO -->
-<section class="hero">
+<nav class="chapter-subnav" aria-label="Chapters"><a href="/case-studies/output-creator/" class="chsub-link"><span class="chsub-num">01</span>Make it understandable</a><a href="/case-studies/output-creator/how-we-made-it-fun/" class="chsub-link"><span class="chsub-num">02</span>How we made it fun</a><a href="/case-studies/output-creator/launch-and-go-to-market/" class="chsub-link is-active"><span class="chsub-num">03</span>Launch and go to market</a></nav>
+<section class="chapter" id="ch3">
   <div class="wrap">
-    <h2 class="hero-sub">Rebuilding the creative core of Output Creator</h2>
-    <p class="lead">Over two and a half years, I led the end-to-end redesign of Output Creator — from workflow architecture and interaction design to user research, visual design, micro-interactions, and front-end polish. It was designed using Figma and Cursor, but it was shaped by countless conversations, disagreements, iterations, and an ongoing rebrand. Together, we launched a product that was genuinely fun to use — and helped secure a partnership with Yamaha, including live demos at NAMM and SXSW.</p>
+    <p class="chapter-kicker">Chapter 03</p>
+    <h2 class="chapter-title">Launch and go to market</h2>
+    <p class="chapter-intro">We were ready to launch when a call with Yamaha changed the plan — they wanted Creator aimed at instrumentalists new to production. So we made recording a core part of the experience and prepared to go to market together.</p>
   </div>
 </section>
 
-<!-- META -->
-<section style="padding-top:0;padding-bottom:0;border-top:none;">
+<section id="the-audience">
   <div class="wrap">
-    <div class="meta">
-      <div class="meta-item"><div class="k">Role</div><div class="v">Lead Product Designer</div></div>
-      <div class="meta-item"><div class="k">Timeline</div><div class="v">2.5 years, of a 4-year project</div></div>
-      <div class="meta-item"><div class="k">Success metrics</div><div class="v">Partnership with Yamaha · NAMM · SXSW</div></div>
+    <p class="eyebrow">The audience</p>
+    <div class="read">
+      <p class="body">Creator has always served three kinds of musician — but who we designed for first changed over the course of the project. The beginner needs it to be easy enough to build a song and gain confidence with the language of music. The instrumentalist wants to record in seconds and have the palette match their take. And the pro just needs to sketch an idea fast and export stems into their own DAW.</p>
+      <p class="body">At the very beginning, we focused almost entirely on the beginner. About a year and a half in, a partnership with Yamaha shifted the emphasis — their audience is full of instrumentalists, so the target moved toward musicians who already play but are new to producing. That's what the latest version responds to.</p>
+      <p class="body">None of that was a one-time decision — the audience kept moving with the business, and we kept testing it. We interviewed people constantly, checking three things at once: whether there was real product–market fit, whether the thing was actually usable, and whether what we were trying to communicate through the design was landing the way we intended.</p>
     </div>
   </div>
 </section>
 
-
-<!-- MAIN VIDEO -->
-<section class="hero-video main-video media-anchor">
-  <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/01-Creator%202.0.mov"></video></div>
-</section>
-
-<!-- CHAPTER 1 -->
-<section class="chapter" id="ch1">
-  <div class="wrap">
-    <p class="chapter-kicker">Chapter 01</p>
-    <h2 class="chapter-title">Make it understandable</h2>
-    <p class="chapter-intro">We pulled the 1.0 apart — mapping where users got lost, auditing the visual hierarchy and layout, and learning that crisp, good-looking visuals rarely make a product easier to understand.</p>
-  </div>
-</section>
-
-<section id="the-project">
+<!-- RECORDING -->
+<section id="recording">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">The project</p>
-      <h2>Redesigning a creative workflow</h2>
+      <p class="eyebrow">Recording</p>
+      <h2>Making recording a first-class way in</h2>
     </div>
     <div class="read">
-      <p class="body">I joined in January 2024. The company had launched the 1.0 version of Creator two months earlier and overall the feedback from users was that they didn't understand how it worked. The conceptual thinking was great, but along the way the product that shipped wasn't matching the initial thinking.</p>
-      <p class="body">Over the next two and a half years I redesigned the app twice, designed more than 2,000 screens, tested countless prototypes — and became genuinely annoying to friends and family, running ideas past anyone who would listen.</p>
-    </div>
-  </div>
-</section>
-
-<!-- USABILITY GOALS -->
-<section id="usability-goals">
-  <div class="wrap split">
-    <div class="sticky">
-      <p class="eyebrow">Usable &amp; intuitive</p>
-      <h2>Start a song, finish a song</h2>
-    </div>
-    <div class="read">
-      <p class="body">The biggest problem with the first prototype was blunt: people didn't know how to use it. They couldn't build their first song — they'd open it and stall.</p>
-      <p class="body">So we set the goals in plain terms. How do we get someone to <em>start</em> a song, and actually <em>finish</em> one? How do we serve the right sounds at the right moment — remembering that underneath, Creator is a sample library, and every sound you place is pulled from it? And how do we make people feel, the whole way through, like they're learning rather than being carried?</p>
-      <p class="body">That last question became its own thread. A big part of the work was educational — surfacing the parts of a song worth paying attention to as you build, so the product leaves you more capable than it found you, not just with a track to show for it.</p>
+      <p class="body">We were weeks from launch when a conversation with Yamaha changed the trajectory. They saw the product and wanted it — but for their audience: instrumentalists who already play, yet have never produced. People who can pick up a guitar or sit at a keyboard, and still find a DAW intimidating.</p>
+      <p class="body">That reframed the core experience. A beginner starts from sounds; an instrumentalist starts from their instrument. So we made recording one of the primary ways into a song — capture a take in seconds, and let Creator match the palette and build around what you played, instead of asking you to learn the tool first.</p>
+      <p class="body">It kept the principle that ran through the whole redesign: meet people where they already are. The beginner builds by ear; the instrumentalist builds from their playing. Same product, two doors in — and recording became the one that opened Creator to an audience Yamaha already had.</p>
     </div>
   </div>
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-02.jpg" alt="Timeline view — Move an unselected track sound to another section, on-click."><p class="imgcap">Timeline view — Move an unselected track sound to another section, on-click.</p></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-07.jpg" alt="Dots view — Create your first song section, edit tempo"><p class="imgcap">Dots view — Create your first song section, edit tempo</p></div></div>
 </section>
 
 <section class="quote">
   <div class="wrap">
-    <p>“It doesn't matter if it looks cool if no one understands it.”</p>
-    <p class="attr">Me, to people who just hired me from a cool agency</p>
+    <p>“Perfection made it boring.”</p>
+    <p class="attr">On tuning the sound-matching algorithm to 35 out of 100</p>
   </div>
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-16.jpg" alt="Timeline view — Move an unselected track sound to another section, on release."><p class="imgcap">Timeline view — Move an unselected track sound to another section, on release.</p></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-15.jpg" alt="Timeline view — My first song"><p class="imgcap">Timeline view — My first song</p></div></div>
 </section>
 
-<section id="my-role">
+<section id="leadership-collaboration">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">My role</p>
-      <h2>Ignorance is bliss</h2>
+      <p class="eyebrow">Leadership &amp; collaboration</p>
+      <h2>Reducing friction across the org</h2>
     </div>
     <div class="read">
-      <p class="body">I was hired partly <em>because</em> I didn't know music production. I'm a lifelong music junkie and studied classical music when I was younger, but I'd downloaded Ableton three or four times and given up every time. On this project, not knowing was one of my best assets — the people who built the 1.0 version had too much experience with music production to remember how someone starts learning about it.</p>
-      <p class="body">The version 1.0 was a year of decisions taken with no product design lens or beginner point of view. So I spent the first month stripping them back and building a point of view — cataloguing the usability, visual-design, interaction, and information-architecture problems one by one. Then we got everyone in a room — in person — to agree on a direction before I designed a single new screen.</p>
-      <p class="sublabel">What I owned</p>
-      <div class="taglist">
-        <span class="tag">Framework design</span>
-        <span class="tag">Information architecture</span>
-        <span class="tag">Interaction design</span>
-        <span class="tag">Visual design system</span>
-        <span class="tag">Prototyping &amp; handoff</span>
-        <span class="tag">User research &amp; interviews</span>
-        <span class="tag">Demos</span>
-      </div>
-      <p class="sublabel">Tools &amp; process</p>
-      <p class="body">As Lead Product Designer I owned the product design end to end — from workflow architecture and interaction design through the visual design system and micro-interactions. I set the design concept, designed all the flows, ran critiques, and drove alignment across a cross-functional squad, reporting into Neil Halimen (VP Creative) and partnering closely with Daniel Lepik on 3D and visual design.</p>
-      <p class="body">The process itself kept changing across the two years, as we adopted AI tools along the way. What started in Figma ended up in Cursor — I could write PR tickets and take on front-end polish work myself, getting the final product to a more finished, polished place without spending developer time.</p>
+      <p class="body">Design leadership here was as much about the organization as the screens. A lot of the job was undoing inherited decisions and working around a rigid back-end IA — early on the app had to follow the broken logic of the system it fed from, and I had to earn the room to break those rules and build on top of them — all while the brand was mid-rework and the product was in constant discovery.</p>
+      <p class="body">I leaned on AI throughout: prototyping concepts and mash-ups, pressure-testing workflow decisions, and shipping front-end edits in Cursor. And I helped carry the work into the world — presenting and demoing at NAMM and SXSW with Yamaha, watching strangers use the app, have fun with it, and show us exactly where it broke.</p>
     </div>
   </div>
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-13.jpg" alt="Timeline view — Re-arrange sections of your song."><p class="imgcap">Timeline view — Re-arrange sections of your song.</p></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-08.jpg" alt="Dots view — Start second section"><p class="imgcap">Dots view — Start second section</p></div></div>
 </section>
 
-<section id="the-framework">
-  <div class="wrap split">
-    <div class="sticky">
-      <p class="eyebrow">The framework</p>
-      <h2>Four areas, one paradigm</h2>
-    </div>
-    <div class="read">
-      <p class="body">Early in the UX process we defined the app around four clear areas — and settling them from the very beginning shaped everything that came after.</p>
-    </div>
-  </div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-03.jpg" alt="The framework — toolbar, minimap, sidebar and arrangement"><p class="imgcap">The framework — toolbar, minimap, sidebar and arrangement</p></div></div>
-</section>
-
-<section>
-  <div class="wrap"><div class="read">
-    <p class="body">Fixing those four zones up front meant we could build each one on its own, one at a time.</p>
-  </div></div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-11.jpg" alt="Timeline view — Maximum state for Arrangement view."><p class="imgcap">Timeline view — Maximum state for Arrangement view.</p></div></div>
-</section>
-
-<section>
-  <div class="wrap"><div class="read">
-    <p class="body">And with the structure settled, the real design work became the interaction paradigm between them — the connective tissue that makes the app feel fun and alive, not just functional.</p>
-  </div></div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-12.jpg" alt="Timeline view — song sections states."><p class="imgcap">Timeline view — song sections states.</p></div></div>
-</section>
-
-<section id="learning-by-doing-teamwork">
+<section id="three-unexpected-ironies">
   <div class="wrap">
-    <p class="eyebrow">Learning by doing &amp; teamwork</p>
-    <div class="read">
-      <p class="body">Being a beginner in music production while designing a tool for beginners meant I was basically my own experiment. I was learning as I designed — asking every dumb question you can think of.</p>
-      <p class="body">The team were seasoned musicians who'd been building tools for pros for years — so the first version quietly assumed a beginner just needs less, when really they need something different. And making something easy is far harder than it sounds: dumb it down and you strip out the essence; leave it whole and no one can get in. A lot of the work was long conversations reframing what it even means to learn to make music — and resisting the easy out of “this'll be enough for a beginner.”</p>
-      <p class="body">Being the actual beginner in the room forced everyone to hold that lens. I was learning on two fronts at once — decoding what was happening on the screen, and decoding the craft underneath it: what a song actually needs, what the practical process of building one looks like, what to show first and what to leave out. Less music theory, more practicality — what makes sense, what doesn't, and why.</p>
-      <p class="body">And that's where teamwork mattered. Coming from the agency world, I learned at Output what collaboration actually means. Everyone here has their own expertise — deeply skilled, and genuinely good people — and they were patient and generous about explaining everything, from the complex concepts to the decisions made long before I arrived. I took the dumb-question role gladly, and I learned an enormous amount — including how to learn, through them.</p>
-    </div>
+    <p class="eyebrow">Three unexpected ironies</p>
   </div>
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-04.jpg" alt="Track types"><p class="imgcap">Track types</p></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-09.jpg" alt="Detail: Toolbar, Minimap, Sidebar, Sections, tracks"><p class="imgcap">Detail: Toolbar, Minimap, Sidebar, Sections, tracks</p></div></div>
 </section>
 
-<section id="the-approach">
+<section id="what-i-learned">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">The approach</p>
-      <h2>Advocating for the user</h2>
+      <p class="eyebrow">What I learned</p>
+      <h2>Designing screen choreographies</h2>
     </div>
     <div class="read">
-      <p class="body">The approach was less a plan than a stance: advocate for the user, let go of what we thought we knew, and test it — learning along the way.</p>
-      <p class="body">The product was an evolution. We couldn't have arrived at the end result from the beginning; it was never a case of “I thought about this, and this is the design.” It was continuous learning. What we did have was strong raw material — a great sound-sample library, solid engines, and genuinely smart people on the team. The missing piece was the user's perspective: how this actually had to be used by a beginner.</p>
-      <p class="body">Early on we pictured a young audience — someone with no patience, born with computers, who takes everything for granted. That's not quite who we ended up serving, but designing for them forced the right questions. Because in the end it was less about features and more about understanding what makes a song a song: what someone needs to grasp to start building one, map it out, and let the technology help them — instead of making it for them.</p>
+      <p class="body">Music is invisible. I was designing for abstract meaning — for the conversation between a piece of technology and a musician — constantly deciding how much the computer should do for you, and what creativity even means for a beginner. How do you encourage someone without doing it all for them? (At one point the honest question on the table was literally “how do you manage silence?” — we copy-pasted silence.)</p>
+      <p class="body">A lot of the value was getting paid to ask the dumb questions with no shame: what does “intuitive” actually mean? what makes a design “smart”? Nothing was ever finished — it was continuous discovery. Set a vision, form a hypothesis, test it, fail, learn, repeat.</p>
+      <p class="body">And I think the truest measure of Creator is what happens after it. It's a place to start, gain confidence, and graduate — to more advanced tools, to Output's other products, or, through Yamaha's program for instrumentalists, to a real path into producing your own music. It opens the door and points you somewhere good.</p>
     </div>
   </div>
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-05.jpg" alt="Loading state — sample fetching state."><p class="imgcap">Loading state — sample fetching state.</p></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-14.jpg" alt="Selected section, inactive playhead, active samples"><p class="imgcap">Selected section, inactive playhead, active samples</p></div></div>
 </section>
 
-<section>
+<section id="impact">
   <div class="wrap">
+    <p class="eyebrow">Impact</p>
     <div class="decisions plain">
+
       <article class="decision">
-        <p class="eyebrow">Learning</p>
-        <h3>“Looking good” with no depth wasn't helping</h3>
-        <p class="body">My biggest design enemy was a crisp 3D asset with no UX behind it. Stakeholders saw a cool 3D image, called it “cool,” and wanted it big on the screen — while the hierarchy that actually matters (typography, color, size) was off, and you couldn't tell what to do. Richer visuals are almost never the better solution; the details matter more than being obvious.</p>
+        <p class="eyebrow">Impact 01</p>
+        <h3>Aligning builders and stakeholders behind a new audience</h3>
+        <p class="body">The company had built its tools for pros and now wanted to open a beginners' market — which raised a real fear about how that would land with existing customers. A lot of the work was getting everyone, builders and stakeholders alike, aligned and genuinely agreeing on what we were building. That alignment took enormous effort, and it's what let the product move forward.</p>
       </article>
+
+      <article class="decision">
+        <p class="eyebrow">Impact 02</p>
+        <h3>A partnership that positioned the product</h3>
+        <p class="body">The work earned a partnership with Yamaha — putting Output and Creator in the company of a legendary, globally trusted brand. They invited us to present and demo Creator at NAMM and SXSW, inside their own offering: an endorsement that told the market Creator was to be taken seriously.</p>
+      </article>
+
+      <article class="decision">
+        <p class="eyebrow">Impact 03</p>
+        <h3>A tool that's easy, fun, and builds confidence</h3>
+        <p class="body">Above all, the outcome is a music-production tool that's genuinely easy, fun, and engaging — one that teaches you how a song is actually made. It builds confidence: the sense that you understand the parts worth paying attention to, that you can build and finish your first song, and have fun doing it.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- CHAPTER 2 -->
+<section style="border-top:none;padding:0;">
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/output-creator/images/creator-10.jpg" alt="Detail: Track types, selected sample, inactive track"><p class="imgcap">Detail: Track types, selected sample, inactive track</p></div></div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Credits</p>
+    <div class="read">
+      <p class="body" style="margin-bottom:28px;">A project this long is the work of a lot of people. From 2024–2026 I worked with the following people:</p>
+      <p class="sublabel">The squad</p>
+      <p class="body">Jack Cote (PM) · Garrett Burnett (Front-End) · Jeremy Cruz (Back-End) · Kevin Dixon (Audio &amp; Back-End) · Jennifer Hsu (Audio) · Nick Rappatoni (QA)</p>
+      <p class="sublabel">Design team</p>
+      <p class="body">Daniel Lepik (3D, Visual Design) · Neil Halimen (Founder &amp; VP Creative)</p>
+      <p class="sublabel">Stakeholders</p>
+      <p class="body">Gregg Lehrman (Founder &amp; CEO) · Tony Hsieh (VP of Product) · John Nye (Founder &amp; Composer)</p>
+      <p class="body" style="color:var(--muted);margin-top:28px;">…and many more who contributed across the years — including the product designers before me whose work set solid concepts for the product to build on.</p>
+    </div>
+  </div>
+</section>
+
 <!-- MORE WORK -->
 <nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/embibe/"><span class="pagenav-txt"><span class="pagenav-label">Previous</span><span class="pagenav-name">Embibe</span></span><img class="pagenav-thumb" src="/case-studies/embibe/images/embibe-01.jpg" alt=""></a><a class="pagenav-col next" href="/case-studies/ipondr/"><img class="pagenav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="pagenav-txt"><span class="pagenav-label">Next</span><span class="pagenav-name">iPondr</span></span></a></nav>
 

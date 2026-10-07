@@ -28,8 +28,8 @@ function page(error) {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scrollbar-gutter: stable; }
   :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; --margin:48px; }
-  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; flex-direction: column; padding: 24px var(--margin); -webkit-font-smoothing: antialiased; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 var(--margin); }
   .topbar-left { display: flex; align-items: center; gap: 10px; }
   .topbar-name { color: var(--text); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
   .topbar-name:hover { opacity: .7; }
@@ -37,12 +37,11 @@ function page(error) {
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: color .2s; }
   .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
-  .card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: in .4s ease both; }
+  .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .eyebrow { font-size: 12px; letter-spacing: .02em; color: var(--muted); margin-bottom: 10px; }
-  .lead { font-size: 15px; line-height: 1.5; color: var(--body); margin: 0 0 24px; }
-  form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 240px; }
-  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 9px 13px; color: var(--text); font-family: inherit; font-size: 14px; text-align: center; transition: border-color .2s ease; }
+  .lead { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.14; letter-spacing: -.02em; color: var(--text); font-weight: 400; max-width: 18ch; margin: 0 0 36px; }
+  form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; }
+  input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 11px 14px; color: var(--text); font-family: inherit; font-size: 14px; text-align: left; transition: border-color .2s ease; }
   input:focus { outline: none; border-color: #45454d; }
   input::placeholder { color: #55555c; }
   button { margin-top: 4px; background: #fff; color: #0C0C0F; border: none; border-radius: 9px; padding: 10px; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -.01em; cursor: pointer; transition: transform .15s ease, opacity .2s ease; }
@@ -66,7 +65,6 @@ function page(error) {
     </nav>
   </header>
   <main class="card">
-    <p class="eyebrow">Selected work</p>
     <p class="lead">These case studies are password-protected.</p>
     <form method="POST" autocomplete="off">
       <input id="u" name="username" placeholder="Username" autocapitalize="off" autocorrect="off" spellcheck="false" required>

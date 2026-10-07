@@ -75,7 +75,7 @@
 
   /* PAGE */
   .about {
-    padding: 24px 48px 64px;
+    padding: 40px 48px 64px;
     max-width: 880px;
     margin: 0;
     display: flex;
@@ -101,10 +101,10 @@
   /* THINGS I HAVE LEARNED */
   .learn-para {
     font-family: var(--font-body);
-    font-size: 23px;
+    font-size: clamp(26px, 3.2vw, 38px);
     font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -.01em;
+    line-height: 1.14;
+    letter-spacing: -.02em;
     color: var(--text);
     text-wrap: pretty;
   }
@@ -199,9 +199,6 @@
   footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
 
   /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .about { padding-left: 32px; padding-right: 32px; }
-  }
   @media (max-width: 768px) {
     :root { --nav-h: 58px; --footer-h: 52px; }
     nav { padding: 18px 24px; height: var(--nav-h); }
@@ -222,7 +219,6 @@
     }
     .nav-links a.is-active, .nav-links a:hover { color: var(--text); }
     .about { padding-left: 24px; padding-right: 24px; }
-    .learn-para { font-size: 20px; }
     .exp-entry { grid-template-columns: 1fr; row-gap: 2px; }
     .exp-loc { text-align: left; white-space: normal; }
     footer { padding: 0 24px; justify-content: space-between; }
@@ -232,7 +228,6 @@
     nav { padding: 18px 20px; }
     .nav-left { gap: 12px; }
     .about { padding-top: 20px; padding-left: 20px; padding-right: 20px; }
-    .learn-para { font-size: 18px; }
     .tag { font-size: 12px; padding: 8px 14px; }
     .nav-links { padding: 20px 20px 0; }
   }

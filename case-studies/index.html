@@ -69,7 +69,7 @@
   .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* ---------- HERO (case-study typography) ---------- */
-  .landing-hero { padding: clamp(28px, 7vh, 96px) var(--margin) clamp(24px, 5vh, 64px); }
+  .landing-hero { padding: 40px var(--margin) clamp(24px, 5vh, 64px); }
   .landing-hero .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
   .landing-title {
     font-weight: 400; letter-spacing: -.04em;
@@ -79,8 +79,8 @@
   }
   @keyframes titleIn { from { opacity: 0; } to { opacity: 1; } }
   .landing-sub {
-    font-size: 23px; line-height: 1.3; letter-spacing: -.01em;
-    color: #fff; font-weight: 400; max-width: 44ch; text-wrap: pretty;
+    font-size: clamp(26px, 3.2vw, 38px); line-height: 1.14; letter-spacing: -.02em;
+    color: #fff; font-weight: 400; max-width: 24ch; text-wrap: pretty;
   }
   .landing-sub a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
   .landing-sub a:hover { text-decoration-color: var(--text); }
@@ -133,14 +133,12 @@
     }
     .topbar-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
     .topbar-links a { font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none; padding: 8px 0; color: rgba(255,255,255,.4); }
-    .landing-sub { font-size: 20px; }
     .worklist .w-name { font-size: 32px; }
     .worklist .w-thumb { height: auto; width: 104px; }
   }
   @media (max-width: 480px) {
     :root { --margin: 20px; }
     .landing-title { max-width: 100%; }
-    .landing-sub { font-size: 18px; }
     .worklist a { padding: 22px var(--margin); }
   }
 </style>

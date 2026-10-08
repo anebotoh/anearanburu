@@ -330,7 +330,7 @@
   @media (max-width: 600px) { .subnav .subnav-info { display: none; } }
 
   /* Floating case-study pill: identity + section nav + prev/next, shown mid-page */
-  .cs-float { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 0); display: flex; align-items: center; gap: 8px; max-width: min(1120px, 94vw); padding: 7px 10px; background: rgba(23,23,28,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 1; pointer-events: auto; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
+  .cs-float { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 0); display: flex; align-items: center; gap: 8px; width: min(1120px, 94vw); padding: 7px 10px; background: rgba(23,23,28,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 1; pointer-events: auto; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
   .cs-float.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .cs-float-arrow { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
   .cs-float-arrow:hover { color: var(--text); background: rgba(255,255,255,0.06); }
@@ -362,12 +362,12 @@
   .contact-pill { pointer-events: auto; position: static; left: auto; right: auto; width: auto; height: auto; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
   .contact-pill a { text-decoration: none; }
   .cp-identity { display: inline-flex; align-items: center; gap: 10px; padding-right: 4px; }
-  .cp-avatar { position: relative; flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }
+  .cp-avatar { position: relative; flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }
   .cp-initials { font-size: 13px; font-weight: 600; letter-spacing: .03em; color: #f0ede8; }
   .cp-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .cp-id { display: flex; flex-direction: column; line-height: 1.15; }
+  .cp-id { display: flex; flex-direction: row; align-items: baseline; gap: 6px; line-height: 1.15; }
   .cp-name { font-size: 13px; font-weight: 500; color: #f0ede8; }
-  .cp-tag { font-size: 11px; color: #8a8a8f; }
+  .cp-tag { font-size: 11px; color: #8a8a8f; } .cp-tag::before { content: "\00B7"; margin-right: 6px; }
   .cp-sep { display: none; }
   .cp-links { display: inline-flex; align-items: center; gap: 2px; }
   .cp-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: 100px; white-space: nowrap; transition: color .2s ease; }
@@ -449,7 +449,7 @@
 
 <!-- CHAPTER 3 -->
 <!-- MORE WORK -->
-<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/embibe/"><span class="pagenav-txt"><span class="pagenav-label">Previous</span><span class="pagenav-name">Embibe</span></span><img class="pagenav-thumb" src="/case-studies/embibe/images/embibe-01.jpg" alt=""></a><a class="pagenav-col next" href="/case-studies/ipondr/"><img class="pagenav-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="pagenav-txt"><span class="pagenav-label">Next</span><span class="pagenav-name">iPondr</span></span></a></nav>
+<nav class="pagenav" aria-label="Browse case studies"><a class="pagenav-col prev" href="/case-studies/embibe/"><span class="pagenav-txt"><span class="pagenav-label">Previous</span><span class="pagenav-name">Embibe</span></span><img class="pagenav-thumb" src="/home/Heros/AneAranburu-Embibe-Hero.png" alt=""></a><a class="pagenav-col next" href="/case-studies/ipondr/"><img class="pagenav-thumb" src="/home/Heros/AneAranburu-iPondr-Hero.png" alt=""><span class="pagenav-txt"><span class="pagenav-label">Next</span><span class="pagenav-name">iPondr</span></span></a></nav>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
@@ -518,7 +518,7 @@
     window.addEventListener("resize", update);
   })();
 </script>
-<div class="cs-float" id="csFloat"><a class="cs-float-arrow" href="/case-studies/embibe/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/output-creator/"><img class="cs-float-thumb" src="/case-studies/output-creator/images/creator-01.jpg" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">Output Creator</span></a><span class="cs-float-div"></span><nav class="cs-float-nav"><a href="/case-studies/output-creator/" class="sc-link"><span class="sc-num">01</span>Make it understandable</a><a href="/case-studies/output-creator/how-we-made-it-fun/" class="sc-link is-active"><span class="sc-num">02</span>How we made it fun</a><a href="/case-studies/output-creator/launch-and-go-to-market/" class="sc-link"><span class="sc-num">03</span>Launch and go to market</a></nav><a class="cs-float-arrow" href="/case-studies/ipondr/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
+<div class="cs-float" id="csFloat"><a class="cs-float-arrow" href="/case-studies/embibe/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/output-creator/"><img class="cs-float-thumb" src="/home/Heros/AneAranburu-Creator-Hero1.png" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">Output Creator</span></a><span class="cs-float-div"></span><nav class="cs-float-nav"><a href="/case-studies/output-creator/" class="sc-link"><span class="sc-num">01</span>Make it understandable</a><a href="/case-studies/output-creator/how-we-made-it-fun/" class="sc-link is-active"><span class="sc-num">02</span>How we made it fun</a><a href="/case-studies/output-creator/launch-and-go-to-market/" class="sc-link"><span class="sc-num">03</span>Launch and go to market</a></nav><a class="cs-float-arrow" href="/case-studies/ipondr/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
 <div class="pill-bar" aria-label="Main navigation">
   <nav class="contact-pill pill-left">
     <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>

@@ -81,11 +81,11 @@ function page(error) {
 <body>
   <header class="topbar">
     <div class="topbar-left">
-      <a class="topbar-name" href="/home/">Ane Aranburu</a>
+      <a class="topbar-name" href="/">Ane Aranburu</a>
       <span class="topbar-meta">Digital Designer</span>
     </div>
     <nav class="topbar-links">
-      <a href="/home/">Home</a>
+      <a href="/">Home</a>
       <a href="/case-studies/output-creator/" class="is-active">Case studies</a>
       <a href="/about/">About</a>
       
@@ -107,11 +107,11 @@ function page(error) {
   </main>
 <div class="pill-bar" aria-label="Main navigation">
   <nav class="contact-pill pill-left">
-    <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
+    <a class="cp-identity" href="/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
     <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
   </nav>
   <nav class="contact-pill pill-right">
-    <span class="cp-links"><a href="/home/" data-path="home">Work</a><a href="/about/" data-path="about">About</a></span>
+    <span class="cp-links"><a href="/" data-path="home">Work</a><a href="/about/" data-path="about">About</a></span>
   </nav>
 </div>
 <script>

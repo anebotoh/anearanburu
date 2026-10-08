@@ -382,6 +382,10 @@
   .hp-desc { font-size: 14px; line-height: 1.45; color: #8a8a8f; margin-top: 12px; max-width: 60ch; }
   .hp-cta { display: block; width: fit-content; margin-top: 18px; font-size: 14px; font-weight: 500; line-height: 1.35; color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: opacity .2s; }
   .hp-cta:hover { opacity: .7; }
+  .hp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .hp-tags span { font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px; white-space: nowrap; }
+  .hp-slideshow .hp-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; }
+  .hp-slideshow .hp-slide.is-active { opacity: 1; }
   @media (max-width: 480px) { .hp-media { aspect-ratio: 4/3; } }
 
   /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
@@ -405,6 +409,7 @@
     .hp-meta { order: 2; margin-top: 16px; }
     .hp-desc { order: 3; margin-top: 16px; max-width: none; }
     .hp-cta { order: 4; }
+    .hp-tags { order: 5; }
     .hp-media { width: 100%; max-width: none; margin: 0; }
   }
   /* Floating glass contact pill */
@@ -451,22 +456,25 @@
       <h2 class="hp-title">Building a more intuitive creative<br>workflow for music production</h2>
       <p class="hp-desc">Multi-year product redesign spanning workflow architecture, interaction design, user interviews, visual design, micro-interactions, PRs, and demos at NAMM &amp; SXSW in partnership with Yamaha.</p>
       <a class="hp-cta" href="https://output.com/products/creator" target="_blank" rel="noopener">Download and play with Output Creator</a>
+      <div class="hp-tags"><span>UI/UX</span><span>Framework design</span><span>Information architecture</span><span>User interviews</span><span>Demos</span></div>
     </div>
-    <div class="hp-media"><img src="/home/Heros/AneAranburu-Creator-Hero.png" alt="Output Creator" loading="lazy"></div>
+    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-Creator-Hero1.png" alt="Output Creator" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Creator-Hero2.png" alt="" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Creator-Hero3.png" alt="" loading="lazy"></div>
   </article>
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2023 · Fantasy</p>
       <h2 class="hp-title">Extending a digital framework<br>for museum exhibitions</h2>
       <p class="hp-desc">Defined the interaction and visual framework for extending physical exhibitions into the digital space.</p>
+      <div class="hp-tags"><span>Design direction</span><span>Concept</span><span>Visual design</span></div>
     </div>
-    <div class="hp-media"><img src="/home/Heros/AneAranburu-NMAACH-Hero.png" alt="NMAAHC" loading="lazy"></div>
+    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-NMAACH-Hero.png" alt="NMAAHC" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-NMAACH-Hero2.png" alt="" loading="lazy"></div>
   </article>
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2023 · Fantasy</p>
       <h2 class="hp-title">Creating the foundation<br>for a next-generation learning experience</h2>
       <p class="hp-desc">Led the visual language, motion direction, and onboarding framework that informed a broader product redesign.</p>
+      <div class="hp-tags"><span>Art direction</span><span>Onboarding concept</span><span>Visual design</span></div>
     </div>
     <div class="hp-media"><img src="/home/Heros/AneAranburu-Embibe-Hero.png" alt="Embibe" loading="lazy"></div>
   </article>
@@ -475,6 +483,7 @@
       <p class="hp-meta">2023 · Fantasy</p>
       <h2 class="hp-title">Creating a unified cinema experience<br>across digital touchpoints</h2>
       <p class="hp-desc">Designed a cohesive design language and booking experience across web, mobile, and self-service kiosks.</p>
+      <div class="hp-tags"><span>Visual design</span><span>Design system</span><span>Responsive</span></div>
     </div>
     <div class="hp-media"><img src="/home/Heros/AneAranburu-Cinepolis-Hero.png" alt="Cinépolis" loading="lazy"></div>
   </article>
@@ -483,16 +492,18 @@
       <p class="hp-meta">2020 · Fantasy</p>
       <h2 class="hp-title">Turning information<br>into engaging narratives</h2>
       <p class="hp-desc">Created a content and reading framework that prioritized comprehension over consumption.</p>
+      <div class="hp-tags"><span>Visual design</span><span>Design system</span><span>Micro-interactions</span></div>
     </div>
-    <div class="hp-media"><img src="/home/Heros/AneAranburu-iPondr-Hero.png" alt="iPondr" loading="lazy"></div>
+    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-iPondr-Hero.png" alt="iPondr" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-iPondr-Hero2.png" alt="" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-iPondr-Hero3.png" alt="" loading="lazy"></div>
   </article>
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2020 · Fantasy</p>
       <h2 class="hp-title">Reimagining private aviation<br>for mobile</h2>
       <p class="hp-desc">Developed visual directions exploring how a premium aviation brand could translate into a mobile experience.</p>
+      <div class="hp-tags"><span>Art direction</span><span>UI design</span><span>Concept</span></div>
     </div>
-    <div class="hp-media"><img src="/videos/09-Wheelsup.png" alt="Reimagining private aviation for mobile" loading="lazy"></div>
+    <div class="hp-media"><img src="/home/Heros/AneAranburu-WheelsUp-Hero.png" alt="Reimagining private aviation for mobile" loading="lazy"></div>
   </article>
   <article class="home-project">
     <div class="hp-info">
@@ -507,8 +518,9 @@
       <p class="hp-meta">2022 · Fantasy</p>
       <h2 class="hp-title">Adapting a global product suite<br>for new markets</h2>
       <p class="hp-desc">Designed experience concepts across the product ecosystem to support expansion from Asia into Western markets.</p>
+      <div class="hp-tags"><span>Visual design</span><span>Design system</span><span>Concept</span></div>
     </div>
-    <div class="hp-media"><img src="/videos/11-Lark.png" alt="Adapting a global product suite for new markets" loading="lazy"></div>
+    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-Lark-Hero.png" alt="Adapting a global product suite for new markets" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Lark-Hero2.png" alt="" loading="lazy"></div>
   </article>
   <article class="home-project">
     <div class="hp-info">
@@ -523,8 +535,9 @@
       <p class="hp-meta">2020 · Fantasy</p>
       <h2 class="hp-title">Designing a five-year vision<br>for Asana</h2>
       <p class="hp-desc">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
+      <div class="hp-tags"><span>Visual design</span><span>Concept</span><span>Micro-interactions</span></div>
     </div>
-    <div class="hp-media"><video muted loop playsinline preload="metadata" src="/videos/08-Asana.mp4"></video></div>
+    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-Asana-Hero.png" alt="Designing a five-year vision for Asana" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero2.png" alt="" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero3.png" alt="" loading="lazy"></div>
   </article>
 </main>
 
@@ -593,6 +606,20 @@
   <span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span>
   <span class="cp-sayhi">Say hi</span>
 </a>
+<script>
+  (function(){
+    document.querySelectorAll('.hp-slideshow').forEach(function(ss){
+      var sl = ss.querySelectorAll('.hp-slide');
+      if (sl.length < 2) return;
+      var i = 0;
+      setInterval(function(){
+        sl[i].classList.remove('is-active');
+        i = (i + 1) % sl.length;
+        sl[i].classList.add('is-active');
+      }, 3000);
+    });
+  })();
+</script>
 </body>
 </html>
 

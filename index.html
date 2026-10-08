@@ -2,12 +2,428 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=/home/">
-<link rel="canonical" href="https://www.anearanburu.com/home/">
-<title>Ane Aranburu</title>
-<script>window.location.replace("/home/");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ane Aranburu — About</title>
+<meta name="description" content="About Ane Aranburu — Lead Product Designer based in Brooklyn, currently designing music production tools at Output.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.anearanburu.com/about/">
+<meta property="og:title" content="Ane Aranburu — About">
+<meta property="og:description" content="About Ane Aranburu — Lead Product Designer based in Brooklyn, currently designing music production tools at Output.">
+<meta property="og:image" content="https://www.anearanburu.com/social-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ane Aranburu — About">
+<meta name="twitter:description" content="About Ane Aranburu — Lead Product Designer based in Brooklyn, currently designing music production tools at Output.">
+<meta name="twitter:image" content="https://www.anearanburu.com/social-preview.jpg">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scrollbar-gutter: stable; }
+  :root { --margin: 48px;
+    --bg: #0C0C0F; --border: #222;
+    --text: #f0ede8; --muted: #888;
+    --accent: #E5FF00;
+    --font: 'Schibsted Grotesk', sans-serif;
+    --font-hero: 'Schibsted Grotesk', sans-serif;
+    --font-body: 'Schibsted Grotesk', sans-serif;
+    --nav-h: 70px;
+    --footer-h: 56px;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font); -webkit-font-smoothing: antialiased;
+    padding-top: var(--nav-h);          /* clear the fixed top bar */
+    padding-bottom: var(--footer-h);    /* clear the fixed footer */
+  }
+
+  /* NAV (top of the frame) */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 48px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+  }
+  /* end nav */
+  .nav-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
+  .nav-name:hover { opacity: .7; }
+  .nav-meta { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .nav-left { display: flex; align-items: baseline; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; margin-right: -16px; }
+  .nav-links a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; padding: 8px 16px; border-radius: 100px; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.is-active { color: var(--text); }
+  /* Hamburger toggle — hidden on desktop, shown on mobile */
+  .nav-toggle {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 28px; height: 28px; padding: 0;
+    background: none; border: none; cursor: pointer; position: relative; z-index: 101;
+  }
+  .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: transform .25s ease, opacity .2s ease; }
+  .nav-toggle.is-active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.is-active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* PAGE */
+  .about {
+    padding: 40px 48px 64px;
+    max-width: 880px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 8vh, 96px);
+  }
+  .about > .section { margin: 0; }
+  .learned { order: 1; }
+  .experience { order: 2; }
+  .journey { order: 3; }
+  .toolbox { order: 4; }
+  .capabilities { order: 5; }
+  .education { order: 6; }
+  .links { order: 7; }
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 10px; color: var(--muted);
+    letter-spacing: .08em; text-transform: uppercase; font-weight: 500;
+    margin-bottom: 22px;
+  }
+
+
+  /* THINGS I HAVE LEARNED */
+  .learn-para {
+    font-family: var(--font-body);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: -.02em;
+    color: var(--text);
+    text-wrap: pretty;
+  }
+  .learn-para .hl { color: var(--text); }
+  .learn-para a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--muted);
+    transition: color .2s, text-decoration-color .2s;
+  }
+  .learn-para a:hover { color: var(--text); text-decoration-color: var(--text); }
+  .learn-para + .learn-para { margin-top: 1.1em; }
+  @media (min-width: 769px) { .learn-para { font-size: 23px; line-height: 1.3; } }
+
+  .journey-para {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -.01em;
+    color: rgba(240,237,232,.7);
+    max-width: 560px;
+  }
+  .journey-para + .journey-para { margin-top: 1em; }
+
+  /* CURRENT TOOLBOX */
+  .tool-prose { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+  .tool-prose p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    letter-spacing: -.01em;
+    color: var(--text);
+  }
+  .tool-name { color: var(--text); font-weight: 400; }
+
+  /* EXPERIENCE */
+  .exp-list { list-style: none; }
+  .exp-entry {
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    column-gap: 18px;
+    align-items: baseline;
+    padding: 8px 0;
+  }
+  .exp-years {
+    font-family: var(--font-body);
+    font-size: 11px; font-weight: 500; line-height: 1.4;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+  .exp-role {
+    font-family: var(--font-body);
+    font-size: 11px; font-weight: 500; line-height: 1.4;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text);
+  }
+  .exp-role .exp-at { color: var(--muted); }
+  .exp-loc {
+    font-family: var(--font-body);
+    font-size: 11px; font-weight: 500; line-height: 1.4;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    text-align: right; white-space: nowrap;
+  }
+  .education .exp-entry { grid-template-columns: 88px 1fr; }
+  .education .exp-role { text-align: right; }
+
+  /* CAPABILITIES */
+  .capabilities-label { font-family: var(--font-body); font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; line-height: 1.4; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 13px; color: var(--text); border: 1px solid #333; border-radius: 100px; padding: 10px 18px; font-weight: 400; }
+
+  /* LINKS */
+  .link-row { display: flex; justify-content: flex-start; flex-wrap: nowrap; gap: 24px; }
+  .link-row a {
+    font-family: var(--font-body);
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500;
+    color: var(--text); text-decoration: none; white-space: nowrap;
+    border-bottom: 1px solid var(--muted); padding-bottom: 2px;
+    transition: opacity .2s;
+  }
+  .link-row a:hover { opacity: .6; }
+
+  /* FOOTER (bottom of the frame) */
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
+    height: var(--footer-h);
+    padding: 0 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg);
+  }
+  /* end footer */
+  footer span { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    :root { --nav-h: 58px; --footer-h: 52px; --margin: 24px; }
+    nav { padding: 18px 24px; height: var(--nav-h); }
+    .nav-left { gap: 12px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      z-index: 90; background: var(--bg); margin: 0;
+      flex-direction: column; justify-content: flex-start; align-items: flex-start;
+      gap: 4px; padding: 24px 24px 0;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .nav-links.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .nav-links a {
+      font-size: 28px; font-weight: 400; letter-spacing: -.01em; text-transform: none;
+      padding: 8px 0; border: none; border-radius: 0; color: rgba(255,255,255,.4);
+    }
+    .nav-links a.is-active, .nav-links a:hover { color: var(--text); }
+    .about { padding-left: 24px; padding-right: 24px; }
+    .exp-entry { grid-template-columns: 1fr; row-gap: 2px; }
+    .exp-loc { text-align: left; white-space: normal; }
+    footer { padding: 0 24px; justify-content: space-between; }
+  }
+  @media (max-width: 480px) {
+    :root { --nav-h: 54px; --footer-h: 50px; --margin: 20px; }
+    nav { padding: 18px 20px; }
+    .nav-left { gap: 12px; }
+    .about { padding-top: 20px; padding-left: 20px; padding-right: 20px; }
+    .tag { font-size: 12px; padding: 8px 14px; }
+    .nav-links { padding: 20px 20px 0; }
+  }
+  /* Floating glass pill — primary navigation */
+  .pill-bar { position: fixed; left: var(--margin); right: var(--margin); top: 18px; z-index: 200; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; }
+  .contact-pill { pointer-events: auto; position: static; left: auto; right: auto; width: auto; height: auto; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .contact-pill a { text-decoration: none; }
+  .cp-identity { display: inline-flex; align-items: center; gap: 10px; padding-right: 4px; }
+  .cp-avatar { position: relative; flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }
+  .cp-initials { font-size: 13px; font-weight: 600; letter-spacing: .03em; color: #f0ede8; }
+  .cp-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cp-id { display: flex; flex-direction: row; align-items: baseline; gap: 6px; line-height: 1.15; }
+  .cp-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #f0ede8; }
+  .cp-tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8a8f; }
+  .cp-sep { display: none; }
+  .cp-links { display: inline-flex; align-items: center; gap: 2px; }
+  .cp-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: 100px; white-space: nowrap; transition: color .2s ease; }
+  .cp-links a:hover, .cp-links a.is-active { color: #f0ede8; }
+  .cp-sayhi { padding: 8px 10px; color: #f0ede8; font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: color .2s ease; }
+  .cp-sayhi:hover { opacity: .7; }
+  .topbar-left, .nav-left, .topbar-links, .nav-links, .nav-toggle { display: none !important; }
+  @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .pill-bar { top: 14px; gap: 8px; } .contact-pill { gap: 4px; } }
+  @media (max-width: 430px) { .cp-links a { padding: 7px 7px; font-size: 10px; letter-spacing: .02em; } .cp-sayhi { padding: 7px 9px; font-size: 10px; } .pill-bar { gap: 6px; } .contact-pill { padding: 5px 6px; } }
+</style>
 </head>
-<body style="margin:0;background:#0C0C0F;color:#f0ede8;font-family:sans-serif;">
-<p style="padding:24px;">Redirecting to <a href="/home/" style="color:#f0ede8;">anearanburu.com/home</a>&hellip;</p>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a class="nav-name" href="/home/">Ane Aranburu</a>
+    <span class="nav-meta">Digital Designer</span>
+  </div>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-links">
+    <a href="/home/">Home</a>
+    <a href="/case-studies/output-creator/">Case studies</a>
+    <a href="/about/" class="is-active">About</a>
+    
+  </div>
+</nav>
+
+<main class="about">
+
+  <section class="section learned">
+      <p class="learn-para">Hey, I&rsquo;m Ane, a Basque product designer based in Brooklyn.</p>
+      <p class="learn-para">I design creative tools and digital products that turn complex ideas into experiences people can easily understand, learn, and enjoy. I&rsquo;m especially drawn to products that help people build confidence, express themselves, and create without unnecessary friction.</p>
+      <p class="learn-para">Today I lead product design for creative software, shaping products such as <a href="https://output.com/products/creator?utm_source=google&amp;utm_medium=search&amp;utm_campaign=Creator-Acquire-SER-Branded-Subs-Prospect-Global-Brand&amp;utm_term=output+creator&amp;utm_content=197687691028--785741743841&amp;gad_source=1&amp;gad_campaignid=23305230430&amp;_gl=1*g6k7q3*_up*MQ..*_gs*MQ..&amp;gclid=Cj0KCQjw9ZLSBhCcARIsAEhGKgPbu66flSIYm0xdtGP-cd9oNg5df_q0FWMV_j_QdZi-nzHIOkcPoZoaAumVEALw_wcB&amp;gbraid=0AAAAADpSpfy7CQn0c0cChvzbq23_olcBC" target="_blank" rel="noopener">Output Creator</a>. As the Lead product designer on my squad, I work across product strategy, interaction design, design systems, and visual direction. I partner closely with product managers, engineers, and sound designers, while collaborating with product leadership and executive stakeholders &mdash; bringing teams together around a shared product vision and turning complex problems into experiences that feel simple and intuitive.</p>
+  </section>
+
+  <section class="section experience">
+    <p class="section-label">Experience</p>
+    <ul class="exp-list">
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2024 — Now</span>
+          <span class="exp-role">Lead Product Designer</span>
+          <span class="exp-loc">Output · Remote</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2020 — 2024</span>
+          <span class="exp-role">Lead Designer</span>
+          <span class="exp-loc">Fantasy · Remote</span>
+        </div>
+        <div class="exp-entry">
+          <span class="exp-years">2017 — 2020</span>
+          <span class="exp-role">Senior Designer</span>
+          <span class="exp-loc">Fantasy · New York</span>
+        </div>
+        <div class="exp-entry">
+          <span class="exp-years">2016 — 2017</span>
+          <span class="exp-role">Designer</span>
+          <span class="exp-loc">Fantasy · New York</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2014 — 2016</span>
+          <span class="exp-role">Visual Designer</span>
+          <span class="exp-loc">Fjord · New York</span>
+        </div>
+        <div class="exp-entry">
+          <span class="exp-years">2013</span>
+          <span class="exp-role">Visual &amp; Interaction Design Intern</span>
+          <span class="exp-loc">Fjord · New York</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2013</span>
+          <span class="exp-role">Designer</span>
+          <span class="exp-loc">Madwell · Brooklyn</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2011 — 2012</span>
+          <span class="exp-role">Designer</span>
+          <span class="exp-loc">Breaking Molds · Basque Country</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2010</span>
+          <span class="exp-role">Design Intern</span>
+          <span class="exp-loc">S.SEBASTIAN FILM FESTIVAL · Basque Country</span>
+        </div>
+      </li>
+      <li class="exp-group">
+        <div class="exp-entry">
+          <span class="exp-years">2008 — 2009</span>
+          <span class="exp-role">Journalist</span>
+          <span class="exp-loc">Noticias de Gipuzkoa · Basque Country</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section capabilities">
+    <p class="capabilities-label">Interests and capabilities</p>
+    <div class="tags">
+      <span class="tag">Product strategy</span>
+      <span class="tag">Design direction</span>
+      <span class="tag">Systems thinking</span>
+      <span class="tag">Team alignment</span>
+      <span class="tag">Creative software</span>
+      <span class="tag">Implementation collaboration</span>
+      <span class="tag">0 &mdash; 1</span>
+    </div>
+  </section>
+
+  <section class="section links">
+    <div class="link-row">
+      <a href="https://linkedin.com/in/anearanburu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://instagram.com/anebotoh" target="_blank" rel="noopener">Instagram</a>
+      <a href="/Ane-Aranburu-CV.pdf" download="Ane Aranburu CV.pdf">Download CV</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>
+  <span class="footer-right">2026 &copy;</span>
+</footer>
+
+<script>
+  // Live local time in New York, shown next to the location in the footer.
+  (function () {
+    var el = document.getElementById('ny-clock');
+    if (!el) return;
+    function tick() {
+      el.textContent = '· ' + new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'
+      }).format(new Date());
+    }
+    tick();
+    setInterval(tick, 30000);
+  })();
+</script>
+
+<script>
+  // Mobile nav: hamburger opens/closes the full-screen link overlay
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-links');
+    if (!toggle || !menu) return;
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(!menu.classList.contains('is-open'));
+    });
+    Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>
+<div class="pill-bar" aria-label="Main navigation">
+  <nav class="contact-pill pill-left">
+    <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
+    <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
+  </nav>
+  <nav class="contact-pill pill-right">
+    <span class="cp-links"><a href="/home/" data-path="home">Work</a><a href="/about/" data-path="about">About</a></span>
+  </nav>
+</div>
+<script>
+  (function(){ var p=location.pathname, m={home:(p==='/'||p.indexOf('/home')===0), cases:(p.indexOf('/case-studies')===0), about:(p.indexOf('/about')===0)};
+    document.querySelectorAll('.cp-links a').forEach(function(a){ if(m[a.getAttribute('data-path')]) a.classList.add('is-active'); }); })();
+</script>
 </body>
 </html>

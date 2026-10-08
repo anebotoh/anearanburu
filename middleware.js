@@ -111,7 +111,7 @@ function page(error) {
     <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
   </nav>
   <nav class="contact-pill pill-right">
-    <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/output-creator/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
+    <span class="cp-links"><a href="/home/" data-path="home">Work</a><a href="/about/" data-path="about">About</a></span>
   </nav>
 </div>
 <script>

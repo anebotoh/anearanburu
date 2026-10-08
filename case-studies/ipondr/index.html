@@ -247,13 +247,22 @@
   .cs-float-nav a.is-active .sc-num { color: var(--text); }
   @media (max-width: 768px) { .cs-float-label { display: none; } }
   @media (max-width: 600px) { .cs-float-id, .cs-float-div { display: none; } .cs-float { bottom: 16px; max-width: 94vw; } }
+  /* Chapter sub-navigation (sticky, under the top nav) */
+  .chapter-subnav { position: sticky; top: var(--nav-h); z-index: 90; display: flex; align-items: center; justify-content: center; gap: 30px; height: 48px; padding: 0 var(--margin); background: var(--bg); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+  .chapter-subnav::-webkit-scrollbar { display: none; }
+  .chapter-subnav a { flex: 0 0 auto; display: inline-flex; align-items: baseline; gap: 8px; white-space: nowrap; font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s ease; }
+  .chapter-subnav a:hover { color: var(--text); }
+  .chapter-subnav a.is-active { color: var(--text); }
+  .chapter-subnav .chsub-num { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .chapter-subnav a.is-active .chsub-num { color: var(--text); }
+  @media (max-width: 600px) { .chapter-subnav { justify-content: flex-start; gap: 22px; } }
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="topbar-left">
-    <a class="topbar-name" href="/case-studies/">Ane Aranburu</a>
+    <a class="topbar-name" href="/home/">Ane Aranburu</a>
     <span class="topbar-meta">Digital Designer</span>
     </div>
   
@@ -265,7 +274,7 @@
     <a href="mailto:aranburuane@gmail.com">Email</a>
   </nav>
 </header>
-<!-- COVER -->
+<nav class="chapter-subnav" aria-label="Challenges"><a href="/case-studies/ipondr/" class="chsub-link is-active"><span class="chsub-num">Challenge one</span>From idea to launch</a><a href="/case-studies/ipondr/challenge-2/" class="chsub-link"><span class="chsub-num">Challenge two</span>An end-to-end product</a><a href="/case-studies/ipondr/challenge-3/" class="chsub-link"><span class="chsub-num">Challenge three</span>The design moments</a></nav>
 <section class="cover">
   <h1 class="cover-solo">iPondr</h1>
   <p class="eyebrow cover-eyebrow"><span class="accent">Fantasy Interactive</span> — 2020–2021 · Digital Media Platform</p>
@@ -295,7 +304,7 @@
 <section id="the-project">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">01 — The project</p>
+      <p class="eyebrow">The project</p>
       <h2>Life Outside Your Bubble</h2>
     </div>
     <div class="read">
@@ -315,14 +324,14 @@
 </section>
 
 <section class="media-anchor" style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-01.png" alt="iPondr — 1"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/ipondr/images/ipondr-01.png" alt="iPondr — 1"></div></div>
 </section>
 
 <!-- MY ROLE -->
 <section id="my-role">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">02 — My role</p>
+      <p class="eyebrow">My role</p>
       <h2>Leading the visual design</h2>
     </div>
     <div class="read">
@@ -340,14 +349,14 @@
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack cols2"><img src="images/ipondr-02.png" alt="iPondr — 2"><img src="images/ipondr-03.png" alt="iPondr — 3"></div></div>
+  <div class="wrap"><div class="imgstack cols2"><img src="/case-studies/ipondr/images/ipondr-02.png" alt="iPondr — 2"><img src="/case-studies/ipondr/images/ipondr-03.png" alt="iPondr — 3"></div></div>
 </section>
 
 <!-- THE APPROACH -->
 <section id="the-approach">
   <div class="wrap split">
     <div class="sticky">
-      <p class="eyebrow">03 — The approach</p>
+      <p class="eyebrow">Challenge 01</p>
       <h2>From an idea to a launched platform</h2>
     </div>
     <div class="read">
@@ -372,122 +381,10 @@
 </section>
 
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-04.png" alt="iPondr — 4"></div></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/ipondr/images/ipondr-04.png" alt="iPondr — 4"></div></div>
 </section>
 <section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-05.png" alt="iPondr — 5"></div></div>
-</section>
-
-<!-- CHALLENGE -->
-<section class="quote">
-  <div class="wrap">
-    <p>“We had nothing but an idea — and a lot of trust.”</p>
-  </div>
-</section>
-
-<section id="the-challenge">
-  <div class="wrap split">
-    <div class="sticky">
-      <p class="eyebrow">04 — The challenge</p>
-      <h2>Building an end-to-end product from scratch</h2>
-    </div>
-    <div class="read">
-      <p class="body">The client leaned on us for everything — subscription strategy, content, design language, and experience pillars. And they weren't afraid to go with wilder options; in fact they encouraged pushing the boundaries.</p>
-      <p class="body">We had no requirements, no content, no copy, no subscription info — just a great team and a lot of trust. So we essentially created a completely new, end-to-end website from scratch.</p>
-    </div>
-  </div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack cols2"><img src="images/ipondr-06.png" alt="iPondr — 6"><img src="images/ipondr-07.png" alt="iPondr — 7"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-08.png" alt="iPondr — 8"></div></div>
-</section>
-
-<!-- KEY MOMENTS -->
-<section id="design">
-  <div class="wrap">
-    <p class="eyebrow">05 — Design</p>
-    <h2 style="margin-bottom:40px;">The moments that made it iPondr</h2>
-    <div class="decisions">
-
-      <article class="decision">
-        <p class="eyebrow">Homepage transition</p>
-        <h3>Stories inside episodes</h3>
-        <p class="body">The homepage features an episode and the stories inside it, and lets you shuffle through to a different episode — introducing iPondr's unique content structure right away: stories nested inside episodes, moving readers away from the 24-hour cycle toward slower, thematically-linked storytelling.</p>
-      </article>
-
-      <article class="decision">
-        <p class="eyebrow">Custom reactions</p>
-        <h3>Stickers that encourage thoughtfulness</h3>
-        <p class="body">We created our own set of stickers to encourage thoughtful reactions at the end of an article — reactions that are considered, not reflexive.</p>
-      </article>
-
-      <article class="decision">
-        <p class="eyebrow">Comments interaction</p>
-        <h3>An equal, respectful voice</h3>
-        <p class="body">Comments are designed to give every reader a valid voice, regardless of opinion. Click on a stack of comments to reveal the rest — structured to be respectful, but heard.</p>
-      </article>
-
-      <article class="decision">
-        <p class="eyebrow">Visual language</p>
-        <h3>A system of shapes and colors</h3>
-        <p class="body">We built a visual identity for the different categories that stayed flexible — working just as well with images as without them.</p>
-      </article>
-
-      <article class="decision">
-        <p class="eyebrow">Concept — iPSI</p>
-        <h3>A data-exchange subscription</h3>
-        <p class="body">During the process we concepted iPSI: a subscription model that exchanges data instead of only money. Readers answer questions and share opinions to unlock articles — giving brands genuine public sentiment on the topics that matter to their audiences, and empowering their CSR.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-09.png" alt="iPondr — 9"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-10.png" alt="iPondr — 10"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-11.png" alt="iPondr — 11"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-12.png" alt="iPondr — 12"></div></div>
-</section>
-
-<!-- GOAL -->
-<section id="the-goal">
-  <div class="wrap split">
-    <div class="sticky">
-      <p class="eyebrow">06 — The goal</p>
-      <h2>Empathy, for all of America</h2>
-    </div>
-    <div class="read">
-      <p class="body">This was for all of America — reaching people across races, socioeconomic backgrounds, and life stages, and creating empathy between them. We wanted to foster curiosity about <em>Life Outside Your Bubble</em>, and to leave room for thoughtfulness and reflection after each article, so the reading meant something.</p>
-      <p class="sublabel">Team</p>
-      <p class="body">Fantasy Interactive · Unicorn (development)</p>
-    </div>
-  </div>
-</section>
-
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack cols2"><img src="images/ipondr-13.png" alt="iPondr — 13"><img src="images/ipondr-14.png" alt="iPondr — 14"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-15.png" alt="iPondr — 15"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-16.png" alt="iPondr — 16"></div></div>
-</section>
-<section style="border-top:none;padding:0;">
-  <div class="wrap"><div class="imgstack"><img src="images/ipondr-17.png" alt="iPondr — 17"></div></div>
-</section>
-<section class="hero-video main-video">
-  <div class="hero-media"><video autoplay muted loop playsinline preload="metadata" src="/videos/03-iPondr.mp4"></video></div>
+  <div class="wrap"><div class="imgstack"><img src="/case-studies/ipondr/images/ipondr-05.png" alt="iPondr — 5"></div></div>
 </section>
 
 <!-- MORE WORK -->
@@ -544,64 +441,6 @@
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
-  })();
-</script>
-<script>
-  // Nav: dock project on scroll down; show name + role on scroll up or at top.
-  (function () {
-    var els = [document.getElementById('topbarCenter'), document.getElementById('subnav')].filter(Boolean);
-    var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
-    if (!els.length || !target) return;
-    var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
-    function onScroll() {
-      var isPast = target.getBoundingClientRect().bottom < navH;
-      els.forEach(function (el) { el.classList.toggle('is-visible', isPast); });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
-</script>
-<script>
-  (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-float-nav a'));
-    var chaps = links.map(function (l) { return document.querySelector(l.getAttribute('href')); }).filter(Boolean);
-    if (!chaps.length) return;
-    links.forEach(function (l) {
-      l.addEventListener('click', function (e) {
-        var el = document.querySelector(l.getAttribute('href'));
-        if (!el) return; e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', l.getAttribute('href'));
-      });
-    });
-    var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
-    function update() {
-      var y = window.scrollY + navH + 80, active = null;
-      chaps.forEach(function (c) { if (c.offsetTop <= y) active = c; });
-      links.forEach(function (l) { l.classList.toggle('is-active', active && l.getAttribute('href') === '#' + active.id); });
-    }
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-  })();
-</script>
-<div class="cs-float" id="csFloat" aria-hidden="true"><a class="cs-float-arrow" href="/case-studies/output-creator/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/"><img class="cs-float-thumb" src="/case-studies/ipondr/images/ipondr-15.png" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">iPondr</span></a><span class="cs-float-div"></span><nav class="cs-float-nav"><a href="#the-project" class="sc-link"><span class="sc-num">01</span>The project</a><a href="#my-role" class="sc-link"><span class="sc-num">02</span>My role</a><a href="#the-approach" class="sc-link"><span class="sc-num">03</span>The approach</a><a href="#the-challenge" class="sc-link"><span class="sc-num">04</span>The challenge</a><a href="#design" class="sc-link"><span class="sc-num">05</span>Design</a><a href="#the-goal" class="sc-link"><span class="sc-num">06</span>The goal</a></nav><a class="cs-float-arrow" href="/case-studies/nmaahc/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
-
-<script>
-  // Floating case-study pill: visible once past the cover, hidden near the footer.
-  (function () {
-    var fl = document.getElementById('csFloat');
-    var target = document.querySelector('.hero-sub') || document.querySelector('.cover-solo') || document.querySelector('.cover');
-    if (!fl || !target) return;
-    var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
-    function onScroll() {
-      var pastCover = target.getBoundingClientRect().bottom < navH;
-      var nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 200);
-      fl.classList.toggle('is-visible', pastCover && !nearBottom);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
   })();
 </script>
 </body>

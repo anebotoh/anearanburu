@@ -229,7 +229,7 @@
   @media (max-width: 600px) { .subnav .subnav-info { display: none; } }
 
   /* Floating case-study pill: identity + section nav + prev/next, shown mid-page */
-  .cs-float { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); display: flex; align-items: center; gap: 8px; max-width: min(1120px, 94vw); padding: 7px 10px; background: rgba(23,23,28,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
+  .cs-float { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 0); display: flex; align-items: center; gap: 8px; max-width: min(1120px, 94vw); padding: 7px 10px; background: rgba(23,23,28,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); opacity: 1; pointer-events: auto; transition: opacity .3s ease, transform .3s ease; z-index: 120; }
   .cs-float.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .cs-float-arrow { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: var(--muted); text-decoration: none; font-size: 20px; line-height: 1; transition: color .2s ease, background .2s ease; }
   .cs-float-arrow:hover { color: var(--text); background: rgba(255,255,255,0.06); }
@@ -288,12 +288,11 @@
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="topbar-links">
     <a href="/home/">Home</a>
-    <a href="/case-studies/">Case studies</a>
+    <a href="/case-studies/output-creator/">Case studies</a>
     <a href="/about/">About</a>
     
   </nav>
 </header>
-<nav class="chapter-subnav" aria-label="Challenges"><a href="/case-studies/ipondr/" class="chsub-link is-active"><span class="chsub-num">Challenge one</span>From idea to launch</a><a href="/case-studies/ipondr/challenge-2/" class="chsub-link"><span class="chsub-num">Challenge two</span>An end-to-end product</a><a href="/case-studies/ipondr/challenge-3/" class="chsub-link"><span class="chsub-num">Challenge three</span>The design moments</a></nav>
 <section class="cover">
   <h1 class="cover-solo">iPondr</h1>
   <p class="eyebrow cover-eyebrow"><span class="accent">Fantasy Interactive</span> — 2020–2021 · Digital Media Platform</p>
@@ -462,13 +461,14 @@
     window.addEventListener("resize", update);
   })();
 </script>
+<div class="cs-float" id="csFloat"><a class="cs-float-arrow" href="/case-studies/output-creator/" rel="prev" aria-label="Previous case study">&lsaquo;</a><a class="cs-float-id" href="/case-studies/ipondr/"><img class="cs-float-thumb" src="/case-studies/ipondr/images/ipondr-01.png" alt=""><span class="cs-float-label">Case study</span><span class="cs-float-name">iPondr</span></a><span class="cs-float-div"></span><nav class="cs-float-nav"><a href="/case-studies/ipondr/" class="sc-link is-active"><span class="sc-num">01</span>From idea to launch</a><a href="/case-studies/ipondr/challenge-2/" class="sc-link"><span class="sc-num">02</span>An end-to-end product</a><a href="/case-studies/ipondr/challenge-3/" class="sc-link"><span class="sc-num">03</span>The design moments</a></nav><a class="cs-float-arrow" href="/case-studies/nmaahc/" rel="next" aria-label="Next case study">&rsaquo;</a></div>
 <div class="pill-bar" aria-label="Main navigation">
   <nav class="contact-pill pill-left">
     <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
     <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
   </nav>
   <nav class="contact-pill pill-right">
-    <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
+    <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/output-creator/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
   </nav>
 </div>
 <script>

@@ -225,7 +225,8 @@
   @media (max-width: 768px) { .cs-float-label { display: none; } }
   @media (max-width: 600px) { .cs-float-id, .cs-float-div { display: none; } .cs-float { bottom: 16px; max-width: 94vw; } }
   /* Floating glass pill — primary navigation */
-  .contact-pill { position: fixed; left: var(--margin); right: var(--margin); top: 18px; bottom: auto; width: auto; max-width: none; height: auto; z-index: 200; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .pill-bar { position: fixed; left: var(--margin); right: var(--margin); top: 18px; z-index: 200; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; }
+  .contact-pill { pointer-events: auto; position: static; left: auto; right: auto; width: auto; height: auto; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
   .contact-pill a { text-decoration: none; }
   .cp-identity { display: inline-flex; align-items: center; gap: 10px; padding-right: 4px; }
   .cp-avatar { position: relative; flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }
@@ -235,13 +236,13 @@
   .cp-name { font-size: 13px; font-weight: 500; color: #f0ede8; }
   .cp-tag { font-size: 11px; color: #8a8a8f; }
   .cp-sep { display: none; }
-  .cp-links { display: inline-flex; align-items: center; gap: 2px; margin-left: auto; }
+  .cp-links { display: inline-flex; align-items: center; gap: 2px; }
   .cp-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: 100px; white-space: nowrap; transition: color .2s ease; }
   .cp-links a:hover, .cp-links a.is-active { color: #f0ede8; }
   .cp-sayhi { padding: 8px 15px; border-radius: 100px; background: transparent; color: #f0ede8; border: 1px solid rgba(255,255,255,0.28); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background .2s ease; }
   .cp-sayhi:hover { background: rgba(255,255,255,0.1); }
   .topbar-left, .nav-left, .topbar-links, .nav-links, .nav-toggle { display: none !important; }
-  @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .contact-pill { gap: 4px; top: 14px; } }
+  @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .pill-bar { top: 14px; gap: 8px; } .contact-pill { gap: 4px; } }
 </style>
 </head>
 <body>
@@ -546,12 +547,15 @@
     onScroll();
   })();
 </script>
-<nav class="contact-pill" aria-label="Main navigation">
-  <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
-  <span class="cp-sep"></span>
-  <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
-  <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
-</nav>
+<div class="pill-bar" aria-label="Main navigation">
+  <nav class="contact-pill pill-left">
+    <a class="cp-identity" href="/home/"><span class="cp-avatar"><span class="cp-initials">AA</span><img src="/Assets/profile.jpg" alt="Ane Aranburu" onerror="this.remove()"></span><span class="cp-id"><span class="cp-name">Ane Aranburu</span><span class="cp-tag">Digital Designer</span></span></a>
+    <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
+  </nav>
+  <nav class="contact-pill pill-right">
+    <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
+  </nav>
+</div>
 <script>
   (function(){ var p=location.pathname, m={home:(p==='/'||p.indexOf('/home')===0), cases:(p.indexOf('/case-studies')===0), about:(p.indexOf('/about')===0)};
     document.querySelectorAll('.cp-links a').forEach(function(a){ if(m[a.getAttribute('data-path')]) a.classList.add('is-active'); }); })();

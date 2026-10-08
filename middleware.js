@@ -37,10 +37,10 @@ function page(error) {
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: color .2s; }
   .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
-  .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
+  .card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .lead { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.14; letter-spacing: -.02em; color: var(--text); font-weight: 400; max-width: 18ch; margin: 0 0 36px; }
-  form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; }
+  form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 240px; }
   input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 11px 14px; color: var(--text); font-family: inherit; font-size: 14px; text-align: left; transition: border-color .2s ease; }
   input:focus { outline: none; border-color: #45454d; }
   input::placeholder { color: #55555c; }
@@ -84,7 +84,6 @@ function page(error) {
     </nav>
   </header>
   <main class="card">
-    <p class="lead">These case studies are password-protected.</p>
     <form method="POST" autocomplete="off">
       <input id="u" name="username" placeholder="Username" autocapitalize="off" autocorrect="off" spellcheck="false" required>
       <input id="p" name="password" type="password" placeholder="Password" required>

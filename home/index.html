@@ -322,13 +322,11 @@
       scroll-snap-align: start; scroll-snap-stop: always;
     }
     /* Mobile: one project per scroll, with breathing room */
-    html { scroll-snap-type: y mandatory; scroll-padding-top: 58px; }
+    html { scroll-padding-top: 58px; }
     .home-list { margin: 0 var(--margin); gap: 0; }
     .home-project {
-      min-height: calc(100svh - 58px);
       display: flex; flex-direction: column; justify-content: flex-start;
-      padding: 32px 0 40px;
-      scroll-snap-align: start; scroll-snap-stop: always;
+      padding: 0;
     }
     .hp-info { margin-bottom: 22px; }
     .hero h1 { max-width: 100%; }
@@ -373,12 +371,12 @@
     .page-footer { display: block; }
   }
   /* HOME PROJECT LIST (vertical, replaces carousel) */
-  .home-list { margin: clamp(72px,11vh,132px) var(--margin) clamp(60px,10vh,120px); display: flex; flex-direction: column; gap: clamp(64px,11vh,132px); }
+  .home-list { margin: clamp(56px,9vh,96px) var(--margin) clamp(56px,9vh,96px); display: flex; flex-direction: column; gap: clamp(44px,6vh,64px); }
   .hp-media { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: #1a1a1f; }
-  .hp-media.hp-deem { background: #30353f; }
+  .hp-media.hp-deem { background: #262a63; }
   .hp-media.hp-deem video { mix-blend-mode: lighten; }
   .hp-media video, .hp-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hp-info { margin-bottom: 22px; }
+  .hp-info { margin-bottom: 40px; }
   .hp-meta { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   .hp-title { font-family: var(--font-hero); font-weight: 400; letter-spacing: -.02em; font-size: clamp(22px,2.6vw,30px); line-height: 1.14; color: #fff; margin-top: 12px; }
   .hp-desc { font-size: 14px; line-height: 1.45; color: #8a8a8f; margin-top: 12px; max-width: 60ch; }
@@ -390,7 +388,7 @@
   .hp-slideshow .hp-slide.is-active { opacity: 1; }
   .hp-media.hp-stack { aspect-ratio: auto; overflow: visible; background: transparent; border-radius: 0; display: flex; flex-direction: column; gap: clamp(16px, 2.5vh, 32px); }
   .hp-media.hp-stack img { width: 100%; height: auto; object-fit: contain; border-radius: 14px; }
-  @media (max-width: 480px) { .hp-media { aspect-ratio: 4/3; } }
+  @media (max-width: 480px) { .hp-media { aspect-ratio: 16/10; } }
 
   /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
   @media (min-width: 769px) {
@@ -438,6 +436,7 @@
   .cp-sayhi:hover { opacity: .7; }
   .topbar-left, .nav-left, .topbar-links, .nav-links, .nav-toggle { display: none !important; }
   @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .pill-bar { top: 14px; gap: 8px; } .contact-pill { gap: 4px; } }
+  @media (max-width: 430px) { .cp-links a { padding: 7px 7px; font-size: 10px; letter-spacing: .02em; } .cp-sayhi { padding: 7px 9px; font-size: 10px; } .pill-bar { gap: 6px; } .contact-pill { padding: 5px 6px; } }
 </style>
 </head>
 <body>

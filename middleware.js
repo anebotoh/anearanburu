@@ -27,9 +27,9 @@ function page(error) {
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scrollbar-gutter: stable; }
-  :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; --margin:48px; }
+  :root { --bg:#0C0C0F; --surface:#17171c; --border:#222227; --text:#f0ede8; --body:#b6b3ad; --muted:#8a8a8f; --margin:48px; --nav-h:70px; }
   body { background: var(--bg); color: var(--text); font-family: 'Schibsted Grotesk', sans-serif; min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 var(--margin); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); padding: 0 var(--margin); }
   .topbar-left { display: flex; align-items: center; gap: 10px; }
   .topbar-name { color: var(--text); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
   .topbar-name:hover { opacity: .7; }
@@ -37,9 +37,9 @@ function page(error) {
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: color .2s; }
   .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
-  .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; gap: 40px; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
+  .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left; gap: 40px; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .gate-intro { display: flex; flex-direction: column; gap: 16px; }
+  .gate-intro { max-width: 70%; display: flex; flex-direction: column; gap: 16px; }
   .gate-intro h1 { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); }
   .gate-intro p { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); margin: 0; }
   .gate-intro p.gate-dim { color: var(--muted); }
@@ -54,8 +54,8 @@ function page(error) {
   button:not(:disabled):hover { transform: translateY(-1px); opacity: .92; }
   button:disabled { opacity: .35; cursor: not-allowed; }
   .error { font-size: 12px; color: #ff6b6b; min-height: 16px; }
-  @media (max-width: 768px) { :root { --margin:24px; } .topbar-meta { display: none; } }
-  @media (max-width: 480px) { :root { --margin:20px; } .topbar-links { gap: 18px; } }
+  @media (max-width: 768px) { :root { --margin:24px; --nav-h:58px; } .topbar-meta { display: none; } }
+  @media (max-width: 480px) { :root { --margin:20px; --nav-h:54px; } .topbar-links { gap: 18px; } }
   /* Floating glass pill — primary navigation */
   .pill-bar { position: fixed; left: var(--margin); right: var(--margin); top: 18px; z-index: 200; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; }
   .contact-pill { pointer-events: auto; position: static; left: auto; right: auto; width: auto; height: auto; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }

@@ -39,7 +39,7 @@ function page(error) {
   .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
   .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; gap: 40px; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .gate-intro { max-width: 38ch; display: flex; flex-direction: column; gap: 16px; }
+  .gate-intro { display: flex; flex-direction: column; gap: 16px; }
   .gate-intro h1 { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); }
   .gate-intro p { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); margin: 0; }
   .gate-intro p.gate-dim { color: var(--muted); }

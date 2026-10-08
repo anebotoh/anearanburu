@@ -37,15 +37,22 @@ function page(error) {
   .topbar-links { display: flex; gap: 4px; margin-right: -16px; }
   .topbar-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: color .2s; }
   .topbar-links a:hover, .topbar-links a.is-active { color: var(--text); }
-  .card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
+  .card { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; gap: 40px; padding: 40px var(--margin) 48px; animation: in .4s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .lead { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.14; letter-spacing: -.02em; color: var(--text); font-weight: 400; max-width: 18ch; margin: 0 0 36px; }
+  .gate-intro { max-width: 38ch; display: flex; flex-direction: column; gap: 16px; }
+  .gate-intro h1 { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); }
+  .gate-intro p { font-size: 23px; line-height: 1.3; letter-spacing: -.02em; font-weight: 400; color: var(--text); margin: 0; }
+  .gate-intro p.gate-dim { color: var(--muted); }
+  .gate-intro p.gate-note { font-size: 13px; line-height: 1.5; color: var(--muted); margin-top: 4px; }
+  .gate-intro a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
+  .gate-intro a:hover { text-decoration-color: var(--text); }
   form { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 240px; }
   input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 11px 14px; color: var(--text); font-family: inherit; font-size: 14px; text-align: left; transition: border-color .2s ease; }
   input:focus { outline: none; border-color: #45454d; }
   input::placeholder { color: #55555c; }
   button { margin-top: 4px; background: #fff; color: #0C0C0F; border: none; border-radius: 9px; padding: 10px; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -.01em; cursor: pointer; transition: transform .15s ease, opacity .2s ease; }
-  button:hover { transform: translateY(-1px); opacity: .92; }
+  button:not(:disabled):hover { transform: translateY(-1px); opacity: .92; }
+  button:disabled { opacity: .35; cursor: not-allowed; }
   .error { font-size: 12px; color: #ff6b6b; min-height: 16px; }
   @media (max-width: 768px) { :root { --margin:24px; } .topbar-meta { display: none; } }
   @media (max-width: 480px) { :root { --margin:20px; } .topbar-links { gap: 18px; } }
@@ -59,7 +66,7 @@ function page(error) {
   .cp-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .cp-id { display: flex; flex-direction: row; align-items: baseline; gap: 6px; line-height: 1.15; }
   .cp-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #f0ede8; }
-  .cp-tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8a8f; } .cp-tag::before { content: "\00B7"; margin-right: 6px; }
+  .cp-tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8a8f; } .cp-tag::before { content: "\\00B7"; margin-right: 6px; }
   .cp-sep { display: none; }
   .cp-links { display: inline-flex; align-items: center; gap: 2px; }
   .cp-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: 100px; white-space: nowrap; transition: color .2s ease; }
@@ -84,11 +91,17 @@ function page(error) {
     </nav>
   </header>
   <main class="card">
+    <div class="gate-intro">
+      <h1>I care about how things look, feel and work.</h1>
+      <p>I bring clarity to complexity — connecting ideas, people, and systems to help teams make better decisions and build better products.</p>
+      <p class="gate-dim">I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" rel="noopener">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" rel="noopener">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" rel="noopener">Fjord</a> and <a href="https://fantasy.co/" target="_blank" rel="noopener">Fantasy</a>.</p>
+      <p class="gate-note">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
+    </div>
     <form method="POST" autocomplete="off">
       <input id="u" name="username" placeholder="Username" autocapitalize="off" autocorrect="off" spellcheck="false" required>
       <input id="p" name="password" type="password" placeholder="Password" required>
       <p class="error">${error}</p>
-      <button type="submit">Let's go</button>
+      <button id="go" type="submit" disabled>Let's go</button>
     </form>
   </main>
 <div class="pill-bar" aria-label="Main navigation">
@@ -100,6 +113,11 @@ function page(error) {
     <span class="cp-links"><a href="/home/" data-path="home">Home</a><a href="/case-studies/output-creator/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
   </nav>
 </div>
+<script>
+  (function(){ var u=document.getElementById('u'), p=document.getElementById('p'), b=document.getElementById('go');
+    function sync(){ b.disabled = !(u.value.trim() && p.value.trim()); }
+    u.addEventListener('input', sync); p.addEventListener('input', sync); sync(); })();
+</script>
 <script>
   (function(){ var p=location.pathname, m={home:(p==='/'||p.indexOf('/home')===0), cases:(p.indexOf('/case-studies')===0), about:(p.indexOf('/about')===0)};
     document.querySelectorAll('.cp-links a').forEach(function(a){ if(m[a.getAttribute('data-path')]) a.classList.add('is-active'); }); })();

@@ -28,7 +28,7 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scrollbar-gutter: stable; }
-  :root {
+  :root { --margin: 48px;
     --bg: #0C0C0F; --border: #222;
     --text: #f0ede8; --muted: #888;
     --accent: #E5FF00;
@@ -50,7 +50,7 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 22px 48px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     height: var(--nav-h);
-    background: var(--bg);
+    background: linear-gradient(180deg, var(--bg) 55%, rgba(12,12,15,0));
   }
   /* end nav */
   .nav-name { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: opacity .2s; }
@@ -200,7 +200,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    :root { --nav-h: 58px; --footer-h: 52px; }
+    :root { --nav-h: 58px; --footer-h: 52px; --margin: 24px; }
     .learn-para { font-size: 20px; }
     nav { padding: 18px 24px; height: var(--nav-h); }
     .nav-left { gap: 12px; }
@@ -225,7 +225,7 @@
     footer { padding: 0 24px; justify-content: space-between; }
   }
   @media (max-width: 480px) {
-    :root { --nav-h: 54px; --footer-h: 50px; }
+    :root { --nav-h: 54px; --footer-h: 50px; --margin: 20px; }
     .learn-para { font-size: 18px; }
     nav { padding: 18px 20px; }
     .nav-left { gap: 12px; }
@@ -243,7 +243,7 @@
   .cp-id { display: flex; flex-direction: column; line-height: 1.15; }
   .cp-name { font-size: 13px; font-weight: 500; color: #f0ede8; }
   .cp-tag { font-size: 11px; color: #8a8a8f; }
-  .cp-sayhi { margin-left: 4px; padding: 8px 15px; border-radius: 100px; background: #f0ede8; color: #0C0C0F; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .cp-sayhi { margin-left: 4px; padding: 7px 15px; border-radius: 100px; background: transparent; color: #f0ede8; border: 1px solid rgba(255,255,255,0.28); font-size: 12px; font-weight: 500; white-space: nowrap; }
   @media (max-width: 600px) { .contact-pill { left: var(--margin); top: 7px; gap: 9px; } .cp-tag { display: none; } .cp-sayhi { padding: 7px 12px; } }
 </style>
 </head>
@@ -259,7 +259,7 @@
     <a href="/home/">Home</a>
     <a href="/case-studies/">Case studies</a>
     <a href="/about/" class="is-active">About</a>
-    <a href="mailto:aranburuane@gmail.com">Email</a>
+    
   </div>
 </nav>
 

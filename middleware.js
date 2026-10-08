@@ -59,7 +59,7 @@ function page(error) {
   .cp-id { display: flex; flex-direction: column; line-height: 1.15; }
   .cp-name { font-size: 13px; font-weight: 500; color: #f0ede8; }
   .cp-tag { font-size: 11px; color: #8a8a8f; }
-  .cp-sayhi { margin-left: 4px; padding: 8px 15px; border-radius: 100px; background: #f0ede8; color: #0C0C0F; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .cp-sayhi { margin-left: 4px; padding: 7px 15px; border-radius: 100px; background: transparent; color: #f0ede8; border: 1px solid rgba(255,255,255,0.28); font-size: 12px; font-weight: 500; white-space: nowrap; }
   @media (max-width: 600px) { .contact-pill { left: var(--margin); top: 7px; gap: 9px; } .cp-tag { display: none; } .cp-sayhi { padding: 7px 12px; } }
 </style>
 </head>
@@ -73,7 +73,7 @@ function page(error) {
       <a href="/home/">Home</a>
       <a href="/case-studies/" class="is-active">Case studies</a>
       <a href="/about/">About</a>
-      <a href="mailto:aranburuane@gmail.com">Email</a>
+      
     </nav>
   </header>
   <main class="card">

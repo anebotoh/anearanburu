@@ -50,7 +50,7 @@ function page(error) {
   @media (max-width: 768px) { :root { --margin:24px; } .topbar-meta { display: none; } }
   @media (max-width: 480px) { :root { --margin:20px; } .topbar-links { gap: 18px; } }
   /* Floating glass pill — primary navigation */
-  .contact-pill { position: fixed; left: var(--margin); top: 18px; z-index: 200; display: inline-flex; align-items: center; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .contact-pill { position: fixed; left: 0; right: 0; top: 18px; width: fit-content; max-width: calc(100% - 2 * var(--margin)); margin-inline: auto; height: auto; z-index: 200; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
   .contact-pill a { text-decoration: none; }
   .cp-identity { display: inline-flex; align-items: center; gap: 10px; padding-right: 4px; }
   .cp-avatar { position: relative; flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }

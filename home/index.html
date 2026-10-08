@@ -386,6 +386,8 @@
   .hp-tags span { font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px; white-space: nowrap; }
   .hp-slideshow .hp-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; }
   .hp-slideshow .hp-slide.is-active { opacity: 1; }
+  .hp-media.hp-stack { aspect-ratio: auto; overflow: visible; background: transparent; border-radius: 0; display: flex; flex-direction: column; gap: clamp(16px, 2.5vh, 32px); }
+  .hp-media.hp-stack img { width: 100%; height: auto; object-fit: contain; border-radius: 14px; }
   @media (max-width: 480px) { .hp-media { aspect-ratio: 4/3; } }
 
   /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
@@ -450,7 +452,7 @@
 
 <div class="hero">
   <h1>I care about how things look, feel and work.</h1>
-  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems to help teams make better decisions and build better products.</p>
+  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
   <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
   <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
 </div>
@@ -543,7 +545,7 @@
       <p class="hp-desc">Future-vision concepts exploring the evolution of Asana&rsquo;s interface and interaction model.</p>
       <div class="hp-tags"><span>Visual design</span><span>Concept</span><span>Micro-interactions</span></div>
     </div>
-    <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-Asana-Hero.png" alt="Designing a five-year vision for Asana" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero2.png" alt="" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero3.png" alt="" loading="lazy"></div>
+    <div class="hp-media hp-stack"><img src="/home/Heros/AneAranburu-Asana-Hero.png" alt="Designing a five-year vision for Asana" loading="lazy"><img src="/home/Heros/AneAranburu-Asana-Hero2.png" alt="" loading="lazy"><img src="/home/Heros/AneAranburu-Asana-Hero3.png" alt="" loading="lazy"></div>
   </article>
 </main>
 

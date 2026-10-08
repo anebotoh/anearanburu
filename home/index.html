@@ -417,7 +417,7 @@
     .hp-media { width: 100%; max-width: none; margin: 0; }
   }
   /* Floating glass pill — primary navigation */
-  .contact-pill { position: fixed; left: 0; right: 0; top: 18px; width: fit-content; max-width: calc(100% - 2 * var(--margin)); margin-inline: auto; height: auto; z-index: 200; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .contact-pill { position: fixed; left: var(--margin); right: auto; bottom: 20px; top: auto; width: fit-content; max-width: calc(100% - 2 * var(--margin)); height: auto; z-index: 200; display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 6px 7px 6px 8px; background: rgba(255,255,255,0.07); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
   .contact-pill a { text-decoration: none; }
   .cp-identity { display: inline-flex; align-items: center; gap: 10px; padding-right: 4px; }
   .cp-avatar { position: relative; flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#33333b,#4a4a53); display: inline-flex; align-items: center; justify-content: center; }
@@ -433,7 +433,7 @@
   .cp-sayhi { padding: 8px 15px; border-radius: 100px; background: transparent; color: #f0ede8; border: 1px solid rgba(255,255,255,0.28); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background .2s ease; }
   .cp-sayhi:hover { background: rgba(255,255,255,0.1); }
   .topbar-left, .nav-left, .topbar-links, .nav-links, .nav-toggle { display: none !important; }
-  @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .contact-pill { gap: 4px; top: 12px; } }
+  @media (max-width: 760px) { .cp-id, .cp-sep { display: none; } .cp-links a { padding: 7px 9px; letter-spacing: .04em; } .contact-pill { gap: 4px; bottom: 14px; } }
 </style>
 </head>
 <body>
@@ -452,12 +452,6 @@
   </nav>
 </header>
 
-<div class="hero">
-  <h1>I care about how things look, feel and work.</h1>
-  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
-  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
-  <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
-</div>
 
 <main class="home-list">
   <article class="home-project">
@@ -550,6 +544,13 @@
     <div class="hp-media hp-slideshow"><img class="hp-slide is-active" src="/home/Heros/AneAranburu-Asana-Hero.png" alt="Designing a five-year vision for Asana" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero2.png" alt="" loading="lazy"><img class="hp-slide" src="/home/Heros/AneAranburu-Asana-Hero3.png" alt="" loading="lazy"></div>
   </article>
 </main>
+
+<div class="hero">
+  <h1>I care about how things look, feel and work.</h1>
+  <p class="hero-statement">I bring clarity to complexity — connecting ideas, people, and systems<br class="hero-break"> to help teams make better decisions and build better products.</p>
+  <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" class="hero-link">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" class="hero-link">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" class="hero-link">Fjord</a> and <a href="https://fantasy.co/" target="_blank" class="hero-link">Fantasy</a>.</p>
+  <p class="prev-tagline">Most of my work is under NDA — happy to walk you through it over a call, <a href="mailto:aranburuane@gmail.com">Get in touch</a>!</p>
+</div>
 
 <footer>
   <span class="footer-left">Brooklyn, NY <span class="clock" id="ny-clock"></span></span>

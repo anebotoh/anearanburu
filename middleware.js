@@ -142,7 +142,7 @@ export default async function middleware(req) {
       return new Response(null, {
         status: 303,
         headers: {
-          'Location': '/case-studies/',
+          'Location': '/case-studies/output-creator/',
           'Set-Cookie': `${COOKIE}=${expected}; Path=/case-studies; HttpOnly; Secure; SameSite=Lax; Max-Age=${MAXAGE}`,
         },
       });

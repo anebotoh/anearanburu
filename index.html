@@ -365,6 +365,22 @@
   /* HOME PROJECT LIST (vertical, replaces carousel) */
   .home-list { margin: clamp(56px,9vh,96px) var(--margin) clamp(56px,9vh,96px); display: flex; flex-direction: column; gap: clamp(44px,6vh,64px); }
   .hp-media { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: #1a1a1f; }
+  .cs-intro { margin: 40px 0 clamp(40px,6vh,64px); max-width: 784px; }
+  .cs-intro p { font-size: clamp(23px, 2.8vw, 31px); line-height: 1.2; letter-spacing: -.02em; color: var(--text); }
+  .cs-intro p + p { margin-top: 1.1em; }
+  .cs-intro a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
+  .cs-intro a:hover { text-decoration-color: var(--text); }
+  .cs-intro .intro-nda {
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 28px;
+    max-width: none;
+  }
+  @media (min-width: 769px) { .cs-intro { min-height: 60vh; } .cs-intro p { font-size: 26px; line-height: 1.3; } }
+  @media (max-width: 480px) { .cs-intro { max-width: 100%; } }
   .hp-media video, .hp-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hp-info { margin-bottom: 40px; }
   .hp-meta { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
@@ -382,7 +398,7 @@
 
   /* ---------- WORK LAYOUT + SCROLL SNAP (desktop): text left, image right, one per scroll ---------- */
   @media (min-width: 769px) {
-    html { scroll-snap-type: y mandatory; scroll-padding-top: 70px; }
+    html { scroll-padding-top: 70px; }
     .hero h1, .hero p { font-size: 23px; line-height: 1.3; }
     .hero {
       min-height: calc(100vh - 70px);
@@ -392,12 +408,10 @@
     }
     .home-list { margin: 0 var(--margin); gap: 0; }
     .home-project {
-      min-height: calc(100vh - 70px);
       display: grid; grid-template-columns: minmax(0, 1fr) 70%;
       align-content: center; align-items: start;
       column-gap: clamp(32px, 4vw, 72px);
-      padding: clamp(40px, 7vh, 88px) 0;
-      scroll-snap-align: start; scroll-snap-stop: always;
+      padding: clamp(32px, 4vh, 56px) 0;
     }
     .hp-info { display: flex; flex-direction: column; min-width: 0; margin-bottom: 0; max-width: none; }
     .hp-title { order: 2; margin-top: 12px; font-size: 23px; line-height: 1.3; }
@@ -447,11 +461,17 @@
 
 
 <main class="home-list">
+  <section class="cs-intro">
+    <p>I care about how things look, feel and work.</p>
+    <p>I bring clarity to complexity — connecting ideas, people, and systems to help teams make better decisions and build better products.</p>
+    <p>I currently work as a Lead Product Designer at <a href="https://output.com/" target="_blank" rel="noopener">Output</a> — designing music production tools like <a href="https://output.com/products/creator/" target="_blank" rel="noopener">Output Creator</a>. Previously at <a href="https://www.accenture.com/us-en/about/accenture-song-index" target="_blank" rel="noopener">Fjord</a> and <a href="https://fantasy.co/" target="_blank" rel="noopener">Fantasy</a>.</p>
+    <p class="intro-nda">Most of my work is under NDA — reach out and I'll walk you through more.</p>
+  </section>
   <article class="home-project">
     <div class="hp-info">
       <p class="hp-meta">2024–2026 · Output</p>
       <h2 class="hp-title">Building a more intuitive creative<br>workflow for music production</h2>
-      <p class="hp-desc">Over two and a half years, I led the end-to-end redesign of Output Creator — from workflow architecture and interaction design to user research, visual design, micro-interactions, and front-end polish. It was designed using Figma and Cursor, but it was shaped by countless conversations, disagreements, iterations, and an ongoing rebrand. Together, we launched a product that was genuinely fun to use — and helped secure a partnership with Yamaha, including live demos at NAMM and SXSW.</p>
+      <p class="hp-desc">Over two and a half years, I led the end-to-end redesign of Output Creator — from workflow architecture and interaction design to user research, visual design, micro-interactions, and front-end polish. It was designed using Figma and Cursor, but it was shaped by countless conversations, disagreements, iterations, and an ongoing rebrand. Together, we launched a product that was genuinely fun to use — and helped secure a partnership with <a href="https://yamahacreators.com/products/growth-pass" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:#6a6a6f;text-underline-offset:2px">Yamaha</a>, including live demos at NAMM and SXSW.</p>
       <div class="hp-tags"><span>Design concept</span><span>User interviews</span><span>Workflow design</span><span>IA</span><span>UI/UX</span><span>Design system</span><span>User testing</span><span>Demo</span><span>Prototyping</span></div>
       <a class="hp-cta" href="https://output.com/products/creator" target="_blank" rel="noopener">Download and play with Output Creator</a>
     </div>

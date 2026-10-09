@@ -111,7 +111,7 @@ function page(error) {
     <a class="cp-sayhi" href="mailto:aranburuane@gmail.com">Say hi</a>
   </nav>
   <nav class="contact-pill pill-right">
-    <span class="cp-links"><a href="/" data-path="home">Work</a><a href="/case-studies/output-creator/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
+    <span class="cp-links"><a href="/" data-path="home">Work</a><a href="/case-studies/" data-path="cases">Case studies</a><a href="/about/" data-path="about">About</a></span>
   </nav>
 </div>
 <script>
@@ -142,7 +142,7 @@ export default async function middleware(req) {
       return new Response(null, {
         status: 303,
         headers: {
-          'Location': '/case-studies/output-creator/',
+          'Location': '/case-studies/',
           'Set-Cookie': `${COOKIE}=${expected}; Path=/case-studies; HttpOnly; Secure; SameSite=Lax; Max-Age=${MAXAGE}`,
         },
       });
@@ -153,10 +153,6 @@ export default async function middleware(req) {
   const cookie = req.headers.get('cookie') || '';
   const m = cookie.match(/(?:^|;\s*)cs_auth=([^;]+)/);
   if (m && m[1] === expected) {
-    const url = new URL(req.url);
-    if (url.pathname === '/case-studies' || url.pathname === '/case-studies/') {
-      return new Response(null, { status: 307, headers: { 'Location': '/case-studies/output-creator/' } });
-    }
     return; // authenticated — pass through
   }
 
